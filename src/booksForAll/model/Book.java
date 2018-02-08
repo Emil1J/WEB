@@ -77,4 +77,5 @@ public class Book {
 	public void setLikeUsernames(List<String> likeUsernames) {
 		this.likeUsernames = likeUsernames;
 	}
+
 }
