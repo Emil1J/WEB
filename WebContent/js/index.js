@@ -10,7 +10,7 @@ angular.module('app',[])
 	//obtain some dataset online
 	//$http is AngularJS way to do ajax-like communications
 		
-//	$http.get("http://localhost:8080/ExampleServletv3/customers") ///name/Alfreds Futterkiste
+////	$http.get("http://localhost:8080/ExampleServletv3/customers") ///name/Alfreds Futterkiste
 //			.success(function(response) {
 //			   $scope.records = response;
 //			   $scope.result = $scope.records;//this variable will hold the search results
