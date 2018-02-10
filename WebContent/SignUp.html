@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src="lib/angular.min.js" ></script>
+		<script src="lib/jquery-3.2.1.js"></script>
+		<script src="lib/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+		<link rel="stylesheet" href="mainCss.css"/>
+	</head>
+	<body  ng-app="app">
+		<div ng-controller="loginController">
+  			<div class="signUpBox">
+  				<h1>Sign Up</h1>
+  				<form>
+					<p>Username*</p>
+					<input type="text" name="" placeholder="username" data-ng-model="usernamesu" required>
+					<p>Email*</p>
+					<input type="text" name="" placeholder="aaa@aaa" data-ng-model="email" required>
+					<p>Address</p>
+					<input type="text" name="" placeholder="63, Abbass Street, 3537829 HAIFA, ISRAEL" data-ng-model="address">
+					<p>Phone</p>
+					<input type="text" name="" placeholder="1234567890" data-ng-model="phone">
+					<p>Password (up to 8 characters)*</p>
+					<input type="password" name="" placeholder="********" data-ng-model="passwordsu" required>
+					<p>Nickname*</p>
+					<input type="text" name="" placeholder="michey" data-ng-model="nickname" required>
+					<p>Short Description (up to 50 characters)</p>
+					<input type="text" name="" placeholder="i like this website!" data-ng-model="description">
+					<p>Photo</p>
+					<input type="text" name="" placeholder="photo url" data-ng-model="photo">
+					<input type="submit" name=""  ng-click="signUp()">
+					
+				</form>
+  			</div>
+  		</div>
+  		<script src="js/index.js"></script>
+  		<script src="js/helperService.js"></script>
+	</body>
+</html>
