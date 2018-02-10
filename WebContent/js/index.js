@@ -16,25 +16,21 @@ angular.module('app',[])
 //			   $scope.result = $scope.records;//this variable will hold the search results
 //			});
 			
-	$scope.signIn = function(){
-	    if (!$scope.email || $scope.email.length == 0 || 
-	    		!$scope.password || $scope.password.length == 0)
-	    {
-	    	return;
-		}else{
-			var data = {
-            		email : $scope.email,
-            		password : $scope.password
-            };
-			
-			$http.get("http://localhost:8080/WebProject/LoginServlet?",data)
-        	.success(function(response) {
-        		$scope.records = response;
-        	}).error(function(response){
-        	
-        	});
-	   }
-	};
+		$scope.login = function () {
+	           // use $.param jQuery function to serialize data from JSON 
+	            var data = {
+	            		email : $scope.email,
+	            		password : $scope.password
+	            };
+		
+		
+	            $http.get("http://localhost:8080/BooksForAll/LoginServlet?",data)
+	            	.success(function(response) {
+	            		$scope.records = response;
+	            }).error(function(response){
+	            	
+	            });
+		 };
 	
 }]);
 

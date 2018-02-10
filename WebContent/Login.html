@@ -7,7 +7,7 @@
 		<link rel="stylesheet" href="mainCss.css"/>
 	</head>
 	<body  ng-app="app">
-		<div data-ng-controller="loginController">
+		<div ng-controller="loginController">
   			<div class="loginBox">
   				<h2>Log In</h2>
   				<form>
@@ -15,7 +15,7 @@
 					<input type="text" name="" placeholder="Email" data-ng-model="email" required>
 					<p>Password</p>
 					<input type="password" name="" placeholder="••••••" data-ng-model="password" required>
-					<input type="submit" name=""  data-ng-click="signIn()">
+					<input type="submit" name=""  ng-click="login()">
 					<p style="text-align: center;">New Here? Sign Up</p>
 				</form>
   			</div>
