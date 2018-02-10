@@ -10,7 +10,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -67,27 +69,35 @@ public class ManageDBFromJsonFile implements ServletContextListener {
     		BasicDataSource ds = (BasicDataSource)context.lookup(
     				cntx.getInitParameter(AppConstants.DB_DATASOURCE) + AppConstants.OPEN);
     		Connection conn = ds.getConnection();
-    		
-    		boolean created = false;
-    		try{
-    			//create Customers table
-    			Statement stmt = conn.createStatement();
-    			stmt.executeUpdate(AppConstants.CREATE_USERS_TABLE);
-    			//commit update
-        		conn.commit();
-        		stmt.close();
-    		}catch (SQLException e){
-    			//check if exception thrown since table was already created (so we created the database already 
-    			//in the past
-    			created = tableAlreadyExists(e);
-    			if (!created){
-    				throw e;//re-throw the exception so it will be caught in the
-    				//external try..catch and recorded as error in the log
-    			}
+    		List<String> tables = new ArrayList<String>();
+    		tables.add(AppConstants.CREATE_USERS_TABLE);
+    		tables.add(AppConstants.CREATE_COMMENTS_TABLE);
+    		tables.add(AppConstants.CREATE_LIKES_TABLE);
+    		tables.add(AppConstants.CREATE_BOOKS_TABLE);
+
+    		for(String table : tables) {
+    			boolean created = false;
+        		try{
+        			//create users table
+        			Statement stmt = conn.createStatement();
+        			//TODO: DIFFERENT CHECKS
+        			stmt.executeUpdate(table);
+        			//commit update
+            		conn.commit();
+            		stmt.close();
+        		}catch (SQLException e){
+        			//check if exception thrown since table was already created (so we created the database already 
+        			//in the past
+        			created = tableAlreadyExists(e);
+        			if (!created){
+        				throw e;//re-throw the exception so it will be caught in the
+        				//external try..catch and recorded as error in the log
+        			}
+        		}
     		}
    		
     		//if no database exist in the past - further populate its records in the table
-    		if (!created){
+    		/*if (!created){
     			//populate customers table with customer data from json file
     			Collection<Customer> customers = loadCustomers(cntx.getResourceAsStream(File.separator +
     														   AppConstants.CUSTOMERS_FILE));
@@ -106,7 +116,6 @@ public class ManageDBFromJsonFile implements ServletContextListener {
     				pstmt.setString(11,customer.getDescription());
     				pstmt.setString(12,customer.getPhoto());
     				pstmt.setDouble(13,customer.getBalance());
-
     				pstmt.executeUpdate();
     			}
 
@@ -114,19 +123,16 @@ public class ManageDBFromJsonFile implements ServletContextListener {
     			conn.commit();
     			//close statements
     			pstmt.close();
-    		}
+    		}*/
     		
 
     		//close connection
     		conn.close();
-
+    		
     	} catch (SQLException | NamingException e) {
     		//log error 
     		cntx.log("Error during database initialization",e);
-    	} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+    	}
     }
 
 	/**
