@@ -13,13 +13,13 @@ public class Book {
 	
 	public Book(String name, String url, String photo, int price, String description, 
 			List<String> likeUsernames, List<Comment> comments) {
-		name = this.name;
-		url = this.url;
-		photo = this.photo;
-		description = this.description;
-		price = this.price;
-		likeUsernames = this.likeUsernames;
-		comments = this.comments;
+		this.name = name;
+		this.url = url;
+		this.photo = photo;
+		this.description = description;
+		this.price = price;
+		this.likeUsernames = likeUsernames;
+		this.comments = comments;
 	}
 	
 	public String getName() {

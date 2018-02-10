@@ -12,19 +12,19 @@ public class Customer {
 	private String description;
 	private String photo;
 	private List<String> books;
-	private int balance;
+	private double balance;
 	
 	public Customer(String username, String email, Address address, String phoneNum, String password,
-			String nickname, String description, String photo) {
-		username = this.username;
-		email = this.email;
-		address = this.address;
-		phoneNum = this.phoneNum;
-		password = this.password;
-		nickname = this.nickname;
-		description = this.description;
-		photo = this.photo;
-		setBalance(0);
+			String nickname, String description, String photo, double balance) {
+		this.username = username;
+		this.email = email;
+		this.address = address;
+		this.phoneNum = phoneNum;
+		this.password = password;
+		this.nickname = nickname;
+		this.description = description;
+		this.photo = photo;
+		this.balance = balance;
 	}
 	public String getUsername() {
 		return username;
@@ -80,10 +80,10 @@ public class Customer {
 	public void setBooks(List<String> books) {
 		this.books = books;
 	}
-	public int getBalance() {
+	public double getBalance() {
 		return balance;
 	}
-	public void setBalance(int balance) {
+	public void setBalance(double balance) {
 		this.balance = balance;
 	}
 }
