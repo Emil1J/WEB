@@ -1,19 +1,26 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<script src="lib/angular.min.js" ></script>
+		<script src="lib/jquery-3.2.1.js"></script>
+		<script src="lib/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 		<link rel="stylesheet" href="mainCss.css"/>
 	</head>
-	<body>
-  		<div class="loginBox" ng-app="app" ng-controller="loginController">
-  			<h2>Log In</h2>
-  			<form>
-				<p>Email</p>
-				<input type="text" name="" placeholder="Email" ng-model="email" required>
-				<p>Password</p>
-				<input type="password" name="" placeholder="••••••" ng-model="password" required>
-				<input type="submit" name="" value="Sign In" ng-click="signIn()">
-				<p style="text-align: center;">New Here? Sign Up</p>
-			</form>
+	<body  ng-app="app">
+		<div data-ng-controller="loginController">
+  			<div class="loginBox">
+  				<h2>Log In</h2>
+  				<form>
+					<p>Email</p>
+					<input type="text" name="" placeholder="Email" data-ng-model="email" required>
+					<p>Password</p>
+					<input type="password" name="" placeholder="••••••" data-ng-model="password" required>
+					<input type="submit" name=""  data-ng-click="signIn()">
+					<p style="text-align: center;">New Here? Sign Up</p>
+				</form>
+  			</div>
   		</div>
+  		<script src="js/index.js"></script>
+  		<script src="js/helperService.js"></script>
 	</body>
 </html>

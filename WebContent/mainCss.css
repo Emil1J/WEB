@@ -14,7 +14,7 @@ body
 	transform: translate(-50%,-50%);
 	width: 350px;
 	height: 420px;
-	padding: 80px 40px;
+	padding: 25px 40px;
 	box-sizing: border-box;
 	background: rgba(0,0,0,.5);
 }
@@ -31,10 +31,14 @@ body
 h2
 {
 	margin: 0;
-	padding: 0 0 20px;
+	padding: 0 0 50px;
 	color: #ffffff;
 	text-align: center;
 }
+h2 tmp{
+	
+}
+
 .loginBox p
 {
 	margin: 0;
