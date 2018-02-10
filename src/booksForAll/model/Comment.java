@@ -8,9 +8,9 @@ public class Comment {
 	private String username;
 	
 	public Comment(String description, Date date, String username) {
-		description = this.description;
-		date = this.date;
-		username = this.username;
+		this.description = description;
+		this.date = date;
+		this.username = username;
 	}
 	
 	public String getDescription() {
