@@ -21,14 +21,15 @@ angular.module('app',[])
 
 				$.ajax({
 				  url: "http://localhost:8080/BooksForAll/LoginServlet?",
-				  type: "GET", //send it through get method
-				  data: { 
+				  type: "POST", //send it through get method
+				  data: {
 				    Username: $scope.username, 
 				    Password: $scope.password
 				  },
 				  success: function(response) {
 					  $scope.records = response;
 	            		$scope.result = $scope.records;
+	            		alert($scope.result.Result);
 				  },
 				  error: function(xhr) {
 				    //Do Something to handle error
