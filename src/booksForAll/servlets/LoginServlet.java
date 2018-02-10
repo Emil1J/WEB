@@ -94,10 +94,10 @@ import booksForAll.model.Customer;
     			response.getWriter().println(json.toString());
     			return ;
     		}
-			String customerJson = gson.toJson(customer);
-    		json.addProperty("Customer", customerJson);
+    		json.add("Customer", gson.toJsonTree(customer));
     		response.getWriter().println(json.toString());
         	response.getWriter().close();
+        	response.setStatus(HttpServletResponse.SC_OK);
     	} catch (SQLException | NamingException e) {
     		getServletContext().log("Error while closing connection", e);
     		response.sendError(500);//internal server error
