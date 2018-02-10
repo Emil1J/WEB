@@ -91,7 +91,7 @@ public class ManageDBFromJsonFile implements ServletContextListener {
     			//populate customers table with customer data from json file
     			Collection<Customer> customers = loadCustomers(cntx.getResourceAsStream(File.separator +
     														   AppConstants.CUSTOMERS_FILE));
-    			PreparedStatement pstmt = conn.prepareStatement(AppConstants.INSERT_USERS_STMT);
+    			PreparedStatement pstmt = conn.prepareStatement(AppConstants.INSERT_USER_STMT);
     			for (Customer customer : customers){
     				pstmt.setString(1,customer.getUsername());
     				pstmt.setString(2,customer.getEmail());
