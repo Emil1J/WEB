@@ -18,18 +18,22 @@ angular.module('app',[])
 			
 		$scope.login = function () {
 	           // use $.param jQuery function to serialize data from JSON 
-	            var data = {
-	            		email : $scope.email,
-	            		password : $scope.password
-	            };
-		
-		
-	            $http.get("http://localhost:8080/BooksForAll/LoginServlet?",data)
-	            	.success(function(response) {
-	            		$scope.records = response;
-	            }).error(function(response){
-	            	
-	            });
+
+				$.ajax({
+				  url: "http://localhost:8080/BooksForAll/LoginServlet?",
+				  type: "GET", //send it through get method
+				  data: { 
+				    Username: $scope.username, 
+				    Password: $scope.password
+				  },
+				  success: function(response) {
+					  $scope.records = response;
+	            		$scope.result = $scope.records;
+				  },
+				  error: function(xhr) {
+				    //Do Something to handle error
+				  }
+				});
 		 };
 	
 }]);
