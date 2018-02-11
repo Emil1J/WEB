@@ -4,6 +4,7 @@ import java.util.List;
 
 public class Book {
 	private String name;
+	private String author;
 	private String url;
 	private String photo;
 	private int price;
@@ -11,9 +12,10 @@ public class Book {
 	private List<String> likeUsernames;
 	private List<Comment> comments;
 	
-	public Book(String name, String url, String photo, int price, String description, 
+	public Book(String name, String author, String url, String photo, int price, String description, 
 			List<String> likeUsernames, List<Comment> comments) {
 		this.name = name;
+		this.author = author;
 		this.url = url;
 		this.photo = photo;
 		this.description = description;
@@ -76,6 +78,14 @@ public class Book {
 
 	public void setLikeUsernames(List<String> likeUsernames) {
 		this.likeUsernames = likeUsernames;
+	}
+
+	public String getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(String author) {
+		this.author = author;
 	}
 
 }
