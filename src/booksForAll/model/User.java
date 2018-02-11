@@ -2,10 +2,14 @@ package booksForAll.model;
 
 import java.util.List;
 
-public class Customer {
+public class User {
 	private String username;
 	private String email;
-	private Address address;
+	private String city;
+	private String street;
+	private int houseNum;
+	private String postalCode;
+	private String country;
 	private String phoneNum;
 	private String password;
 	private String nickname;
@@ -14,11 +18,16 @@ public class Customer {
 	private List<String> books;
 	private double balance;
 	
-	public Customer(String username, String email, Address address, String phoneNum, String password,
+	public User(String username, String email,  String city, String street, int houseNum, 
+			String postalCode, String country, String phoneNum, String password,
 			String nickname, String description, String photo, double balance) {
 		this.username = username;
 		this.email = email;
-		this.address = address;
+		this.city = city;
+		this.street = street;
+		this.houseNum = houseNum;
+		this.postalCode = postalCode;
+		this.country = country;
 		this.phoneNum = phoneNum;
 		this.password = password;
 		this.nickname = nickname;
@@ -37,12 +46,6 @@ public class Customer {
 	}
 	public void setEmail(String email) {
 		this.email = email;
-	}
-	public Address getAddress() {
-		return address;
-	}
-	public void setAddress(Address address) {
-		this.address = address;
 	}
 	public String getPhoneNum() {
 		return phoneNum;
@@ -85,5 +88,35 @@ public class Customer {
 	}
 	public void setBalance(double balance) {
 		this.balance = balance;
+	}
+	public String getStreet() {
+		return street;
+	}
+	public void setStreet(String street) {
+		this.street = street;
+	}
+	public int getHouseNum() {
+		return houseNum;
+	}
+	public void setHouseNum(int houseNum) {
+		this.houseNum = houseNum;
+	}
+	public String getCountry() {
+		return country;
+	}
+	public void setCountry(String country) {
+		this.country = country;
+	}
+	public String getPostalCode() {
+		return postalCode;
+	}
+	public void setPostalCode(String postalCode) {
+		this.postalCode = postalCode;
+	}
+	public String getCity() {
+		return city;
+	}
+	public void setCity(String city) {
+		this.city = city;
 	}
 }

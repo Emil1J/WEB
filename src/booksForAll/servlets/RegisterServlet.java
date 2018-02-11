@@ -114,7 +114,7 @@ import booksForAll.general.AppConstants;
 				}
 				stmt.close();
 			} catch (SQLException e) {
-				getServletContext().log("Error while querying for customers", e);
+				getServletContext().log("Error", e);
 	    		response.sendError(500);//internal server error
     		}
 

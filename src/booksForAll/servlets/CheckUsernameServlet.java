@@ -18,31 +18,25 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.tomcat.dbcp.dbcp2.BasicDataSource;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 
 import booksForAll.general.AppConstants;
-import booksForAll.general.AssistantFuncs;
-import booksForAll.model.User;
 
 /**
- * Servlet implementation class LoginServlet2
+ * Servlet implementation class CheckUsernameServlet
  */
-@WebServlet(
-		urlPatterns = "/LoginServlet",
+@WebServlet(		
+		urlPatterns = "/CheckUsernameServlet",
 		initParams = {
-				@WebInitParam(name = "Username", value = ""),
-				@WebInitParam(name = "Password", value = "")
+		@WebInitParam(name = "Username", value = "")
 		})
-
-	public class LoginServlet extends HttpServlet {
+public class CheckUsernameServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LoginServlet() {
+    public CheckUsernameServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -53,7 +47,6 @@ import booksForAll.model.User;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String username = request.getParameter("Username");
-		String password = request.getParameter("Password");
 		String result = "";
 		try {
     		
@@ -63,19 +56,16 @@ import booksForAll.model.User;
     				getServletContext().getInitParameter(AppConstants.DB_DATASOURCE) + AppConstants.OPEN);
     		Connection conn = ds.getConnection();
 
-    		User customer = null;
     		PreparedStatement stmt;
 			try {
-				stmt = conn.prepareStatement(AppConstants.SELECT_USERS_BY_NAME_PASS_STMT);
+				stmt = conn.prepareStatement(AppConstants.SELECT_USERS_BY_NAME_STMT);
 				stmt.setString(1, username);
-				stmt.setString(2, password);
 				ResultSet rs = stmt.executeQuery(); 
 				if (rs.next()){
-					customer = AssistantFuncs.CreateCustomerFromRS(rs);
-					result = "Success";
+					result = "Failure";
 				}
 				else {
-					result = "Failure";
+					result = "Success";
 				}
 				rs.close();
 				stmt.close();
@@ -86,15 +76,9 @@ import booksForAll.model.User;
 
     		conn.close();
     		
-    		Gson gson = new GsonBuilder().create();
         	response.addHeader("Content-Type", "application/json");
     		JsonObject json = new JsonObject();
     		json.addProperty("Result", result);
-    		if(customer == null) {
-    			response.getWriter().println(json.toString());
-    			return ;
-    		}
-    		json.add("Customer", gson.toJsonTree(customer));
     		response.getWriter().println(json.toString());
         	response.getWriter().close();
         	response.setStatus(HttpServletResponse.SC_OK);

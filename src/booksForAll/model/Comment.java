@@ -3,12 +3,14 @@ package booksForAll.model;
 import java.sql.Date;
 
 public class Comment {
+	private int id;
 	private String description;
 	private Date date;
 	private String username;
 	private int approved;
 	
-	public Comment(String description, Date date, String username, int approved) {
+	public Comment(int id, String description, Date date, String username, int approved) {
+		this.setId(id);
 		this.description = description;
 		this.date = date;
 		this.username = username;
@@ -45,5 +47,13 @@ public class Comment {
 
 	public void setApproved(int approved) {
 		this.approved = approved;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 }
