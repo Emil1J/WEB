@@ -1,20 +1,22 @@
 package booksForAll.model;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 
 public class Comment {
 	private int id;
 	private String description;
-	private Date date;
+	private Timestamp time;
 	private String username;
+	private String bookName;
 	private int approved;
 	
-	public Comment(int id, String description, Date date, String username, int approved) {
+	public Comment(int id, String description, Timestamp time, String username, String bookName, int approved) {
 		this.setId(id);
 		this.description = description;
-		this.date = date;
+		this.time = time;
 		this.username = username;
-		this.setApproved(approved);
+		this.bookName = bookName;
+		this.approved = approved;
 	}
 	
 	public String getDescription() {
@@ -25,12 +27,12 @@ public class Comment {
 		this.description = description;
 	}
 
-	public Date getDate() {
-		return date;
+	public Timestamp getTime() {
+		return time;
 	}
 
-	public void setDate(Date date) {
-		this.date = date;
+	public void setTime(Timestamp time) {
+		this.time = time;
 	}
 
 	public String getUsername() {
@@ -55,5 +57,13 @@ public class Comment {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public String getBookName() {
+		return bookName;
+	}
+
+	public void setBookName(String bookName) {
+		this.bookName = bookName;
 	}
 }

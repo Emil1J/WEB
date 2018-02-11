@@ -24,10 +24,13 @@ import javax.servlet.annotation.WebListener;
 import org.apache.tomcat.dbcp.dbcp2.BasicDataSource;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
 import booksForAll.general.AppConstants;
 import booksForAll.model.Book;
+import booksForAll.model.Comment;
+import booksForAll.model.Like;
 import booksForAll.model.User;
 
 
@@ -141,14 +144,61 @@ public class ManageDBFromJsonFile implements ServletContextListener {
             				pstmt.setString(3,user.getCity());
             				pstmt.setString(4,user.getStreet());
             				pstmt.setInt(5,user.getHouseNum());
-            				pstmt.setString(5,user.getPostalCode());
-            				pstmt.setString(6,user.getCountry());
-            				pstmt.setString(7,user.getPhoneNum());
-            				pstmt.setString(8,user.getPassword());
-            				pstmt.setString(9,user.getNickname());
-            				pstmt.setString(10,user.getDescription());
-            				pstmt.setString(11,user.getPhoneNum());
-            				pstmt.setDouble(12,user.getBalance());
+            				pstmt.setString(6,user.getPostalCode());
+            				pstmt.setString(7,user.getCountry());
+            				pstmt.setString(8,user.getPhoneNum());
+            				pstmt.setString(9,user.getPassword());
+            				pstmt.setString(10,user.getNickname());
+            				pstmt.setString(11,user.getDescription());
+            				pstmt.setString(12,user.getPhoto());
+            				pstmt.setDouble(13,user.getBalance());
+            				pstmt.executeUpdate();
+            			}
+
+            			//commit update
+            			conn.commit();
+            			//close statements
+            			pstmt.close();
+        			}
+        			else if(table.equals(AppConstants.CREATE_COMMENTS_TABLE)) {
+        				//populate customers table with customer data from json file
+            			Collection<Comment> comments = null;
+						try {
+							comments = loadComments(cntx.getResourceAsStream(File.separator +
+																		   AppConstants.COMMENTS_JSON_FILE));
+						} catch (IOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+            			PreparedStatement pstmt = conn.prepareStatement(AppConstants.INSERT_COMMENT_STMT);
+            			for (Comment comment : comments){
+            				pstmt.setString(1,comment.getUsername());
+            				pstmt.setTimestamp(2,comment.getTime());
+            				pstmt.setString(3,comment.getDescription());
+            				pstmt.setString(4,comment.getBookName());
+            				pstmt.setInt(5,comment.getApproved());
+            				pstmt.executeUpdate();
+            			}
+
+            			//commit update
+            			conn.commit();
+            			//close statements
+            			pstmt.close();
+        			}
+        			else if(table.equals(AppConstants.CREATE_LIKES_TABLE)) {
+        				//populate customers table with customer data from json file
+            			Collection<Like> likes = null;
+						try {
+							likes = loadLikes(cntx.getResourceAsStream(File.separator +
+																		   AppConstants.LIKES_JSON_FILE));
+						} catch (IOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+            			PreparedStatement pstmt = conn.prepareStatement(AppConstants.INSERT_LIKE_STMT);
+            			for (Like like : likes){
+            				pstmt.setString(1,like.getUsername());
+            				pstmt.setString(2,like.getBookname());
             				pstmt.executeUpdate();
             			}
 
@@ -218,7 +268,7 @@ public class ManageDBFromJsonFile implements ServletContextListener {
 		return books;
 	}
 	
-private Collection<User> loadUsers(InputStream is) throws IOException{
+	private Collection<User> loadUsers(InputStream is) throws IOException{
 		
 		//wrap input stream with a buffered reader to allow reading the file line by line
 		BufferedReader br = new BufferedReader(new InputStreamReader(is));
@@ -237,6 +287,52 @@ private Collection<User> loadUsers(InputStream is) throws IOException{
 		//close
 		br.close();	
 		return users;
+	}
+
+	private Collection<Comment> loadComments(InputStream is) throws IOException{
+		
+		//wrap input stream with a buffered reader to allow reading the file line by line
+		BufferedReader br = new BufferedReader(new InputStreamReader(is));
+		StringBuilder jsonFileContent = new StringBuilder();
+		//read line by line from file
+		String nextLine = null;
+		while ((nextLine = br.readLine()) != null){
+			jsonFileContent.append(nextLine);
+		}
+	
+		Gson gson = new GsonBuilder()
+				.setDateFormat("yyyy-MM-dd HH:mm:ss.S")
+				.create();
+		//this is a require type definition by the Gson utility so Gson will 
+		//understand what kind of object representation should the json file match
+		Type type = new TypeToken<Collection<Comment>>(){}.getType();
+
+
+		Collection<Comment> comments = gson.fromJson(jsonFileContent.toString(), type);
+		//close
+		br.close();	
+		return comments;
+	}
+	
+	private Collection<Like> loadLikes(InputStream is) throws IOException{
+		
+		//wrap input stream with a buffered reader to allow reading the file line by line
+		BufferedReader br = new BufferedReader(new InputStreamReader(is));
+		StringBuilder jsonFileContent = new StringBuilder();
+		//read line by line from file
+		String nextLine = null;
+		while ((nextLine = br.readLine()) != null){
+			jsonFileContent.append(nextLine);
+		}
+	
+		Gson gson = new Gson();
+		//this is a require type definition by the Gson utility so Gson will 
+		//understand what kind of object representation should the json file match
+		Type type = new TypeToken<Collection<Like>>(){}.getType();
+		Collection<Like> likes = gson.fromJson(jsonFileContent.toString(), type);
+		//close
+		br.close();	
+		return likes;
 	}
 }
 

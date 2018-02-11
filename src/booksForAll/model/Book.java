@@ -9,18 +9,18 @@ public class Book {
 	private String Photo;
 	private double Price;
 	private String Description;
-	private List<String> LikeUsernames;
+	private List<Like> Likes;
 	private List<Comment> Comments;
 	
 	public Book(String name, String author, String url, String photo, double price, String description, 
-			List<String> likeUsernames, List<Comment> comments) {
+			List<Like> likes, List<Comment> comments) {
 		this.Name = name;
 		this.Author = author;
 		this.URL = url;
 		this.Photo = photo;
 		this.Description = description;
 		this.Price = price;
-		this.LikeUsernames = likeUsernames;
+		this.Likes = likes;
 		this.Comments = comments;
 	}
 	
@@ -72,12 +72,12 @@ public class Book {
 		this.Description = description;
 	}
 
-	public List<String> getLikeUsernames() {
-		return LikeUsernames;
+	public List<Like> getLikes() {
+		return Likes;
 	}
 
-	public void setLikeUsernames(List<String> likeUsernames) {
-		this.LikeUsernames = likeUsernames;
+	public void setLikes(List<Like> likeUsernames) {
+		this.Likes = likeUsernames;
 	}
 
 	public String getAuthor() {

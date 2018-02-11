@@ -5,10 +5,15 @@ package booksForAll.general;
  */
 public interface AppConstants {
 
-	public final String BOOKS = "Books";
+	public final String BOOKS = "Json/Books";
 	public final String BOOKS_JSON_FILE = BOOKS + ".json";
-	public final String USERS = "Users";
+	public final String USERS = "Json/Users";
 	public final String USERS_JSON_FILE = USERS + ".json";
+	public final String COMMENTS = "Json/Comments";
+	public final String COMMENTS_JSON_FILE = COMMENTS + ".json";
+	public final String LIKES = "Json/Likes";
+	public final String LIKES_JSON_FILE = LIKES + ".json";
+
 	public final String NAME = "name";
 	//derby constants
 	public final String DB_NAME = "DB_NAME";
@@ -27,8 +32,8 @@ public interface AppConstants {
 			+ "HOUSENUM INTEGER NOT NULL,"
 			+ "POSTALCODE VARCHAR(50) NOT NULL,"
 			+ "COUNTRY VARCHAR(50) NOT NULL,"
-			+ "PHONENUM VARCHAR(8) NOT NULL,"
-			+ "PASSWORD VARCHAR(50) NOT NULL,"
+			+ "PHONENUM VARCHAR(10) NOT NULL,"
+			+ "PASSWORD VARCHAR(8) NOT NULL,"
 			+ "NICKNAME VARCHAR(20) NOT NULL,"
 			+ "DESCRIPTION VARCHAR(50) NOT NULL,"
 			+ "PHOTO VARCHAR(50) NOT NULL,"
@@ -74,7 +79,7 @@ public interface AppConstants {
 			+ "ID INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),"
 			+ "USERNAME VARCHAR(10) NOT NULL,"
 			+ "SUBMITDATE TIMESTAMP NOT NULL,"
-			+ "DESCRIPTION VARCHAR(300) NOT NULL,"
+			+ "DESCRIPTION VARCHAR(500) NOT NULL,"
 			+ "BOOKNAME VARCHAR(100) NOT NULL,"
 			+ "APPROVED INT NOT NULL)";
 	
@@ -83,6 +88,8 @@ public interface AppConstants {
 	
 	public final String DELETE_COMMENTS_BY_USER_STMT = "DELETE FROM COMMENTS WHERE USERNAME=?";
 	
+	public final String DELETE_COMMENTS_BY_ID_STMT = "DELETE FROM COMMENTS WHERE ID=?";
+
 	public final String SELECT_ALL_COMMENTS_STMT = "SELECT * FROM COMMENTS";
 	
 	public final String SELECT_COMMENTS_BY_BOOK_NAME_STMT = "SELECT * FROM COMMENTS "
@@ -91,6 +98,8 @@ public interface AppConstants {
 	public final String SELECT_COMMENTS_BY_USER_STMT = "SELECT * FROM COMMENTS "
 			+ "WHERE USERNAME=?";
 	
+	public final String UPDATE_COMMENTS_APPROVE = "UPDATE COMMENTS SET APPROVED=1 WHERE ID=?";
+
 	public final String CREATE_LIKES_TABLE = "CREATE TABLE LIKES("
 			+ "ID INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),"
 			+ "USERNAME VARCHAR(10) NOT NULL,"
@@ -100,6 +109,8 @@ public interface AppConstants {
 	
 	public final String DELETE_LIKE_BY_USER_STMT = "DELETE FROM LIKES WHERE USERNAME=?";
 
+	public final String DELETE_LIKE_BY_USER_AND_BOOK_NAME_STMT = "DELETE FROM LIKES WHERE USERNAME=? AND BOOKNAME=?";
+
 	public final String SELECT_ALL_LIKES_STMT = "SELECT * FROM LIKES";
 	
 	public final String SELECT_LIKES_BY_BOOK_NAME_STMT = "SELECT * FROM LIKES "
@@ -107,6 +118,9 @@ public interface AppConstants {
 	
 	public final String SELECT_LIKES_BY_USER_STMT = "SELECT * FROM LIKES "
 			+ "WHERE USERNAME=?";
+	
+	public final String SELECT_LIKES_BY_USER_AND_BOOK_NAME_STMT = "SELECT * FROM LIKES "
+			+ "WHERE USERNAME=? AND BOOKNAME=?";
 	
 	public final String CREATE_PURCHASED_BOOKS_TABLE = "CREATE TABLE PURCHASED("
 			+ "ID INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),"
@@ -126,4 +140,7 @@ public interface AppConstants {
 	
 	public final String SELECT_PURCHASED_BY_USER_STMT = "SELECT * FROM PURCHASED "
 			+ "WHERE USERNAME=?";
+	
+	public final String SELECT_PURCHASED_BY_USER_AND_BOOK_NAME_STMT = "SELECT * FROM PURCHASED "
+			+ "WHERE USERNAME=? AND BOOKNAME=?";
 }
