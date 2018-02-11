@@ -134,7 +134,7 @@ h2
 }
 form
 {
-    width: 250px;
+    width: 100%;
     margin: 1 auto;
 }
 .loginBox input[type="signUp"]

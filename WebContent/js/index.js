@@ -35,7 +35,6 @@ angular.module('app',[])
 			
 		$scope.login = function () {
 	           // use $.param jQuery function to serialize data from JSON 
-
 				$.ajax({
 				  url: "http://localhost:8080/BooksForAll/LoginServlet?",
 				  type: "GET", //send it through get method
@@ -45,7 +44,10 @@ angular.module('app',[])
 				  },
 				  success: function(response) {
 					  $scope.records = response;
-	            		$scope.result = $scope.records;
+					  $scope.result = $scope.records;
+					  if($scope.result.Result == "Success"){
+						  window.location="LandingPage.html";
+					  }
 				  },
 				  error: function(xhr) {
 				    //Do Something to handle error
