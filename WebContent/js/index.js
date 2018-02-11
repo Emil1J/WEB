@@ -16,9 +16,9 @@ angular.module('app',[])
 //			   $scope.result = $scope.records;//this variable will hold the search results
 //			});
 		$scope.signUp = function(){
-			$.ajax({
-				  url: "http://localhost:8080/BooksForAll/LoginServlet?",
-				  type: "GET", //send it through get method
+			/*$.ajax({
+				  url: "http://localhost:8080/BooksForAll/RegistrationServlet?",
+				  type: "POST", //send it through get method
 				  data: { 
 				    Username: $scope.username, 
 				    Password: $scope.password
@@ -30,7 +30,7 @@ angular.module('app',[])
 				  error: function(xhr) {
 				    //Do Something to handle error
 				  }
-				});
+				});*/
 		}
 			
 		$scope.login = function () {

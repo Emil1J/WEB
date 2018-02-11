@@ -132,6 +132,11 @@ h2
 	background: #0288D1;
 	color: #fff;
 }
+form
+{
+    width: 250px;
+    margin: 1 auto;
+}
 .loginBox input[type="signUp"]
 {
 	color: #fff;
