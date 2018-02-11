@@ -18,31 +18,27 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.tomcat.dbcp.dbcp2.BasicDataSource;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 
 import booksForAll.general.AppConstants;
-import booksForAll.general.AssistantFuncs;
-import booksForAll.model.User;
 
 /**
- * Servlet implementation class LoginServlet2
+ * Servlet implementation class PurchaseBookServlet
  */
 @WebServlet(
-		urlPatterns = "/LoginServlet",
+		urlPatterns = "/PurchaseBookServlet",
 		initParams = {
 				@WebInitParam(name = "Username", value = ""),
-				@WebInitParam(name = "Password", value = "")
+				@WebInitParam(name = "Bookname", value = "")
 		})
-
-	public class LoginServlet extends HttpServlet {
+	
+	public class PurchaseBookServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LoginServlet() {
+    public PurchaseBookServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -53,7 +49,7 @@ import booksForAll.model.User;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String username = request.getParameter("Username");
-		String password = request.getParameter("Password");
+		String bookname = request.getParameter("Bookname");
 		String result = "";
 		try {
     		
@@ -63,21 +59,27 @@ import booksForAll.model.User;
     				getServletContext().getInitParameter(AppConstants.DB_DATASOURCE) + AppConstants.OPEN);
     		Connection conn = ds.getConnection();
 
-    		User user = null;
     		PreparedStatement stmt;
 			try {
-				stmt = conn.prepareStatement(AppConstants.SELECT_USERS_BY_NAME_PASS_STMT);
+				stmt = conn.prepareStatement(AppConstants.SELECT_PURCHASED_BY_USER_AND_BOOK_NAME_STMT);
 				stmt.setString(1, username);
-				stmt.setString(2, password);
+				stmt.setString(2, bookname);
 				ResultSet rs = stmt.executeQuery(); 
 				if (rs.next()){
-					user = AssistantFuncs.CreateUserFromRS(rs);
-					result = "Success";
+					result = "Book Already Purchased";
 				}
 				else {
-					result = "Failure";
+					stmt = conn.prepareStatement(AppConstants.INSERT_PURCHASED_STMT);
+					stmt.setString(1, username);
+					stmt.setString(2, bookname);
+					int res = stmt.executeUpdate(); 
+					if (res != 0){
+						result = "Success";
+					}
+					else {
+						result = "Failure";
+					}
 				}
-				rs.close();
 				stmt.close();
 			} catch (SQLException e) {
 				getServletContext().log("Error", e);
@@ -86,15 +88,9 @@ import booksForAll.model.User;
 
     		conn.close();
     		
-    		Gson gson = new GsonBuilder().create();
         	response.addHeader("Content-Type", "application/json");
     		JsonObject json = new JsonObject();
     		json.addProperty("Result", result);
-    		if(user == null) {
-    			response.getWriter().println(json.toString());
-    			return ;
-    		}
-    		json.add("User", gson.toJsonTree(user));
     		response.getWriter().println(json.toString());
         	response.getWriter().close();
         	response.setStatus(HttpServletResponse.SC_OK);

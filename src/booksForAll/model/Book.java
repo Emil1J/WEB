@@ -3,89 +3,89 @@ package booksForAll.model;
 import java.util.List;
 
 public class Book {
-	private String name;
-	private String author;
-	private String url;
-	private String photo;
-	private int price;
-	private String description;
-	private List<String> likeUsernames;
-	private List<Comment> comments;
+	private String Name;
+	private String Author;
+	private String URL;
+	private String Photo;
+	private double Price;
+	private String Description;
+	private List<Like> Likes;
+	private List<Comment> Comments;
 	
-	public Book(String name, String author, String url, String photo, int price, String description, 
-			List<String> likeUsernames, List<Comment> comments) {
-		this.name = name;
-		this.author = author;
-		this.url = url;
-		this.photo = photo;
-		this.description = description;
-		this.price = price;
-		this.likeUsernames = likeUsernames;
-		this.comments = comments;
+	public Book(String name, String author, String url, String photo, double price, String description, 
+			List<Like> likes, List<Comment> comments) {
+		this.Name = name;
+		this.Author = author;
+		this.URL = url;
+		this.Photo = photo;
+		this.Description = description;
+		this.Price = price;
+		this.Likes = likes;
+		this.Comments = comments;
 	}
 	
 	public String getName() {
-		return name;
+		return Name;
 	}
 
 	public void setName(String name) {
-		this.name = name;
+		this.Name = name;
 	}
 
 	public List<Comment> getComments() {
-		return comments;
+		return Comments;
 	}
 
 	public void setComments(List<Comment> comments) {
-		this.comments = comments;
+		this.Comments = comments;
 	}
 
 	public String getUrl() {
-		return url;
+		return URL;
 	}
 
 	public void setUrl(String url) {
-		this.url = url;
+		this.URL = url;
 	}
 
-	public int getPrice() {
-		return price;
+	public double getPrice() {
+		return Price;
 	}
 
-	public void setPrice(int price) {
-		this.price = price;
+	public void setPrice(double price) {
+		this.Price = price;
 	}
 
 	public String getPhoto() {
-		return photo;
+		return Photo;
 	}
 
 	public void setPhoto(String photo) {
-		this.photo = photo;
+		this.Photo = photo;
 	}
 
 	public String getDescription() {
-		return description;
+		return Description;
 	}
 
 	public void setDescription(String description) {
-		this.description = description;
+		this.Description = description;
 	}
 
-	public List<String> getLikeUsernames() {
-		return likeUsernames;
+	public List<Like> getLikes() {
+		return Likes;
 	}
 
-	public void setLikeUsernames(List<String> likeUsernames) {
-		this.likeUsernames = likeUsernames;
+	public void setLikes(List<Like> likeUsernames) {
+		this.Likes = likeUsernames;
 	}
 
 	public String getAuthor() {
-		return author;
+		return Author;
 	}
 
 	public void setAuthor(String author) {
-		this.author = author;
+		this.Author = author;
 	}
 
 }
