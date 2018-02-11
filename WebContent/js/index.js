@@ -15,10 +15,26 @@ angular.module('app',[])
 //			   $scope.records = response;
 //			   $scope.result = $scope.records;//this variable will hold the search results
 //			});
+		$scope.signUp = function(){
+			/*$.ajax({
+				  url: "http://localhost:8080/BooksForAll/RegistrationServlet?",
+				  type: "POST", //send it through get method
+				  data: { 
+				    Username: $scope.username, 
+				    Password: $scope.password
+				  },
+				  success: function(response) {
+					  $scope.records = response;
+	            		$scope.result = $scope.records;
+				  },
+				  error: function(xhr) {
+				    //Do Something to handle error
+				  }
+				});*/
+		}
 			
 		$scope.login = function () {
 	           // use $.param jQuery function to serialize data from JSON 
-
 				$.ajax({
 				  url: "http://localhost:8080/BooksForAll/LoginServlet?",
 				  type: "POST", //send it through get method
@@ -28,8 +44,12 @@ angular.module('app',[])
 				  },
 				  success: function(response) {
 					  $scope.records = response;
-	            		$scope.result = $scope.records;
-	            		alert($scope.result.Result);
+
+					  $scope.result = $scope.records;
+					  if($scope.result.Result == "Success"){
+						  window.location="LandingPage.html";
+					  }
+
 				  },
 				  error: function(xhr) {
 				    //Do Something to handle error
