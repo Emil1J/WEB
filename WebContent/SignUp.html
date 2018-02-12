@@ -96,7 +96,7 @@
                        							<p><b>*Photo Link :</b></p>
                        							<input class="form-control" placeholder="Photo link" id="photosu" name="photosu" type="text" autofocus="" ng-model="photosu">
 											</div>
-											<div class="form-group" ng-class="{ 'has-error' : userForm.passwordsu.$invalid && !userForm.descriptionsu.$pristine }">
+											<div class="form-group" ng-class="{ 'has-error' : userForm.passwordsu.$invalid && !userForm.passwordsu.$pristine }">
                        							<p><b>*Password :</b></p>
                        							<input class="form-control" ng-maxlength="8" placeholder="********" id="passwordsu" name="passwordsu" type="text" autofocus="" ng-model="passwordsu" required>
                        							<p ng-show="userForm.passwordsu.$error.maxlength" class="help-block">Password is too long.</p>
