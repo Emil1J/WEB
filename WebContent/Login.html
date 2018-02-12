@@ -3,17 +3,21 @@
 	<head>
 		<script src="lib/angular.min.js" ></script>
 		<script src="lib/jquery-3.2.1.js"></script>
+		<link rel="stylesheet" href="lib/bootstrap-3.3.7-dist/css/bootstrap.min.css">
 		<script src="lib/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 		<link rel="stylesheet" href="Login.css"/>
 	</head>
 	<body  ng-app="app" ng-controller="loginController">
+		<h1><b>BooksForAll</b></h1>
   		<div class="container">
     	<div class="container-fluid">
   			<div class="row">
       			<div class="col-md-12">
           			<div class="container">
               			<div class="row">
-                  			<div class="col-md-6">
+              				<div class="col-md-4">
+              				</div>
+                  			<div class="col-md-4">
                   				<div class="loginBox">
   									<form name="userForm" ng-submit="submitForm(userForm.$valid)" novalidate>
   										<fieldset>
@@ -23,21 +27,25 @@
 											</div>
 											<div class="form-group" ng-class="{ 'has-error' : userForm.password.$invalid && !userForm.password.$pristine }">
                        							<p><b>Password :</b></p>
-                       							<input class="form-control" placeholder="********" id="password" name="password" type="text" autofocus="" ng-model="password" required>
+                       							<input class="form-control" placeholder="********" id="password" name="password" type="password" autofocus="" ng-model="password" required>
 											</div>
+											<div>
+												<input type="submit" name="" ng-click="login()">
+											</div>
+											<p id="signupline">Not registered? <a href="./SignUp.html">Sign Up</a></p>
+											<p id="invalid"><b>*Invalid username or password.</b></p>
 										</fieldset>
 									</form>
   								</div>
-                  			</div class="col-md-6">
-                  			
-                  			<div>
+                  			<div class="col-md-4">
+              				</div>
                   			</div>
               			</div>
           			</div>
       			</div>
   			</div>
 		</div>
-    </div>
+    	</div>
   		<script src="js/LoginController.js"></script>
   		<script src="js/helperService.js"></script>
 	</body>
