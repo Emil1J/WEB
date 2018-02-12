@@ -2,10 +2,13 @@ package booksForAll.general;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import booksForAll.model.Book;
 import booksForAll.model.Comment;
 import booksForAll.model.Like;
+import booksForAll.model.Transaction;
 import booksForAll.model.User;
 
 public class AssistantFuncs {
@@ -25,5 +28,29 @@ public class AssistantFuncs {
 	
 	public static Comment CreateCommentFromRS(ResultSet rs) throws SQLException {
 		return new Comment(rs.getInt(1), rs.getString(4), rs.getTimestamp(3), rs.getString(2), rs.getString(5), rs.getInt(6));
+	}
+	
+	public static ArrayList<Book> MatchLikesCommentsToBook(ArrayList<Book> books, List<Like> likes, List<Comment> comments){
+		for(Book book : books) {
+			List<Like> bookLikes = new ArrayList<Like>();
+			for(Like like : likes) {
+				if(book.getName().equals(like.getBookname())) {
+					bookLikes.add(like);
+				}
+			}
+			book.setLikes(bookLikes);
+			List<Comment> bookComments = new ArrayList<Comment>();
+			for(Comment comment : comments) {
+				if(book.getName().equals(comment.getBookName())) {
+					bookComments.add(comment);
+				}
+			}
+			book.setComments(bookComments);
+		}
+		return books;
+	}
+	
+	public static Transaction CreateTransactionFromRS(ResultSet rs) throws SQLException {
+		return new Transaction(rs.getString(2), rs.getString(3), rs.getDouble(4), rs.getTimestamp(5));
 	}
 }

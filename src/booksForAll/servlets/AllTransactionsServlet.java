@@ -3,14 +3,14 @@ package booksForAll.servlets;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
+import java.util.ArrayList;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebInitParam;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -18,28 +18,26 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.tomcat.dbcp.dbcp2.BasicDataSource;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
 import booksForAll.general.AppConstants;
+import booksForAll.general.AssistantFuncs;
+import booksForAll.model.Transaction;
 
 /**
- * Servlet implementation class CommentBookServlet
+ * Servlet implementation class AllTransactionsServlet
  */
-@WebServlet(
-		urlPatterns = "/CommentBookServlet",
-		initParams = {
-				@WebInitParam(name = "Username", value = ""),
-				@WebInitParam(name = "Bookname", value = ""),
-				@WebInitParam(name = "Description", value = "")
-	})
-	
-	public class CommentBookServlet extends HttpServlet {
+@WebServlet("/AllTransactionsServlet")
+public class AllTransactionsServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CommentBookServlet() {
+    public AllTransactionsServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -49,10 +47,6 @@ import booksForAll.general.AppConstants;
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String username = request.getParameter("Username");
-		String bookname = request.getParameter("Bookname");
-		Timestamp current = new Timestamp(System.currentTimeMillis());
-		String description = request.getParameter("Description");
 		String result = "";
 		try {
     		
@@ -61,22 +55,16 @@ import booksForAll.general.AppConstants;
     		BasicDataSource ds = (BasicDataSource)context.lookup(
     				getServletContext().getInitParameter(AppConstants.DB_DATASOURCE) + AppConstants.OPEN);
     		Connection conn = ds.getConnection();
-
+    		ArrayList<Transaction> transactions = new ArrayList<Transaction>();
     		PreparedStatement stmt;
 			try {
-				stmt = conn.prepareStatement(AppConstants.INSERT_COMMENT_STMT);
-				stmt.setString(1, username);
-				stmt.setTimestamp(2, current);
-				stmt.setString(3, description);
-				stmt.setString(4, bookname);
-				stmt.setInt(5, 0);
-				int res = stmt.executeUpdate(); 
-				if (res != 0){
-					result = "Success";
+				stmt = conn.prepareStatement(AppConstants.SELECT_ALL_TRANSACTIONS_STMT);
+				ResultSet rs = stmt.executeQuery();
+				result = "Success";
+				while (rs.next()){
+					transactions.add(AssistantFuncs.CreateTransactionFromRS(rs));
 				}
-				else {
-					result = "Failure";
-				}
+				rs.close();
 				stmt.close();
 			} catch (SQLException e) {
 				getServletContext().log("Error", e);
@@ -84,10 +72,21 @@ import booksForAll.general.AppConstants;
     		}
 
     		conn.close();
+    		if(transactions.isEmpty()) {
+    			result = "Empty";
+    		}
+    		Gson gson = new GsonBuilder()
+    				.setDateFormat("yyyy-MM-dd HH:mm:ss.S")
+    				.create();
+    		JsonArray jsonTransactions = new JsonArray();
+    		for (Transaction transaction : transactions) {
+    			jsonTransactions.add(gson.toJsonTree(transaction));
+    		}
     		
-        	response.addHeader("Content-Type", "application/json");
+    		response.addHeader("Content-Type", "application/json");
     		JsonObject json = new JsonObject();
     		json.addProperty("Result", result);
+    		json.add("UserTransactions", jsonTransactions);
     		response.getWriter().println(json.toString());
         	response.getWriter().close();
         	response.setStatus(HttpServletResponse.SC_OK);

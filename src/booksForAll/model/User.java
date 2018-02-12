@@ -1,6 +1,6 @@
 package booksForAll.model;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class User {
 	private String username;
@@ -15,7 +15,7 @@ public class User {
 	private String nickname;
 	private String description;
 	private String photo;
-	private List<String> books;
+	private ArrayList<Book> books;
 	private double balance;
 	
 	public User(String username, String email,  String city, String street, int houseNum, 
@@ -77,10 +77,10 @@ public class User {
 	public void setPhoto(String photo) {
 		this.photo = photo;
 	}
-	public List<String> getBooks() {
+	public ArrayList<Book> getBooks() {
 		return books;
 	}
-	public void setBooks(List<String> books) {
+	public void setBooks(ArrayList<Book> books) {
 		this.books = books;
 	}
 	public double getBalance() {
