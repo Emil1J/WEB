@@ -1,5 +1,6 @@
 angular.module('app',[])
 	.controller('loginController', ['$scope','$http', function($scope,$http){
+
 		$scope.login = function () {
 	           // use $.param jQuery function to serialize data from JSON 
 				$.ajax({
@@ -24,3 +25,23 @@ angular.module('app',[])
 		 };
 }]);
 
+
+.directive('passwordVerify', function() {
+    return {
+        restrict: 'A',
+        require: '?ngModel',
+        link: function(scope, elem, attrs, ngModel) {
+            scope.$watch(attrs.ngModel, function() {
+            	scope.pw.confirm_password.$setValidity('passwordVerify', true);
+                if (scope.confirm_password === $scope.user_password) {
+                    scope.pw.confirm_password.$setValidity('passwordVerify', true);
+                    scope.pw.user_password.$setValidity('passwordVerify', true);
+                } else if (scope.confirm_password !== $scope.user_password) {
+                    scope.pw.confirm_password.$setValidity('passwordVerify', false);
+                    ssscope.pw.user_password.$setValidity('passwordVerify', false);
+                }
+                scope.pw.confirm_password.$setValidity('passwordVerify', true);
+            });
+        }
+     };
+});
