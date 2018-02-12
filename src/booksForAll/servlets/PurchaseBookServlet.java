@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -21,6 +22,8 @@ import org.apache.tomcat.dbcp.dbcp2.BasicDataSource;
 import com.google.gson.JsonObject;
 
 import booksForAll.general.AppConstants;
+import booksForAll.general.AssistantFuncs;
+import booksForAll.model.Book;
 
 /**
  * Servlet implementation class PurchaseBookServlet
@@ -72,9 +75,23 @@ import booksForAll.general.AppConstants;
 					stmt = conn.prepareStatement(AppConstants.INSERT_PURCHASED_STMT);
 					stmt.setString(1, username);
 					stmt.setString(2, bookname);
-					int res = stmt.executeUpdate(); 
+					int res = stmt.executeUpdate();
 					if (res != 0){
 						result = "Success";
+						stmt = conn.prepareStatement(AppConstants.SELECT_BOOK_BY_NAME_STMT);
+						stmt.setString(1, bookname);
+						rs = stmt.executeQuery();
+						Book book = null;
+						if(rs.next()) {
+							book = AssistantFuncs.CreateBookFromRS(rs);
+						}
+						stmt = conn.prepareStatement(AppConstants.INSERT_TRANSACTIONS_STMT);
+						stmt.setString(1, username);
+						stmt.setString(2, bookname);
+						stmt.setDouble(3, book.getPrice());
+						stmt.setTimestamp(4, new Timestamp(System.currentTimeMillis()));
+						stmt.executeUpdate();
+						rs.close();
 					}
 					else {
 						result = "Failure";

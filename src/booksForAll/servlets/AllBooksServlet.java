@@ -65,17 +65,18 @@ public class AllBooksServlet extends HttpServlet {
 			try {
 				stmt = conn.prepareStatement(AppConstants.SELECT_ALL_BOOKS_STMT);
 				ResultSet rs = stmt.executeQuery();
-				if(!rs.next()) {
+				result = "Success";
+				while (rs.next()){
+					books.add(AssistantFuncs.CreateBookFromRS(rs));
+				}
+				if(books.isEmpty()) {
 					result = "Failure";
 		    		JsonObject json = new JsonObject();
 		    		json.addProperty("Result", result);
 					response.getWriter().println(json.toString());
 		        	response.getWriter().close();
 		        	response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-				}
-				while (rs.next()){
-					books.add(AssistantFuncs.CreateBookFromRS(rs));
-					result = "Success";
+		        	return;
 				}
 				stmt = conn.prepareStatement(AppConstants.SELECT_ALL_LIKES_STMT);
 				rs = stmt.executeQuery();
@@ -87,7 +88,7 @@ public class AllBooksServlet extends HttpServlet {
 				while (rs.next()){
 					comments.add(AssistantFuncs.CreateCommentFromRS(rs));
 				}
-				books = MatchLikesCommentsToBook(books, likes, comments);
+				books = AssistantFuncs.MatchLikesCommentsToBook(books, likes, comments);
 				rs.close();
 				stmt.close();
 			} catch (SQLException e) {
@@ -125,24 +126,6 @@ public class AllBooksServlet extends HttpServlet {
 		doGet(request, response);
 	}
 	
-	public ArrayList<Book> MatchLikesCommentsToBook(ArrayList<Book> books, List<Like> likes, List<Comment> comments){
-		for(Book book : books) {
-			List<Like> bookLikes = new ArrayList<Like>();
-			for(Like like : likes) {
-				if(book.getName().equals(like.getBookname())) {
-					bookLikes.add(like);
-				}
-			}
-			book.setLikes(bookLikes);
-			List<Comment> bookComments = new ArrayList<Comment>();
-			for(Comment comment : comments) {
-				if(book.getName().equals(comment.getBookName())) {
-					bookComments.add(comment);
-				}
-			}
-			book.setComments(bookComments);
-		}
-		return books;
-	}
+	
 
 }

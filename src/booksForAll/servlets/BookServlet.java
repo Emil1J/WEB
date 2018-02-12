@@ -29,25 +29,23 @@ import booksForAll.general.AssistantFuncs;
 import booksForAll.model.Book;
 import booksForAll.model.Comment;
 import booksForAll.model.Like;
-import booksForAll.model.User;
 
 /**
- * Servlet implementation class LoginServlet2
+ * Servlet implementation class BookServlet
  */
 @WebServlet(
-		urlPatterns = "/LoginServlet",
+		urlPatterns = "/BookServlet",
 		initParams = {
-				@WebInitParam(name = "Username", value = ""),
-				@WebInitParam(name = "Password", value = "")
+				@WebInitParam(name = "Bookname", value = "")
 		})
-
-	public class LoginServlet extends HttpServlet {
+	
+	public class BookServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LoginServlet() {
+    public BookServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -57,8 +55,7 @@ import booksForAll.model.User;
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String username = request.getParameter("Username");
-		String password = request.getParameter("Password");
+		String bookname = request.getParameter("Bookname");
 		String result = "";
 		try {
     		
@@ -67,79 +64,51 @@ import booksForAll.model.User;
     		BasicDataSource ds = (BasicDataSource)context.lookup(
     				getServletContext().getInitParameter(AppConstants.DB_DATASOURCE) + AppConstants.OPEN);
     		Connection conn = ds.getConnection();
-
-    		User user = null;
+    		
+    		Book book = null;
     		PreparedStatement stmt;
+    		List<Like> likes = new ArrayList<Like>();
+    		List<Comment> comments = new ArrayList<Comment>();
 			try {
-				stmt = conn.prepareStatement(AppConstants.SELECT_USERS_BY_NAME_PASS_STMT);
-				stmt.setString(1, username);
-				stmt.setString(2, password);
+				stmt = conn.prepareStatement(AppConstants.SELECT_BOOK_BY_NAME_STMT);
+				stmt.setString(1, bookname);
 				ResultSet rs = stmt.executeQuery(); 
-				if (rs.next()){
-					user = AssistantFuncs.CreateUserFromRS(rs);
+				if(rs.next()) {
 					result = "Success";
+					book = AssistantFuncs.CreateBookFromRS(rs);
+					stmt = conn.prepareStatement(AppConstants.SELECT_LIKES_BY_BOOK_NAME_STMT);
+					stmt.setString(1, bookname);
+					rs = stmt.executeQuery();
+					while (rs.next()){
+						likes.add(AssistantFuncs.CreateLikeFromRS(rs));
+					}
+					stmt = conn.prepareStatement(AppConstants.SELECT_COMMENTS_BY_BOOK_NAME_STMT);
+					stmt.setString(1, bookname);
+					rs = stmt.executeQuery();
+					while (rs.next()){
+						comments.add(AssistantFuncs.CreateCommentFromRS(rs));
+					}
+					rs.close();
+					book.setLikes(likes);
+					book.setComments(comments);
 				}
 				else {
 					result = "Failure";
 				}
-				rs.close();
 				stmt.close();
 			} catch (SQLException e) {
 				getServletContext().log("Error", e);
 	    		response.sendError(500);//internal server error
     		}
-    		
-			Gson gson = new GsonBuilder()
+
+    		conn.close();
+    		Gson gson = new GsonBuilder()
     				.setDateFormat("yyyy-MM-dd HH:mm:ss.S")
     				.create();
-			response.addHeader("Content-Type", "application/json");
+        	response.addHeader("Content-Type", "application/json");
     		JsonObject json = new JsonObject();
     		json.addProperty("Result", result);
-    		if(user == null) {
-    			response.getWriter().println(json.toString());
-    			return ;
-    		}
-    		ArrayList<Book> books = new ArrayList<Book>();
-    		List<Like> likes = new ArrayList<Like>();
-    		List<Comment> comments = new ArrayList<Comment>();
-			try {
-				stmt = conn.prepareStatement(AppConstants.SELECT_PURCHASED_BY_USER_STMT);
-				stmt.setString(1, username);
-				ResultSet rs = stmt.executeQuery(); 
-				result = "Success";
-				while (rs.next()){
-					stmt = conn.prepareStatement(AppConstants.SELECT_BOOK_BY_NAME_STMT);
-					stmt.setString(1, rs.getString(3));
-					ResultSet resSet = stmt.executeQuery(); 
-					if(resSet.next()) {
-						books.add(AssistantFuncs.CreateBookFromRS(resSet));
-					}
-				}
-				if(books.isEmpty()) {
-					result = "No Books";
-				}
-				stmt = conn.prepareStatement(AppConstants.SELECT_LIKES_BY_USER_STMT);
-				stmt.setString(1, username);
-				rs = stmt.executeQuery();
-				while (rs.next()){
-					likes.add(AssistantFuncs.CreateLikeFromRS(rs));
-				}
-				stmt = conn.prepareStatement(AppConstants.SELECT_COMMENTS_BY_USER_STMT);
-				stmt.setString(1, username);
-				rs = stmt.executeQuery();
-				while (rs.next()){
-					comments.add(AssistantFuncs.CreateCommentFromRS(rs));
-				}
-				books = AssistantFuncs.MatchLikesCommentsToBook(books, likes, comments);
-	    		conn.close();
-				rs.close();		
-				stmt.close();
-			} catch (SQLException e) {
-				getServletContext().log("Error", e);
-	    		response.sendError(500);//internal server error
-    		}
-			user.setBooks(books);
-    		json.add("User", gson.toJsonTree(user));
+    		json.add("Book", gson.toJsonTree(book));
     		response.getWriter().println(json.toString());
         	response.getWriter().close();
         	response.setStatus(HttpServletResponse.SC_OK);

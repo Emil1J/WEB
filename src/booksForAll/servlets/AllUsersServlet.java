@@ -12,7 +12,6 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebInitParam;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -22,6 +21,7 @@ import org.apache.tomcat.dbcp.dbcp2.BasicDataSource;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
 import booksForAll.general.AppConstants;
@@ -32,22 +32,16 @@ import booksForAll.model.Like;
 import booksForAll.model.User;
 
 /**
- * Servlet implementation class LoginServlet2
+ * Servlet implementation class AllUsersServlet
  */
-@WebServlet(
-		urlPatterns = "/LoginServlet",
-		initParams = {
-				@WebInitParam(name = "Username", value = ""),
-				@WebInitParam(name = "Password", value = "")
-		})
-
-	public class LoginServlet extends HttpServlet {
+@WebServlet("/AllUsersServlet")
+public class AllUsersServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LoginServlet() {
+    public AllUsersServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -57,8 +51,6 @@ import booksForAll.model.User;
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String username = request.getParameter("Username");
-		String password = request.getParameter("Password");
 		String result = "";
 		try {
     		
@@ -67,20 +59,45 @@ import booksForAll.model.User;
     		BasicDataSource ds = (BasicDataSource)context.lookup(
     				getServletContext().getInitParameter(AppConstants.DB_DATASOURCE) + AppConstants.OPEN);
     		Connection conn = ds.getConnection();
-
-    		User user = null;
+    		ArrayList<User> users = new ArrayList<User>();
+    		ArrayList<Book> books = new ArrayList<Book>();
+    		List<Like> likes = new ArrayList<Like>();
+    		List<Comment> comments = new ArrayList<Comment>();
     		PreparedStatement stmt;
 			try {
-				stmt = conn.prepareStatement(AppConstants.SELECT_USERS_BY_NAME_PASS_STMT);
-				stmt.setString(1, username);
-				stmt.setString(2, password);
-				ResultSet rs = stmt.executeQuery(); 
-				if (rs.next()){
-					user = AssistantFuncs.CreateUserFromRS(rs);
-					result = "Success";
+				stmt = conn.prepareStatement(AppConstants.SELECT_ALL_BOOKS_STMT);
+				ResultSet rs = stmt.executeQuery();
+				result = "Success";
+				while (rs.next()){
+					books.add(AssistantFuncs.CreateBookFromRS(rs));
 				}
-				else {
-					result = "Failure";
+				stmt = conn.prepareStatement(AppConstants.SELECT_ALL_LIKES_STMT);
+				rs = stmt.executeQuery();
+				while (rs.next()){
+					likes.add(AssistantFuncs.CreateLikeFromRS(rs));
+				}
+				stmt = conn.prepareStatement(AppConstants.SELECT_ALL_COMMENTS_STMT);
+				rs = stmt.executeQuery();
+				while (rs.next()){
+					comments.add(AssistantFuncs.CreateCommentFromRS(rs));
+				}
+				books = AssistantFuncs.MatchLikesCommentsToBook(books, likes, comments);
+				stmt = conn.prepareStatement(AppConstants.SELECT_ALL_USERS_STMT);
+				rs = stmt.executeQuery();
+				while (rs.next()){
+					users.add(AssistantFuncs.CreateUserFromRS(rs));
+				}
+				if(users.isEmpty()) {
+					result = "No Users";
+		    		JsonObject json = new JsonObject();
+		    		json.addProperty("Result", result);
+					response.getWriter().println(json.toString());
+		        	response.getWriter().close();
+		        	response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+		        	return;
+				}
+				for(User user : users) {
+					user.setBooks(GetUserBooks(user.getUsername(), conn, books));
 				}
 				rs.close();
 				stmt.close();
@@ -88,58 +105,20 @@ import booksForAll.model.User;
 				getServletContext().log("Error", e);
 	    		response.sendError(500);//internal server error
     		}
-    		
-			Gson gson = new GsonBuilder()
+
+    		conn.close();
+    		Gson gson = new GsonBuilder()
     				.setDateFormat("yyyy-MM-dd HH:mm:ss.S")
     				.create();
-			response.addHeader("Content-Type", "application/json");
+    		JsonArray jsonUsers = new JsonArray();
+    		for (User user : users) {
+    			jsonUsers.add(gson.toJsonTree(user));
+    		}
+    		
+    		response.addHeader("Content-Type", "application/json");
     		JsonObject json = new JsonObject();
     		json.addProperty("Result", result);
-    		if(user == null) {
-    			response.getWriter().println(json.toString());
-    			return ;
-    		}
-    		ArrayList<Book> books = new ArrayList<Book>();
-    		List<Like> likes = new ArrayList<Like>();
-    		List<Comment> comments = new ArrayList<Comment>();
-			try {
-				stmt = conn.prepareStatement(AppConstants.SELECT_PURCHASED_BY_USER_STMT);
-				stmt.setString(1, username);
-				ResultSet rs = stmt.executeQuery(); 
-				result = "Success";
-				while (rs.next()){
-					stmt = conn.prepareStatement(AppConstants.SELECT_BOOK_BY_NAME_STMT);
-					stmt.setString(1, rs.getString(3));
-					ResultSet resSet = stmt.executeQuery(); 
-					if(resSet.next()) {
-						books.add(AssistantFuncs.CreateBookFromRS(resSet));
-					}
-				}
-				if(books.isEmpty()) {
-					result = "No Books";
-				}
-				stmt = conn.prepareStatement(AppConstants.SELECT_LIKES_BY_USER_STMT);
-				stmt.setString(1, username);
-				rs = stmt.executeQuery();
-				while (rs.next()){
-					likes.add(AssistantFuncs.CreateLikeFromRS(rs));
-				}
-				stmt = conn.prepareStatement(AppConstants.SELECT_COMMENTS_BY_USER_STMT);
-				stmt.setString(1, username);
-				rs = stmt.executeQuery();
-				while (rs.next()){
-					comments.add(AssistantFuncs.CreateCommentFromRS(rs));
-				}
-				books = AssistantFuncs.MatchLikesCommentsToBook(books, likes, comments);
-	    		conn.close();
-				rs.close();		
-				stmt.close();
-			} catch (SQLException e) {
-				getServletContext().log("Error", e);
-	    		response.sendError(500);//internal server error
-    		}
-			user.setBooks(books);
-    		json.add("User", gson.toJsonTree(user));
+    		json.add("UsersList", jsonUsers);
     		response.getWriter().println(json.toString());
         	response.getWriter().close();
         	response.setStatus(HttpServletResponse.SC_OK);
@@ -155,6 +134,28 @@ import booksForAll.model.User;
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
+	}
+	
+	public ArrayList<Book> GetUserBooks(String username, Connection conn, ArrayList<Book> books){
+		PreparedStatement stmt;
+		ArrayList<Book> userBooks = new ArrayList<Book>();
+		try {
+			stmt = conn.prepareStatement(AppConstants.SELECT_PURCHASED_BY_USER_STMT);
+			stmt.setString(1, username);
+			ResultSet rs = stmt.executeQuery();
+			while(rs.next()) {
+				for(Book book : books) {
+					if(rs.getString(3).equals(book.getName())) {
+						userBooks.add(book);
+					}
+				}
+			}
+			rs.close();				
+			stmt.close();
+		} catch (SQLException e) {
+			getServletContext().log("Error", e);
+		}
+		return userBooks;
 	}
 
 }
