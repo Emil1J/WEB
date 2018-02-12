@@ -1,27 +1,75 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<script src="lib/angular.min.js" ></script>
 		<script src="lib/jquery-3.2.1.js"></script>
+		<link rel="stylesheet" href="lib/bootstrap-3.3.7-dist/css/bootstrap.min.css">
 		<script src="lib/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
-		<link rel="stylesheet" href="SignUpCss.css"/>
 	</head>
-	<body>
+	<body ng-app="app" ng-controller="loginController">
 	<div class="container">
-    <div class="row">
-        <div class="col-md-2">
-            <div class="customDiv">LEFT SIDE BAR</div>
-        </div>
-        <div class="col-md-8">
-            <div class="customDiv">LEFT SIDE BAR</div>
-        </div>
-        <div class="col-md-2">
-            <div class="customDiv">LEFT SIDE BAR</div>
-        </div>
+    	<div class="container-fluid">
+  			<div class="row">
+      			<div class="col-sm-12">
+          			<div class="container">
+              			<div class="row">
+                  			<div class="col-sm-6">
+                  				<div class="signUpBox">
+  				<h1>Personal Details</h1>
+  				<form name="userForm" ng-submit="submitForm(userForm.$valid)" novalidate>
+  					<fieldset>
+  					<div class="form-group" ng-class="{ 'has-error' : userForm.usernamesu.$invalid && !userForm.usernamesu.$pristine }">
+                       <p>Username*</p>
+                       <input class="form-control" ng-maxlength="10" ng-minlength="3" placeholder="Username" id="usernamesu" name="usernamesu" type="text" autofocus="" ng-model="usernamesu" required>
+                       <p ng-show="userForm.usernamesu.$error.maxlength" class="help-block">Username is too long.</p>
+                       <p ng-show="userForm.usernamesu.$error.minlength" class="help-block">Username is too short.</p>
+					</div>
+					<div class="form-group" ng-class="{ 'has-error' : userForm.nicknamesu.$invalid && !userForm.nicknamesu.$pristine }">
+                       <p>Nickname*</p>
+                       <input class="form-control" ng-maxlength="10" placeholder="Nickname" id="nicknamesu" name="nicknamesu" type="text" autofocus="" ng-model="nicknamesu" required>
+                       <p ng-show="userForm.nicknamesu.$error.maxlength" class="help-block">Nickname is too long.</p>
+					</div>
+					<div class="form-group" ng-class="{ 'has-error' : userForm.emailsu.$invalid && !userForm.emailsu.$pristine }">
+                       <p>Email*</p>
+                       <input class="form-control" placeholder="Email" id="emailsu" name="emailsu" type="email" autofocus="" ng-model="emailsu" required>
+                       <p ng-show="userForm.emailsu.$invalid && !userForm.emailsu.$pristine" class="help-block">Enter a valid email.</p>
+					</div>
+					<div class="form-group" ng-class="{ 'has-error' : userForm.phonesu.$invalid && !userForm.phonesu.$pristine }">
+                       <p>Phone*</p>
+                       <input class="form-control" pattern="^[0-9]*$" ng-maxlength="10" ng-minlength="10" placeholder="Phone" id="phonesu" name="phonesu" type="tel" autofocus="" ng-model="phonesu">
+                       <p ng-show="userForm.phonesu.$invalid && !userForm.phonesu.$pristine" class="help-block">Enter only numbers.</p>
+                       <p ng-show="userForm.phonesu.$error.maxlength" class="help-block">Phone number is too long.</p>
+                       <p ng-show="userForm.phonesu.$error.minlength" class="help-block">Phone number is too short.</p>
+					</div>
+					<p>Email*</p>
+					<input type="text" name="" placeholder="aaa@aaa.com" data-ng-model="email" required>
+					<p>Address</p>
+					<input type="text" name="" placeholder="63, Abbass Street, 3537829 HAIFA, ISRAEL" data-ng-model="address">
+					<p>Phone</p>
+					<input type="text" name="" placeholder="1234567890" data-ng-model="phone">
+					<p>Password (up to 8 characters)*</p>
+					<input type="password" name="" placeholder="********" data-ng-model="passwordsu" required>
+					<p>Nickname*</p>
+					<input type="text" name="" placeholder="michey" data-ng-model="nickname" required>
+					<p>Short Description (up to 50 characters)</p>
+					<input type="text" name="" placeholder="i like this website!" data-ng-model="description">
+					<p>Photo</p>
+					<input type="text" name="" placeholder="photo url" data-ng-model="photo">
+					<input type="submit" name=""  ng-click="signUp()">
+					</fieldset>
+				</form>
+  			</div>
+                  			</div>
+                  			<div class="col-sm-6">
+                      			<p>Phasellus non nibh ante, a elementum quam. Donec cursus fringilla dui et iaculis. Aenean rhoncus erat accumsan orci mollis vitae malesuada metus euismod. Maecenas aliquet leo et dui venenatis pulvinar sit amet id mi. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Sed non purus sed tellus vehicula ullamcorper. Curabitur in nisi faucibus enim rutrum placerat. Morbi consequat, magna at convallis tempus, eros ante cursus neque, quis fermentum quam est a est. Mauris non arcu nulla. Vestibulum facilisis pulvinar augue nec egestas. In iaculis diam in libero facilisis eu rutrum arcu elementum. Phasellus viverra porttitor interdum. Donec vel elit vel erat sollicitudin sollicitudin.</p>
+                      			<p>Ut libero turpis, tristique et euismod quis, feugiat eu lorem. Nulla facilisi. Donec nec cursus nisi. Suspendisse tempor egestas rutrum. Pellentesque ac velit eget nisl auctor tincidunt in at risus. Integer lacinia neque vel lacus ornare vehicula suscipit dolor suscipit. Nunc quam diam, consequat pulvinar egestas quis, congue ac lacus. Donec pharetra posuere lacus, eget egestas est feugiat vel. Fusce orci dolor, lacinia aliquet mollis quis, posuere at diam. Curabitur non nibh massa, elementum luctus dolor. Curabitur elit odio, elementum sit amet placerat ac, ullamcorper sagittis purus. Integer odio dolor, scelerisque nec hendrerit non, laoreet ut augue. Curabitur lorem odio, lacinia ac placerat in, condimentum a velit.</p>
+                  			</div>
+              			</div>
+          			</div>
+      			</div>
+  			</div>
+		</div>
     </div>
-</div>
-		
   		<script src="js/index.js"></script>
   		<script src="js/helperService.js"></script>
 	</body>
