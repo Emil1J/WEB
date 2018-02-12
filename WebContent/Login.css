@@ -23,9 +23,20 @@ body
 	cursor: pointer;
 	border-radius: 20px;
 	margin-top: 10px;
-	width: 40%;
+	width: 100%;
 }
 h1{
 	text-align: center;
 	margin: 40px;
+}
+
+#invalid{
+	color: #800000;
+	margin-top: 10px;
+	margin-left: 10px;
+}
+
+#signupline{
+	margin-top: 10px;
+	margin-left: 10px;
 }

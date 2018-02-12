@@ -29,3 +29,8 @@ h1{
 	text-align: center;
 	margin: 40px;
 }
+
+p[type="error"]
+{
+	color: #800000;
+}

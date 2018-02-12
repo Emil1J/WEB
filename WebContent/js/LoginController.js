@@ -1,6 +1,6 @@
 angular.module('app',[])
 	.controller('loginController', ['$scope','$http', function($scope,$http){
-
+		document.getElementById('invalid').style.display= "none";
 		$scope.login = function () {
 	           // use $.param jQuery function to serialize data from JSON 
 				$.ajax({
@@ -13,10 +13,13 @@ angular.module('app',[])
 				  },
 				  success: function(response) {
 					  if(response.Result == "Success"){
+							document.getElementById('invalid').style.display= "none";
 						  localStorage.setItem('loginResponse', JSON.stringify({response}))
 						  window.location="LandingPage.html";
+					  }else{
+						  document.getElementById('invalid').style.display= "block";
+						  $scope.errorMessage = 'Invalid username or password.';
 					  }
-
 				  },
 				  error: function(xhr) {
 				    //Do Something to handle error
