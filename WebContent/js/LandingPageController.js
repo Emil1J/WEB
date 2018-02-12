@@ -1,4 +1,4 @@
-angular.module('app2',[])
+angular.module('app',[])
 	.controller('homePageController', ['$scope','$http', function($scope,$http){
 		var loginResponse = JSON.parse(localStorage.getItem('loginResponse'));
 		$scope.username = loginResponse.response.User.username;
