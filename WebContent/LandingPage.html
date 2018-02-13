@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<script src="lib/angular.min.js" ></script>
 		<script src="lib/jquery-3.2.1.js"></script>
+		<script src="lib/angular.min.js" ></script>
 		<link rel="stylesheet" href="lib/bootstrap-3.3.7-dist/css/bootstrap.min.css">
 		<script src="lib/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 		<link rel="stylesheet" href="LandingPage.css"/>
@@ -22,9 +22,6 @@
 				<li style="float:right"><a class="active" href="./Login.html">Sign Out</a></li>
 			</b>
 		</ul>
-		<div ng-repeat="x in books">
-        	<img ng-src="{{x.URL}}">
-    	</div>
 		<div class="container">
     		<div class="container-fluid">
   				<div class="row">
@@ -42,9 +39,16 @@
                   			</div>
                   		</div>
                   	</div>
-      				<div class="col-sm-12">
+                  	<a href="">View all</a>
+                  	<div class="col-md-2" ng-repeat="x in books">
           				<div class="container">
                   			<div class="row">
+                  				<div class="likedbooks">
+                  					<img class= "bookCoversLanding" ng-src="{{x.Photo}}"/>
+                  					<p class="booksdata"><b><u>Title:</u></b> {{x.Name}}</p>
+			                    	<p class="booksdata"><b><u>Author:</u></b> {{x.Author}}</p>
+			                    	<p class="booksdata"><b><u>Price:</u></b> ${{x.Price}}</p>
+			                    </div>
                   			</div>
                   		</div>
                   	</div>
