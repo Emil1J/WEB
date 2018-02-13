@@ -82,6 +82,7 @@ public class AllUsersServlet extends HttpServlet {
 					comments.add(AssistantFuncs.CreateCommentFromRS(rs));
 				}
 				books = AssistantFuncs.MatchLikesCommentsToBook(books, likes, comments);
+				books = AssistantFuncs.SetLikesNumForBooks(books);
 				stmt = conn.prepareStatement(AppConstants.SELECT_ALL_USERS_STMT);
 				rs = stmt.executeQuery();
 				while (rs.next()){

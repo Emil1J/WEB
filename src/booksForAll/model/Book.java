@@ -9,17 +9,19 @@ public class Book {
 	private String Photo;
 	private double Price;
 	private String Description;
+	private int LikesNum;
 	private List<Like> Likes;
 	private List<Comment> Comments;
 	
 	public Book(String name, String author, String url, String photo, double price, String description, 
-			List<Like> likes, List<Comment> comments) {
+			int LikesNum, List<Like> likes, List<Comment> comments) {
 		this.Name = name;
 		this.Author = author;
 		this.URL = url;
 		this.Photo = photo;
 		this.Description = description;
 		this.Price = price;
+		this.LikesNum = LikesNum;
 		this.Likes = likes;
 		this.Comments = comments;
 	}
@@ -86,6 +88,14 @@ public class Book {
 
 	public void setAuthor(String author) {
 		this.Author = author;
+	}
+
+	public int getLikesNum() {
+		return LikesNum;
+	}
+
+	public void setLikesNum(int likesNum) {
+		LikesNum = likesNum;
 	}
 
 }

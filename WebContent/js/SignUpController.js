@@ -1,4 +1,4 @@
-angular.module('app2',[])
+angular.module('app',[])
 	.controller('signUpController', ['$scope','$http', function($scope,$http){
 	document.getElementById('usernameTaken').style.display= "none";
 

@@ -131,6 +131,7 @@ import booksForAll.model.User;
 					comments.add(AssistantFuncs.CreateCommentFromRS(rs));
 				}
 				books = AssistantFuncs.MatchLikesCommentsToBook(books, likes, comments);
+				books = AssistantFuncs.SetLikesNumForBooks(books);
 	    		conn.close();
 				rs.close();		
 				stmt.close();

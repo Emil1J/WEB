@@ -90,6 +90,7 @@ import booksForAll.model.Like;
 					}
 					rs.close();
 					book.setLikes(likes);
+					book.setLikesNum(likes.size());
 					book.setComments(comments);
 				}
 				else {
