@@ -17,9 +17,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.tomcat.dbcp.dbcp2.BasicDataSource;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 
 import booksForAll.general.AppConstants;
+import booksForAll.model.User;
 
 /**
  * Servlet implementation class LoginServlet2
@@ -117,11 +121,16 @@ import booksForAll.general.AppConstants;
 				getServletContext().log("Error", e);
 	    		response.sendError(500);//internal server error
     		}
+			Gson gson = new GsonBuilder()
+    				.setDateFormat("yyyy-MM-dd HH:mm:ss.S")
+    				.create();
 
     		conn.close();
         	response.addHeader("Content-Type", "application/json");
+        	User user = new User(username, email, city, street, Integer.parseInt(houseNum), postalCode, country, phoneNumber, password, nickname, description, photo, 0);
     		JsonObject json = new JsonObject();
     		json.addProperty("Result", result);
+    		json.add("User", gson.toJsonTree(user));
     		response.getWriter().println(json.toString());
            	response.getWriter().close();
     	} catch (SQLException | NamingException e) {

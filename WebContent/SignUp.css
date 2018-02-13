@@ -25,6 +25,19 @@ body
 	margin-top: 10px;
 	width: 40%;
 }
+
+
+.signUpBox p[class="errorMsg"]
+{
+	color: maroon;	
+}
+
+.signUpBox span[class="errorMsg"]
+{
+	color: maroon;	
+}
+
+
 h1{
 	text-align: center;
 	margin: 40px;
