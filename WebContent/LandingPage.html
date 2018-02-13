@@ -16,37 +16,36 @@
 				<li><a href="">eBooks</a></li>
 				<li><a href="">My Account</a></li>
 				<li><a href="">Contact Us</a></li>
+				<li style="padding-left: 15%">
+					<img style="width:150px; height:50px;" alt="logo" src="./B.jpg">
+				</li>
 				<li style="float:right"><a class="active" href="./Login.html">Sign Out</a></li>
 			</b>
 		</ul>
+		<div ng-repeat="x in books">
+        	<img ng-src="{{x.URL}}">
+    	</div>
 		<div class="container">
     		<div class="container-fluid">
   				<div class="row">
+  					<div class="col-sm-12">
+          				<div class="container">
+                  			<div class="row">
+								<p id="welcomename">Welcome back {{ welcomename }}.</p>
+                  			</div>
+                  		</div>
+                  	</div>
+                  	<div class="col-sm-12">
+          				<div class="container">
+                  			<div class="row">
+								<p id="likedbookslabel">Here are our most liked books..</p>
+                  			</div>
+                  		</div>
+                  	</div>
       				<div class="col-sm-12">
           				<div class="container">
-              				<div class="row">
-                  				<div class="col-sm-2">
-                  					
-                  				</div>
-                  				<div class="col-sm-2">
-                  				</div>
-                  				<div class="col-sm-2">
-                  				</div>
-                  				<div class="col-sm-2">
-                  				</div>
-                  				<div class="col-sm-2">
-                  				</div>
-                  				<div class="col-sm-2">
-                  				</div>
-                  			</div>
                   			<div class="row">
-								<img src=""  id="Liked0">
-                  				<img src=""  id="Liked1">
-                   				<img src=""  id="Liked2">
-                  				<img src=""  id="Liked3">
-                  				<img src=""  id="Liked4">
                   			</div>
-                  			
                   		</div>
                   	</div>
             	</div>			
