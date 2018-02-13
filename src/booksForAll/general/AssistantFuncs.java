@@ -19,7 +19,7 @@ public class AssistantFuncs {
 	}
 	
 	public static Book CreateBookFromRS(ResultSet rs) throws SQLException {
-		return new Book(rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getDouble(7), rs.getString(6), null, null);
+		return new Book(rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getDouble(7), rs.getString(6), 0, null, null);
 	}
 	
 	public static Like CreateLikeFromRS(ResultSet rs) throws SQLException {
@@ -30,6 +30,13 @@ public class AssistantFuncs {
 		return new Comment(rs.getInt(1), rs.getString(4), rs.getTimestamp(3), rs.getString(2), rs.getString(5), rs.getInt(6));
 	}
 	
+	public static ArrayList<Book> SetLikesNumForBooks(ArrayList<Book> books){
+		for(Book book : books) {
+			book.setLikesNum(book.getLikes().size());
+		}
+		return books;
+	}
+
 	public static ArrayList<Book> MatchLikesCommentsToBook(ArrayList<Book> books, List<Like> likes, List<Comment> comments){
 		for(Book book : books) {
 			List<Like> bookLikes = new ArrayList<Like>();

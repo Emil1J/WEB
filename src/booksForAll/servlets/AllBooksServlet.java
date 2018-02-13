@@ -89,6 +89,8 @@ public class AllBooksServlet extends HttpServlet {
 					comments.add(AssistantFuncs.CreateCommentFromRS(rs));
 				}
 				books = AssistantFuncs.MatchLikesCommentsToBook(books, likes, comments);
+				books = AssistantFuncs.SetLikesNumForBooks(books);
+
 				rs.close();
 				stmt.close();
 			} catch (SQLException e) {

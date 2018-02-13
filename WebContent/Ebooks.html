@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src="lib/angular.min.js" ></script>
+		<script src="lib/jquery-3.2.1.js"></script>
+		<link rel="stylesheet" href="lib/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+		<script src="lib/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+		<link rel="stylesheet" href="Ebooks.css"/>
+		<script src="js/EbooksController.js"></script>
+	  	<script src="js/helperService.js"></script>
+	</head>
+	<body ng-app="app" ng-controller="ebooksController">
+		<ul>
+			<b>
+				<li><a href="./LandingPage.html">Home</a></li>
+				<li><a href="">eBooks</a></li>
+				<li><a href="">My Account</a></li>
+				<li><a href="">Contact Us</a></li>
+				<li style="padding-left: 15%">
+					<img style="width:150px; height:50px;" alt="logo" src="./B.jpg">
+				</li>
+				<li style="float:right"><a class="active" href="./Login.html">Sign Out</a></li>
+			</b>
+		</ul>
+		<div class="container">
+    		<div class="container-fluid">
+  				<div class="row">
+  					<div class="col-md-4" ng-repeat="book in books">
+  						<div class="container">
+							<div class="row">
+								<div class="col-md-2">
+									<a>
+										<img class="BookCovers" ng-src="{{book.Photo}}"/>
+									</a>
+								</div>
+								<div class="col-md-2">
+									<p class="BookData"><u><b>Title:</b></u> {{book.Name}}</p>
+									<p class="BookData"><u><b>Author:</b></u> {{book.Author}}</p>
+									<p class="BookData"><u><b>Price:</b></u> ${{book.Price}}</p>
+									<p class="BookData"><b>
+										<a id="{{book.Name}}" href="#" data-toggle="tooltip" data-placement="bottom" title="Emil">
+											*Liked by {{book.LikesNum}}
+										</a>
+									</b></p>
+									<a><p class="BookData">View more</p></a>
+									<a><p class="BookData">Purchase</p></a>
+								</div>
+	  						</div>	
+						</div>
+  					</div>
+            	</div>			
+			</div>
+  		</div>
+	</body>
+</html>
