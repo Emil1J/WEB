@@ -1,7 +1,8 @@
 angular.module('app',[])
 	.controller('homePageController', ['$scope','$http', function($scope,$http){
 		var loginResponse = JSON.parse(localStorage.getItem('loginResponse'));
-		$scope.username = loginResponse.response.User.username;
+		var user = loginResponse.response.User;
+		$scope.welcomename = user.username;
 		$.ajax({
 			  url: "http://localhost:8080/BooksForAll/TopFiveBooksServlet?",
 			  type: "POST", //send it through get method
@@ -11,17 +12,10 @@ angular.module('app',[])
 			  success: function(response) {
 				  if(response.Result == "Success"){
 					  localStorage.setItem('topFiveBooksServlet', JSON.stringify({response}));
-					  for(var i = 0 ; i < 5 ; i++){
-						  $scope.topLiked = 'Liked' + i;
-						  document.getElementById('Liked' + i).src = response.BookList[i].Photo;
-						  document.getElementById('Liked' + i).height = 300;
-						  document.getElementById('Liked' + i).width = 200;
-					  }
+					  $scope.books = response.BookList;
 				  }
-
 			  },
 			  error: function(xhr) {
-			    //Do Something to handle error
 			  }
 			});
 }]);
