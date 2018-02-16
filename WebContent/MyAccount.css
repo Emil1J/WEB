@@ -33,14 +33,9 @@ li a:hover {
     background-color: #A9A9A9;
 }
 
-.BookCovers{
-	height: 260px;
-	width: 180px;
+#ProfilePic{
 	margin: 10px;
+	height: 50px;
+	weight: 50px;
+    border-radius: 50%;
 }
-
-.BookData{
-	margin: 10px;
-	padding-left: 50px;
-}
-
