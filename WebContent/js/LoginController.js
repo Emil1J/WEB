@@ -14,7 +14,7 @@ angular.module('app',[])
 				  success: function(response) {
 					  if(response.Result == "Success"){
 							document.getElementById('invalid').style.display= "none";
-						  localStorage.setItem('loginResponse', JSON.stringify({response}))
+						  localStorage.setItem('loginResponse', JSON.stringify({response}));
 						  window.location="LandingPage.html";
 					  }else{
 						  document.getElementById('invalid').style.display= "block";

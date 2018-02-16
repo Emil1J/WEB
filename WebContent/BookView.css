@@ -1,0 +1,129 @@
+@charset "ISO-8859-1";
+body
+{
+	margin: 0;
+	padding: 0;
+	background-color: url(bg.jpg);
+	background-size: cover;
+	font-family: sans-serif;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #000;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+/* Change the link color to #111 (black) on hover */
+li a:hover {
+    background-color: #A9A9A9;
+}
+
+.booktitle{
+	text-align: center;
+	padding-right: 7%;
+	font-weight: bold;
+}
+
+.bookauthor{
+	text-align: center;
+	font-weight: bold;
+	padding-right: 7%;
+	font-size: 140%;
+}
+
+.BookCovers{
+	height: 300px;
+	width: 210px;
+	margin: 10px;
+}
+
+.bookcoverpad{
+	padding-right: 7%;
+}
+
+.bookdecription{
+	padding-top: 6%;
+	font-size: 120%;
+}
+
+
+
+.detailBox {
+    border:1px solid #bbb;
+    margin: 2% 20% 8% 20%;
+}
+.titleBox {
+    background-color:#fdfdfd;
+    padding:10px;
+}
+.titleBox label{
+  color:#000;
+  margin:0;
+  display:inline-block;
+}
+
+.commentBox {
+    padding:10px;
+    border-top:1px dotted #fff;
+}
+.commentBox .form-group:first-child, .actionBox .form-group:first-child {
+    width:80%;
+}
+.commentBox .form-group:nth-child(2), .actionBox .form-group:nth-child(2) {
+    width:18%;
+}
+.actionBox .form-group * {
+    width:100%;
+}
+.taskDescription {
+    margin-top:10px 0;
+}
+.commentList {
+    padding:0;
+    max-height:200px;
+    overflow:auto;
+}
+.commentList li {
+    margin:0;
+    margin-top:10px;
+}
+.commentList li > div {
+    display:table-cell;
+}
+.commenterImage {
+    width:30px;
+    margin-right:5px;
+    height:100%;
+    float:left;
+}
+.commenterImage img {
+    width:100%;
+    border-radius:50%;
+}
+.commentText p {
+    margin:0;
+}
+.sub-text {
+    color:#fff;
+    font-family:verdana;
+    font-size:11px;
+}
+.actionBox {
+    border-top:1px dotted #fff;
+    padding:10px;
+}

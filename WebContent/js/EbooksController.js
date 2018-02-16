@@ -6,6 +6,11 @@ angular.module('app',[])
 		    });
 		})
 		
+		$scope.viewBook = function(book){
+			localStorage.setItem('viewBook', JSON.stringify(book));
+			window.location="BookView.html";
+		}
+		
 		$scope.GetLikes = function(likes){
 			var likeNames = "";
 			var arrayLength = likes.length;
