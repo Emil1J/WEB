@@ -24,14 +24,14 @@
 		</ul>
 		<div class="container">
     		<div class="container-fluid">
-  					<div class="col-sm-6" ng-repeat="book in books">
+  					<div class="col-sm-4" ng-repeat="book in books">
 						<div class="row">
-							<div class="col-sm-3">
+							<div class="col-sm-4">
 								<a>
 									<img class="BookCovers" ng-src="{{book.Photo}}"/>
 								</a>
 							</div>
-							<div class="col-sm-3">
+							<div class="col-sm-8">
 								<p class="BookData"><u><b>Title:</b></u> {{book.Name}}</p>
 								<p class="BookData"><u><b>Author:</b></u> {{book.Author}}</p>
 								<p class="BookData"><u><b>Price:</b></u> ${{book.Price}}</p>
