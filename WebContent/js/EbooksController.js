@@ -1,17 +1,20 @@
 angular.module('app',[])
 	.controller('ebooksController', ['$scope','$http', function($scope,$http){
 	
-		$scope.likedNames = function(book){
-			var names;
-			for(var x in book.Likes){
-				names += x.username;
-			}
-			document.getElementsById(book.Name).title = names;
-		}
-
 		$(document).ready(function(){
-		    $('[data-toggle="tooltip"]').tooltip();
-		});
+		    $('[data-toggle="tooltip"]').tooltip({
+		    });
+		})
+		
+		$scope.GetLikes = function(likes){
+			var likeNames = "";
+			var arrayLength = likes.length;
+			for (var i = 0; i < arrayLength; i++) {
+				var obj = likes[i]
+				likeNames = likeNames + obj.username + "\n"
+			}
+			return likeNames;
+		}
 		
 		$http.post("http://localhost:8080/BooksForAll/AllBooksServlet?")
 		   .then(

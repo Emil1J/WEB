@@ -13,8 +13,8 @@
 		<ul>
 			<b>
 				<li><a href="./LandingPage.html">Home</a></li>
-				<li><a href="">eBooks</a></li>
-				<li><a href="">My Account</a></li>
+				<li><a href="./Ebooks.html">eBooks</a></li>
+				<li><a href="./MyAccount.html">My Account</a></li>
 				<li><a href="">Contact Us</a></li>
 				<li style="padding-left: 15%">
 					<img style="width:150px; height:50px;" alt="logo" src="./B.jpg">
@@ -24,31 +24,26 @@
 		</ul>
 		<div class="container">
     		<div class="container-fluid">
-  				<div class="row">
-  					<div class="col-md-4" ng-repeat="book in books">
-  						<div class="container">
-							<div class="row">
-								<div class="col-md-2">
-									<a>
-										<img class="BookCovers" ng-src="{{book.Photo}}"/>
+  					<div class="col-sm-6" ng-repeat="book in books">
+						<div class="row">
+							<div class="col-sm-3">
+								<a>
+									<img class="BookCovers" ng-src="{{book.Photo}}"/>
+								</a>
+							</div>
+							<div class="col-sm-3">
+								<p class="BookData"><u><b>Title:</b></u> {{book.Name}}</p>
+								<p class="BookData"><u><b>Author:</b></u> {{book.Author}}</p>
+								<p class="BookData"><u><b>Price:</b></u> ${{book.Price}}</p>
+								<p class="BookData"><b>
+									<a data-toggle="tooltip" data-placement="bottom" ng-init="likeString = GetLikes(book.Likes)" title="{{likeString}}">
+										*Liked by {{book.LikesNum}}
 									</a>
-								</div>
-								<div class="col-md-2">
-									<p class="BookData"><u><b>Title:</b></u> {{book.Name}}</p>
-									<p class="BookData"><u><b>Author:</b></u> {{book.Author}}</p>
-									<p class="BookData"><u><b>Price:</b></u> ${{book.Price}}</p>
-									<p class="BookData"><b>
-										<a id="{{book.Name}}" href="#" data-toggle="tooltip" data-placement="bottom" title="Emil">
-											*Liked by {{book.LikesNum}}
-										</a>
-									</b></p>
-									<a><p class="BookData">View more</p></a>
-									<a><p class="BookData">Purchase</p></a>
-								</div>
-	  						</div>	
-						</div>
-  					</div>
-            	</div>			
+								</b></p>
+								<a><p class="BookData">Purchase</p></a>
+							</div>
+	  					</div>
+	  				</div>
 			</div>
   		</div>
 	</body>
