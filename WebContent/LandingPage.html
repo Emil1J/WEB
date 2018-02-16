@@ -39,18 +39,20 @@
                   			</div>
                   		</div>
                   	</div>
-                  	<a href="">View all</a>
-                  	<div class="col-md-2" ng-repeat="x in books">
+                  	<div class="col-sm-12">
           				<div class="container">
                   			<div class="row">
-                  				<div class="likedbooks">
-                  					<img class= "bookCoversLanding" ng-src="{{x.Photo}}"/>
-                  					<p class="booksdata"><b><u>Title:</u></b> {{x.Name}}</p>
-			                    	<p class="booksdata"><b><u>Author:</u></b> {{x.Author}}</p>
-			                    	<p class="booksdata"><b><u>Price:</u></b> ${{x.Price}}</p>
-			                    </div>
+								<a class="viewall" href="./Ebooks.html">View all</a>
                   			</div>
                   		</div>
+                  	</div>
+                  	<div class="col-sm-2" ng-repeat="x in books">
+                  		<div class="likedbooks">
+                  			<img class= "bookCoversLanding" ng-src="{{x.Photo}}"/>
+                  			<p class="booksdata1"><b><u>Title:</u></b> {{x.Name}}</p>
+			                <p class="booksdata"><b><u>Author:</u></b> {{x.Author}}</p>
+			                <p class="booksdata"><b><u>Price:</u></b> ${{x.Price}}</p>
+			           </div>
                   	</div>
             	</div>			
 			</div>
