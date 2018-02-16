@@ -5,6 +5,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -18,9 +20,15 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.tomcat.dbcp.dbcp2.BasicDataSource;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 
 import booksForAll.general.AppConstants;
+import booksForAll.general.AssistantFuncs;
+import booksForAll.model.Book;
+import booksForAll.model.Comment;
+import booksForAll.model.Like;
 
 /**
  * Servlet implementation class LikeBookServlet
@@ -49,6 +57,7 @@ import booksForAll.general.AppConstants;
 		// TODO Auto-generated method stub
 		String username = request.getParameter("Username");
 		String bookname = request.getParameter("Bookname");
+		Book book = null;
 		String result = "";
 		try {
     		
@@ -74,6 +83,30 @@ import booksForAll.general.AppConstants;
 					int res = stmt.executeUpdate(); 
 					if (res != 0){
 						result = "Success";
+						List<Like> likes = new ArrayList<Like>();
+			    		List<Comment> comments = new ArrayList<Comment>();
+			    		stmt = conn.prepareStatement(AppConstants.SELECT_BOOK_BY_NAME_STMT);
+						stmt.setString(1, bookname);
+						rs = stmt.executeQuery(); 
+						if(rs.next()) {
+							book = AssistantFuncs.CreateBookFromRS(rs);
+							stmt = conn.prepareStatement(AppConstants.SELECT_LIKES_BY_BOOK_NAME_STMT);
+							stmt.setString(1, bookname);
+							rs = stmt.executeQuery();
+							while (rs.next()){
+								likes.add(AssistantFuncs.CreateLikeFromRS(rs));
+							}
+							stmt = conn.prepareStatement(AppConstants.SELECT_COMMENTS_BY_BOOK_NAME_STMT);
+							stmt.setString(1, bookname);
+							rs = stmt.executeQuery();
+							while (rs.next()){
+								comments.add(AssistantFuncs.CreateCommentFromRS(rs));
+							}
+							rs.close();
+							book.setLikes(likes);
+							book.setLikesNum(likes.size());
+							book.setComments(comments);
+						}
 					}
 					else {
 						result = "Failure";
@@ -86,10 +119,13 @@ import booksForAll.general.AppConstants;
     		}
 
     		conn.close();
-    		
+    		Gson gson = new GsonBuilder()
+    				.setDateFormat("yyyy-MM-dd HH:mm:ss.S")
+    				.create();
         	response.addHeader("Content-Type", "application/json");
     		JsonObject json = new JsonObject();
     		json.addProperty("Result", result);
+    		json.add("Book", gson.toJsonTree(book));
     		response.getWriter().println(json.toString());
         	response.getWriter().close();
         	response.setStatus(HttpServletResponse.SC_OK);

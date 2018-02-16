@@ -1,7 +1,6 @@
 angular.module('app',[])
 	.controller('homePageController',function($scope,$http){
-		var loginResponse = JSON.parse(localStorage.getItem('loginResponse'));
-		var user = loginResponse.response.User;
+		var user = JSON.parse(localStorage.getItem('loginResponse'));
 		$scope.welcomename = user.username;
 		var data = { };
 		$http.post("http://localhost:8080/BooksForAll/TopFiveBooksServlet?",data)
