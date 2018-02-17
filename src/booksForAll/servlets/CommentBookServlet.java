@@ -3,6 +3,7 @@ package booksForAll.servlets;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 
@@ -64,12 +65,20 @@ import booksForAll.general.AppConstants;
 
     		PreparedStatement stmt;
 			try {
+				stmt = conn.prepareStatement(AppConstants.SELECT_USERS_BY_NAME_STMT);
+				stmt.setString(1, username);
+				ResultSet rs = stmt.executeQuery();
+				String photo = "";
+				if (rs.next()){
+					photo = rs.getString(13);
+				}
 				stmt = conn.prepareStatement(AppConstants.INSERT_COMMENT_STMT);
 				stmt.setString(1, username);
 				stmt.setTimestamp(2, current);
 				stmt.setString(3, description);
 				stmt.setString(4, bookname);
 				stmt.setInt(5, 0);
+				stmt.setString(6, photo);
 				int res = stmt.executeUpdate(); 
 				if (res != 0){
 					result = "Success";

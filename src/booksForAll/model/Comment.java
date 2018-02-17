@@ -9,14 +9,16 @@ public class Comment {
 	private String username;
 	private String bookName;
 	private int approved;
+	private String photo;
 	
-	public Comment(int id, String description, Timestamp time, String username, String bookName, int approved) {
+	public Comment(int id, String description, Timestamp time, String username, String bookName, int approved, String photo) {
 		this.setId(id);
 		this.description = description;
 		this.time = time;
 		this.username = username;
 		this.bookName = bookName;
 		this.approved = approved;
+		this.setPhoto(photo);
 	}
 	
 	public String getDescription() {
@@ -65,5 +67,13 @@ public class Comment {
 
 	public void setBookName(String bookName) {
 		this.bookName = bookName;
+	}
+
+	public String getPhoto() {
+		return photo;
+	}
+
+	public void setPhoto(String photo) {
+		this.photo = photo;
 	}
 }

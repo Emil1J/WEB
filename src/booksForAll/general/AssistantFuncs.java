@@ -27,7 +27,7 @@ public class AssistantFuncs {
 	}
 	
 	public static Comment CreateCommentFromRS(ResultSet rs) throws SQLException {
-		return new Comment(rs.getInt(1), rs.getString(4), rs.getTimestamp(3), rs.getString(2), rs.getString(5), rs.getInt(6));
+		return new Comment(rs.getInt(1), rs.getString(4), rs.getTimestamp(3), rs.getString(2), rs.getString(5), rs.getInt(6), rs.getString(7));
 	}
 	
 	public static ArrayList<Book> SetLikesNumForBooks(ArrayList<Book> books){
