@@ -2,6 +2,13 @@
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+  <script src="../lib/angular.min.js"></script>
+<script src="../lib/jquery-3.2.1.js"></script>
+<link rel="stylesheet"
+	href="../lib/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+<script src="../lib/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+<script src="../js/ReadBookController.js"></script>
+<script src="../js/helperService.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 <title>The Project Gutenberg eBook of Opportunities in Engineering, by Charles M. Horton</title>
     <style type="text/css">
@@ -71,7 +78,7 @@
     /* XML end  ]]>*/
     </style>
 </head>
-<body>
+  <body ng-app="app" ng-controller="readBookController">
 <h1>The Project Gutenberg eBook, Opportunities in Engineering, by Charles M.
 Horton</h1>
 <pre>

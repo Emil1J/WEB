@@ -6,6 +6,13 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
   <head>
+    <script src="../lib/angular.min.js"></script>
+<script src="../lib/jquery-3.2.1.js"></script>
+<link rel="stylesheet"
+	href="../lib/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+<script src="../lib/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+<script src="../js/ReadBookController.js"></script>
+<script src="../js/helperService.js"></script>
     <title>
       The Works of Edgar Allan Poe, Volume 1
     </title>
@@ -30,7 +37,7 @@
     -->
 </style>
   </head>
-  <body>
+  <body ng-app="app" ng-controller="readBookController">
 <pre xml:space="preserve">
 
 Project Gutenberg's The Works of Edgar Allan Poe, by Edgar Allan Poe
