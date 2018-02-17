@@ -67,11 +67,33 @@
                   	</div>
             </div>
             <div class="col-sm-12">
-          		<div class="container">
                   	<div class="row">
-  						<img class="ProfilePic" ng-src="{{user.photo}}">
+                  		<h3 style="text-align: center;"><b>Reviews</b></h3>
+                  		<hr>
                   	</div>
-                </div>
+            </div>
+            <div class="col-sm-6 col-sm-offset-3" ng-repeat="comment in bookcomments | limitTo:quantity">
+            	<div class="commentbox">
+                  	<div class="row">
+                  		<div class="col-sm-2">
+                  		  	<img class="ProfilePic" ng-src="{{comment.photo}}">
+                  		</div>
+                  		<div class="col-sm-5">
+                  	  		<p id="commentusername">{{comment.username}}</p>
+               			</div>
+               			<div class="col-sm-5">
+               		  		<p id="commenttime">{{comment.time}}</p>
+               			</div>
+                  		<div class="col-sm-8">
+                  		</div>
+                  		<div class="col-sm-6">
+                  			<div class="commenttextinc">
+                  				<p id="commenttext">{{comment.description}}</p>
+                  				<h1>{{counter}}</h1>
+                  			</div>
+               			</div>
+              		</div>
+            	</div>
             </div>
 		</div>
 	</div>

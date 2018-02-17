@@ -69,3 +69,27 @@ li a:hover {
     border-radius: 50%;
 }
 
+#commentusername{
+	font-weight: bold;
+	padding-top: 7%;
+}
+
+#commenttime{
+	font-weight: bold;
+	padding-top: 7%;
+	padding-left: 10%;
+}
+
+#commenttext{
+	float: left;
+	padding-top: 1%;
+}
+
+.commenttextinc commentbox{
+	margin-top: 5%;
+	padding: 20px 40px;
+	box-sizing: border-box;
+	background: rgba(0,0,0,.2);
+	border-color: #000;
+	border-width: 30px;
+}
