@@ -89,10 +89,5 @@ angular.module('app',[])
 					  }
 					});
 			}
-		
-		$scope.BookURL = function(book){
- 			localStorage.setItem('SelectedForReadingBook', JSON.stringify(book));
-			return book.URL;
-		}
 	}]);
 
