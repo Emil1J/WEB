@@ -43,3 +43,13 @@ li a:hover {
 	margin: 10px;
 }
 
+#PurchaseButton{
+	text-align: center;
+	font-weight: bold;
+	background-color: #03A9F4;
+	border-radius: 20px;
+    border: none;
+    color: white;
+    text-decoration: none;
+    display: inline-block;
+}
