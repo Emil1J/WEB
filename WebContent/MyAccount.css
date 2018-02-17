@@ -33,9 +33,50 @@ li a:hover {
     background-color: #A9A9A9;
 }
 
-#ProfilePic{
-	margin: 10px;
+.Center{
+	margin-top: 10%;
+	margin: 0% 10% 0% 0%;	
+}
+
+.SpaceFromTop{
+	padding-top: 3%;
+}
+
+.ProfilePic{
+	max-height: 50px;
+	max-width: 50px;
 	height: 50px;
-	weight: 50px;
+	width: 50px;
     border-radius: 50%;
+}
+
+.LikeButton{
+	max-height: 35px;
+	max-width: 35px;
+	height: 35px;
+	width: 35px;
+}
+
+.Drop{
+	padding-top: 40%;
+}
+
+.YourBooks{
+	font-size: 200%;
+	font-family:  "Book Antiqua", Palatino, "Palatino Linotype", "Palatino LT STD", Georgia, serif;		
+}
+
+.BookCovers{
+	height: 240px;
+	width: 160px;
+}
+
+.BookData{
+	padding-left: 3%;
+}
+
+.ProfileData{
+    text-align: center;
+    font-size: large;
+	font-family:  "Book Antiqua", Palatino, "Palatino Linotype", "Palatino LT STD", Georgia, serif;
 }

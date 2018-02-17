@@ -10,7 +10,7 @@
   		<script src="js/helperService.js"></script>
 	</head>
 	<body ng-app="app" ng-controller="myAccountController">
-		<ul>
+		<ul class="Toolbar">
 			<b>
 				<li><a href="./LandingPage.html">Home</a></li>
 				<li><a href="./Ebooks.html">eBooks</a></li>
@@ -28,17 +28,47 @@
   					<div class="col-md-12">
   						<div class="container">
 							<div class="row">
-								<div class="col-md-4">
-								
-								</div>
-								<div class="col-md-4">
-									<img id="ProfilePic" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png">
-								</div>
-								<div class="col-md-4">
-								
-								</div>
-	  						</div>	
-						</div>
+								<div class="SpaceFromTop">
+									<p class="ProfileData Center">
+										<img class="ProfilePic" ng-src="{{user.photo}}">
+									</p>
+									<p class="ProfileData Center">{{user.username}}</p>
+									<p class="ProfileData Center">{{user.nickname}}</p>
+									<p class="ProfileData Center">{{user.email}}</p>
+									<u><b><p class="YourBooks">Your books:</p></b></u>
+									<div class="row">
+  										<div class="col-sm-4" ng-repeat="book in books">
+											<div class="row">
+												<div class="col-sm-5">
+													<a>
+														<img class="BookCovers" ng-src="{{book.Photo}}"/>
+													</a>
+												</div>
+												<div class="col-sm-7">
+													<p class="BookData"><u><b>Title:</b></u> {{book.Name}}</p>
+													<p class="BookData"><u><b>Author:</b></u> {{book.Author}}</p>
+													<p class="BookData"><b>
+														<a id="LikeNum{{book.Name}}" data-toggle="tooltip" data-placement="bottom" ng-init="likeString = GetLikes(book.Likes)" title="{{likeString}}">
+															*Liked by {{book.LikesNum}}
+														</a>
+													</b></p>
+													<p class="BookData"><b>
+														<a href="{{book.URL}}">
+															Read book
+														</a>
+													</b></p>
+													<p class="BookData Drop">
+													<a href="#">
+														<img id="{{book.Name}}" class="LikeButton" ng-click="LikeBook(book)" ng-src="{{LikeLogo(book.Name)}}"/>
+													</a>
+													</p>
+												</div>
+											</div>
+					  					</div>
+					  				</div>
+								</div>	
+							</div>
+	  					</div>
   					</div>
             	</div>			
 			</div>
