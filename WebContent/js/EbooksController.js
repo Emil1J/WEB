@@ -31,4 +31,8 @@ angular.module('app',[])
 		       }
 		    );
 		
+		$scope.PurchaseBook = function(book){
+			localStorage.setItem('purchaseBook', JSON.stringify(book));
+			window.location="Purchase.html";
+		}
 	}]);
