@@ -90,7 +90,7 @@ import booksForAll.model.Like;
 				while (rs.next()){
 					likes.add(AssistantFuncs.CreateLikeFromRS(rs));
 				}
-				stmt = conn.prepareStatement(AppConstants.SELECT_ALL_COMMENTS_STMT);
+				stmt = conn.prepareStatement(AppConstants.SELECT_ALL_APPROVED_COMMENTS_STMT);
 				rs = stmt.executeQuery();
 				while (rs.next()){
 					comments.add(AssistantFuncs.CreateCommentFromRS(rs));
