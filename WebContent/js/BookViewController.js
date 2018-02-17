@@ -5,5 +5,10 @@ angular.module('app',[])
 		$scope.bookauthor = viewBook.Author;
 		$scope.bookcover = viewBook.Photo;
 		$scope.bookdesc = viewBook.Description;
+		$(window).scroll(function() {
+			   if($(window).scrollTop() + $(window).height() == $(document).height()) {
+			       alert("bottom!");
+			   }
+			});
 });
 
