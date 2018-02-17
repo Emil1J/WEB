@@ -15,7 +15,7 @@ angular.module('app',[])
     );
 	
 	window.onbeforeunload = function () {
-		$http.post("http://localhost:8080/BooksForAll/UpdateScrollPosition?Username=" + user.username + "&Bookname=" + bookName
+		$http.post("http://localhost:8080/BooksForAll/UpdateScrollPositionServlet?Username=" + user.username + "&Bookname=" + bookName
 				+"&Position=" + window.pageYOffset)
    		.then(
   			function(response){

@@ -25,19 +25,19 @@ import booksForAll.general.AppConstants;
  * Servlet implementation class UpdateScrollPosition
  */
 @WebServlet(
-		urlPatterns = "/UpdateScrollPosition",
+		urlPatterns = "/UpdateScrollPositionServlet",
 		initParams = {
 				@WebInitParam(name = "Username", value = ""),
 				@WebInitParam(name = "Bookname", value = ""),
 				@WebInitParam(name = "Position", value = "")
 		})
-public class UpdateScrollPosition extends HttpServlet {
+public class UpdateScrollPositionServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public UpdateScrollPosition() {
+    public UpdateScrollPositionServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
