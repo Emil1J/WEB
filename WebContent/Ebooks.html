@@ -49,7 +49,9 @@
 								title="{{likeString}}"> *Liked by {{book.LikesNum}} </a>
 							</b>
 						</p>
-						<p class="BookData"><button id="PurchaseButton">Purchase</button></p>
+						<p class="BookData">
+							<a ng-click="PurchaseBook(book)"><button id="PurchaseButton">Purchase</button></a>
+						</p>
 					</div>
 				</div>
 			</div>

@@ -1,0 +1,122 @@
+@charset "ISO-8859-1";
+body
+{
+	margin: 0;
+	padding: 0;
+	background-color: url(bg.jpg);
+	background-size: cover;
+	font-family: sans-serif;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #000;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+/* Change the link color to #111 (black) on hover */
+li a:hover {
+    background-color: #A9A9A9;
+}
+
+.booktitle{
+	text-align: center;
+	padding-right: 7%;
+	font-weight: bold;
+}
+
+.bookauthor{
+	text-align: center;
+	font-weight: bold;
+	padding-right: 7%;
+	font-size: 140%;
+}
+
+.number input{
+  width: 8%;
+}
+
+.BookCover{
+	width: 300px;
+	height: 450px;
+	float: right;
+}
+
+
+.btnLeft{
+	float: left;
+}
+
+.btnRight{
+	float: right;
+}
+.btnRight, .btnLeft {
+      background: #03A9F4;
+      width: 180px;
+      font-weight: bold;
+      margin: 10px auto;
+      padding: 10px 18px;
+      font-size: 16px;
+      text-align: center;
+      border-radius: 50px;
+      cursor: default;
+}
+
+.PageData{
+	font-size: 130%;	
+}
+
+input[type=num] {
+    width: 15%;
+    height: 10%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+}
+
+.Expiry{
+	width: 20%;
+}
+.Visas{
+	 width: 35%;
+}
+
+.Expiry, .Visas{
+    height: 10%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+}
+
+input[type=text]{
+    width: 30%;
+    height: 10%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+}
+
+.errorMsg{
+	font-weight: bold;
+	color: maroon;	
+}

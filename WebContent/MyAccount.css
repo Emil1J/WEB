@@ -58,7 +58,7 @@ li a:hover {
 }
 
 .Drop{
-	padding-top: 40%;
+	padding-left: 10%;
 }
 
 .YourBooks{
@@ -71,8 +71,21 @@ li a:hover {
 	width: 160px;
 }
 
+.BackgroundBox
+{
+	padding-top: 10px;
+	padding-left: 10px;
+	margin-bottom: 20px;
+	box-sizing: border-box;
+	background: rgba(192,192,192,0.3);
+}
+
+#LikedNum{
+	padding-top: 6%;	
+}
+
 .BookData{
-	padding-left: 3%;
+	padding-left: 15%;
 }
 
 .ProfileData{
