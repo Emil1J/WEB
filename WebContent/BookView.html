@@ -82,18 +82,20 @@
                   	  		<p id="commentusername">{{comment.username}}</p>
                			</div>
                			<div class="col-sm-5">
-               		  		<p id="commenttime">{{comment.time}}</p>
+               		  		<p id="commenttime">{{GetDateFormat(comment.time)}}</p>
                			</div>
                   		<div class="col-sm-8">
                   		</div>
                   		<div class="col-sm-6">
                   			<div class="commenttextinc">
                   				<p id="commenttext">{{comment.description}}</p>
-                  				<h1>{{counter}}</h1>
                   			</div>
                			</div>
               		</div>
             	</div>
+            </div>
+            <div class="commentbox2" id="append">
+            	
             </div>
 		</div>
 	</div>
