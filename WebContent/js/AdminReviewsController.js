@@ -1,4 +1,4 @@
-angular.module('app',[])
+	angular.module('app',[])
 	.controller('adminReviewsController',['$scope','$http', function($scope,$http){
 		$http.post("http://localhost:8080/BooksForAll/AllUnapprovedCommentsServlet?")
 		   .then(
@@ -18,8 +18,6 @@ angular.module('app',[])
 		
 		$scope.CommentAnswerModal = function(comment){
 			localStorage.setItem('ChosenComment', JSON.stringify(comment));
-			var modal = document.getElementById('myModal');
-		    modal.style.display = "block";
 		}
 		
 		$("tbody").on("click", "tr", function(e) {     
@@ -27,18 +25,13 @@ angular.module('app',[])
 			     .toggleClass("selected")
 			     .siblings(".selected")
 			         .removeClass("selected");
+				var modal = document.getElementById('myModal');
+			    modal.style.display = "block";
 			});
 		
 
 		// Get the <span> element that closes the modal
 		var span = document.getElementsByClassName("close")[0];
-
-		// When the user clicks the button, open the modal 
-		$scope.MyButtonFunc = function(book) {
-			localStorage.setItem('ChosenBook', JSON.stringify(book));
-			var modal = document.getElementById('myModal');
-		    modal.style.display = "block";
-		}
 
 		// When the user clicks on <span> (x), close the modal
 		$scope.MyModalFunc = function() {
@@ -55,7 +48,27 @@ angular.module('app',[])
 		}
 		
 		$scope.GiveAnswer = function(answer){
-			localStorage.setItem('Answer', answer);
+			var comment = JSON.parse(localStorage.getItem('ChosenComment'));
+			var choice = "Approve";
+			if(answer == 'Decline'){
+				choice = "Unapprove";
+				
+			}
+			$.ajax({
+				  url: "http://localhost:8080/BooksForAll/" + choice + "CommentServlet?",
+				  type: "POST", //send it through get method
+				  dataType: 'json',
+			  data: {
+				CommentID: comment.id
+			  },
+			  success: function(response) {
+				  alert(JSON.stringify(response));
+			},
+			error: function(xhr) {
+			    //Do Something to handle error
+			  }
+			});
+			location.reload();
 		}
 	}]);
 

@@ -50,6 +50,20 @@
 					</table>
 				</div>
 			</div>
+			    <!-- The Modal -->
+				<div id="myModal" class="modal" ng-click="MyModalFunc()">									
+					<!-- Modal content -->
+					<div class="modal-content">
+						<span class="close">&times;</span>
+						<div class="modal-title">
+							<b><p>Do you like to continue from where you last stopped?</p></b>
+						</div>
+						<div class="modal-footer">
+ 							<button type="button" data-dismiss="modal" ng-click="GiveAnswer('Accept')" class="btn btn-primary" id="Yes">Yes</button>
+   							<button type="button" data-dismiss="modal" ng-click="GiveAnswer('Decline')" class="btn" id="No">No</button>
+						</div>								    
+					</div>
+				</div>
 			
 		</div>
 	</div>
