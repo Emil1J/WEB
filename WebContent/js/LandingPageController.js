@@ -1,5 +1,5 @@
 angular.module('app',[])
-	.controller('homePageController',function($scope,$http){
+	.controller('homePageController', ['$scope','$http', function($scope,$http){
 		var user = JSON.parse(localStorage.getItem('loginResponse'));
 		$scope.welcomename = user.username;
 		var data = { };
@@ -8,5 +8,10 @@ angular.module('app',[])
 			$scope.books = response.data.BookList;
 	},function(xhr){
 	});
-});
+		
+	$scope.viewBook = function(book){
+		localStorage.setItem('viewBook', JSON.stringify(book));
+		window.location="BookView.html";
+	}
+}]);
 
