@@ -116,9 +116,16 @@
       									</select>
   									</div>
   								</div>
-  								<div class="form-group" ng-class="{ 'has-error' : userForm.ccv.$invalid && !userForm.ccv.$pristine }">
-                       				<p><b>CCV:</b></p>
-									<input class="form-control" placeholder="Cardholder Name" id="ccv" name="ccv" type="text" autofocus="" ng-model="ccv" required>
+  								<p><b>CCV:</b></p>
+  								<div class="col-sm-6">
+  									<div class="form-group" ng-class="{ 'has-error' : userForm.ccv.$invalid && !userForm.ccv.$pristine }">
+										<input class="form-control" placeholder="Cardholder Name" id="ccv" name="ccv" type="text" autofocus="" ng-model="ccv" required>
+  									</div>
+  								</div>
+  								<div class="col-sm-6">
+  									<div>
+										<input type="submit" name="" ng-click="confirmAndBuy()">
+									</div>
   								</div>
 							</div>
                   		</div>
