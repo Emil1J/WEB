@@ -28,26 +28,24 @@
 <div class="container">
 		<div class="container-fluid">
 			<div class="row">
-				<h2 id="UsersHeader">Transactions</h2>
+				<h2 id="UsersHeader">Reviews</h2>
 				<div class="col-sm-12">
-					<table id="TableLocation">
-					  <thead>
-					    <tr >
-					    	<th class="Col1">Username</th>
-					    	<th class="Col2">Bookname</th>
-					    	<th class="Col3">Description</th>
-					    	<th class="Col4">Submitted At</th>
-					    </tr>
-					  </thead>
-					  <tbody>
-					  	<tr ng-repeat="comment in comments" class="clickable" data-href="{{CommentAnswerModal(comment)}}">
-					  		<td class="Col1">{{comment.username}}</td>
-						    <td class="Col2">{{comment.bookName}}</td>
-						   	<td class="Col3">{{comment.description}}</td>
-						   	<td class="Col4">{{GetTimeFormat(comment.time)}}</td>
-					    </tr>
-					  </tbody>
-					</table>
+					<div id="table-scroll">
+						<table id="TableLocation">
+							<tr>
+					    		<th class="Col1">Username</th>
+					    		<th class="Col2">Bookname</th>
+					    		<th class="Col3">Description</th>
+					    		<th class="Col4">Submitted At</th>
+					    	</tr>
+					    	<tr ng-repeat="comment in comments" class="clickable" data-href="{{CommentAnswerModal(comment)}}">
+					  			<td class="Col1">{{comment.username}}</td>
+						    	<td class="Col2">{{comment.bookName}}</td>
+						   		<td class="Col3">{{comment.description}}</td>
+						   		<td class="Col4">{{GetTimeFormat(comment.time)}}</td>
+					    	</tr>
+						</table>
+					</div>
 				</div>
 			</div>
 			    <!-- The Modal -->

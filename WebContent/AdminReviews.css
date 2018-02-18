@@ -57,24 +57,42 @@ li a:hover {
 
 thead, tbody { display: block; }
 
-
-tbody {
-    max-height: 100%;
-    overflow-y: auto;    /* Trigger vertical scroll    */
-    overflow-x: hidden;  /* Hide the horizontal scroll */
+#TableLocation {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
 }
 
+#TableLocation tr:nth-child(even){
+	background-color: #f2f2f2;
+	table-layout: fixed;
+  	border-collapse: collapse;
+}
+
+#TableLocation th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: middle;
+    background-color: #BCAAA4;
+    color: white;
+}
+#table-scroll{
+	height:550px;
+	overflow:auto;
+}
+  
 .clickable {
     cursor: pointer;
 }
 
 tbody tr:hover.selected td,
 tbody tr:hover td {
-  background-color: #FFEFC6;
+  background-color: #B3E5FC;
   cursor: pointer;
 }
+
 tbody tr.selected td {
-  background-color: #ffd659;
+  background-color: #B0BEC5;
 }
 
 thead{
@@ -93,11 +111,6 @@ th, td {
 
 tr:nth-child(even){background-color: #f2f2f2}
 tr:nth-child(odd){background-color: #ffffff}
-
-#TableLocation{
-	align: center;
-}
-
 
 
 .Col1{

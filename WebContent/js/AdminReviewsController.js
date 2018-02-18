@@ -62,7 +62,6 @@
 				CommentID: comment.id
 			  },
 			  success: function(response) {
-				  alert(JSON.stringify(response));
 			},
 			error: function(xhr) {
 			    //Do Something to handle error
