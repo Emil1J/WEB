@@ -6,7 +6,11 @@ angular.module('app',[])
 	$http.post("http://localhost:8080/BooksForAll/ScrollPositionServlet?Username=" + user.username + "&Bookname=" + bookName)
    		.then(
   			function(response){
-  				var scroll = response.data.Position
+  				var offset = localStorage.getItem('ScrollBook');
+  				var scroll = response.data.Position;
+  				if(offset == 'False'){
+  					scroll = 0;
+  				}
   				window.scrollTo(0, scroll);		
    			}, 
    			function(response){
