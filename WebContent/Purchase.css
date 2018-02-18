@@ -82,7 +82,27 @@ li a:hover {
 	margin-left: 10px;
 }
 
+#submitButton{
+	float: right;
+}
+
 #signupline{
 	margin-top: 10px;
 	margin-left: 10px;
+}
+
+#DropDownList select {
+   font-size: 17px;
+}
+
+.purchaseDetailsBox span[class="errorMsg"]
+{
+	color: maroon;	
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0;
 }

@@ -41,93 +41,104 @@
 						<div class="col-sm-5">
 							<p><img class="BookCover" ng-src="{{book.Photo}}" /></p>
 						</div>
-                  		<div class="col-sm-5">
-                  			<div class="PurchaseBox">
-  								<div class="form-group" ng-class="{ 'has-error' : userForm.cardcomp.$invalid && !userForm.cardcomp.$pristine }">
-                       				<p><b>Credit Card Type:</b></p>
-									<select class="form-control">
-        								<option>Visa</option>
-        								<option>MasterCard</option>
-        								<option>American Express</option>
-        								<option>IsraCard</option>
-        								<option>Discover</option>
-      								</select>
-  								</div>
-  								<div class="form-group" ng-class="{ 'has-error' : userForm.holdname.$invalid && !userForm.holdname.$pristine }">
-                       				<p><b>Cardholder Name:</b></p>
-									<input class="form-control" placeholder="Cardholder Name" id="holdname" name="holdname" type="text" autofocus="" ng-model="holdname" required>
-  								</div>
-  								<p><b>Card Number:</b></p>
-  								<div class="col-sm-3">
-  									<div class="form-group" ng-class="{ 'has-error' : userForm.cardnum1.$invalid && !userForm.cardnum1.$pristine }">
-										<input class="form-control" id="cardnum1" name="cardnum1" type="text" autofocus="" ng-model="cardnum1" required>
-  									</div>
-  								</div>
-  								<div class="col-sm-3">
-  									<div class="form-group" ng-class="{ 'has-error' : userForm.cardnum2.$invalid && !userForm.cardnum2.$pristine }">
-										<input class="form-control" id="cardnum2" name="cardnum2" type="text" autofocus="" ng-model="cardnum2" required>
-  									</div>
-  								</div>
-  								<div class="col-sm-3">
-  									<div class="form-group" ng-class="{ 'has-error' : userForm.cardnum3.$invalid && !userForm.cardnum3.$pristine }">
-										<input class="form-control" id="cardnum3" name="cardnum3" type="text" autofocus="" ng-model="cardnum3" required>
-  									</div>
-  								</div>
-  								<div class="col-sm-3">
-  									<div class="form-group" ng-class="{ 'has-error' : userForm.cardnum4.$invalid && !userForm.cardnum4.$pristine }">
-										<input class="form-control" id="cardnum4" name="cardnum4" type="text" autofocus="" ng-model="cardnum4" required>
-  									</div>
-  								</div>
-  								<p><b>Expiration:</b></p>
-  								<div class="col-sm-6">
-  									<div class="form-group" ng-class="{ 'has-error' : userForm.exp.$invalid && !userForm.exp.$pristine }">
-										<select class="form-control">
-        									<option>Jan</option>
-						          			<option>Feb</option>
-						          			<option>Mar</option>
-						         			<option>Apr</option>
-						       				<option>May</option>
-						       				<option>Jun</option>
-						       				<option>Jul</option>
-					          				<option>Aug</option>
-					          				<option>Sep</option>
-					          				<option>Oct</option>
-					          				<option>Nov</option>
-					          				<option>Dec</option>
-      									</select>
-  									</div>
-  								</div>
-  								<div class="col-sm-6">
-  									<div class="form-group" ng-class="{ 'has-error' : userForm.exp2.$invalid && !userForm.exp2.$pristine }">
-										<select class="form-control">
-        									<option>2018</option>
-						          			<option>2019</option>
-						          			<option>2020</option>
-						          			<option>2021</option>
-						          			<option>2022</option>
-						          			<option>2023</option>
-						          			<option>2024</option>
-						          			<option>2025</option>
-						          			<option>2026</option>
-						          			<option>2027</option>
-						          			<option>2028</option>
-						 		  			<option>2029</option>
-					 			  			<option>2030</option>
-      									</select>
-  									</div>
-  								</div>
-  								<p><b>CCV:</b></p>
-  								<div class="col-sm-6">
-  									<div class="form-group" ng-class="{ 'has-error' : userForm.ccv.$invalid && !userForm.ccv.$pristine }">
-										<input class="form-control" placeholder="Cardholder Name" id="ccv" name="ccv" type="text" autofocus="" ng-model="ccv" required>
-  									</div>
-  								</div>
-  								<div class="col-sm-6">
-  									<div>
-										<input type="submit" name="" ng-click="confirmAndBuy()">
-									</div>
-  								</div>
-							</div>
+                  		<div class="col-sm-5 purchaseDetailsBox">
+                  		  	<form name="purchaseForm" ng-submit="submitForm(purchaseForm.$valid)" novalidate>
+	                  			<div class="PurchaseBox">
+	  								<div id="DropDownList" class="form-group" ng-class="{ 'has-error' : purchaseForm.cardcomp.$invalid && !purchaseForm.cardcomp.$pristine }">
+	                       				<p><b>Credit Card Type:</b></p>
+										<select id="CCType" class="form-control">
+	        								<option>Visa</option>
+	        								<option>MasterCard</option>
+	        								<option>American Express</option>
+	        								<option>Discover</option>
+	      								</select>
+	  								</div>
+	  								<div class="form-group" ng-class="{ 'has-error' : purchaseForm.holdname.$invalid && !purchaseForm.holdname.$pristine }">
+	                       				<p><b>Cardholder Name:</b></p>
+										<input class="form-control" placeholder="Cardholder Name" id="holdname" name="holdname" type="text" autofocus="" ng-model="holdname" required>
+										<span class="errorMsg" ng-show="purchaseForm.holdname.$dirty && purchaseForm.holdname.$error.required">*Cardholder is required!</span>
+	  								</div>
+	  								<p><b>Card Number:</b></p>
+	  								<div class="col-sm-3">
+	  									<div class="form-group" ng-class="{ 'has-error' : purchaseForm.cardnum1.$invalid && !purchaseForm.cardnum1.$pristine }">
+											<input class="form-control" id="cardnum1" name="cardnum1" placeholder="1234" minlength="4" maxlength="4" type="number" autofocus="" ng-model="cardnum1" required>
+	  									</div>
+	  								</div>
+	  								<div class="col-sm-3">
+	  									<div class="form-group" ng-class="{ 'has-error' : purchaseForm.cardnum2.$invalid && !purchaseForm.cardnum2.$pristine }">
+											<input class="form-control" id="cardnum2" name="cardnum2" placeholder="5678" minlength="4" maxlength="4" type="number" autofocus="" ng-model="cardnum2" required>
+	  									</div>
+	  								</div>
+	  								<div class="col-sm-3">
+	  									<div class="form-group" ng-class="{ 'has-error' : purchaseForm.cardnum3.$invalid && !purchaseForm.cardnum3.$pristine }">
+											<input class="form-control" id="cardnum3" name="cardnum3" placeholder="9012" minlength="4" maxlength="4" type="number" autofocus="" ng-model="cardnum3" required>
+	  									</div>
+	  								</div>
+	  								<div class="col-sm-3">
+	  									<div class="form-group" ng-class="{ 'has-error' : purchaseForm.cardnum4.$invalid && !purchaseForm.cardnum4.$pristine }">
+											<input class="form-control" id="cardnum4" name="cardnum4" placeholder="3456" minlength="4" maxlength="4" type="number" autofocus="" ng-model="cardnum4" required>
+	  									</div>
+	  								</div>
+									<span class="errorMsg" ng-show="
+									(purchaseForm.cardnum1.$dirty && purchaseForm.cardnum2.$dirty && purchaseForm.cardnum3.$dirty && purchaseForm.cardnum4.$dirty) &&
+									((purchaseForm.carnum1.$error.required) || (purchaseForm.carnum2.$error.required) || (purchaseForm.carnum3.$error.required) || (purchaseForm.carnum4.$error.required) ||
+									(purchaseForm.cardnum1.$invalid && !purchaseForm.cardnum1.$pristine) ||
+									(purchaseForm.cardnum2.$invalid && !purchaseForm.cardnum2.$pristine) ||
+									(purchaseForm.cardnum3.$invalid && !purchaseForm.cardnum3.$pristine) ||
+									(purchaseForm.cardnum4.$invalid && !purchaseForm.cardnum4.$pristine))">*Invalid Credit Card!</span>
+	  								<p><b>Expiration:</b></p>
+	  								<div class="col-sm-6">
+	  									<div id="DropDownList" class="form-group" ng-class="{ 'has-error' : purchaseForm.exp.$invalid && !purchaseForm.exp.$pristine }">
+											<select id="ExpMonth" class="form-control">
+	        									<option>Jan</option>
+							          			<option>Feb</option>
+							          			<option>Mar</option>
+							         			<option>Apr</option>
+							       				<option>May</option>
+							       				<option>Jun</option>
+							       				<option>Jul</option>
+						          				<option>Aug</option>
+						          				<option>Sep</option>
+						          				<option>Oct</option>
+						          				<option>Nov</option>
+						          				<option>Dec</option>
+	      									</select>
+	  									</div>
+	  								</div>
+	  								<div class="col-sm-6">
+	  									<div id="DropDownList" class="form-group" ng-class="{ 'has-error' : purchaseForm.exp2.$invalid && !purchaseForm.exp2.$pristine }">
+											<select id="ExpYear" class="form-control">
+	        									<option>2018</option>
+							          			<option>2019</option>
+							          			<option>2020</option>
+							          			<option>2021</option>
+							          			<option>2022</option>
+							          			<option>2023</option>
+							          			<option>2024</option>
+							          			<option>2025</option>
+							          			<option>2026</option>
+							          			<option>2027</option>
+							          			<option>2028</option>
+							 		  			<option>2029</option>
+						 			  			<option>2030</option>
+	      									</select>
+	  									</div>
+	  								</div>
+	  								<p><b>CCV:</b></p>
+	  								<div class="col-sm-6">
+	  									<div class="form-group" ng-class="{ 'has-error' : purchaseForm.cvv.$invalid && !purchaseForm.cvv.$pristine }">
+											<input class="form-control" id="cvv" name="cvv" placeholder="123" minlength="3" maxlength="3" type="number" autofocus="" ng-model="cvv" required>
+											<span class="errorMsg" ng-show="(purchaseForm.cvv.$invalid && !purchaseForm.cvv.$pristine) ||
+											(purchaseForm.cvv.$dirty && purchaseForm.cvv.$error.required)">*Invalid CVV!</span>
+	  									</div>
+	  								</div>
+	  								<div class="col-sm-6">
+	  									<div>
+											<input id="submitButton" type="submit" name="" value="Pay for book">
+										</div>
+	  								</div>
+								</div>
+							</form>
                   		</div>
                   		<div class="col-sm-2">
                   		</div>
