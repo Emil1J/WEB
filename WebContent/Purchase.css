@@ -1,13 +1,48 @@
-@charset "ISO-8859-1";
 body
 {
 	margin: 0;
 	padding: 0;
-	background-color: url(bg.jpg);
+	background: url(SignUp.jpg);
 	background-size: cover;
 	font-family: sans-serif;
 }
 
+.bookauthor
+{
+	margin-bottom:40px;
+	margin-right: 7%;
+}
+.BookCover
+{
+	width:300px;
+	height:430px;
+	float: right;	
+}
+.PurchaseBox
+{
+	padding: 20px 40px;
+	box-sizing: border-box;
+	background: rgba(0,0,0,.1);
+}
+.PurchaseBox input[type="submit"]
+{
+	border: none;
+	outline: none;
+	height: 40px;
+	color: #fff;
+	font-size: 16px;
+	background: #03A9F4;
+	cursor: pointer;
+	border-radius: 20px;
+	margin-top: 10px;
+	width: 100%;
+}
+
+h1{
+	text-align: center;
+	margin-top: 40px;
+	margin-right: 7%;
+}
 ul {
     list-style-type: none;
     margin: 0;
@@ -33,90 +68,19 @@ li a:hover {
     background-color: #A9A9A9;
 }
 
-.booktitle{
-	text-align: center;
-	padding-right: 7%;
-	font-weight: bold;
-}
-
 .bookauthor{
 	text-align: center;
 	font-weight: bold;
-	padding-right: 7%;
-	font-size: 140%;
+	font-size: 120%;
 }
 
-.number input{
-  width: 8%;
+#invalid{
+	color: #800000;
+	margin-top: 10px;
+	margin-left: 10px;
 }
 
-.BookCover{
-	width: 300px;
-	height: 450px;
-	float: right;
-}
-
-
-.btnLeft{
-	float: left;
-}
-
-.btnRight{
-	float: right;
-}
-.btnRight, .btnLeft {
-      background: #03A9F4;
-      width: 180px;
-      font-weight: bold;
-      margin: 10px auto;
-      padding: 10px 18px;
-      font-size: 16px;
-      text-align: center;
-      border-radius: 50px;
-      cursor: default;
-}
-
-.PageData{
-	font-size: 130%;	
-}
-
-input[type=num] {
-    width: 15%;
-    height: 10%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-}
-
-.Expiry{
-	width: 20%;
-}
-.Visas{
-	 width: 35%;
-}
-
-.Expiry, .Visas{
-    height: 10%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-}
-
-input[type=text]{
-    width: 30%;
-    height: 10%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-}
-
-.errorMsg{
-	font-weight: bold;
-	color: maroon;	
+#signupline{
+	margin-top: 10px;
+	margin-left: 10px;
 }
