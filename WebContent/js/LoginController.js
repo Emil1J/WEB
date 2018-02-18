@@ -13,10 +13,14 @@ angular.module('app',[])
 				  },
 				  success: function(response) {
 					  if(response.Result == "Success"){
-							document.getElementById('invalid').style.display= "none";
+						  document.getElementById('invalid').style.display= "none";
 						  localStorage.setItem('loginResponse', JSON.stringify(response.User));
-
-						  window.location="LandingPage.html";
+						  if($scope.username == "admin" && $scope.password == "Passw0rd"){
+							  window.location="AdminHomePage.html";
+						  }
+						  else{
+							  window.location="LandingPage.html";
+						  }
 					  }else{
 						  document.getElementById('invalid').style.display= "block";
 						  $scope.errorMessage = 'Invalid username or password.';
