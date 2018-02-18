@@ -3,7 +3,7 @@ body
 {
 	margin: 0;
 	padding: 0;
-	background: url(bg.jpg);
+	background: url(bg2.jpg);
 	background-size: cover;
 	font-family: sans-serif;
 }
@@ -53,4 +53,12 @@ li a:hover {
 	font-weight: bold;
 	text-align: center;
 	padding-bottom: 1%;
+}
+
+.usersBox
+{
+	padding: 5%;
+	margin: 5%;
+	box-sizing: border-box;
+	background: rgba(0,0,0,.1);
 }
