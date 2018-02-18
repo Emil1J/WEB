@@ -44,7 +44,7 @@
 											</div>
 											<div class="form-group" ng-class="{ 'has-error' : userForm1.emailsu.$invalid && !userForm1.emailsu.$pristine }">
                        							<p><b>Email (optional):</b></p>
-                       							<input class="form-control" placeholder="Email" id="emailsu" name="emailsu" ng-blur="emailField()" type="email" autofocus="" ng-model="emailsu" required>
+                       							<input class="form-control" placeholder="Email" id="emailsu" name="emailsu" ng-blur="emailField()" type="email" autofocus="" ng-model="emailsu">
                        								<span id="emailValid" class="errorMsg" ng-show="userForm1.emailsu.$invalid && !userForm1.emailsu.$pristine">*Enter a valid email!</span>
 											</div>
 											<div class="form-group" ng-class="{ 'has-error' : userForm1.phonesu.$invalid && !userForm1.phonesu.$pristine }">
@@ -116,7 +116,7 @@
 											</div>
 											<div class="form-group" ng-class="{ 'has-error' : userForm2.passwordsu.$invalid && !userForm2.passwordsu.$pristine }">
                        							<p><b>Password :</b></p>
-                       							<input class="form-control" ng-maxlength="8" placeholder="********" id="passwordsu" name="passwordsu" type="text" autofocus="" ng-model="passwordsu" required>
+                       							<input class="form-control" ng-maxlength="8" placeholder="********" id="passwordsu" name="passwordsu" type="password" autofocus="" ng-model="passwordsu" required>
                        								<span class="errorMsg" ng-show="!(userForm2.passwordsu.$dirty && userForm2.passwordsu.$error.required) && userForm2.passwordsu.$error.maxlength">*Password is too long!</span>
                        								<span class="errorMsg" ng-show="userForm2.passwordsu.$dirty && userForm2.passwordsu.$error.required">*Country name is required!</span>
 											</div>

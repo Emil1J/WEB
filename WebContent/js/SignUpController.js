@@ -73,7 +73,7 @@ angular.module('app',[])
 				  },
 				  success: function(response) {
 					  if(response.Result == "Success"){
-						  localStorage.setItem('loginResponse', JSON.stringify({response}))
+						  localStorage.setItem('loginResponse', JSON.stringify(response.User));
 						  window.location="LandingPage.html";
 					  }
 
