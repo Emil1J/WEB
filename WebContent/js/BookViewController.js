@@ -1,12 +1,45 @@
 angular.module('app',[])
 	.controller('bookViewController',function($scope,$http){
 		var viewBook = JSON.parse(localStorage.getItem('viewBook'));
+		var user = JSON.parse(localStorage.getItem('loginResponse'));
+		$scope.username = user.username;
 		$scope.bookname = viewBook.Name;
 		$scope.bookauthor = viewBook.Author;
 		$scope.bookcover = viewBook.Photo;
 		$scope.bookdesc = viewBook.Description;
 		$scope.bookcomments = viewBook.Comments;
+		var purchased = "True";
 		var counter = 0;
+		var x = document.getElementById("reviewField");
+		var y = document.getElementById("infoMsg");
+		y.style.display = "none";
+		var input = document.getElementById("review");
+		
+		$scope.SubmitReview = function(){
+			$("#infoMsg").show().delay(3000).fadeOut();
+	    	$http.post("http://localhost:8080/BooksForAll/CommentBookServlet?Username=" + $scope.username +
+	    			"&Bookname=" + $scope.bookname + "&Description=" + input.value)
+			   .then(
+			       function(response){
+				    	input.value = '';
+			       }, 
+			       function(response){
+			       }
+			    );
+		}
+		
+		input.addEventListener("keyup", function(event) {
+		    event.preventDefault();
+		    if (event.keyCode === 13) {
+		    	$scope.SubmitReview();
+		    }
+		});
+		
+		if(purchased == "False"){
+		    x.style.display = "none";
+		}else{
+			 x.style.display = "block";
+		}
 		
 		$scope.GetDateFormat = function(CommentDateTime){
 			var date = CommentDateTime.split(' ')[0];

@@ -67,10 +67,30 @@
                   	</div>
             </div>
             <div class="col-sm-12">
-                  	<div class="row">
-                  		<h3 style="text-align: center;"><b>Reviews</b></h3>
-                  		<hr>
-                  	</div>
+            	<div class="row">
+                  	<h3 style="text-align: center;"><b>Reviews</b></h3>
+                  	<hr>
+               		<div id="reviewField" class="reviewField">
+						<div class="col-sm-6 col-sm-offset-3">
+              				<div class="row">
+              					<div class="col-sm-11">
+              						<form name="reviewForm" novalidate>
+  										<fieldset>
+  											<div class="form-group" ng-class="{ 'has-error' : reviewForm.review.$invalid && !reviewForm.review.$pristine }">
+                   								<input class="form-control" placeholder="Write a review" id="review" name="review" type="text" autofocus="" ng-model="review">
+												<p id="infoMsg" class="infoMsg">Your review was sent for approval!</p>
+											</div>
+										</fieldset>
+									</form>
+              					</div>
+              					<div class="col-sm-1">
+              						<input type="submit" name="" ng-click="SubmitReview()">
+              					</div>
+                  				
+                  			</div>
+            			</div>
+					</div>
+               	</div>
             </div>
             <div class="col-sm-6 col-sm-offset-3" ng-repeat="comment in bookcomments | limitTo:quantity">
             	<div class="commentbox">
