@@ -35,4 +35,25 @@ angular.module('app',[])
 			localStorage.setItem('purchaseBook', JSON.stringify(book));
 			window.location="Purchase.html";
 		}
+		
+		$scope.CheckIfBookPurchased = function(book){
+			var books = JSON.parse(localStorage.getItem('loginResponse')).books;
+			for(var i=0 ; i<books.length ; i++){
+				if(books[i].Name == book.Name){
+					document.getElementById("PurchasedButton").disabled = true;
+					return "Already Purchased";
+				}
+			}
+			return "Purchase";
+		}
+		
+		$scope.CheckIfBookPurchasedIDs = function(book){
+			var books = JSON.parse(localStorage.getItem('loginResponse')).books;
+			for(var i=0 ; i<books.length ; i++){
+				if(books[i].Name == book.Name){
+					return "Purchased";
+				}
+			}
+			return "Purchase";
+		}
 	}]);
