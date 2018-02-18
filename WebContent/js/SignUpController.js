@@ -68,7 +68,7 @@ angular.module('app',[])
 				    Password: password, 
 				    Nickname: nickname, 
 				    Description: description, 
-				    Photo: password,
+				    Photo: photo,
 				    Balance: balance
 				  },
 				  success: function(response) {

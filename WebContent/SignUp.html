@@ -118,7 +118,7 @@
                        							<p><b>Password :</b></p>
                        							<input class="form-control" ng-maxlength="8" placeholder="********" id="passwordsu" name="passwordsu" type="password" autofocus="" ng-model="passwordsu" required>
                        								<span class="errorMsg" ng-show="!(userForm2.passwordsu.$dirty && userForm2.passwordsu.$error.required) && userForm2.passwordsu.$error.maxlength">*Password is too long!</span>
-                       								<span class="errorMsg" ng-show="userForm2.passwordsu.$dirty && userForm2.passwordsu.$error.required">*Country name is required!</span>
+                       								<span class="errorMsg" ng-show="userForm2.passwordsu.$dirty && userForm2.passwordsu.$error.required">*Password is required!</span>
 											</div>
 											<div>
 												<input type="submit" name="" ng-click="signUp(userForm1.$valid, userForm2.$valid)">
