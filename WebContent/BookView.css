@@ -93,3 +93,21 @@ li a:hover {
 	border-color: #000;
 	border-width: 30px;
 }
+
+.reviewField p[class="infoMsg"]
+{
+	color: green;	
+}
+
+
+input[type="submit"]
+{
+	border: none;
+	margin-top: 20%;
+	outline: none;
+	color: #fff;
+	font-size: 16px;
+	background: #03A9F4;
+	cursor: pointer;
+	border-radius: 20px;
+}
