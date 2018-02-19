@@ -61,11 +61,6 @@ li a:hover {
 	font-size: 120%;
 }
 
-#tooltip
-{
-	margin-left: 4%;
-}
-
 .ProfilePic{
 	max-height: 50px;
 	max-width: 50px;
@@ -104,6 +99,10 @@ li a:hover {
 	color: green;	
 }
 
+#tooltip
+{
+	margin-left: 4%;
+}
 
 input[type="submit"]
 {
