@@ -5,22 +5,26 @@ angular.module('app',[])
 	function validateFields(valid1, valid2){
 		if(!valid1){
 			var fields = ["usernamesu", "nicknamesu", "phonesu", "citysu", "streetsu", "housesu", "postalsu", "countrysu",];
-			var names = ["Username", "Nickname", "Phone number", "City", "Street", "House", "Postal code", "Country",];
+			var names = ["Username", "Nickname", "Phone number", "City", "Street", "House number", "Postal code", "Country",];
 			var i, l = fields.length;
 			var fieldname;
 			for (i = 0; i < l; i++) {
 			    fieldname = fields[i];
 			    if (document.forms["userForm1"][fieldname].value === "") {
-			    	alert(names[i] + " can not be empty.");
+					var modal = document.getElementById('myModal');
+			    	document.getElementById("errorLine").innerHTML = names[i] + " can not be empty";
+			        modal.style.display = "block";
 			      	break;
 			    }
 			}
 			return false;
 		}
 		else if(!valid2){
-			if (document.forms["userForm1"]["passwordsu"].value === "") {
-		    	alert("Password can not be empty.");
-		    }
+			if (document.forms["userForm2"]["passwordsu"].value === "") {
+				var modal = document.getElementById('myModal');
+				document.getElementById("errorLine").innerHTML = "Password can not be empty";
+		        modal.style.display = "block";
+			}
 			return false;
 		}
 		return true;
@@ -118,6 +122,35 @@ angular.module('app',[])
 		    //Do Something to handle error
 		  }
 		});		
+	}
+	
+	// Get the <span> element that closes the modal
+	var span = document.getElementsByClassName("close")[0];
+
+	// When the user clicks the button, open the modal 
+	$scope.MyButtonFunc = function(book) {
+		localStorage.setItem('ChosenBook', JSON.stringify(book));
+		var modal = document.getElementById('myModal');
+	    modal.style.display = "block";
+	}
+
+	// When the user clicks on <span> (x), close the modal
+	$scope.MyModalFunc = function() {
+		var modal = document.getElementById('myModal');
+	    modal.style.display = "none";
+	}
+
+	// When the user clicks anywhere outside of the modal, close it
+	window.onclick = function(event) {
+		var modal = document.getElementById('myModal');
+	    if (event.target == modal) {
+	        modal.style.display = "none";
+	    }
+	}
+	
+	$scope.CloseError = function(){
+		var modal = document.getElementById('myModal');
+        modal.style.display = "none";
 	}
 
 }]);
