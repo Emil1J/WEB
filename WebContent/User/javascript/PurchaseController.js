@@ -3,7 +3,10 @@ angular.module('app',[])
 		$scope.book = JSON.parse(localStorage.getItem('purchaseBook'));
 		var user =  JSON.parse(localStorage.getItem('loginResponse'));
 
+		document.getElementById("HelpMeSuccess").style.display = "none";
+		document.getElementById("HelpMeError").style.display = "none";
 		
+
 		$('#cvv').keydown(function(e) {
 			if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
 				      // Allow: Ctrl+A,Ctrl+C,Ctrl+V, Command+A
@@ -200,6 +203,40 @@ angular.module('app',[])
 		$scope.CloseError = function(){
 			var modal = document.getElementById('myModal');
 	        modal.style.display = "none";
+		}
+		
+		$scope.HelpMeButton = function(){
+			var modal = document.getElementById('HelpMeModal');
+			modal.style.display = "block";
+		}
+		
+		$scope.Cancel = function(){
+			var modal = document.getElementById('HelpMeModal');
+			modal.style.display = "none";
+		}
+		
+		$scope.Submit = function(){
+			var message = document.getElementById("TextAreaHelp").value;
+			if(message == ""){
+				$("#HelpMeError").show().delay(3000).fadeOut();
+				return;
+			}
+			$.ajax({
+				  url: "http://localhost:8080/BooksForAll/NewUserMessageServlet?",
+				  type: "POST", //send it through get method
+		          dataType: 'json',
+				  data: {
+					Username: user.username, 
+				    Message: message
+				  },
+				  success: function(response) {
+						$("#HelpMeSuccess").show().delay(3000).fadeOut();
+						document.getElementById("TextAreaHelp").value = "";
+				},
+					  error: function(xhr) {
+					    //Do Something to handle error
+					  }
+					});
 		}
 
 	}]);
