@@ -1,5 +1,5 @@
 angular.module('app',[])
-	.controller('bookViewController',function($scope,$http){
+	.controller('adminBookViewController',function($scope,$http){
 		var viewBook = JSON.parse(localStorage.getItem('viewBook'));
 		var user = JSON.parse(localStorage.getItem('loginResponse'));
 		$scope.username = user.username;
@@ -11,16 +11,12 @@ angular.module('app',[])
 		$scope.bookprice = viewBook.Price;
 		$scope.Likes = viewBook.Likes;
 		$scope.likesNum = viewBook.LikesNum;
-
+		
 		var purchased = "True";
 		var counter = 0;
-		var x = document.getElementById("reviewField");
-		var y = document.getElementById("infoMsg");
-		y.style.display = "none";
 		var input = document.getElementById("review");
 		
 		$scope.SubmitReview = function(){
-			$("#infoMsg").show().delay(3000).fadeOut();
 	    	$http.post("http://localhost:8080/BooksForAll/CommentBookServlet?Username=" + $scope.username +
 	    			"&Bookname=" + $scope.bookname + "&Description=" + input.value)
 			   .then(
@@ -30,29 +26,6 @@ angular.module('app',[])
 			       function(response){
 			       }
 			    );
-		}
-		
-		$scope.GetLikes = function(likes){
-			var likeNames = "";
-			var arrayLength = likes.length;
-			for (var i = 0; i < arrayLength; i++) {
-				var obj = likes[i]
-				likeNames = likeNames + obj.username + "\n"
-			}
-			return likeNames;
-		}
-		
-		input.addEventListener("keyup", function(event) {
-		    event.preventDefault();
-		    if (event.keyCode === 13) {
-		    	$scope.SubmitReview();
-		    }
-		});
-		
-		if(purchased == "False"){
-		    x.style.display = "none";
-		}else{
-			 x.style.display = "block";
 		}
 		
 		$scope.GetDateFormat = function(CommentDateTime){
@@ -110,6 +83,16 @@ angular.module('app',[])
 				    );
 			   }
 			});
+		
+		$scope.GetLikes = function(likes){
+			var likeNames = "";
+			var arrayLength = likes.length;
+			for (var i = 0; i < arrayLength; i++) {
+				var obj = likes[i]
+				likeNames = likeNames + obj.username + "\n"
+			}
+			return likeNames;
+		}
 		
 		 $scope.quantity = 5;
 		 
