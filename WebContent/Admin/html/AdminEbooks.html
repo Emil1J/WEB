@@ -47,7 +47,13 @@
 						<div id="tooltip" class="col-sm-8">
 							<b> 
 								<p class="BookData">{{book.LikesNum}} Likes</p>
- 						 		<span class="tooltiptext">{{GetLikes(book.Likes)}}</span>
+ 						 		<span id="Likes{{book.Name}}" class="tooltiptext">
+									<p ng-repeat="like in book.Likes">
+										<a href="#" ng-click="viewUser(like.username)">
+											{{like.username}}
+										</a>
+									</p>
+								</span>
 							</b>
 						</div>
 						<div class="col-sm-4">
