@@ -41,6 +41,9 @@ li a:hover {
     background-color: #A9A9A9;
 }
 
+#approve, #decline{
+	margin-top: 1%;
+}
 .ProfilePic{
 	max-height: 50px;
 	max-width: 50px;

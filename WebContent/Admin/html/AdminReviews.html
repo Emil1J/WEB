@@ -26,26 +26,28 @@
 			<li style="float:right"><a class="active" href="../../Login.html">Sign Out</a></li>
 		</b>
 	</ul>
-<div class="container">
+	<div class="container">
 		<div class="container-fluid">
 			<div class="row">
 				<h2 id="UsersHeader">Unapproved Reviews</h2>
 				<div class="col-sm-12">
-					<div id="table-scroll">
-						<table id="TableLocation">
-							<tr>
-					    		<th class="Col1">Username</th>
-					    		<th class="Col2">Bookname</th>
-					    		<th class="Col3">Description</th>
-					    		<th class="Col4">Submitted At</th>
-					    	</tr>
-					    	<tr ng-repeat="comment in comments" class="clickable" data-href="{{CommentAnswerModal(comment)}}">
-					  			<td class="Col1">{{comment.username}}</td>
-						    	<td class="Col2">{{comment.bookName}}</td>
-						   		<td class="Col3">{{comment.description}}</td>
-						   		<td class="Col4">{{GetTimeFormat(comment.time)}}</td>
-					    	</tr>
-						</table>
+					<div class="panel-group" id="accordion">
+						<div class="panel panel-default" ng-repeat="comment in comments">
+							<div class="panel-heading" style="cursor: pointer;">
+        						<h4 class="panel-title">
+         							<p data-toggle="collapse" data-parent="#accordion" href="{{'#collapse' + $index}}" aria-expanded="false" aria-controls="{{'collapse' + $index}}">
+         							<b>{{comment.username}}</b><br/><small>{{comment.bookName}}<br/>{{GetTimeFormat(comment.time)}}</small>
+         							</p>
+        						</h4>
+      						</div>
+      						<div id="{{'collapse' + $index}}" class="panel-collapse collapse">
+        						<div class="panel-body">
+        						{{comment.description}}<br/>
+        						<button id="approve" type="button" class="btn btn-success btn-sm approve" ng-click="GiveAnswer('Accept')" >Approve</button>
+        						<button id="decline" type="button" class="btn btn-danger btn-sm decline" ng-click="GiveAnswer('Decline')">Decline</button>
+        						</div>
+      						</div>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -55,15 +57,14 @@
 					<div class="modal-content">
 						<span class="close" ng-click="MyModalFunc()">&times;</span>
 						<div class="modal-title">
-							<b><p>Do you like to continue from where you last stopped?</p></b>
+							<b><p>Are you sure you wish to {{answer}} this comment?</p></b>
 						</div>
 						<div class="modal-footer">
- 							<button type="button" data-dismiss="modal" ng-click="GiveAnswer('Accept')" class="btn btn-primary" id="Yes">Yes</button>
-   							<button type="button" data-dismiss="modal" ng-click="GiveAnswer('Decline')" class="btn" id="No">No</button>
+ 							<button type="button" data-dismiss="modal" ng-click="FinalAnswer('Yes')" class="btn btn-primary" id="Yes">Yes</button>
+   							<button type="button" data-dismiss="modal" ng-click="FinalAnswer('No')" class="btn" id="No">No</button>
 						</div>								    
 					</div>
 				</div>
-			
 		</div>
 	</div>
 </body>
