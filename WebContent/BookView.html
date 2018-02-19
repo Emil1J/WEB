@@ -48,27 +48,25 @@
                   	</div>
                 </div>
             </div>
-            <div class="col-sm-6">
+            <div class="col-sm-9">
                   	<div class="row">
-                  		<div class="col-sm-6">
+                  		<div class="col-sm-4">
                   			<div class="bookcoverpad">
 								<img class="BookCovers" ng-src="{{bookcover}}" />
-								<p id="tooltip">
-									<b> <a data-toggle="tooltip" data-placement="bottom" title="{{GetLikes(Likes)}}" > *Liked by {{likesNum}} </a>
+								<div id="tooltip">
+									<b> 
+										<p class="BookData">{{likesNum}} Likes</p>
+ 						 				<span class="tooltiptext">{{GetLikes(Likes)}}</span>
 									</b>
-								</p>
+								</div>
 							</div>
 						</div>
-						<div class="col-sm-6">
+						<div class="col-sm-8">
                   			<div class="bookdecription">
                   				<p><b><u>Price:</u></b> ${{bookprice}}</p>
 								<p><b><u>Short Description:</u></b><br> {{bookdesc}}</p>
 							</div>
 						</div>
-                  	</div>
-            </div>
-            <div class="col-sm-3">
-                  	<div class="row">
                   	</div>
             </div>
             <div class="col-sm-12">

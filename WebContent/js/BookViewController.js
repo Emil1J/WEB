@@ -63,6 +63,7 @@ angular.module('app',[])
 		
 		$(window).scroll(function() {
 			   if($(window).scrollTop() + $(window).height() == $(document).height() || $(window).scrollTop() + $(window).height() > $(document).height() - 0.8) {
+				   if(counter==0) counter++;
 				   $http.post("http://localhost:8080/BooksForAll/TenCommentsServlet?Bookname=" + $scope.bookname + "&CommentId=" + $scope.bookcomments[counter-1].id)
 				   .then(
 				       function(response){
