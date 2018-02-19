@@ -9,5 +9,6 @@
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="C:/Program Files/Apache Software Foundation/Tomcat 8.5/lib/tomcat-dbcp.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

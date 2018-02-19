@@ -29,5 +29,10 @@ angular.module('app',[])
    			}
     );
 	}
+	
+	$scope.HelpMeButton = function(){
+		var modal = document.getElementById('HelpMeModal');
+		modal.style.display = "block";
+	}
 }]);
 

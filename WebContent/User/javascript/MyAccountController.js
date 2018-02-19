@@ -116,10 +116,51 @@ angular.module('app',[])
 		    }
 		}
 		
+		document.getElementById("HelpMeSuccess").style.display = "none";
+		document.getElementById("HelpMeError").style.display = "none";
+		
 		$scope.OpenBook = function(scroll){
 			var book = JSON.parse(localStorage.getItem('ChosenBook'));
 			localStorage.setItem('ScrollBook', scroll);
 			window.location = book.URL;
+		}
+		
+		$scope.HelpMeButton = function(){
+			var modal = document.getElementById('HelpMeModal');
+			modal.style.display = "block";
+		}
+		$scope.HelpMeButton = function(){
+			var modal = document.getElementById('HelpMeModal');
+			modal.style.display = "block";
+		}
+		
+		$scope.Cancel = function(){
+			var modal = document.getElementById('HelpMeModal');
+			modal.style.display = "none";
+		}
+		
+		$scope.Submit = function(){
+			var message = document.getElementById("TextAreaHelp").value;
+			if(message == ""){
+				$("#HelpMeError").show().delay(3000).fadeOut();
+				return;
+			}
+			$.ajax({
+				  url: "http://localhost:8080/BooksForAll/NewUserMessageServlet?",
+				  type: "POST", //send it through get method
+		          dataType: 'json',
+				  data: {
+					Username: user.username, 
+				    Message: message
+				  },
+				  success: function(response) {
+						$("#HelpMeSuccess").show().delay(3000).fadeOut();
+						document.getElementById("TextAreaHelp").value = "";
+				},
+					  error: function(xhr) {
+					    //Do Something to handle error
+					  }
+					});
 		}
 	}]);
 
