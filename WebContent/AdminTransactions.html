@@ -30,24 +30,22 @@
 			<div class="row">
 				<h2 id="UsersHeader">Transactions</h2>
 				<div class="col-sm-12">
+				<div id="table-scroll">
 					<table id="TableLocation">
-					  <thead>
 					    <tr>
 					    	<th>Username</th>
 					    	<th>Bookname</th>
 					    	<th>Amount</th>
 					    	<th>Time</th>
 					    </tr>
-					  </thead>
-					  <tbody>
 					  	<tr ng-repeat="transaction in transactions">
 					    	<td>{{transaction.username}}</td>
 					    	<td>{{transaction.bookname}}</td>
 					    	<td>{{transaction.price}}</td>
 					    	<td>{{transaction.time}}</td>
 					    </tr>
-					  </tbody>
 					</table>
+					</div>
 				</div>
 			</div>
 		</div>

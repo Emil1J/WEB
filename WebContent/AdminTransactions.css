@@ -64,9 +64,32 @@ th, td {
     padding: 5px;
 }
 
-tr:nth-child(even){background-color: #f2f2f2}
-tr:nth-child(odd){background-color: #ffffff}
+#TableLocation {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
 
-#TableLocation{
-	align: center;
+#TableLocation tr:nth-child(even){
+	background-color: #f2f2f2;
+	table-layout: fixed;
+  	border-collapse: collapse;
+}
+
+#TableLocation th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: middle;
+    background-color: #BCAAA4;
+    color: white;
+}
+
+#table-scroll{
+	height:550px;
+	overflow:auto;
+}
+
+tbody tr:hover.selected td,
+tbody tr:hover td {
+  background-color: #B3E5FC;
 }
