@@ -8,7 +8,7 @@ angular.module('app',[])
 		
 		$scope.viewBook = function(book){
 			localStorage.setItem('viewBook', JSON.stringify(book));
-			window.location="BookView.html";
+			window.location="AdminBookView.html";
 	}
 	}]);
 
