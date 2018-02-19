@@ -8,6 +8,7 @@ import java.util.List;
 import booksForAll.model.Book;
 import booksForAll.model.Comment;
 import booksForAll.model.Like;
+import booksForAll.model.Message;
 import booksForAll.model.Transaction;
 import booksForAll.model.User;
 
@@ -28,6 +29,10 @@ public class AssistantFuncs {
 	
 	public static Comment CreateCommentFromRS(ResultSet rs) throws SQLException {
 		return new Comment(rs.getInt(1), rs.getString(4), rs.getTimestamp(3), rs.getString(2), rs.getString(5), rs.getInt(6), rs.getString(7));
+	}
+	
+	public static Message CreateMessageFromRS(ResultSet rs) throws SQLException {
+		return new Message(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getTimestamp(4), rs.getString(5), rs.getInt(6), rs.getInt(7), rs.getInt(8));
 	}
 	
 	public static ArrayList<Book> SetLikesNumForBooks(ArrayList<Book> books){
