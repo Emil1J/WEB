@@ -51,10 +51,8 @@ angular.module('app',[])
 		
 		if(purchased == "False"){
 		    x.style.display = "none";
-		    alert(purchased);
 		}else{
 			 x.style.display = "block";
-			 alert(purchased);
 		}
 		
 		$scope.GetDateFormat = function(CommentDateTime){
