@@ -42,12 +42,15 @@
 					  	<tr ng-repeat="transaction in transactions">
 					    	<td>{{transaction.username}}</td>
 					    	<td>{{transaction.bookname}}</td>
-					    	<td>{{transaction.price}}</td>
-					    	<td>{{transaction.time}}</td>
+					    	<td>${{transaction.price}}</td>
+					    	<td>{{GetDateFormat(transaction.time)}}</td>
 					    </tr>
 					</table>
 					</div>
 				</div>
+			</div>
+			<div id="noTrans">
+				<h1>No Transactions</h1>
 			</div>
 		</div>
 	</div>
