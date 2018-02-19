@@ -16,7 +16,7 @@
 				<li><a href="./LandingPage.html">Home</a></li>
 				<li><a href="./Ebooks.html">eBooks</a></li>
 				<li><a href="./MyAccount.html">My Account</a></li>
-				<li><a href="">Contact Us</a></li>
+				<li><button id="HelpMe" type="button" class="btn btn-primary btn-md" ng-click="HelpMeButton()">Help Me</button></li>
 				<li style="padding-left: 15%">
 					<img style="width:150px; height:50px;" alt="logo" src="../../Images/Logo.jpg">
 				</li>
@@ -57,7 +57,34 @@
 			                <p class="booksdata"><b><u>Price:</u></b> ${{x.Price}}</p>
 			           </div>
                   	</div>
-            	</div>			
+            	</div>	
+            	<!-- The Modal -->
+				<div id="HelpMeModal" class="modal">									
+					<!-- Modal content -->
+					<div class="modal-content">
+						<span class="close" ng-click="MyModalFunc()">&times;</span>
+						<div class="modal-title">
+							<b><p>Please feel free to contact us with and we'll reply as soon as we can.</p></b>
+						</div>
+						<div class="modal-footer">
+							<div class="col-sm-12">
+								<div class="row">
+									<textarea id="TextAreaHelp"></textarea>
+								</div>
+								<div class="row">
+									<div class="col-sm-7">
+										<p id="HelpMeSuccess">Your message has been sent!</p>
+										<p id="HelpMeError">Please write a message!</p>				
+									</div>
+									<div class="col-sm-5">
+										<button id="ModalButton" type="button" data-dismiss="modal" ng-click="Submit()" class="btn btn-primary" id="Yes">Submit</button>
+   										<button id="ModalButton" type="button" data-dismiss="modal" ng-click="Cancel()" class="btn" id="No">Cancel</button>
+									</div>
+								</div>					
+							</div>		
+						</div>								    
+					</div>
+				</div>		
 			</div>
   		</div>
 	</body>

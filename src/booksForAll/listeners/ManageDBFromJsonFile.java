@@ -80,6 +80,7 @@ public class ManageDBFromJsonFile implements ServletContextListener {
     		tables.add(AppConstants.CREATE_BOOKS_TABLE);
     		tables.add(AppConstants.CREATE_PURCHASED_BOOKS_TABLE);
     		tables.add(AppConstants.CREATE_TRANSACTIONS_TABLE);
+    		tables.add(AppConstants.CREATE_MESSAGES_TABLE);
 
     		for(String table : tables) {
     			boolean created = false;

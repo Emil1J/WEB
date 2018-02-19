@@ -61,11 +61,9 @@ angular.module('app',[])
 		if(purchased == "False"){
 		    x.style.display = "none";
 		    z.style.display = "block";
-		    alert(purchased);
 		}else{
 			 x.style.display = "block";
 			 z.style.display = "none";
-			 alert(purchased);
 		}
 		
 		$scope.PurchaseBook = function(book){
