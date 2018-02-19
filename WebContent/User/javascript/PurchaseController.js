@@ -5,43 +5,68 @@ angular.module('app',[])
 
 		
 		$('#cvv').keydown(function(e) {
-		    if (this.value.length >= 3){
-		    	if(!(e.which == '46' || e.which == '8' || e.which == '9' || e.which == '13')){
-			          e.preventDefault();
-		    	}
+			if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
+				      // Allow: Ctrl+A,Ctrl+C,Ctrl+V, Command+A
+				      ((e.keyCode == 65 || e.keyCode == 86 || e.keyCode == 67) && (e.ctrlKey === true || e.metaKey === true))) {
+				      // let it happen, don't do anything
+				      return;
+				    }
+				    // Ensure that it is a number and stop the keypress
+		    if ( this.value.length >= 3 || (e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+		    	e.preventDefault();
 		    }
 		});
 		
 		$('#cardnum1').keydown(function(e) {
-		    if (this.value.length >= 4){
-		    	if(!(e.which == '46' || e.which == '8' || e.which == '9' ||e.which == '13')){
-			          e.preventDefault();
-		    	}
+			if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
+				      // Allow: Ctrl+A,Ctrl+C,Ctrl+V, Command+A
+				      ((e.keyCode == 65 || e.keyCode == 86 || e.keyCode == 67) && (e.ctrlKey === true || e.metaKey === true))) {
+				      // let it happen, don't do anything
+				      return;
+				    }
+				    // Ensure that it is a number and stop the keypress
+		    if ( this.value.length >= 4 || (e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+		    	e.preventDefault();
 		    }
 		});
 
 		    
 		$('#cardnum2').keydown(function(e) {
-		    if (this.value.length >= 4){
-		    	if(!(e.which == '46' || e.which == '8' || e.which == '9' || e.which == '13')){
-			          e.preventDefault();
-		    	}
+			if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
+				      // Allow: Ctrl+A,Ctrl+C,Ctrl+V, Command+A
+				      ((e.keyCode == 65 || e.keyCode == 86 || e.keyCode == 67) && (e.ctrlKey === true || e.metaKey === true))) {
+				      // let it happen, don't do anything
+				      return;
+				    }
+				    // Ensure that it is a number and stop the keypress
+		    if ( this.value.length >= 4 || (e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+		    	e.preventDefault();
 		    }
 		});
 		    
 		$('#cardnum3').keydown(function(e) {
-		    if (this.value.length >= 4){
-		    	if(!(e.which == '46' || e.which == '8' || e.which == '9' || e.which == '13')){
-			          e.preventDefault();
-		    	}
+			if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
+				      // Allow: Ctrl+A,Ctrl+C,Ctrl+V, Command+A
+				      ((e.keyCode == 65 || e.keyCode == 86 || e.keyCode == 67) && (e.ctrlKey === true || e.metaKey === true))) {
+				      // let it happen, don't do anything
+				      return;
+				    }
+				    // Ensure that it is a number and stop the keypress
+		    if ( this.value.length >= 4 || (e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+		    	e.preventDefault();
 		    }
 		});
 		
 		$('#cardnum4').keydown(function(e) {
-		    if (this.value.length >= 4){
-		    	if(!(e.which == '46' || e.which == '8' || e.which == '9' || e.which == '13')){
-			          e.preventDefault();
-		    	}
+			if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
+				      // Allow: Ctrl+A,Ctrl+C,Ctrl+V, Command+A
+				      ((e.keyCode == 65 || e.keyCode == 86 || e.keyCode == 67) && (e.ctrlKey === true || e.metaKey === true))) {
+				      // let it happen, don't do anything
+				      return;
+				    }
+				    // Ensure that it is a number and stop the keypress
+		    if ( this.value.length >= 4 || (e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+		    	e.preventDefault();
 		    }
 		});
 		
