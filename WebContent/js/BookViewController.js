@@ -51,8 +51,10 @@ angular.module('app',[])
 		
 		if(purchased == "False"){
 		    x.style.display = "none";
+		    alert(purchased);
 		}else{
 			 x.style.display = "block";
+			 alert(purchased);
 		}
 		
 		$scope.GetDateFormat = function(CommentDateTime){
@@ -63,6 +65,7 @@ angular.module('app',[])
 		
 		$(window).scroll(function() {
 			   if($(window).scrollTop() + $(window).height() == $(document).height() || $(window).scrollTop() + $(window).height() > $(document).height() - 0.8) {
+				   if(counter==0) counter++;
 				   $http.post("http://localhost:8080/BooksForAll/TenCommentsServlet?Bookname=" + $scope.bookname + "&CommentId=" + $scope.bookcomments[counter-1].id)
 				   .then(
 				       function(response){

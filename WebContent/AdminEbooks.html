@@ -43,11 +43,13 @@
 						<p class="BookData">
 							<u><b>Price:</b></u> ${{book.Price}}
 						</p>
-						<div id="tooltip" class="col-sm-12">
+						<div id="tooltip" class="col-sm-8">
 							<b> 
-								<p class="BookData">*Liked by {{book.LikesNum}}</p>
+								<p class="BookData">{{book.LikesNum}} Likes</p>
  						 		<span class="tooltiptext">{{GetLikes(book.Likes)}}</span>
 							</b>
+						</div>
+						<div class="col-sm-4">
 						</div>
 					</div>
 				</div>
