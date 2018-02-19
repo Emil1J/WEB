@@ -2,6 +2,7 @@ angular.module('app',[])
 	.controller('bookViewController',function($scope,$http){
 		var viewBook = JSON.parse(localStorage.getItem('viewBook'));
 		var user = JSON.parse(localStorage.getItem('loginResponse'));
+		$scope.book = viewBook;
 		$scope.username = user.username;
 		$scope.bookname = viewBook.Name;
 		$scope.bookauthor = viewBook.Author;
@@ -16,6 +17,7 @@ angular.module('app',[])
 		var counter = 0;
 		var x = document.getElementById("reviewField");
 		var y = document.getElementById("infoMsg");
+		var z = document.getElementById("purchase");
 		y.style.display = "none";
 		var input = document.getElementById("review");
 		
@@ -51,8 +53,15 @@ angular.module('app',[])
 		
 		if(purchased == "False"){
 		    x.style.display = "none";
+		    z.style.display = "block";
 		}else{
 			 x.style.display = "block";
+			 z.style.display = "none";
+		}
+		
+		$scope.PurchaseBook = function(book){
+			localStorage.setItem('purchaseBook', JSON.stringify(book));
+			window.location="Purchase.html";
 		}
 		
 		$scope.GetDateFormat = function(CommentDateTime){
