@@ -41,6 +41,14 @@ li a:hover {
     background-color: #A9A9A9;
 }
 
+#noReviews {
+    max-width: 400px;
+    margin: auto;
+    left: 1%;
+    right: 1%;
+    position: absolute;
+}
+
 #approve, #decline{
 	margin-top: 1%;
 }
