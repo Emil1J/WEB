@@ -64,12 +64,13 @@
 														</p>
 													
 													</div>
-													<div class="col-sm-5">
-														<p id="LikedNum" class="BookData"><b>
-															<a id="LikeNum{{book.Name}}" data-toggle="tooltip" data-placement="bottom" ng-attr-title="{{GetLikes(book.Likes)}}">
-															*Liked by {{book.LikesNum}}
-															</a>
-														</b></p>
+													<div class="col-sm-10">
+														<div id="tooltip">
+															<b> 
+																<p class="BookData2">{{book.LikesNum}} Likes</p>
+ 						 										<span class="tooltiptext">{{GetLikes(book.Likes)}}</span>
+															</b>
+														</div>
 													</div>
 												</div>
 						  					</div>
