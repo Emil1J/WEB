@@ -7,6 +7,8 @@ angular.module('app',[])
   	   			function(response){
   	   				localStorage.setItem('userBooks', JSON.stringify(response.data.BookList));
   	   				$scope.books = response.data.BookList;
+  	   				user.books = $scope.books;
+  	   				localStorage.setItem('loginResponse', JSON.stringify(user));
   	   			}, 
   	   			function(response){
   	   				// failure callback

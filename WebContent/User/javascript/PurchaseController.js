@@ -137,6 +137,7 @@ angular.module('app',[])
 				  },
 				  success: function(response) {
 					  if(response.Result == "Success"){
+						  
 						  window.location="MyAccount.html";
 					  }
 
