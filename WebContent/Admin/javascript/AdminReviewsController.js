@@ -16,20 +16,6 @@
 	 		return date + ' ' + time;
 	 	}
 		
-		$scope.CommentAnswerModal = function(comment){
-			localStorage.setItem('ChosenComment', JSON.stringify(comment));
-		}
-		
-		$("tbody").on("click", "tr", function(e) {     
-			  $(this)
-			     .toggleClass("selected")
-			     .siblings(".selected")
-			         .removeClass("selected");
-				var modal = document.getElementById('myModal');
-			    modal.style.display = "block";
-			});
-		
-
 		// Get the <span> element that closes the modal
 		var span = document.getElementsByClassName("close")[0];
 
@@ -48,11 +34,21 @@
 		}
 		
 		$scope.GiveAnswer = function(answer){
+			var modal = document.getElementById('myModal');
+			modal.style.display = "block";
+			$scope.answer = answer;
+		}
+		
+		$scope.FinalAnswer = function(finalanswer){
+			if(finalanswer == "No"){
+				var modal = document.getElementById('myModal');
+				modal.style.display = "none";
+				return;
+			}
 			var comment = JSON.parse(localStorage.getItem('ChosenComment'));
 			var choice = "Approve";
-			if(answer == 'Decline'){
+			if($scope.answer == 'Decline'){
 				choice = "Unapprove";
-				
 			}
 			$.ajax({
 				  url: "http://localhost:8080/BooksForAll/" + choice + "CommentServlet?",
