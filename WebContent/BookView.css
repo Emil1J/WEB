@@ -1,0 +1,155 @@
+@charset "ISO-8859-1";
+body
+{
+	margin: 0;
+	padding: 0;
+	background: url(bg2.jpg);
+	background-size: cover;
+	font-family: sans-serif;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #000;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+/* Change the link color to #111 (black) on hover */
+li a:hover {
+    background-color: #A9A9A9;
+}
+
+.booktitle{
+	text-align: center;
+	padding-right: 7%;
+	font-weight: bold;
+}
+
+.bookauthor{
+	text-align: center;
+	font-weight: bold;
+	padding-right: 7%;
+	font-size: 140%;
+}
+
+.BookCovers{
+	height: 300px;
+	width: 210px;
+	margin: 10px;
+}
+
+.bookcoverpad{
+	padding-right: 7%;
+}
+
+.bookdecription{
+	padding-top: 3%;
+	font-size: 120%;
+}
+
+#tooltip
+{
+	margin-left: 4%;
+}
+
+.ProfilePic{
+	max-height: 50px;
+	max-width: 50px;
+	height: 50px;
+	width: 50px;
+    border-radius: 50%;
+}
+
+#commentusername{
+	font-weight: bold;
+	padding-top: 7%;
+}
+
+#commenttime{
+	font-weight: bold;
+	padding-top: 7%;
+	padding-left: 10%;
+}
+
+#commenttext{
+	float: left;
+	padding-top: 1%;
+}
+
+.commenttextinc commentbox{
+	margin-top: 5%;
+	padding: 20px 40px;
+	box-sizing: border-box;
+	background: rgba(0,0,0,.2);
+	border-color: #000;
+	border-width: 30px;
+}
+
+.reviewField p[class="infoMsg"]
+{
+	color: green;	
+}
+
+
+input[type="submit"]
+{
+	border: none;
+	margin-top: 20%;
+	outline: none;
+	color: #fff;
+	font-size: 16px;
+	background: #03A9F4;
+	cursor: pointer;
+	border-radius: 20px;
+}
+
+#tooltip {
+    display: inline-block;
+}
+
+#tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    top: 100%;
+    left: 50%;
+    margin-left: -55%;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+#tooltip .tooltiptext::after {
+    content: " ";
+    position: absolute;
+    bottom: 100%;  /* At the top of the tooltip */
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent black transparent;
+}
+
+#tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
