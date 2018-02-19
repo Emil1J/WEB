@@ -12,8 +12,15 @@ angular.module('app',[])
 		$scope.bookprice = viewBook.Price;
 		$scope.Likes = viewBook.Likes;
 		$scope.likesNum = viewBook.LikesNum;
-
-		var purchased = "True";
+		var purchased = "False";
+		
+		var books = JSON.parse(localStorage.getItem('loginResponse')).books;
+		for(var i=0 ; i<books.length ; i++){
+			if(books[i].Name == viewBook.Name){
+				purchased = "True";
+			}
+		}
+		
 		var counter = 0;
 		var x = document.getElementById("reviewField");
 		var y = document.getElementById("infoMsg");
@@ -54,9 +61,11 @@ angular.module('app',[])
 		if(purchased == "False"){
 		    x.style.display = "none";
 		    z.style.display = "block";
+		    alert(purchased);
 		}else{
 			 x.style.display = "block";
 			 z.style.display = "none";
+			 alert(purchased);
 		}
 		
 		$scope.PurchaseBook = function(book){
