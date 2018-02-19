@@ -10,5 +10,9 @@ angular.module('app',[])
 		       }
 		    );
 		
+		$scope.viewUser = function(user){
+			localStorage.setItem("ChosenUser", JSON.stringify(user));
+			window.location = "AdminUserView.html";
+		}
 	}]);
 

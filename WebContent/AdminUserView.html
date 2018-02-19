@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script src="lib/angular.min.js"></script>
+<script src="lib/jquery-3.2.1.js"></script>
+<link rel="stylesheet"
+	href="lib/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+<script src="lib/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="AdminUserView.css" />
+<script src="js/AdminUserViewController.js"></script>
+<script src="js/helperService.js"></script>
+</head>
+<body ng-app="app" ng-controller="adminUserViewController">
+	<ul>
+		<b>
+			<li><a href="AdminHomePage.html">Home</a></li>
+			<li><a href="AdminUsers.html">Users</a></li>
+			<li><a href="AdminTransactions.html">Transactions</a></li>
+			<li><a href="AdminReviews.html">Reviews</a></li>
+			<li><a href="#">Contact Us</a></li>
+			<li style="padding-left: 11%">
+				<img style="width:150px; height:50px;" alt="logo" src="./B.jpg">
+			</li>
+			<li style="float:right"><a class="active" href="./Login.html">Sign Out</a></li>
+		</b>
+	</ul>
+	<div class="container">
+		<div class="container-fluid">
+			<div class="row">
+				<p class="Center">
+					<img class="ProfilePic" ng-src="{{user.photo}}">
+				</p>
+				<h2 id="UserHeader">{{user.username}}</h2>
+				<p class="Center"><b>
+					<button id="Button" ng-click="UserClick(user)">Delete user</button>
+				</b></p>
+				<div class="col-sm-2">
+				</div>
+				<div class="col-sm-4">
+					<div id="DetailsDiv" >
+						<p id="Details">User details:</p>
+						<p><b><u>Nickname:</u></b> {{user.nickname}}</p>
+						<p><b><u>Email:</u></b> {{user.email}}</p>
+						<p><b><u>Address:</u></b></p>
+						<p>{{user.street}} {{user.houseNum}}, {{user.city}}, {{user.country}}, {{user.postalCode}}</p>
+						<p><b><u>Description:</u></b></p>
+						<p>{{user.description}}</p>
+					</div>
+				</div>
+				<div class="col-sm-6">
+					<p id="Details">List of users books:</p>
+					<div class="col-sm-12">
+						<div id="table-scroll">
+							<table id="TableLocation">
+								<tr>
+						    		<th class="Col1">Bookname</th>
+						    		<th class="Col2">Author</th>
+						    	</tr>
+						    	<tr ng-repeat="book in user.books">
+							    	<td class="Col1">{{book.Name}}</td>
+							   		<td class="Col2">{{book.Author}}</td>
+						    	</tr>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- The Modal -->
+			<div id="myModal" class="modal" ng-click="MyModalFunc()">									
+				<!-- Modal content -->
+				<div class="modal-content">
+					<span class="close">&times;</span>
+					<div class="modal-title">
+						<b><p>Are you sure you want to delete this user?</p></b>
+					</div>
+					<div class="modal-footer">
+ 						<button type="button" data-dismiss="modal" ng-click="DeleteUser('Yes')" class="btn btn-primary" id="Yes">Yes</button>
+   						<button type="button" data-dismiss="modal" ng-click="DeleteUser('No')" class="btn" id="No">No</button>
+					</div>								    
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
