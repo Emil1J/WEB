@@ -43,12 +43,14 @@
 						<p class="BookData">
 							<u><b>Price:</b></u> ${{book.Price}}
 						</p>
-						<p class="BookData">
-							<b> <a data-toggle="tooltip" data-placement="bottom"
-								ng-init="likeString = GetLikes(book.Likes)"
-								title="{{likeString}}"> *Liked by {{book.LikesNum}} </a>
+						<div id="tooltip" class="col-sm-8">
+							<b> 
+								<p class="BookData">{{book.LikesNum}} Likes</p>
+ 						 		<span class="tooltiptext">{{GetLikes(book.Likes)}}</span>
 							</b>
-						</p>
+						</div>
+						<div class="col-sm-4">
+						</div>
 						<p class="BookData">
 							<a ng-click="PurchaseBook(book)"><button id="{{CheckIfBookPurchasedIDs(book)}}Button">{{CheckIfBookPurchased(book)}}</button></a>
 						</p>
