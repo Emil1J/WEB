@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import javax.naming.Context;
@@ -112,6 +114,14 @@ public class AllUsersServlet extends HttpServlet {
     				.setDateFormat("yyyy-MM-dd HH:mm:ss.S")
     				.create();
     		JsonArray jsonUsers = new JsonArray();
+    		if (users.size() > 0) {
+    			  Collections.sort(users, new Comparator<User>() {
+    			      @Override
+    			      public int compare(final User object1, final User object2) {
+    			          return object1.getUsername().toLowerCase().compareTo(object2.getUsername().toLowerCase());
+    			      }
+    			  });
+    		}
     		for (User user : users) {
     			jsonUsers.add(gson.toJsonTree(user));
     		}

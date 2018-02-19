@@ -54,7 +54,7 @@ angular.module('app',[])
 					Bookname : book.Name
 				};
 			var query = "LikeBookServlet";
-		   	if(document.getElementById(book.Name).src.endsWith("../../Images/Liked.png")){
+		   	if(document.getElementById(book.Name).src.endsWith("Liked.png")){
 				query = "DislikeBookServlet";
 		   	}
 			
@@ -68,7 +68,7 @@ angular.module('app',[])
 				  },
 				  success: function(response) {
 					  if(response.Result == "Success"){
-				    	   if(document.getElementById(book.Name).src.endsWith("../../Images/Liked.png")){
+				    	   if(document.getElementById(book.Name).src.endsWith("Liked.png")){
 								document.getElementById(book.Name).src = "../../Images/Like.png";
 				    	   }
 				    	   else{
