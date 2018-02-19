@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src="../../lib/angular.min.js"></script>
+		<script src="../../lib/jquery-3.2.1.js"></script>
+		<link rel="stylesheet" href="../../lib/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+		<script src="../../lib/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+		<link rel="stylesheet" href="../css/SignUp.css" />
+		<script src="../javascript/SignUpController.js"></script>
+		<script src="../../helperService.js"></script>
+  		<title>Sign Up Page</title>
+	</head>
+	<body ng-app="app" ng-controller="signUpController">
+	<ul>
+		<b>
+			<li style="padding-left: 46%">
+				<img style="width:150px; height:50px;" alt="logo" src="../../Images/Logo.jpg">
+			</li>
+		</b>
+	</ul>
+	<h1 style="padding-left: 4%"><b>Sign Up</b></h1>
+	<div class="container">
+    	<div class="container-fluid">
+  			<div class="row">
+      			<div class="col-md-12">
+          			<div class="container">
+              			<div class="row">
+                  			<div class="col-md-6">
+                  				<div class="signUpBox">
+  									<form name="userForm1" ng-submit="submitForm1(userForm1.$valid)" novalidate>
+  										<fieldset>
+  											<div class="form-group" ng-class="{ 'has-error' : userForm1.usernamesu.$invalid && !userForm1.usernamesu.$pristine }">
+                       							<p><b>Username :</b></p>
+                       							<input class="form-control" ng-maxlength="10" ng-minlength="3" placeholder="Username" id="usernamesu" name="usernamesu" type="text" ng-focus="removeError()" ng-blur="validateUsername()" autofocus="" ng-model="usernamesu" required>
+										          <span class="errorMsg" ng-show="userForm1.usernamesu.$dirty && userForm1.usernamesu.$error.required">*Username is required!</span>
+										          <span class="errorMsg" ng-show="userForm1.usernamesu.$error.minlength">*Username is too short!</span>
+										          <span class="errorMsg" ng-show="userForm1.usernamesu.$error.maxlength">*Username is too long!</span>
+											   	<p id="usernameTaken" class="errorMsg">*Username already exists!</p>
+											</div>
+											<div class="form-group" ng-class="{ 'has-error' : userForm1.nicknamesu.$invalid && !userForm1.nicknamesu.$pristine }">
+                       							<p><b>Nickname :</b></p>
+                       							<input class="form-control" ng-maxlength="20" placeholder="Nickname" id="nicknamesu" name="nicknamesu" type="text" autofocus="" ng-model="nicknamesu" required>
+										          <span id="nicknameRequired" class="errorMsg" ng-show="userForm1.nicknamesu.$dirty && userForm1.nicknamesu.$error.required">*Nickname is required!</span>  
+										          <span id="nicknameLong" class="errorMsg" ng-show="userForm1.nicknamesu.$error.maxlength">*Nickname is too long!</span>
+											</div>
+											<div class="form-group" ng-class="{ 'has-error' : userForm1.emailsu.$invalid && !userForm1.emailsu.$pristine }">
+                       							<p><b>Email (optional):</b></p>
+                       							<input class="form-control" placeholder="Email" id="emailsu" name="emailsu" ng-blur="emailField()" type="email" autofocus="" ng-model="emailsu">
+                       								<span id="emailValid" class="errorMsg" ng-show="userForm1.emailsu.$invalid && !userForm1.emailsu.$pristine">*Enter a valid email!</span>
+											</div>
+											<div class="form-group" ng-class="{ 'has-error' : userForm1.phonesu.$invalid && !userForm1.phonesu.$pristine }">
+                       							<p><b>Phone :</b></p>
+                       							<input class="form-control" pattern="^0[0-9]*$" ng-maxlength="10" ng-minlength="10" placeholder="Phone" id="phonesu" name="phonesu" type="tel" autofocus="" ng-model="phonesu" required>
+                       								<span id="phoneValid" class="errorMsg" ng-show="!(userForm1.phonesu.$dirty && userForm1.phonesu.$error.required) && (userForm1.phonesu.$error.minlength || userForm1.phonesu.$error.maxlength || (userForm1.phonesu.$invalid && !userForm1.phonesu.$pristine))">*Enter a valid phone number!</span>
+                       								<span id="phoneRequired" class="errorMsg" ng-show="userForm1.phonesu.$dirty && userForm1.phonesu.$error.required">*Phone number is required!</span>
+   											</div>
+											<div class="row">
+  												<div class="col-md-6">
+                  									<div class="form-group" ng-class="{ 'has-error' : userForm1.citysu.$invalid && !userForm1.citysu.$pristine }">
+                       									<p><b>City :</b></p>
+                       									<input class="form-control" ns-minlength="3" pattern="^[a-zA-Z]+$" placeholder="City" id="citysu" name="citysu" type="text" autofocus="" ng-model="citysu" required>
+                       									<span id="cityValid" class="errorMsg" ng-show="!(userForm1.citysu.$dirty && userForm1.citysu.$error.required) && userForm1.citysu.$invalid && !userForm1.citysu.$pristine">*Enter a valid city name!</span>
+                       									<span id="cityRequired" class="errorMsg" ng-show="userForm1.citysu.$dirty && userForm1.citysu.$error.required">*City is required!</span>
+													</div>
+                  								</div>
+                  								<div class="col-md-6">
+                  									<div class="form-group" ng-class="{ 'has-error' : userForm1.streetsu.$invalid && !userForm1.streetsu.$pristine }">
+                       									<p><b>Street :</b></p>
+                       									<input class="form-control" ns-minlength="3" pattern="^[a-zA-Z\s]*$" placeholder="Street" id="streetsu" name="streetsu" type="text" autofocus="" ng-model="streetsu" required>
+                       										<span id="streetValid" class="errorMsg" ng-show="!(userForm1.streetsu.$dirty && userForm1.streetsu.$error.required) && (userForm1.streetsu.$invalid && !userForm1.streetsu.$pristine)">*Enter a valid street name!</span>
+                       										<span id="streetRequired" class="errorMsg" ng-show="userForm1.streetsu.$dirty && userForm1.streetsu.$error.required">*Street name is required!</span>
+													</div>
+                  								</div>
+         									</div>
+         									<div class="row">
+         										<div class="col-md-6">
+                  									<div class="form-group" ng-class="{ 'has-error' : userForm1.housesu.$invalid && !userForm1.housesu.$pristine }">
+                       									<p><b>House Number</b></p>
+                       									<input class="form-control" pattern="^[1-9][0-9]*$" placeholder="House number" id="housesu" name="housesu" type="tel" autofocus="" ng-model="housesu" required>
+                       										<span id="housenumValid" class="errorMsg" ng-show="!(userForm1.housesu.$dirty && userForm1.housesu.$error.required) && userForm1.housesu.$invalid && !userForm1.housesu.$pristine">*Enter a valid house number!</span>
+                       										<span id="housenumRequired" class="errorMsg" ng-show="userForm1.housesu.$dirty && userForm1.housesu.$error.required">*House number is required!</span>
+													</div>
+                  								</div>
+  												<div class="col-md-6">
+                  									<div class="form-group" ng-class="{ 'has-error' : userForm1.postalsu.$invalid && !userForm1.postalsu.$pristine }">
+                       									<p><b>Postal Code :</b></p>
+                       									<input class="form-control" pattern="^[0-9]*$" ng-minlength="7" ng-maxlength="7" placeholder="Postal Code" id="postalsu" name="postalsu" type="text" autofocus="" ng-model="postalsu" required>
+                       									<span id="postalcodeLong" class="errorMsg" ng-show="userForm1.postalsu.$error.maxlength">*Postal code is too long!</span>
+                       									<span id="postalcodeShort" class="errorMsg" ng-show="userForm1.postalsu.$error.minlength">*Postal code is too short!</span>
+                       									<span id="postalcodeValid" class="errorMsg" ng-show="!userForm1.postalsu.$error.minlength && !userForm1.postalsu.$error.maxlength && !(userForm1.postalsu.$dirty && userForm1.postalsu.$error.required) && userForm1.postalsu.$invalid && !userForm1.postalsu.$pristine">*Enter a valid postal code!</span>
+                       									<span id="postalcodeRequired" class="errorMsg" ng-show="userForm1.postalsu.$dirty && userForm1.postalsu.$error.required">*Postal code is required!</span>
+													</div>
+                  								</div>
+         									</div>
+         									<div class="form-group" ng-class="{ 'has-error' : userForm1.countrysu.$invalid && !userForm1.countrysu.$pristine }">
+                       							<p><b>Country :</b></p>
+                       							<input class="form-control" pattern="^[a-zA-Z\s]*$" placeholder="Country" id="countrysu" name="countrysu" type="text" autofocus="" ng-model="countrysu" required>
+                       								<span id="" class="errorMsg" ng-show="!userForm1.countrysu.$error.minlength && !userForm1.countrysu.$error.maxlength && !(userForm1.countrysu.$dirty && userForm1.countrysu.$error.required) && userForm1.countrysu.$invalid && !userForm1.countrysu.$pristine">*Enter a valid country name!</span>
+                       								<span class="errorMsg" ng-show="userForm1.countrysu.$dirty && userForm1.countrysu.$error.required">*Country name is required!</span>
+											</div>
+										</fieldset>
+									</form>
+  								</div>
+                  			</div>
+                  			<div class="col-md-6">
+                  				<div class="signUpBox">
+  									<form name="userForm2" ng-submit="submitForm2(userForm2.$valid)" novalidate>
+  										<fieldset>
+											<div class="form-group" ng-class="{ 'has-error' : userForm2.descriptionsu.$invalid && !userForm2.descriptionsu.$pristine }">
+                       							<p><b>Description (optional):</b></p>
+                       							<input class="form-control" ng-maxlength="50" placeholder="Description" id="descriptionsu" name="descriptionsu" type="text" autofocus="" ng-model="descriptionsu">
+                       								<span class="errorMsg" ng-show="userForm2.descriptionsu.$error.maxlength">*Description is too long!</span>
+											</div>
+											<div class="form-group" ng-class="{ 'has-error' : userForm2.photosu.$invalid && !userForm2.phonesu.$pristine }">
+                       							<p><b>Photo Link (optional):</b></p>
+                       							<input class="form-control" placeholder="Photo link" id="photosu" name="photosu" type="text" autofocus="" ng-model="photosu">
+											</div>
+											<div class="form-group" ng-class="{ 'has-error' : userForm2.passwordsu.$invalid && !userForm2.passwordsu.$pristine }">
+                       							<p><b>Password :</b></p>
+                       							<input class="form-control" ng-maxlength="8" placeholder="********" id="passwordsu" name="passwordsu" type="password" autofocus="" ng-model="passwordsu" required>
+                       								<span class="errorMsg" ng-show="!(userForm2.passwordsu.$dirty && userForm2.passwordsu.$error.required) && userForm2.passwordsu.$error.maxlength">*Password is too long!</span>
+                       								<span class="errorMsg" ng-show="userForm2.passwordsu.$dirty && userForm2.passwordsu.$error.required">*Password is required!</span>
+											</div>
+											<div>
+												<input type="submit" name="" ng-click="signUp(userForm1.$valid, userForm2.$valid)">
+											</div>
+										</fieldset>
+									</form>
+  								</div>
+                  			</div>
+              			</div>
+          			</div>
+      			</div>
+  			</div>
+		</div>
+    </div>
+	</body>
+</html>

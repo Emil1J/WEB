@@ -2,17 +2,32 @@ body
 {
 	margin: 0;
 	padding: 0;
-	background: url(Images/Background.jpg);
+	background: url(../../Images/Background.jpg);
 	background-size: cover;
 	font-family: sans-serif;
 }
-.loginBox
+
+.bookauthor
 {
-	padding: 20px 40px;
-	box-sizing: border-box;
-	background: rgba(0,0,0,.2);
+	margin-bottom:40px;
+	margin-right: 7%;
 }
-.loginBox input[type="submit"]
+.BookCover
+{
+	width:300px;
+	height:430px;
+	float: right;	
+}
+.PurchaseBox
+{
+	padding-bottom: 50px;
+	padding-top: 30px;
+	padding-left: 40px;
+	padding-right: 40px;
+	box-sizing: border-box;
+	background: rgba(0,0,0,.1);
+}
+.PurchaseBox input[type="submit"]
 {
 	border: none;
 	outline: none;
@@ -22,13 +37,13 @@ body
 	background: #03A9F4;
 	cursor: pointer;
 	border-radius: 20px;
-	margin-top: 10px;
 	width: 100%;
 }
 
 h1{
 	text-align: center;
-	margin: 40px;
+	margin-top: 40px;
+	margin-right: 7%;
 }
 ul {
     list-style-type: none;
@@ -55,13 +70,39 @@ li a:hover {
     background-color: #A9A9A9;
 }
 
+.bookauthor{
+	text-align: center;
+	font-weight: bold;
+	font-size: 120%;
+}
+
 #invalid{
 	color: #800000;
 	margin-top: 10px;
 	margin-left: 10px;
 }
 
+#submitButton{
+	float: right;
+}
+
 #signupline{
 	margin-top: 10px;
 	margin-left: 10px;
+}
+
+#DropDownList select {
+   font-size: 17px;
+}
+
+.purchaseDetailsBox span[class="errorMsg"]
+{
+	color: maroon;	
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0;
 }

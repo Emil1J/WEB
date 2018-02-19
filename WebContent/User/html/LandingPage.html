@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src="../../lib/angular.min.js"></script>
+		<script src="../../lib/jquery-3.2.1.js"></script>
+		<link rel="stylesheet" href="../../lib/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+		<script src="../../lib/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+		<link rel="stylesheet" href="../css/LandingPage.css" />
+		<script src="../javascript/LandingPageController.js"></script>
+		<script src="../../helperService.js"></script>
+		<title>Home Page</title>
+	</head>
+	<body  ng-app="app" ng-controller="homePageController">
+		<ul>
+			<b>
+				<li><a href="./LandingPage.html">Home</a></li>
+				<li><a href="./Ebooks.html">eBooks</a></li>
+				<li><a href="./MyAccount.html">My Account</a></li>
+				<li><a href="">Contact Us</a></li>
+				<li style="padding-left: 15%">
+					<img style="width:150px; height:50px;" alt="logo" src="../../Images/Logo.jpg">
+				</li>
+				<li style="float:right"><a class="active" href="../../Login.html">Sign Out</a></li>
+			</b>
+		</ul>
+		<div class="container">
+    		<div class="container-fluid">
+  				<div class="row">
+  					<div class="col-sm-12">
+          				<div class="container">
+                  			<div class="row">
+								<p id="welcomename">Welcome back {{ welcomename }}.</p>
+                  			</div>
+                  		</div>
+                  	</div>
+                  	<div class="col-sm-12">
+          				<div class="container">
+                  			<div class="row">
+								<p id="likedbookslabel">Here are our most liked books..</p>
+                  			</div>
+                  		</div>
+                  	</div>
+                  	<div class="col-sm-12">
+          				<div class="container">
+                  			<div class="row">
+								<a class="viewall" href="./Ebooks.html">View all</a>
+                  			</div>
+                  		</div>
+                  	</div>
+                  	<div class="col-sm-2" ng-repeat="x in books">
+                  		<div class="likedbooks">
+                  			<a href="" ng-click="viewBook(x)">
+                  				<img class="bookCoversLanding" ng-src="{{x.Photo}}"/>
+                  			</a>
+                  			<p class="booksdata"><b><u>Title:</u></b> {{x.Name}}</p>
+			                <p class="booksdata"><b><u>Author:</u></b> {{x.Author}}</p>
+			                <p class="booksdata"><b><u>Price:</u></b> ${{x.Price}}</p>
+			           </div>
+                  	</div>
+            	</div>			
+			</div>
+  		</div>
+	</body>
+</html>

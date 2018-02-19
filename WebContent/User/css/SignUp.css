@@ -2,17 +2,17 @@ body
 {
 	margin: 0;
 	padding: 0;
-	background: url(Images/Background.jpg);
+	background: url(../../Images/Background.jpg);
 	background-size: cover;
 	font-family: sans-serif;
 }
-.loginBox
+.signUpBox
 {
 	padding: 20px 40px;
 	box-sizing: border-box;
 	background: rgba(0,0,0,.2);
 }
-.loginBox input[type="submit"]
+.signUpBox input[type="submit"]
 {
 	border: none;
 	outline: none;
@@ -23,13 +23,31 @@ body
 	cursor: pointer;
 	border-radius: 20px;
 	margin-top: 10px;
-	width: 100%;
+	width: 40%;
 }
+
+
+.signUpBox p[class="errorMsg"]
+{
+	color: maroon;	
+}
+
+.signUpBox span[class="errorMsg"]
+{
+	color: maroon;	
+}
+
 
 h1{
 	text-align: center;
 	margin: 40px;
 }
+
+p[type="error"]
+{
+	color: #800000;
+}
+
 ul {
     list-style-type: none;
     margin: 0;
@@ -53,15 +71,4 @@ li a {
 /* Change the link color to #111 (black) on hover */
 li a:hover {
     background-color: #A9A9A9;
-}
-
-#invalid{
-	color: #800000;
-	margin-top: 10px;
-	margin-left: 10px;
-}
-
-#signupline{
-	margin-top: 10px;
-	margin-left: 10px;
 }

@@ -1,0 +1,64 @@
+@charset "ISO-8859-1";
+body
+{
+	margin: 0;
+	padding: 0;
+	background: url(../../Images/Background.jpg);
+	background-size: cover;
+	font-family: sans-serif;
+}
+
+h3 {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #000;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+/* Change the link color to #111 (black) on hover */
+li a:hover {
+    background-color: #A9A9A9;
+}
+
+.ProfilePic{
+	max-height: 50px;
+	max-width: 50px;
+	height: 50px;
+	width: 50px;
+    border-radius: 50%;
+}
+
+#UsersHeader{
+	font-weight: bold;
+	text-align: center;
+	padding-bottom: 1%;
+}
+
+.usersBox
+{
+	padding: 5%;
+	margin: 5%;
+	box-sizing: border-box;
+	background: rgba(0,0,0,.1);
+}
