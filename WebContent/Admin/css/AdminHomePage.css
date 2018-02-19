@@ -3,7 +3,7 @@ body
 {
 	margin: 0;
 	padding: 0;
-	background: url(bg2.jpg);
+	background: url(../../Images/Background.jpg);
 	background-size: cover;
 	font-family: sans-serif;
 }
@@ -41,16 +41,13 @@ li a:hover {
     background-color: #A9A9A9;
 }
 
-.mostLiked{
-	margin-top: 12%;
-	margin-left: 5%;
-}
-
 #welcomename{
 	color: #000;
 	font-weight: bold;
 	padding-top: 1%;
 	font-size: 125%;
+	text-align: center;
+	padding-right: 5%;
 }
 
 #likedbookslabel{
@@ -61,19 +58,26 @@ li a:hover {
 	font-style: italic;
 }
 
-.bookCoversLanding{
-	width: 100px;
-	height: 150px;
+.viewall{
+	align: right;
 }
 
 .likedbooks{
 	padding-left: 30px;
 }
 
-.booksdata{
+.bookCoversLanding{
+	width: 100px;
+	height: 150px;
 }
 
-.viewall{
-	float: right;
-	padding-right: 10%;
+#ViewAllButton{
+	text-align: center;
+	font-weight: bold;
+	background-color: #03A9F4;
+	border-radius: 20px;
+    border: none;
+    color: white;
+    text-decoration: none;
+    display: inline-block;
 }

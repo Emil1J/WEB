@@ -3,7 +3,7 @@ body
 {
 	margin: 0;
 	padding: 0;
-	background: url(bg2.jpg);
+	background: url(../../Images/Background.jpg);
 	background-size: cover;
 	font-family: sans-serif;
 }
@@ -49,40 +49,16 @@ li a:hover {
     border-radius: 50%;
 }
 
-#UserHeader{
+#UsersHeader{
 	font-weight: bold;
 	text-align: center;
 	padding-bottom: 1%;
 }
 
-.Center{
-	margin-top: 1%;
-	text-align: center;
-}
-
-.ProfilePic{
-	max-height: 50px;
-	max-width: 50px;
-	height: 50px;
-	width: 50px;
-    border-radius: 50%;
-}
-
-#Details{
-	font-weight: bold;
-	text-decoration: underline;
-	font-size: 20px;
-}
-
-#DetailsDiv{
-	float: right;
-}
-
-
-thead, tbody { display: block; }
-
 #TableLocation {
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
 }
 
 #TableLocation tr:nth-child(even){
@@ -113,21 +89,13 @@ tbody tr:hover td {
   cursor: pointer;
 }
 
-#Button{
-	align: center;
-	font-weight: bold;
-	background-color: #03A9F4;
-	border-radius: 20px;
-    border: none;
-    color: white;
-    text-decoration: none;
-    display: inline-block;
-}
-
 tbody tr.selected td {
   background-color: #B0BEC5;
 }
 
+thead{
+	width: 500%;
+}
 
 table, th, td {
     border: 1px solid black;
@@ -142,6 +110,22 @@ th, td {
 tr:nth-child(even){background-color: #f2f2f2}
 tr:nth-child(odd){background-color: #ffffff}
 
+
+.Col1{
+	width: 10%;
+}
+
+.Col2{
+	width: 15%;
+}
+
+.Col3{
+	width: 60%;
+}
+
+.Col4{
+	width: 15%;
+}
 
 .modal {
     display: none; /* Hidden by default */

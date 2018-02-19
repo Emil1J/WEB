@@ -3,7 +3,7 @@ body
 {
 	margin: 0;
 	padding: 0;
-	background: url(bg2.jpg);
+	background: url(../../Images/Background.jpg);
 	background-size: cover;
 	font-family: sans-serif;
 }
@@ -41,43 +41,24 @@ li a:hover {
     background-color: #A9A9A9;
 }
 
-#welcomename{
-	color: #000;
+.ProfilePic{
+	max-height: 50px;
+	max-width: 50px;
+	height: 50px;
+	width: 50px;
+    border-radius: 50%;
+}
+
+#UsersHeader{
 	font-weight: bold;
-	padding-top: 1%;
-	font-size: 125%;
 	text-align: center;
-	padding-right: 5%;
+	padding-bottom: 1%;
 }
 
-#likedbookslabel{
-	color: #000;
-	font-weight: bold;
-	padding-top: 1%;
-	font-size: 150%;
-	font-style: italic;
-}
-
-.viewall{
-	align: right;
-}
-
-.likedbooks{
-	padding-left: 30px;
-}
-
-.bookCoversLanding{
-	width: 100px;
-	height: 150px;
-}
-
-#ViewAllButton{
-	text-align: center;
-	font-weight: bold;
-	background-color: #03A9F4;
-	border-radius: 20px;
-    border: none;
-    color: white;
-    text-decoration: none;
-    display: inline-block;
+.usersBox
+{
+	padding: 5%;
+	margin: 5%;
+	box-sizing: border-box;
+	background: rgba(0,0,0,.1);
 }

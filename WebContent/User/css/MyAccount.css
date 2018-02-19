@@ -3,17 +3,9 @@ body
 {
 	margin: 0;
 	padding: 0;
-	background: url(bg2.jpg);
+	background: url(../../Images/Background.jpg);
 	background-size: cover;
 	font-family: sans-serif;
-}
-
-h3 {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #333;
 }
 
 ul {
@@ -41,6 +33,15 @@ li a:hover {
     background-color: #A9A9A9;
 }
 
+.Center{
+	margin-top: 10%;
+	margin: 0% 10% 0% 0%;	
+}
+
+.SpaceFromTop{
+	padding-top: 3%;
+}
+
 .ProfilePic{
 	max-height: 50px;
 	max-width: 50px;
@@ -49,82 +50,48 @@ li a:hover {
     border-radius: 50%;
 }
 
-#UsersHeader{
-	font-weight: bold;
-	text-align: center;
-	padding-bottom: 1%;
+.LikeButton{
+	max-height: 35px;
+	max-width: 35px;
+	height: 35px;
+	width: 35px;
 }
 
-#TableLocation {
-    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-    border-collapse: collapse;
-    width: 100%;
+.Drop{
+	padding-left: 10%;
 }
 
-#TableLocation tr:nth-child(even){
-	background-color: #f2f2f2;
-	table-layout: fixed;
-  	border-collapse: collapse;
+.YourBooks{
+	font-size: 200%;
+	font-family:  "Book Antiqua", Palatino, "Palatino Linotype", "Palatino LT STD", Georgia, serif;		
 }
 
-#TableLocation th {
-    padding-top: 12px;
-    padding-bottom: 12px;
-    text-align: middle;
-    background-color: #BCAAA4;
-    color: white;
-}
-#table-scroll{
-	height:550px;
-	overflow:auto;
-}
-  
-.clickable {
-    cursor: pointer;
+.BookCovers{
+	height: 240px;
+	width: 160px;
 }
 
-tbody tr:hover.selected td,
-tbody tr:hover td {
-  background-color: #B3E5FC;
-  cursor: pointer;
+.BackgroundBox
+{
+	padding-top: 10px;
+	padding-left: 10px;
+	margin-bottom: 20px;
+	box-sizing: border-box;
+	background: rgba(192,192,192,0.3);
 }
 
-tbody tr.selected td {
-  background-color: #B0BEC5;
+#LikedNum{
+	padding-top: 6%;	
 }
 
-thead{
-	width: 500%;
+.BookData{
+	padding-left: 15%;
 }
 
-table, th, td {
-    border: 1px solid black;
-    border-collapse: collapse;
-}
-
-th, td {
+.ProfileData{
     text-align: center;
-    padding: 5px;
-}
-
-tr:nth-child(even){background-color: #f2f2f2}
-tr:nth-child(odd){background-color: #ffffff}
-
-
-.Col1{
-	width: 10%;
-}
-
-.Col2{
-	width: 15%;
-}
-
-.Col3{
-	width: 60%;
-}
-
-.Col4{
-	width: 15%;
+    font-size: large;
+	font-family:  "Book Antiqua", Palatino, "Palatino Linotype", "Palatino LT STD", Georgia, serif;
 }
 
 .modal {
@@ -160,4 +127,15 @@ tr:nth-child(odd){background-color: #ffffff}
     color: #000;
     text-decoration: none;
     cursor: pointer;
+}
+
+#myBtn{
+	text-align: center;
+	font-weight: bold;
+	background-color: #03A9F4;
+	border-radius: 20px;
+    border: none;
+    color: white;
+    text-decoration: none;
+    display: inline-block;
 }

@@ -39,11 +39,11 @@ angular.module('app',[])
 				for (var j = 0 ; j < likesLength ; j++){
 					var like = $scope.books[i].Likes[j];
 					if(like.bookname == bookname && like.username == user.username){
-						return "./Images/Liked.png";
+						return "../../Images/Liked.png";
 					}
 				}
 			}
-			return "./Images/Like.png";
+			return "../../Images/Like.png";
 		}
 			
 		$scope.LikeBook = function(book){
@@ -52,7 +52,7 @@ angular.module('app',[])
 					Bookname : book.Name
 				};
 			var query = "LikeBookServlet";
-		   	if(document.getElementById(book.Name).src.endsWith("/Images/Liked.png")){
+		   	if(document.getElementById(book.Name).src.endsWith("../../Images/Liked.png")){
 				query = "DislikeBookServlet";
 		   	}
 			
@@ -66,11 +66,11 @@ angular.module('app',[])
 				  },
 				  success: function(response) {
 					  if(response.Result == "Success"){
-				    	   if(document.getElementById(book.Name).src.endsWith("/Images/Liked.png")){
-								document.getElementById(book.Name).src = "./Images/Like.png";
+				    	   if(document.getElementById(book.Name).src.endsWith("../../Images/Liked.png")){
+								document.getElementById(book.Name).src = "../../Images/Like.png";
 				    	   }
 				    	   else{
-				    		   document.getElementById(book.Name).src = "./Images/Liked.png"
+				    		   document.getElementById(book.Name).src = "../../Images/Liked.png"
 				    	   }
 				    	   for(var i = 0 ; i < $scope.books.length ; i++){
 				    		   if(response.Book.Name == $scope.books[i].Name){

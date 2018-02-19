@@ -16,10 +16,10 @@ angular.module('app',[])
 						  document.getElementById('invalid').style.display= "none";
 						  localStorage.setItem('loginResponse', JSON.stringify(response.User));
 						  if($scope.username == "admin" && $scope.password == "Passw0rd"){
-							  window.location="AdminHomePage.html";
+							  window.location="./Admin/html/AdminHomePage.html";
 						  }
 						  else{
-							  window.location="LandingPage.html";
+							  window.location="./User/html/LandingPage.html";
 						  }
 					  }else{
 						  document.getElementById('invalid').style.display= "block";
