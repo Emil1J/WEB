@@ -91,7 +91,6 @@ angular.module('app',[])
 				return;
 			}
 			var firstDigit = ccnum.substr(0,1);
-			alert(firstDigit);
 			if(cctype == "American Express" && firstDigit != "3"){
 				alert("Incorrect AMEX credit card number");
 				return;
