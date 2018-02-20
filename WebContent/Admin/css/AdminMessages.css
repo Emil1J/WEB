@@ -51,8 +51,8 @@ li a:hover {
     float: left;
     border: 1px solid #ccc;
     background-color: #f1f1f1;
-    width: 30%;
-    height: 300px;
+    width: 20%;
+    height: 20%;
 }
 
 .tab button {
@@ -85,5 +85,9 @@ li a:hover {
 
 .tab button:hover {
     background-color: #ddd;
+}
+
+#EmailTime{
+	text-align: right;
 }
 
