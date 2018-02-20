@@ -79,6 +79,10 @@ li a:hover {
     height: 300px;
 }
 
+.panel-title{
+	margin-top: 1%;
+}
+
 .tab button.active {
     background-color: #ccc;
 }
