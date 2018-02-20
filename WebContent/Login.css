@@ -55,6 +55,10 @@ li a:hover {
     background-color: #A9A9A9;
 }
 
+#submit{
+	width:100%;
+}
+
 #invalid{
 	color: #800000;
 	margin-top: 10px;
