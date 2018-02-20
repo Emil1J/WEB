@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<script src="../../lib/angular.min.js"></script>
+<script src="../../lib/jquery-3.2.1.js"></script>
+<link rel="stylesheet"
+	href="../../lib/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+<script src="../../lib/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="../css/AdminMessages.css" />
+<script src="../javascript/AdminMessagesController.js"></script>
+<script src="../../helperService.js"></script>
+<title>Admin - Messages Page</title>
+</head>
+<style>
+.accordion {
+    background-color: #eee;
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+    transition: 0.4s;
+}
+
+.active, .accordion:hover {
+    background-color: #ccc; 
+}
+
+.panel {
+    padding: 0 18px;
+    display: none;
+    background-color: white;
+    overflow: hidden;
+}
+</style>
+<body ng-app="app" ng-controller="adminMessagesController">
+	<ul>
+		<b>
+			<li><a href="AdminHomePage.html">Home</a></li>
+			<li><a href="AdminUsers.html">Users</a></li>
+			<li><a href="AdminTransactions.html">Transactions</a></li>
+			<li><a href="AdminReviews.html">Reviews</a></li>
+			<li><a href="AdminMessages.html">Messages ({{unread}})</a></li>
+			<li style="padding-left: 11%">
+				<img style="width:150px; height:50px;" alt="logo" src="../../Images/Logo.jpg">
+			</li>
+			<li style="float:right"><a class="active" href="../../Login.html">Sign Out</a></li>
+		</b>
+	</ul>
+	<div class="container">
+		<div class="container-fluid">
+			<div class="row">
+				<h2 id="UsersHeader">Messages</h2>
+				<div class="col-sm-12">
+				</div>
+			</div>
+			<div class="row">
+				<div class="tab">
+				  <button class="tablinks" ng-click="openCity($event, 'London')" id="defaultOpen">New Messages ({{unread}})</button>
+				  <button class="tablinks" ng-click="openCity($event, 'Paris')">Sent Messages</button>
+				  <button class="tablinks" ng-click="openCity($event, 'Tokyo')">Old Messages</button>
+				</div>
+				
+				<div id="London" class="tabcontent">
+					<button class="accordion" ng-repeat="message in messages">From {{message.username}} at
+					 {{GetDateFormat(message.receiptdate)}}</button>
+					<div class="panel">
+						<p>{{message.message}}</p>
+					</div>
+				</div>
+				
+				<div id="Paris" class="tabcontent">
+				  <h3>Paris</h3>
+				  <p>Paris is the capital of France.</p> 
+				</div>
+				
+				<div id="Tokyo" class="tabcontent">
+				  <h3>Tokyo</h3>
+				  <p>Tokyo is the capital of Japan.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

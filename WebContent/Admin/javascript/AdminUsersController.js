@@ -10,6 +10,17 @@ angular.module('app',[])
 		       }
 		    );
 		
+		$scope.unread = 0;
+		$http.post("http://localhost:8080/BooksForAll/AllAdminUnreadMessages?")
+		   .then(
+		       function(response){
+		    	   $scope.messages = response.data.Messages;
+		    	   $scope.unread = response.data.Messages.length;
+		       }, 
+		       function(response){
+		         // failure callback
+		       }
+		    );
 		$scope.viewUser = function(user){
 			localStorage.setItem("ChosenUser", JSON.stringify(user));
 			window.location = "AdminUserView.html";

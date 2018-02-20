@@ -2,6 +2,17 @@ angular.module('app',[])
 	.controller('adminUserViewController',['$scope','$http', function($scope,$http){
 		$scope.user = JSON.parse(localStorage.getItem("ChosenUser"));
 		
+		$scope.unread = 0;
+		$http.post("http://localhost:8080/BooksForAll/AllAdminUnreadMessages?")
+		   .then(
+		       function(response){
+		    	   $scope.messages = response.data.Messages;
+		    	   $scope.unread = response.data.Messages.length;
+		       }, 
+		       function(response){
+		         // failure callback
+		       }
+		    );
 		$scope.UserClick = function(user) {
 			localStorage.setItem('ChosenUser', JSON.stringify(user));
 			var modal = document.getElementById('myModal');

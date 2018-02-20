@@ -141,6 +141,7 @@ angular.module('app',[])
 		
 		$scope.Submit = function(){
 			var message = document.getElementById("TextAreaHelp").value;
+			var subject = document.getElementById("MessageSubject").value;
 			if(message == ""){
 				$("#HelpMeError").show().delay(3000).fadeOut();
 				return;
@@ -151,7 +152,8 @@ angular.module('app',[])
 		          dataType: 'json',
 				  data: {
 					Username: user.username, 
-				    Message: message
+				    Message: message,
+				    Subject: subject
 				  },
 				  success: function(response) {
 						$("#HelpMeSuccess").show().delay(3000).fadeOut();

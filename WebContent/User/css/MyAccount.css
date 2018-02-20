@@ -218,3 +218,14 @@ textarea {
 	margin-top: 10%;
 	margin-left: 22%;
 }
+
+.Header{
+	text-align: left;
+	font-weight: bold;
+	font-size: 17px;
+}
+
+#MessageSubject{
+	font-size: 17px;
+	float: left;
+}
