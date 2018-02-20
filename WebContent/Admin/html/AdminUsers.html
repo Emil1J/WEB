@@ -31,13 +31,11 @@
 			<div class="row">
 				<h2 id="UsersHeader">Users</h2>
 			</div>
-			<div class="col-sm-4" ng-repeat="user in users">
+			<div class="col-sm-4" style="cursor: pointer;" ng-click="viewUser(user)" ng-repeat="user in users">
 			<div class="usersBox">
 				<div class="row">
 					<div class="col-sm-3">
-						<a href="" ng-click="viewUser(user)"> 
-							<img class="ProfilePic" ng-src="{{user.photo}}" />
-						</a>
+						<img class="ProfilePic" ng-src="{{user.photo}}" />
 					</div>
 					<div class="col-sm-9">
 						<p class="BookData">

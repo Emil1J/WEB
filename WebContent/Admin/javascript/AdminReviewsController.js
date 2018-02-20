@@ -1,9 +1,17 @@
 	angular.module('app',[])
 	.controller('adminReviewsController',['$scope','$http', function($scope,$http){
+		
+		var norev = document.getElementById('noReviews');
+
 		$http.post("http://localhost:8080/BooksForAll/AllUnapprovedCommentsServlet?")
 		   .then(
 		       function(response){
 		    	   $scope.comments = response.data.CommentsList;
+		    	   if($scope.comments.length == 0){
+		    		   norev.style.display = "block";
+		    	   }else{
+		    		   norev.style.display = "none";
+		    	   }
 		       }, 
 		       function(response){
 		         // failure callback
@@ -21,6 +29,19 @@
 		         // failure callback
 		       }
 		    );
+
+		$(function() {
+		    $(window).on('resize', function resize()  {
+		        $(window).off('resize', resize);
+		        setTimeout(function () {
+		            var content = $('#noReviews');
+		            var top = (window.innerHeight - content.height()) / 2;
+		            content.css('top', Math.max(0, top) + 'px');
+		            $(window).on('resize', resize);
+		        }, 50);
+		    }).resize();
+		});
+
 		
 		$scope.GetTimeFormat = function(CommentDateTime){
 			var date = CommentDateTime.split(' ')[0];
@@ -62,6 +83,12 @@
 			if($scope.answer == 'Decline'){
 				choice = "Unapprove";
 			}
+			if($scope.comments.length == 1){
+				norev.style.display = "block";
+			}else{
+	    		norev.style.display = "none";
+	    	}			
+			
 			$.ajax({
 				  url: "http://localhost:8080/BooksForAll/" + choice + "CommentServlet?",
 				  type: "POST", //send it through get method
