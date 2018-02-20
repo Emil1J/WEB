@@ -6,7 +6,12 @@ angular.module('app',[])
 		document.getElementById("HelpMeSuccess").style.display = "none";
 		document.getElementById("HelpMeError").style.display = "none";
 		
-
+		for(var i = 0 ; i < user.books.length; i++){
+			if(user.books[i].Name == $scope.book.Name){
+				window.location = "Ebooks.html";
+			}
+		}
+		
 		$('#cvv').keydown(function(e) {
 			if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
 				      // Allow: Ctrl+A,Ctrl+C,Ctrl+V, Command+A
