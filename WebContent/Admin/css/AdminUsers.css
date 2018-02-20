@@ -61,4 +61,5 @@ li a:hover {
 	margin: 5%;
 	box-sizing: border-box;
 	background: rgba(0,0,0,.1);
+	border-radius: 25px;
 }
