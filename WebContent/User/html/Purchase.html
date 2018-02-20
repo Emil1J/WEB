@@ -170,17 +170,19 @@
 						<div class="col-sm-12">
 							<div class="row">
 								<div class="col-sm-2">
-									<p class="Header">Subject:</p>
+									<p class="Header2">Subject:</p>
 								</div>
 								<div class="col-sm-4">
-									<select id="MessageSubject">
-										<option>General</option>
-									    <option>Account</option>
-		        						<option>Financial</option>
-		        						<option>Technical</option>
-		       							<option>Complaint</option>
-		        						<option>Other</option>
-		      						</select>
+									<div id="MessageSubject" class="form-group" ng-class="{ 'has-error' : purchaseForm.exp.$invalid && !purchaseForm.exp.$pristine }">
+										<select id="ExpMonth" class="form-control">
+	        								<option>General</option>
+									    	<option>Account</option>
+		        							<option>Financial</option>
+		        							<option>Technical</option>
+		       								<option>Complaint</option>
+		        							<option>Other</option>
+	      								</select>
+	  								</div>
 								</div>
 								<div class="col-sm-6">
 								</div>
