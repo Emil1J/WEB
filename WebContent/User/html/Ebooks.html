@@ -31,34 +31,36 @@
 					Ebooks
 				</h2>
 			</div>
-			<div class="col-sm-4" ng-repeat="book in books">
-				<div class="row">
-					<div class="col-sm-6">
-						<a href="" ng-click="viewBook(book)"> 
-							<img class="BookCovers" ng-src="{{book.Photo}}" />
-						</a>
-					</div>
-					<div class="col-sm-6">
-						<p class="BookData">
-							<u><b>Title:</b></u> {{book.Name}}
-						</p>
-						<p class="BookData">
-							<u><b>Author:</b></u> {{book.Author}}
-						</p>
-						<p class="BookData">
-							<u><b>Price:</b></u> ${{book.Price}}
-						</p>
-						<div id="tooltip" class="col-sm-8">
-							<b> 
-								<p class="BookData">{{book.LikesNum}} Likes</p>
- 						 		<span class="tooltiptext">{{GetLikes(book.Likes)}}</span>
-							</b>
+			<div class="grid-container">
+				<div ng-repeat="book in books">
+					<div class="row">
+						<div class="col-sm-6">
+							<a href="" ng-click="viewBook(book)"> 
+								<img class="BookCovers" ng-src="{{book.Photo}}" />
+							</a>
 						</div>
-						<div class="col-sm-4">
+						<div class="col-sm-6">
+							<p class="BookData">
+								<u><b>Title:</b></u> {{book.Name}}
+							</p>
+							<p class="BookData">
+								<u><b>Author:</b></u> {{book.Author}}
+							</p>
+							<p class="BookData">
+								<u><b>Price:</b></u> ${{book.Price}}
+							</p>
+							<div id="tooltip" class="col-sm-8">
+								<b> 
+									<p class="BookData">{{book.LikesNum}} Likes</p>
+ 						 			<span class="tooltiptext">{{GetLikes(book.Likes)}}</span>
+								</b>
+							</div>
+							<div class="col-sm-4">
+							</div>
+							<p class="BookData">
+								<a ng-click="PurchaseBook(book)"><button id="{{CheckIfBookPurchasedIDs(book)}}Button">{{CheckIfBookPurchased(book)}}</button></a>
+							</p>
 						</div>
-						<p class="BookData">
-							<a ng-click="PurchaseBook(book)"><button id="{{CheckIfBookPurchasedIDs(book)}}Button">{{CheckIfBookPurchased(book)}}</button></a>
-						</p>
 					</div>
 				</div>
 			</div>
