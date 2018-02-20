@@ -1,9 +1,15 @@
 angular.module('app',[])
 	.controller('homePageController', ['$scope','$http', function($scope,$http){
+	$http.post("http://localhost:8080/BooksForAll/CheckSessionServlet")
+		.then(function (response){
+			if(response.data.Result == "Failure"){
+				window.location = "../../Login.html";
+			}
+		},function(xhr){
+	});
 		var user = JSON.parse(localStorage.getItem('loginResponse'));
 		$scope.welcomename = user.username;
-		var data = { };
-		$http.post("http://localhost:8080/BooksForAll/TopFiveBooksServlet?",data)
+		$http.post("http://localhost:8080/BooksForAll/TopFiveBooksServlet")
 		.then(function (response){
 			$scope.books = response.data.BookList;
 	},function(xhr){
@@ -25,6 +31,16 @@ angular.module('app',[])
 		localStorage.setItem('ChosenBook', JSON.stringify(book));
 		var modal = document.getElementById('HelpMeModal');
 	    modal.style.display = "block";
+	}
+	
+	$scope.SignOutFunc = function(){
+		$http.post("http://localhost:8080/BooksForAll/SignOutServlet")
+		   .then(
+		       function(response){
+		       }, 
+		       function(response){
+		       }
+		    );
 	}
 
 	// When the user clicks on <span> (x), close the modal
@@ -59,15 +75,16 @@ angular.module('app',[])
 			$("#HelpMeError").show().delay(3000).fadeOut();
 			return;
 		}
-		$.ajax({
-			  url: "http://localhost:8080/BooksForAll/NewUserMessageServlet?",
-			  type: "POST", //send it through get method
-	          dataType: 'json',
-			  data: {
+		var queryData = {
 				Username: user.username, 
 			    Message: message,
 			    Subject: subject
-			  },
+		}
+		$.ajax({
+			  url: "http://localhost:8080/BooksForAll/NewUserMessageServlet",
+			  type: "POST", //send it through get method
+	          dataType: 'json',
+			  data: JSON.stringify(queryData),
 			  success: function(response) {
 					$("#HelpMeSuccess").show().delay(3000).fadeOut();
 					document.getElementById("TextAreaHelp").value = "";

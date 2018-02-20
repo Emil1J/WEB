@@ -1,9 +1,15 @@
 	angular.module('app',[])
 	.controller('adminReviewsController',['$scope','$http', function($scope,$http){
-		
+		$http.post("http://localhost:8080/BooksForAll/CheckSessionServlet")
+		.then(function (response){
+			if(response.data.Result == "Failure"){
+				window.location = "../../Login.html";
+			}
+			},function(xhr){
+		});
 		var norev = document.getElementById('noReviews');
 
-		$http.post("http://localhost:8080/BooksForAll/AllUnapprovedCommentsServlet?")
+		$http.post("http://localhost:8080/BooksForAll/AllUnapprovedCommentsServlet")
 		   .then(
 		       function(response){
 		    	   $scope.comments = response.data.CommentsList;
@@ -17,6 +23,16 @@
 		         // failure callback
 		       }
 		    );
+		
+		$scope.SignOutFunc = function(){
+			$http.post("http://localhost:8080/BooksForAll/SignOutServlet")
+			   .then(
+			       function(response){
+			       }, 
+			       function(response){
+			       }
+			    );
+		}
 		
 		$scope.unread = 0;
 		$http.post("http://localhost:8080/BooksForAll/AllAdminUnrepliedMessagesServlet?")
@@ -80,13 +96,14 @@
 			}else{
 	    		norev.style.display = "none";
 	    	}			
+			var dataQuery = {
+					ID: comment.id
+			}
 			$.ajax({
-				  url: "http://localhost:8080/BooksForAll/" + choice + "CommentServlet?",
+				  url: "http://localhost:8080/BooksForAll/" + choice + "CommentServlet",
 				  type: "POST", //send it through get method
 				  dataType: 'json',
-			  data: {
-				CommentID: comment.id
-			  },
+			  data: JSON.stringify(dataQuery),
 			  success: function(response) {
 			},
 			error: function(xhr) {

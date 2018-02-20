@@ -1,8 +1,18 @@
 angular.module('app',[])
 	.controller('myAccountController',['$scope','$http', function($scope,$http){
+		$http.post("http://localhost:8080/BooksForAll/CheckSessionServlet")
+		.then(function (response){
+			if(response.data.Result == "Failure"){
+				window.location = "../../Login.html";
+			}
+		},function(xhr){
+	});
 		var user =  JSON.parse(localStorage.getItem('loginResponse'));
 		$scope.user = user;
-  	   	$http.post("http://localhost:8080/BooksForAll/UserBooksServlet?Username=" + user.username)
+		var dataQuery = {
+				Username : user.username
+		}
+  	   	$http.post("http://localhost:8080/BooksForAll/UserBooksServlet", dataQuery)
   	   		.then(
   	   			function(response){
   	   				localStorage.setItem('userBooks', JSON.stringify(response.data.BookList));
@@ -14,6 +24,17 @@ angular.module('app',[])
   	   				// failure callback
   	   			}
 	    );
+		
+		$scope.SignOutFunc = function(){
+			$http.post("http://localhost:8080/BooksForAll/SignOutServlet")
+			   .then(
+			       function(response){
+			       }, 
+			       function(response){
+			       }
+			    );
+		}
+		
 		$scope.GetLikes = function(likes){
 			var likeNames = "";
 			var arrayLength = likes.length;
@@ -59,7 +80,7 @@ angular.module('app',[])
 		   	}
 			
 			$.ajax({
-				  url: "http://localhost:8080/BooksForAll/" + query + "?",
+				  url: "http://localhost:8080/BooksForAll/" + query,
 				  type: "POST", //send it through get method
 		          dataType: 'json',
 				  data: {
@@ -146,15 +167,16 @@ angular.module('app',[])
 				$("#HelpMeError").show().delay(3000).fadeOut();
 				return;
 			}
-			$.ajax({
-				  url: "http://localhost:8080/BooksForAll/NewUserMessageServlet?",
-				  type: "POST", //send it through get method
-		          dataType: 'json',
-				  data: {
+			var queryData = {
 					Username: user.username, 
 				    Message: message,
 				    Subject: subject
-				  },
+			}
+			$.ajax({
+				  url: "http://localhost:8080/BooksForAll/NewUserMessageServlet",
+				  type: "POST", //send it through get method
+		          dataType: 'json',
+				  data: JSON.stringify(queryData),
 				  success: function(response) {
 						$("#HelpMeSuccess").show().delay(3000).fadeOut();
 						document.getElementById("TextAreaHelp").value = "";

@@ -1,5 +1,6 @@
 package booksForAll.servlets;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -24,6 +25,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 
+import booksForAll.filters.PostData;
 import booksForAll.general.AppConstants;
 import booksForAll.general.AssistantFuncs;
 import booksForAll.model.Book;
@@ -55,8 +57,25 @@ import booksForAll.model.User;
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		String username = request.getParameter("Username");
+
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		StringBuffer strBuf = new StringBuffer();
+		BufferedReader reader = request.getReader();
+		String line = null;        
+		while ((line = reader.readLine()) != null)
+		{
+			strBuf.append(line);
+		}
+		Gson gson = new GsonBuilder()
+				.setDateFormat("yyyy-MM-dd HH:mm:ss.S")
+				.create();
+		PostData postData = gson.fromJson(strBuf.toString(), PostData.class);
+		String username = postData.Username;
 		String result = "";
 		try {
     		
@@ -86,9 +105,6 @@ import booksForAll.model.User;
 	    		response.sendError(500);//internal server error
     		}
     		
-			Gson gson = new GsonBuilder()
-    				.setDateFormat("yyyy-MM-dd HH:mm:ss.S")
-    				.create();
 			response.addHeader("Content-Type", "application/json");
     		JsonObject json = new JsonObject();
     		json.addProperty("Result", result);
@@ -145,14 +161,6 @@ import booksForAll.model.User;
     		getServletContext().log("Error while closing connection", e);
     		response.sendError(500);//internal server error
     	}
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
 	}
 
 }

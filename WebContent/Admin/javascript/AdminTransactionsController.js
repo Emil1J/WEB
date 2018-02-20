@@ -1,5 +1,12 @@
 angular.module('app',[])
 	.controller('adminTransactionsController',['$scope','$http', function($scope,$http){
+		$http.post("http://localhost:8080/BooksForAll/CheckSessionServlet")
+		.then(function (response){
+			if(response.data.Result == "Failure"){
+				window.location = "../../Login.html";
+			}
+			},function(xhr){
+		});
 		$scope.unread = 0;
 		$http.post("http://localhost:8080/BooksForAll/AllAdminUnrepliedMessagesServlet?")
 		   .then(
@@ -18,9 +25,20 @@ angular.module('app',[])
 		    );
 		
 		var noTrans = document.getElementById('noTrans');
+
+		$scope.SignOutFunc = function(){
+			$http.post("http://localhost:8080/BooksForAll/SignOutServlet")
+			   .then(
+			       function(response){
+			       }, 
+			       function(response){
+			       }
+			    );
+		}
 		var table = document.getElementById('table-scroll');
+
 		
-		$http.post("http://localhost:8080/BooksForAll/AllTransactionsServlet?")
+		$http.post("http://localhost:8080/BooksForAll/AllTransactionsServlet")
 		   .then(
 		       function(response){
 		    	   $scope.transactions = response.data.UserTransactions;

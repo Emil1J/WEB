@@ -1,5 +1,12 @@
 angular.module('app',[])
 	.controller('ebooksController', ['$scope','$http', function($scope,$http){
+		$http.post("http://localhost:8080/BooksForAll/CheckSessionServlet")
+		.then(function (response){
+			if(response.data.Result == "Failure"){
+				window.location = "../../Login.html";
+			}
+		},function(xhr){
+	});
 		var user = JSON.parse(localStorage.getItem('loginResponse'));
 
 		$(document).ready(function(){
@@ -14,7 +21,15 @@ angular.module('app',[])
 			localStorage.setItem('viewBook', JSON.stringify(book));
 			window.location="BookView.html";
 		}
-		
+		$scope.SignOutFunc = function(){
+			$http.post("http://localhost:8080/BooksForAll/SignOutServlet")
+			   .then(
+			       function(response){
+			       }, 
+			       function(response){
+			       }
+			    );
+		}
 		$scope.GetLikes = function(likes){
 			var likeNames = "";
 			var arrayLength = likes.length;
@@ -24,8 +39,8 @@ angular.module('app',[])
 			}
 			return likeNames;
 		}
-		
-		$http.post("http://localhost:8080/BooksForAll/AllBooksServlet?")
+
+		$http.post("http://localhost:8080/BooksForAll/AllBooksServlet")
 		   .then(
 		       function(response){
 		    	   $scope.books = response.data.BookList;
@@ -92,15 +107,16 @@ angular.module('app',[])
 				$("#HelpMeError").show().delay(3000).fadeOut();
 				return;
 			}
-			$.ajax({
-				  url: "http://localhost:8080/BooksForAll/NewUserMessageServlet?",
-				  type: "POST", //send it through get method
-		          dataType: 'json',
-				  data: {
+			var queryData = {
 					Username: user.username, 
 				    Message: message,
 				    Subject: subject
-				  },
+			}
+			$.ajax({
+				  url: "http://localhost:8080/BooksForAll/NewUserMessageServlet",
+				  type: "POST", //send it through get method
+		          dataType: 'json',
+				  data: JSON.stringify(queryData),
 				  success: function(response) {
 						$("#HelpMeSuccess").show().delay(3000).fadeOut();
 						document.getElementById("TextAreaHelp").value = "";

@@ -28,7 +28,7 @@ import booksForAll.general.AssistantFuncs;
 import booksForAll.model.Message;
 
 /**
- * Servlet implementation class AllAdminMessagesServlet
+ * Servlet implementation class AllAdminRepliedMessagesServlet
  */
 @WebServlet("/AllAdminRepliedMessagesServlet")
 public class AllAdminRepliedMessagesServlet extends HttpServlet {
@@ -46,6 +46,13 @@ public class AllAdminRepliedMessagesServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String result = "";
 		try {
@@ -94,14 +101,6 @@ public class AllAdminRepliedMessagesServlet extends HttpServlet {
     		getServletContext().log("Error while closing connection", e);
     		response.sendError(500);//internal server error
     	}
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
 	}
 
 }

@@ -1,9 +1,21 @@
 angular.module('app',[])
 	.controller('readBookController', ['$scope','$http', function($scope,$http){
+		$http.post("http://localhost:8080/BooksForAll/CheckSessionServlet")
+		.then(function (response){
+			if(response.data.Result == "Failure"){
+				window.location = "../../Login.html";
+			}
+		},function(xhr){
+	});
 	var user = JSON.parse(localStorage.getItem('loginResponse'));
 	var bookName = window.location.pathname.split("/")[3];
 	bookName = bookName.split(".")[0].substring(-3);
-	$http.post("http://localhost:8080/BooksForAll/ScrollPositionServlet?Username=" + user.username + "&Bookname=" + bookName)
+	var data = {
+			Username: user.username,
+			Bookname: bookName
+	}
+	
+	$http.post("http://localhost:8080/BooksForAll/ScrollPositionServlet", data)
    		.then(
   			function(response){
   				var offset = localStorage.getItem('ScrollBook');
@@ -19,8 +31,12 @@ angular.module('app',[])
     );
 	
 	window.onbeforeunload = function () {
-		$http.post("http://localhost:8080/BooksForAll/UpdateScrollPositionServlet?Username=" + user.username + "&Bookname=" + bookName
-				+"&Position=" + window.pageYOffset)
+		var queryData = {
+				Username : user.username,
+				Bookname : bookName,
+				Position : window.pageYOffset
+		}
+		$http.post("http://localhost:8080/BooksForAll/UpdateScrollPositionServlet", queryData)
    		.then(
   			function(response){
    			}, 

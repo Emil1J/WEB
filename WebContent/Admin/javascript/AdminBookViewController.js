@@ -1,5 +1,12 @@
 angular.module('app',[])
 	.controller('adminBookViewController',function($scope,$http){
+		$http.post("http://localhost:8080/BooksForAll/CheckSessionServlet")
+		.then(function (response){
+			if(response.data.Result == "Failure"){
+				window.location = "../../Login.html";
+			}
+			},function(xhr){
+		});
 		$scope.unread = 0;
 		$http.post("http://localhost:8080/BooksForAll/AllAdminUnrepliedMessagesServlet?")
 		   .then(
@@ -16,6 +23,16 @@ angular.module('app',[])
 		         // failure callback
 		       }
 		    );
+		
+		$scope.SignOutFunc = function(){
+			$http.post("http://localhost:8080/BooksForAll/SignOutServlet")
+			   .then(
+			       function(response){
+			       }, 
+			       function(response){
+			       }
+			    );
+		}
 		var viewBook = JSON.parse(localStorage.getItem('viewBook'));
 		var user = JSON.parse(localStorage.getItem('loginResponse'));
 		$scope.username = user.username;
@@ -32,18 +49,6 @@ angular.module('app',[])
 		var counter = 0;
 		var input = document.getElementById("review");
 		
-		$scope.SubmitReview = function(){
-	    	$http.post("http://localhost:8080/BooksForAll/CommentBookServlet?Username=" + $scope.username +
-	    			"&Bookname=" + $scope.bookname + "&Description=" + input.value)
-			   .then(
-			       function(response){
-				    	input.value = '';
-			       }, 
-			       function(response){
-			       }
-			    );
-		}
-		
 		$scope.GetDateFormat = function(CommentDateTime){
 			var date = CommentDateTime.split(' ')[0];
  		   var time = CommentDateTime.split(' ')[1].split(":")[0] + ":" + CommentDateTime.split(' ')[1].split(":")[1];
@@ -52,7 +57,12 @@ angular.module('app',[])
 		
 		$(window).scroll(function() {
 			   if($(window).scrollTop() + $(window).height() == $(document).height() || $(window).scrollTop() + $(window).height() > $(document).height() - 0.8) {
-				   $http.post("http://localhost:8080/BooksForAll/TenCommentsServlet?Bookname=" + $scope.bookname + "&CommentId=" + $scope.bookcomments[counter-1].id)
+				   if($scope.bookcomments.length == 0){return;}
+				   var queryData = {
+						   Bookname : $scope.bookname,
+						   ID : $scope.bookcomments[counter-1].id
+				   }
+				   $http.post("http://localhost:8080/BooksForAll/TenCommentsServlet", queryData)
 				   .then(
 				       function(response){
 				    	   var length = response.data.Comments.length;
