@@ -13,16 +13,19 @@ angular.module('app',[])
 		    );
 		
 		var noTrans = document.getElementById('noTrans');
-
+		var table = document.getElementById('table-scroll');
 		
 		$http.post("http://localhost:8080/BooksForAll/AllTransactionsServlet?")
 		   .then(
 		       function(response){
 		    	   $scope.transactions = response.data.UserTransactions;
 		    	   if($scope.transactions.length == 0){
+		    		   table.style.display = "none";
 		    		   noTrans.style.display = "block";
 		    	   }else{
 		    		   noTrans.style.display = "none";
+		    		   table.style.display = "block";
+
 		    	   }
 		       }, 
 		       function(response){
