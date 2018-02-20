@@ -39,7 +39,7 @@
 		   .then(
 		       function(response){
 		    	   var unread = 0;
-		    	   for(var i = 0; i < $scope.UnrepliedMessages ; i++){
+		    	   for(var i = 0; i < $scope.UnrepliedMessages.length ; i++){
 		    		   if($scope.UnrepliedMessages[i].adminread == 0){
 		    			   unread++;
 		    		   }
