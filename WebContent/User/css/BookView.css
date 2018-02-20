@@ -225,3 +225,14 @@ textarea {
 	text-align: left;
 	color: red;	
 }
+
+.Header{
+	text-align: left;
+	font-weight: bold;
+	font-size: 17px;
+}
+
+#MessageSubject{
+	font-size: 17px;
+	float: left;
+}

@@ -29,7 +29,8 @@ import booksForAll.general.AppConstants;
 		urlPatterns = "/NewUserMessageServlet",
 		initParams = {
 				@WebInitParam(name = "Username", value = ""),
-				@WebInitParam(name = "Message", value = "")
+				@WebInitParam(name = "Message", value = ""),
+				@WebInitParam(name = "Subject", value = "")
 		})
 
 	public class NewUserMessageServlet extends HttpServlet {
@@ -51,6 +52,7 @@ import booksForAll.general.AppConstants;
 		String username = request.getParameter("Username");
 		Timestamp current = new Timestamp(System.currentTimeMillis());
 		String message = request.getParameter("Message");
+		String subject = request.getParameter("Subject");
 		String result = "";
 		try {
     		
@@ -65,11 +67,12 @@ import booksForAll.general.AppConstants;
 				stmt = conn.prepareStatement(AppConstants.INSERT_MESSAGES_STMT);
 				stmt.setString(1, username);
 				stmt.setString(2, message);
-				stmt.setTimestamp(3, current);
-				stmt.setString(4, "");
-				stmt.setInt(5, 0);
+				stmt.setString(3, subject);
+				stmt.setTimestamp(4, current);
+				stmt.setString(5, "");
 				stmt.setInt(6, 0);
 				stmt.setInt(7, 0);
+				stmt.setInt(8, 0);
 				int res = stmt.executeUpdate(); 
 				if (res != 0){
 					result = "Success";

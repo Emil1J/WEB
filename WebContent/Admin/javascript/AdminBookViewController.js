@@ -1,5 +1,16 @@
 angular.module('app',[])
 	.controller('adminBookViewController',function($scope,$http){
+		$scope.unread = 0;
+		$http.post("http://localhost:8080/BooksForAll/AllAdminUnreadMessages?")
+		   .then(
+		       function(response){
+		    	   $scope.messages = response.data.Messages;
+		    	   $scope.unread = response.data.Messages.length;
+		       }, 
+		       function(response){
+		         // failure callback
+		       }
+		    );
 		var viewBook = JSON.parse(localStorage.getItem('viewBook'));
 		var user = JSON.parse(localStorage.getItem('loginResponse'));
 		$scope.username = user.username;

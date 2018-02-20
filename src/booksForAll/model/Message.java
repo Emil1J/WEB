@@ -6,17 +6,19 @@ public class Message {
 	private int id;
 	private String username;
 	private String message;
+	private String subject;
 	private Timestamp receiptdate;
 	private String reply;
 	private int adminread;
 	private int adminreply;
 	private int userread;
 	
-	public Message(int id, String username, String message, Timestamp receiptdate, 
+	public Message(int id, String username, String message, String subject, Timestamp receiptdate, 
 			String reply, int adminread, int adminreply, int userread) {
 		this.id = id;
 		this.username = username;
 		this.message = message;
+		this.subject = subject;
 		this.receiptdate = receiptdate;
 		this.reply = reply;
 		this.adminread = adminread;
@@ -86,6 +88,14 @@ public class Message {
 
 	public void setUserread(int userread) {
 		this.userread = userread;
+	}
+
+	public String getSubject() {
+		return subject;
+	}
+
+	public void setSubject(String subject) {
+		this.subject = subject;
 	}
 
 }

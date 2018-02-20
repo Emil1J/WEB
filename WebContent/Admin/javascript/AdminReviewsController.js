@@ -10,6 +10,18 @@
 		       }
 		    );
 		
+		$scope.unread = 0;
+		$http.post("http://localhost:8080/BooksForAll/AllAdminUnreadMessages?")
+		   .then(
+		       function(response){
+		    	   $scope.messages = response.data.Messages;
+		    	   $scope.unread = response.data.Messages.length;
+		       }, 
+		       function(response){
+		         // failure callback
+		       }
+		    );
+		
 		$scope.GetTimeFormat = function(CommentDateTime){
 			var date = CommentDateTime.split(' ')[0];
 	 		var time = CommentDateTime.split(' ')[1].split(":")[0] + ":" + CommentDateTime.split(' ')[1].split(":")[1];
