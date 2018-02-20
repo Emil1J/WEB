@@ -219,10 +219,15 @@ textarea {
 	margin-left: 22%;
 }
 
+.Header2{
+	text-align: left;
+	font-weight: bold;
+	margin-top: 20%;
+}
+
 .Header{
 	text-align: left;
 	font-weight: bold;
-	font-size: 17px;
 }
 
 #MessageSubject{
