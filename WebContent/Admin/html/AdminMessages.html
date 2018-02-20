@@ -56,6 +56,9 @@
 			<div class="row">
 				<h2 id="UsersHeader">Messages</h2>
 			</div>
+			<div class="col-sm-12">
+				
+			</div>
 			<div class="row">
 				<div class="tab">
 				  <button class="tablinks" ng-click="openTab($event, 'NewMessages')" id="defaultOpen"><b>New Messages ({{unread}})</b></button>
@@ -63,20 +66,9 @@
 				</div>
 				
 				<div id="NewMessages" class="tabcontent">
-					<button class="accordion" ng-repeat="newMessage in UnrepliedMessages">
-					<b><div class="col-sm-4">
-						From {{newMessage.username}}
-					</div>
-					<div class="col-sm-4">
-						Subject: {{newMessage.subject}}
-					</div>
-					<div id="EmailTime" class="col-sm-4">
-						{{GetDateFormat(newMessage.receiptdate)}}
-					</div></b>
+					<button ng-click="HelpMeButton()" id="mesgBtn" class="accordion" ng-repeat="newMessage in UnrepliedMessages">
+					<b>{{newMessage.username}}</b><br/><small>{{newMessage.subject}}<br/>{{GetDateFormat(newMessage.receiptdate)}}</small>
 					</button>
-					<div class="panel">
-						<p>{{newMessage.message}}</p>
-					</div>
 				</div>
 				
 				<div id="OldMessages" class="tabcontent">
@@ -94,6 +86,36 @@
 					<div class="panel">
 						<p>{{newMessage.message}}</p>
 					</div>
+				</div>
+			</div>
+			<div id="HelpMeModal" class="modal">									
+				<!-- Modal content -->
+				<div class="modal-content">
+					<span class="close" ng-click="MyModalFunc()">&times;</span>
+					<div class="modal-title">
+						<b><p>Message thread</p></b>
+					</div>
+					<div class="modal-footer">
+						<div class="col-sm-12">
+							<div class="row">
+								
+							</div>
+							<div class="row">
+								<p class="Header">Message:</p>
+								<textarea id="TextAreaHelp"></textarea>
+							</div>
+							<div class="row">
+								<div class="col-sm-7">
+									<p id="SendSuccess">Your message has been sent!</p>
+									<p id="SendError">Please write a message!</p>				
+								</div>
+								<div class="col-sm-5">
+									<button id="ModalButton" type="button" data-dismiss="modal" ng-click="Submit()" class="btn btn-primary" id="Yes">Submit</button>
+   									<button id="ModalButton" type="button" data-dismiss="modal" ng-click="Cancel()" class="btn" id="No">Cancel</button>
+								</div>
+							</div>					
+						</div>		
+					</div>								    
 				</div>
 			</div>
 		</div>
