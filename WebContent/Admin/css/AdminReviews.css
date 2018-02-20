@@ -58,8 +58,12 @@ li a:hover {
 	height: 50px;
 	width: 50px;
     border-radius: 50%;
+    margin-top: 20%;
 }
 
+.panel-title{
+	margin-top: 1%;
+}
 #UsersHeader{
 	font-weight: bold;
 	text-align: center;
