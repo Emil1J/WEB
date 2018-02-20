@@ -63,7 +63,7 @@ li a:hover {
 	margin-left: 10px;
 }
 
-#PurchasedButton{
+.PurchasedButton{
 	text-align: center;
 	font-weight: bold;
 	background-color: #03A9F4;
@@ -73,9 +73,10 @@ li a:hover {
     text-decoration: none;
     display: inline-block;
     cursor: default;
+    display: none;
 }
 
-#PurchaseButton{
+.PurchaseButton{
 	text-align: center;
 	font-weight: bold;
 	background-color: #03A9F4;

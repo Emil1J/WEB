@@ -28,16 +28,16 @@ import booksForAll.general.AssistantFuncs;
 import booksForAll.model.Message;
 
 /**
- * Servlet implementation class AllAdminUnreadMessages
+ * Servlet implementation class AllAdminMessagesServlet
  */
-@WebServlet("/AllAdminUnreadMessages")
-public class AllAdminUnreadMessages extends HttpServlet {
+@WebServlet("/AllAdminRepliedMessagesServlet")
+public class AllAdminRepliedMessagesServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AllAdminUnreadMessages() {
+    public AllAdminRepliedMessagesServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -58,7 +58,7 @@ public class AllAdminUnreadMessages extends HttpServlet {
     		ArrayList<Message> messages = new ArrayList<Message>();
     		PreparedStatement stmt;
 			try {
-				stmt = conn.prepareStatement(AppConstants.SELECT_ADMIN_UNREAD_MESSAGES_STMT);
+				stmt = conn.prepareStatement(AppConstants.SELECT_ADMIN_REPLIED_MESSAGES_STMT);
 				ResultSet rs = stmt.executeQuery();
 				result = "Success";
 				while (rs.next()){

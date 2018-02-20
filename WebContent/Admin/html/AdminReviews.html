@@ -33,7 +33,7 @@
 				<div class="col-sm-12">
 					<div class="panel-group" id="accordion">
 						<div class="panel panel-default container-fluid" ng-repeat="comment in comments">
-							<div class="panel-heading row" style="cursor: pointer;">
+							<div class="panel-heading row" ng-click="UpdateComment(comment)" style="cursor: pointer;">
 								<div class="col-sm-1">
 									<img data-toggle="collapse" data-parent="#accordion" href="{{'#collapse' + $index}}" aria-expanded="false" aria-controls="{{'collapse' + $index}}" class="ProfilePic" ng-src="{{comment.photo}}" />
 								</div>

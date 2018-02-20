@@ -79,6 +79,7 @@
 				return;
 			}
 			var comment = JSON.parse(localStorage.getItem('ChosenComment'));
+			alert(JSON.stringify(comment));
 			var choice = "Approve";
 			if($scope.answer == 'Decline'){
 				choice = "Unapprove";
@@ -88,7 +89,6 @@
 			}else{
 	    		norev.style.display = "none";
 	    	}			
-			
 			$.ajax({
 				  url: "http://localhost:8080/BooksForAll/" + choice + "CommentServlet?",
 				  type: "POST", //send it through get method
@@ -103,6 +103,10 @@
 			  }
 			});
 			location.reload();
+		}
+		
+		$scope.UpdateComment = function(comment){
+			localStorage.setItem('ChosenComment', JSON.stringify(comment));
 		}
 	}]);
 

@@ -60,27 +60,42 @@
 			</div>
 			<div class="row">
 				<div class="tab">
-				  <button class="tablinks" ng-click="openCity($event, 'London')" id="defaultOpen">New Messages ({{unread}})</button>
-				  <button class="tablinks" ng-click="openCity($event, 'Paris')">Sent Messages</button>
-				  <button class="tablinks" ng-click="openCity($event, 'Tokyo')">Old Messages</button>
+				  <button class="tablinks" ng-click="openTab($event, 'NewMessages')" id="defaultOpen"><b>New Messages ({{unread}})</b></button>
+				  <button class="tablinks" ng-click="openTab($event, 'OldMessages')"><b>Old Messages</b></button>
 				</div>
 				
-				<div id="London" class="tabcontent">
-					<button class="accordion" ng-repeat="message in messages">From {{message.username}} at
-					 {{GetDateFormat(message.receiptdate)}}</button>
+				<div id="NewMessages" class="tabcontent">
+					<button class="accordion" ng-repeat="newMessage in UnrepliedMessages">
+					<b><div class="col-sm-4">
+						From {{newMessage.username}}
+					</div>
+					<div class="col-sm-4">
+						Subject: {{newMessage.subject}}
+					</div>
+					<div id="EmailTime" class="col-sm-4">
+						{{GetDateFormat(newMessage.receiptdate)}}
+					</div></b>
+					</button>
 					<div class="panel">
-						<p>{{message.message}}</p>
+						<p>{{newMessage.message}}</p>
 					</div>
 				</div>
 				
-				<div id="Paris" class="tabcontent">
-				  <h3>Paris</h3>
-				  <p>Paris is the capital of France.</p> 
-				</div>
-				
-				<div id="Tokyo" class="tabcontent">
-				  <h3>Tokyo</h3>
-				  <p>Tokyo is the capital of Japan.</p>
+				<div id="OldMessages" class="tabcontent">
+					<button class="accordion" ng-repeat="newMessage in RepliedMessages">
+					<b><div class="col-sm-4">
+						From {{newMessage.username}}
+					</div>
+					<div class="col-sm-4">
+						Subject: {{newMessage.subject}}
+					</div>
+					<div id="EmailTime" class="col-sm-4">
+						{{GetDateFormat(newMessage.receiptdate)}}
+					</div></b>
+					</button>
+					<div class="panel">
+						<p>{{newMessage.message}}</p>
+					</div>
 				</div>
 			</div>
 		</div>

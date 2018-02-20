@@ -1,10 +1,10 @@
 angular.module('app',[])
 	.controller('adminMessagesController',function($scope,$http){
 		$scope.unread = 0;
-		$http.post("http://localhost:8080/BooksForAll/AllAdminUnreadMessages?")
+		$http.post("http://localhost:8080/BooksForAll/AllAdminUnrepliedMessagesServlet?")
 		   .then(
 		       function(response){
-		    	   $scope.messages = response.data.Messages;
+		    	   $scope.UnrepliedMessages = response.data.Messages;
 		    	   $scope.unread = response.data.Messages.length;
 		       }, 
 		       function(response){
@@ -12,7 +12,18 @@ angular.module('app',[])
 		       }
 		    );
 		
-		$scope.openCity = function(evt, cityName) {
+		$http.post("http://localhost:8080/BooksForAll/AllAdminRepliedMessagesServlet?")
+		   .then(
+		       function(response){
+		    	   $scope.Repliedmessage = response.data.Messages;
+		    	   $scope.unread = response.data.Messages.length;
+		       }, 
+		       function(response){
+		         // failure callback
+		       }
+		    );
+		
+		$scope.openTab = function(evt, cityName) {
 		    var i, tabcontent, tablinks;
 		    tabcontent = document.getElementsByClassName("tabcontent");
 		    for (i = 0; i < tabcontent.length; i++) {

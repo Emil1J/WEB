@@ -58,7 +58,7 @@
 							<div class="col-sm-4">
 							</div>
 							<p class="BookData">
-								<a ng-click="PurchaseBook(book)"><button id="{{CheckIfBookPurchasedIDs(book)}}Button">{{CheckIfBookPurchased(book)}}</button></a>
+								<button id="{{book.Name}}PButton" class="PurchaseButton" ng-click="PurchaseBook(book)">{{PurchaseCheck(book)}}</button>
 							</p>
 						</div>
 					</div>
