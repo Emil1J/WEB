@@ -1,5 +1,6 @@
 package booksForAll.servlets;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -25,6 +26,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
+import booksForAll.filters.PostData;
 import booksForAll.general.AppConstants;
 import booksForAll.general.AssistantFuncs;
 import booksForAll.model.Comment;
@@ -53,9 +55,26 @@ import booksForAll.model.Comment;
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		String bookname = request.getParameter("Bookname");
-		int commentId = Integer.parseInt(request.getParameter("CommentId"));
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		StringBuffer strBuf = new StringBuffer();
+		BufferedReader reader = request.getReader();
+		String line = null;        
+		while ((line = reader.readLine()) != null)
+		{
+			strBuf.append(line);
+		}
+		Gson gson = new GsonBuilder()
+				.setDateFormat("yyyy-MM-dd HH:mm:ss.S")
+				.create();
+		PostData postData = gson.fromJson(strBuf.toString(), PostData.class);
+
+		String bookname = postData.Bookname;
+		int commentId = Integer.parseInt(postData.ID);
 		String result = "";
 		List<Comment> comments = new ArrayList<Comment>();
 		try {	
@@ -76,9 +95,6 @@ import booksForAll.model.Comment;
 				if(comments.isEmpty()) {
 					result = "Failed";
 				}
-	    		Gson gson = new GsonBuilder()
-	    				.setDateFormat("yyyy-MM-dd HH:mm:ss.S")
-	    				.create();
 	    		List<Comment> nextFiveComments = new ArrayList<Comment>();
 	    		
 	    		int i = 0;
@@ -113,14 +129,6 @@ import booksForAll.model.Comment;
     		getServletContext().log("Error while closing connection", e);
     		response.sendError(500);//internal server error
     	}
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
 	}
 
 }

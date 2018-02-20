@@ -1,8 +1,9 @@
 angular.module('app',[])
-	.controller('adminEbooksController', ['$scope','$http', function($scope,$http){
-	
+	.controller('adminEbooksController', function($scope,$http){
+		var admin = JSON.parse(localStorage.getItem('loginResponse'));
+
 		$scope.unread = 0;
-		$http.post("http://localhost:8080/BooksForAll/AllAdminUnreadMessages?")
+		$http.post("http://localhost:8080/BooksForAll/AllAdminUnreadMessages")
 		   .then(
 		       function(response){
 		    	   $scope.messages = response.data.Messages;
@@ -22,14 +23,25 @@ angular.module('app',[])
 			window.location="AdminBookView.html";
 		}
 		
+		$scope.SignOutFunc = function(){
+			$http.post("http://localhost:8080/BooksForAll/SignOutServlet")
+			   .then(
+			       function(response){
+			       }, 
+			       function(response){
+			       }
+			    );
+		}
+		
 		$scope.viewUser = function(user){
+			var dataQuery = {
+				    Username: user
+			}
 			$.ajax({
-				  url: "http://localhost:8080/BooksForAll/UserServlet?",
+				  url: "http://localhost:8080/BooksForAll/UserServlet",
 				  type: "POST", //send it through get method
 		          dataType: 'json',
-				  data: {
-				    Username: user
-				  },
+				  data: JSON.stringify(dataQuery),
 				  success: function(response) {
 					  if(response.Result == "Success"){
 						  localStorage.setItem("ChosenUser", JSON.stringify(response.User));
@@ -42,8 +54,7 @@ angular.module('app',[])
 				  }
 				});
 		}
-		
-		$http.post("http://localhost:8080/BooksForAll/AllBooksServlet?")
+		$http.post("http://localhost:8080/BooksForAll/AllBooksServlet")
 		   .then(
 		       function(response){
 		    	   $scope.books = response.data.BookList;
@@ -52,4 +63,4 @@ angular.module('app',[])
 		         // failure callback
 		       }
 		    );
-	}]);
+	});

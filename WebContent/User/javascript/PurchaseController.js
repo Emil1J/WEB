@@ -25,6 +25,16 @@ angular.module('app',[])
 		    }
 		});
 		
+		$scope.SignOutFunc = function(){
+			$http.post("http://localhost:8080/BooksForAll/SignOutServlet")
+			   .then(
+			       function(response){
+			       }, 
+			       function(response){
+			       }
+			    );
+		}
+		
 		$('#cardnum1').keydown(function(e) {
 			if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
 				      // Allow: Ctrl+A,Ctrl+C,Ctrl+V, Command+A
@@ -160,14 +170,15 @@ angular.module('app',[])
 						return;
 					}
 			}
-			$.ajax({
-				  url: "http://localhost:8080/BooksForAll/PurchaseBookServlet?",
-				  type: "POST", //send it through get method
-		          dataType: 'json',
-				  data: {
+			var dataQuery = {
 				    Username: user.username,
 				    Bookname: $scope.book.Name
-				  },
+				  }
+			$.ajax({
+				  url: "http://localhost:8080/BooksForAll/PurchaseBookServlet",
+				  type: "POST", //send it through get method
+		          dataType: 'json',
+				  data: JSON.stringify(dataQuery),
 				  success: function(response) {
 					  if(response.Result == "Success"){
 						  
@@ -227,15 +238,16 @@ angular.module('app',[])
 				$("#HelpMeError").show().delay(3000).fadeOut();
 				return;
 			}
-			$.ajax({
-				  url: "http://localhost:8080/BooksForAll/NewUserMessageServlet?",
-				  type: "POST", //send it through get method
-		          dataType: 'json',
-				  data: {
+			var queryData = {
 					Username: user.username, 
 				    Message: message,
 				    Subject: subject
-				  },
+			}
+			$.ajax({
+				  url: "http://localhost:8080/BooksForAll/NewUserMessageServlet",
+				  type: "POST", //send it through get method
+		          dataType: 'json',
+				  data: JSON.stringify(queryData),
 				  success: function(response) {
 						$("#HelpMeSuccess").show().delay(3000).fadeOut();
 						document.getElementById("TextAreaHelp").value = "";

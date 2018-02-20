@@ -1,16 +1,18 @@
 angular.module('app',[])
 	.controller('loginController', ['$scope','$http', function($scope,$http){
 		document.getElementById('invalid').style.display= "none";
+		
 		$scope.login = function () {
+				var queryData = {
+						Username : $scope.username,
+						Password : $scope.password
+				}
 	           // use $.param jQuery function to serialize data from JSON 
 				$.ajax({
-				  url: "http://localhost:8080/BooksForAll/LoginServlet?",
-				  type: "POST", //send it through get method
+				  url: "http://localhost:8080/BooksForAll/LoginServlet",
+				  type: "POST", //send it through post method
 		          dataType: 'json',
-				  data: {
-				    Username: $scope.username, 
-				    Password: $scope.password
-				  },
+				  data: JSON.stringify(queryData),
 				  success: function(response) {
 					  if(response.Result == "Success"){
 						  document.getElementById('invalid').style.display= "none";

@@ -1,7 +1,7 @@
 angular.module('app',[])
 	.controller('adminMessagesController',function($scope,$http){
 		$scope.unread = 0;
-		$http.post("http://localhost:8080/BooksForAll/AllAdminUnrepliedMessagesServlet?")
+		$http.post("http://localhost:8080/BooksForAll/AllAdminUnrepliedMessagesServlet")
 		   .then(
 		       function(response){
 		    	   $scope.UnrepliedMessages = response.data.Messages;
@@ -12,7 +12,17 @@ angular.module('app',[])
 		       }
 		    );
 		
-		$http.post("http://localhost:8080/BooksForAll/AllAdminRepliedMessagesServlet?")
+		$scope.SignOutFunc = function(){
+			$http.post("http://localhost:8080/BooksForAll/SignOutServlet")
+			   .then(
+			       function(response){
+			       }, 
+			       function(response){
+			       }
+			    );
+		}
+		
+		$http.post("http://localhost:8080/BooksForAll/AllAdminRepliedMessagesServlet")
 		   .then(
 		       function(response){
 		    	   $scope.Repliedmessage = response.data.Messages;

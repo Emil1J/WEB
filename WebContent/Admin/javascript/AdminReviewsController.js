@@ -3,7 +3,7 @@
 		
 		var norev = document.getElementById('noReviews');
 
-		$http.post("http://localhost:8080/BooksForAll/AllUnapprovedCommentsServlet?")
+		$http.post("http://localhost:8080/BooksForAll/AllUnapprovedCommentsServlet")
 		   .then(
 		       function(response){
 		    	   $scope.comments = response.data.CommentsList;
@@ -17,6 +17,16 @@
 		         // failure callback
 		       }
 		    );
+		
+		$scope.SignOutFunc = function(){
+			$http.post("http://localhost:8080/BooksForAll/SignOutServlet")
+			   .then(
+			       function(response){
+			       }, 
+			       function(response){
+			       }
+			    );
+		}
 		
 		$scope.unread = 0;
 		$http.post("http://localhost:8080/BooksForAll/AllAdminUnreadMessages?")
@@ -89,13 +99,14 @@
 			}else{
 	    		norev.style.display = "none";
 	    	}			
+			var dataQuery = {
+					ID: comment.id
+			}
 			$.ajax({
-				  url: "http://localhost:8080/BooksForAll/" + choice + "CommentServlet?",
+				  url: "http://localhost:8080/BooksForAll/" + choice + "CommentServlet",
 				  type: "POST", //send it through get method
 				  dataType: 'json',
-			  data: {
-				CommentID: comment.id
-			  },
+			  data: JSON.stringify(dataQuery),
 			  success: function(response) {
 			},
 			error: function(xhr) {

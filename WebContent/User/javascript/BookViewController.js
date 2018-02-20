@@ -32,11 +32,25 @@ angular.module('app',[])
 		
 		$scope.SubmitReview = function(){
 			$("#infoMsg").show().delay(3000).fadeOut();
-	    	$http.post("http://localhost:8080/BooksForAll/CommentBookServlet?Username=" + $scope.username +
-	    			"&Bookname=" + $scope.bookname + "&Description=" + input.value)
+			var data = {
+					Username : $scope.username,
+					Bookname : $scope.bookname,
+					Description : input.value
+			}
+	    	$http.post("http://localhost:8080/BooksForAll/CommentBookServlet", data)
 			   .then(
 			       function(response){
 				    	input.value = '';
+			       }, 
+			       function(response){
+			       }
+			    );
+		}
+		
+		$scope.SignOutFunc = function(){
+			$http.post("http://localhost:8080/BooksForAll/SignOutServlet")
+			   .then(
+			       function(response){
 			       }, 
 			       function(response){
 			       }
@@ -82,7 +96,12 @@ angular.module('app',[])
 		$(window).scroll(function() {
 			   if($(window).scrollTop() + $(window).height() == $(document).height() || $(window).scrollTop() + $(window).height() > $(document).height() - 0.8) {
 				   if(counter==0) counter++;
-				   $http.post("http://localhost:8080/BooksForAll/TenCommentsServlet?Bookname=" + $scope.bookname + "&CommentId=" + $scope.bookcomments[counter-1].id)
+				   if($scope.bookcomments.length == 0){return;}
+				   var queryData = {
+						   Bookname : $scope.bookname,
+						   ID : $scope.bookcomments[counter-1].id
+				   }
+				   $http.post("http://localhost:8080/BooksForAll/TenCommentsServlet", queryData)
 				   .then(
 				       function(response){
 				    	   var length = response.data.Comments.length;
@@ -189,15 +208,16 @@ angular.module('app',[])
 					$("#HelpMeError").show().delay(3000).fadeOut();
 					return;
 				}
-				$.ajax({
-					  url: "http://localhost:8080/BooksForAll/NewUserMessageServlet?",
-					  type: "POST", //send it through get method
-			          dataType: 'json',
-					  data: {
+				var queryData = {
 						Username: user.username, 
 					    Message: message,
 					    Subject: subject
-					  },
+				}
+				$.ajax({
+					  url: "http://localhost:8080/BooksForAll/NewUserMessageServlet",
+					  type: "POST", //send it through get method
+			          dataType: 'json',
+					  data: JSON.stringify(queryData),
 					  success: function(response) {
 							$("#HelpMeSuccess").show().delay(3000).fadeOut();
 							document.getElementById("TextAreaHelp").value = "";

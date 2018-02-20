@@ -13,6 +13,16 @@ angular.module('app',[])
 		         // failure callback
 		       }
 		    );
+		
+		$scope.SignOutFunc = function(){
+			$http.post("http://localhost:8080/BooksForAll/SignOutServlet")
+			   .then(
+			       function(response){
+			       }, 
+			       function(response){
+			       }
+			    );
+		}
 		$scope.UserClick = function(user) {
 			localStorage.setItem('ChosenUser', JSON.stringify(user));
 			var modal = document.getElementById('myModal');
@@ -40,13 +50,14 @@ angular.module('app',[])
 		        return;
 			}
 			var user = JSON.parse(localStorage.getItem('ChosenUser'));
+			var dataQuery = {
+				    Username: user.username
+			}
 			$.ajax({
-				  url: "http://localhost:8080/BooksForAll/RemoveUserServlet?",
+				  url: "http://localhost:8080/BooksForAll/RemoveUserServlet",
 				  type: "POST", //send it through get method
 		          dataType: 'json',
-				  data: {
-				    Username: user.username, 
-				  },
+				  data: JSON.stringify(dataQuery),
 				  success: function(response) {
 					  
 				},

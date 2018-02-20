@@ -1,6 +1,6 @@
 angular.module('app',[])
 	.controller('adminUsersController',['$scope','$http', function($scope,$http){
-		$http.post("http://localhost:8080/BooksForAll/AllUsersServlet?")
+		$http.post("http://localhost:8080/BooksForAll/AllUsersServlet")
 		   .then(
 		       function(response){
 		    	   $scope.users = response.data.UsersList;
@@ -9,6 +9,16 @@ angular.module('app',[])
 		         // failure callback
 		       }
 		    );
+		
+		$scope.SignOutFunc = function(){
+			$http.post("http://localhost:8080/BooksForAll/SignOutServlet")
+			   .then(
+			       function(response){
+			       }, 
+			       function(response){
+			       }
+			    );
+		}
 		
 		$scope.unread = 0;
 		$http.post("http://localhost:8080/BooksForAll/AllAdminUnreadMessages?")

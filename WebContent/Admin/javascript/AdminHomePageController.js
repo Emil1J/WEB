@@ -12,7 +12,17 @@ angular.module('app',[])
 		       }
 		    );
 		
-		$http.post("http://localhost:8080/BooksForAll/TopFiveBooksServlet?")
+		$scope.SignOutFunc = function(){
+			$http.post("http://localhost:8080/BooksForAll/SignOutServlet")
+			   .then(
+			       function(response){
+			       }, 
+			       function(response){
+			       }
+			    );
+		}
+		
+		$http.post("http://localhost:8080/BooksForAll/TopFiveBooksServlet")
 			.then(function (response){
 				$scope.books = response.data.BookList;
 			},function(xhr){

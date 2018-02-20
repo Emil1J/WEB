@@ -14,8 +14,17 @@ angular.module('app',[])
 		
 		var noTrans = document.getElementById('noTrans');
 
+		$scope.SignOutFunc = function(){
+			$http.post("http://localhost:8080/BooksForAll/SignOutServlet")
+			   .then(
+			       function(response){
+			       }, 
+			       function(response){
+			       }
+			    );
+		}
 		
-		$http.post("http://localhost:8080/BooksForAll/AllTransactionsServlet?")
+		$http.post("http://localhost:8080/BooksForAll/AllTransactionsServlet")
 		   .then(
 		       function(response){
 		    	   $scope.transactions = response.data.UserTransactions;
