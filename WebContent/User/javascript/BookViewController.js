@@ -1,5 +1,12 @@
 angular.module('app',[])
 	.controller('bookViewController',function($scope,$http){
+		$http.post("http://localhost:8080/BooksForAll/CheckSessionServlet")
+		.then(function (response){
+			if(response.data.Result == "Failure"){
+				window.location = "../../Login.html";
+			}
+		},function(xhr){
+	});
 		var viewBook = JSON.parse(localStorage.getItem('viewBook'));
 		var user = JSON.parse(localStorage.getItem('loginResponse'));
 		$scope.book = viewBook;

@@ -62,7 +62,9 @@ public class AdminAuthenticationFilter implements Filter {
 	 */
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		HttpSession session = ((HttpServletRequest)request).getSession(false);
-
+		if(session == null) {
+			return;
+		}
 		String username = (String)session.getAttribute("Username");
 		String password = (String)session.getAttribute("Password");
 		

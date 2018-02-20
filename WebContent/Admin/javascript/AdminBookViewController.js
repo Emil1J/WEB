@@ -1,5 +1,12 @@
 angular.module('app',[])
 	.controller('adminBookViewController',function($scope,$http){
+		$http.post("http://localhost:8080/BooksForAll/CheckSessionServlet")
+		.then(function (response){
+			if(response.data.Result == "Failure"){
+				window.location = "../../Login.html";
+			}
+			},function(xhr){
+		});
 		$scope.unread = 0;
 		$http.post("http://localhost:8080/BooksForAll/AllAdminUnreadMessages?")
 		   .then(

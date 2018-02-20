@@ -1,5 +1,12 @@
 angular.module('app',[])
 	.controller('readBookController', ['$scope','$http', function($scope,$http){
+		$http.post("http://localhost:8080/BooksForAll/CheckSessionServlet")
+		.then(function (response){
+			if(response.data.Result == "Failure"){
+				window.location = "../../Login.html";
+			}
+		},function(xhr){
+	});
 	var user = JSON.parse(localStorage.getItem('loginResponse'));
 	var bookName = window.location.pathname.split("/")[3];
 	bookName = bookName.split(".")[0].substring(-3);

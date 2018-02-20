@@ -1,5 +1,12 @@
 angular.module('app',[])
 	.controller('adminEbooksController', function($scope,$http){
+		$http.post("http://localhost:8080/BooksForAll/CheckSessionServlet")
+		.then(function (response){
+			if(response.data.Result == "Failure"){
+				window.location = "../../Login.html";
+			}
+			},function(xhr){
+		});
 		var admin = JSON.parse(localStorage.getItem('loginResponse'));
 
 		$scope.unread = 0;
