@@ -42,11 +42,9 @@ li a:hover {
 }
 
 #noReviews {
-    max-width: 400px;
-    margin: auto;
-    left: 1%;
-    right: 1%;
-    position: absolute;
+    text-align: center;
+    margin-top: 10%;
+    color: rgba(0, 0, 0, 0.5);
 }
 
 #approve, #decline{

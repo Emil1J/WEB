@@ -12,7 +12,13 @@ angular.module('app',[])
 		   .then(
 		       function(response){
 		    	   $scope.UnrepliedMessages = response.data.Messages;
-		    	   $scope.unread = response.data.Messages.length;
+		    	   var unread = 0;
+		    	   for(var i = 0; i < $scope.UnrepliedMessages ; i++){
+		    		   if($scope.UnrepliedMessages[i].adminread == 0){
+		    			   unread++;
+		    		   }
+		    	   }
+		    	   $scope.unread = unread;
 		       }, 
 		       function(response){
 		         // failure callback

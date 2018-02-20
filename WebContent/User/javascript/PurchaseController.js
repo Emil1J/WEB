@@ -240,7 +240,7 @@ angular.module('app',[])
 		
 		$scope.Submit = function(){
 			var message = document.getElementById("TextAreaHelp").value;
-			var subject = document.getElementById("MessageSubject").value;
+			var subject = $('#MessageSubject option:selected').text();
 			if(message == ""){
 				$("#HelpMeError").show().delay(3000).fadeOut();
 				return;

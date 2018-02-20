@@ -13,7 +13,7 @@
 		   .then(
 		       function(response){
 		    	   $scope.comments = response.data.CommentsList;
-		    	   if($scope.comments.length == 0){
+		    	   if($scope.comments == null || $scope.comments.length == 0){
 		    		   norev.style.display = "block";
 		    	   }else{
 		    		   norev.style.display = "none";
@@ -35,29 +35,21 @@
 		}
 		
 		$scope.unread = 0;
-		$http.post("http://localhost:8080/BooksForAll/AllAdminUnreadMessages?")
+		$http.post("http://localhost:8080/BooksForAll/AllAdminUnrepliedMessagesServlet?")
 		   .then(
 		       function(response){
-		    	   $scope.messages = response.data.Messages;
-		    	   $scope.unread = response.data.Messages.length;
+		    	   var unread = 0;
+		    	   for(var i = 0; i < $scope.UnrepliedMessages ; i++){
+		    		   if($scope.UnrepliedMessages[i].adminread == 0){
+		    			   unread++;
+		    		   }
+		    	   }
+		    	   $scope.unread = unread;
 		       }, 
 		       function(response){
 		         // failure callback
 		       }
 		    );
-
-		$(function() {
-		    $(window).on('resize', function resize()  {
-		        $(window).off('resize', resize);
-		        setTimeout(function () {
-		            var content = $('#noReviews');
-		            var top = (window.innerHeight - content.height()) / 2;
-		            content.css('top', Math.max(0, top) + 'px');
-		            $(window).on('resize', resize);
-		        }, 50);
-		    }).resize();
-		});
-
 		
 		$scope.GetTimeFormat = function(CommentDateTime){
 			var date = CommentDateTime.split(' ')[0];
@@ -95,7 +87,6 @@
 				return;
 			}
 			var comment = JSON.parse(localStorage.getItem('ChosenComment'));
-			alert(JSON.stringify(comment));
 			var choice = "Approve";
 			if($scope.answer == 'Decline'){
 				choice = "Unapprove";

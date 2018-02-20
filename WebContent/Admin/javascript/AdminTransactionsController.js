@@ -8,11 +8,16 @@ angular.module('app',[])
 			},function(xhr){
 		});
 		$scope.unread = 0;
-		$http.post("http://localhost:8080/BooksForAll/AllAdminUnreadMessages?")
+		$http.post("http://localhost:8080/BooksForAll/AllAdminUnrepliedMessagesServlet?")
 		   .then(
 		       function(response){
-		    	   $scope.messages = response.data.Messages;
-		    	   $scope.unread = response.data.Messages.length;
+		    	   var unread = 0;
+		    	   for(var i = 0; i < $scope.UnrepliedMessages ; i++){
+		    		   if($scope.UnrepliedMessages[i].adminread == 0){
+		    			   unread++;
+		    		   }
+		    	   }
+		    	   $scope.unread = unread;
 		       }, 
 		       function(response){
 		         // failure callback
@@ -30,15 +35,20 @@ angular.module('app',[])
 			       }
 			    );
 		}
+		var table = document.getElementById('table-scroll');
+
 		
 		$http.post("http://localhost:8080/BooksForAll/AllTransactionsServlet")
 		   .then(
 		       function(response){
 		    	   $scope.transactions = response.data.UserTransactions;
 		    	   if($scope.transactions.length == 0){
+		    		   table.style.display = "none";
 		    		   noTrans.style.display = "block";
 		    	   }else{
 		    		   noTrans.style.display = "none";
+		    		   table.style.display = "block";
+
 		    	   }
 		       }, 
 		       function(response){
