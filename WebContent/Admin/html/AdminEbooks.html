@@ -27,7 +27,13 @@
 	</ul>
 	<div class="container">
 		<div class="container-fluid">
-			<div class="col-sm-4" ng-repeat="book in books">
+			<div class="row">
+				<h2 id="Header">
+					Ebooks
+				</h2>
+			</div>
+			<div class="grid-container">
+			<div ng-repeat="book in books">
 				<div class="row">
 					<div class="col-sm-6">
 						<a href="" ng-click="viewBook(book)"> 
@@ -60,6 +66,7 @@
 						</div>
 					</div>
 				</div>
+			</div>
 			</div>
 		</div>
 	</div>
