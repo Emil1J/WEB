@@ -37,45 +37,42 @@
 									<p class="ProfileData Center">{{user.nickname}}</p>
 									<p class="ProfileData Center">{{user.email}}</p>
 									<u><b><p class="YourBooks">Your books:</p></b></u>
-									<div class="BackgroundBox">
 										<div class="row">
-	  										<div class="col-sm-4" ng-repeat="book in books">
-												<div class="row">
-													<div class="col-sm-4">
-														<a>
+										<div class="grid-container">
+	  										<div ng-repeat="book in books">
+													<div class="col-sm-6">
+														<a id="img-click" ng-click="MyButtonFunc(book)">
 															<img class="BookCovers" ng-src="{{book.Photo}}"/>
 														</a>
-													</div>
-													<div class="col-sm-8">
-														<p class="BookData"><u><b>Title:</b></u> {{book.Name}}</p>
-														<p class="BookData"><u><b>Author:</b></u> {{book.Author}}</p>
-														
-														<p class="BookData"><b>
-															<button id="myBtn" ng-click="MyButtonFunc(book)">Read Book</button>
-														</b></p>
-													</div>
-												</div>
-												<div class="row">
-													<div class="col-sm-2">
+														<div class="col-sm-3">
 														<p class="BookData Drop">
 															<a href="#">
 																<img id="{{book.Name}}" class="LikeButton" ng-click="LikeBook(book)" ng-src="{{LikeLogo(book.Name)}}"/>
 															</a>
 														</p>
-													
-													</div>
-													<div class="col-sm-10">
+														</div>
+														<div class="col-sm-9">
 														<div id="tooltip">
 															<b> 
 																<p class="BookData2">{{book.LikesNum}} Likes</p>
  						 										<span class="tooltiptext">{{GetLikes(book.Likes)}}</span>
 															</b>
 														</div>
+														</div>
+														
 													</div>
-												</div>
+													<div id="BookDataDiv" class="col-sm-6">
+														<p class="BookData"><u><b>Title:</b></u> {{book.Name}}</p>
+														<p class="BookData"><u><b>Author:</b></u> {{book.Author}}</p>
+														
+														<p class="BookData"><b>
+															<button id="myBtn" ng-click="MyButtonFunc(book)">Read Book</button>
+														</b></p>
+														
+													</div>
+						  					</div>
 						  					</div>
 						  				</div>
-									</div>
 								</div>	
 							</div>
 	  					</div>
