@@ -10,7 +10,7 @@ angular.module('app',[])
 		$scope.user = JSON.parse(localStorage.getItem("ChosenUser"));
 		
 		$scope.unread = 0;
-		$http.post("http://localhost:8080/BooksForAll/AllAdminUnrepliedMessagesServlet?")
+		$http.post("http://localhost:8080/BooksForAll/AllAdminUnrepliedMessagesServlet")
 		   .then(
 		       function(response){
 		    	   var unread = 0;
