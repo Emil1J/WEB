@@ -32,13 +32,18 @@
 				<h2 id="UsersHeader">Unapproved Reviews</h2>
 				<div class="col-sm-12">
 					<div class="panel-group" id="accordion">
-						<div class="panel panel-default" ng-repeat="comment in comments">
-							<div class="panel-heading" style="cursor: pointer;">
-        						<h4 class="panel-title">
-         							<p data-toggle="collapse" data-parent="#accordion" href="{{'#collapse' + $index}}" aria-expanded="false" aria-controls="{{'collapse' + $index}}">
-         							<b>{{comment.username}}</b><br/><small>{{comment.bookName}}<br/>{{GetTimeFormat(comment.time)}}</small>
-         							</p>
-        						</h4>
+						<div class="panel panel-default container-fluid" ng-repeat="comment in comments">
+							<div class="panel-heading row" style="cursor: pointer;">
+								<div class="col-sm-1">
+									<img data-toggle="collapse" data-parent="#accordion" href="{{'#collapse' + $index}}" aria-expanded="false" aria-controls="{{'collapse' + $index}}" class="ProfilePic" ng-src="{{comment.photo}}" />
+								</div>
+								<div class="col-sm-11">
+									<h4 class="panel-title">
+         								<p data-toggle="collapse" data-parent="#accordion" href="{{'#collapse' + $index}}" aria-expanded="false" aria-controls="{{'collapse' + $index}}">
+         								<b>{{comment.username}}</b><br/><small>{{comment.bookName}}<br/>{{GetTimeFormat(comment.time)}}</small>
+         								</p>
+        							</h4>
+								</div>
       						</div>
       						<div id="{{'collapse' + $index}}" class="panel-collapse collapse">
         						<div class="panel-body">
