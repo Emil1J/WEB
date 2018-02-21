@@ -1,5 +1,6 @@
 package booksForAll.servlets;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,6 +13,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebInitParam;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -24,21 +26,27 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
+import booksForAll.filters.PostData;
 import booksForAll.general.AppConstants;
 import booksForAll.general.AssistantFuncs;
 import booksForAll.model.Message;
 
 /**
- * Servlet implementation class AllAdminMessagesServlet
+ * Servlet implementation class AllUserMessagesServlet
  */
-@WebServlet("/AllAdminMessagesServlet")
-public class AllAdminMessagesServlet extends HttpServlet {
+@WebServlet(
+		urlPatterns = "/AllUserMessagesServlet",
+		initParams = {
+				@WebInitParam(name = "Username", value = "")
+		})
+
+	public class AllUserMessagesServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AllAdminMessagesServlet() {
+    public AllUserMessagesServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -47,7 +55,6 @@ public class AllAdminMessagesServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
 	}
 
 	/**
@@ -55,6 +62,18 @@ public class AllAdminMessagesServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		StringBuffer strBuf = new StringBuffer();
+		BufferedReader reader = request.getReader();
+		String line = null;  
+		while ((line = reader.readLine()) != null)
+		{
+			strBuf.append(line);
+		}
+		Gson gson = new GsonBuilder()
+			.setDateFormat("yyyy-MM-dd HH:mm:ss.S")
+			.create();
+		PostData postData = gson.fromJson(strBuf.toString(), PostData.class);
+		String username = postData.Username;
 		String result = "";
 		try {
     		
@@ -66,7 +85,8 @@ public class AllAdminMessagesServlet extends HttpServlet {
     		ArrayList<Message> messages = new ArrayList<Message>();
     		PreparedStatement stmt;
 			try {
-				stmt = conn.prepareStatement(AppConstants.SELECT_ALL_MESSAGES_STMT);
+				stmt = conn.prepareStatement(AppConstants.SELECT_MESSAGES_BY_USER_STMT);
+				stmt.setString(1, username);
 				ResultSet rs = stmt.executeQuery();
 				result = "Success";
 				while (rs.next()){
@@ -83,12 +103,9 @@ public class AllAdminMessagesServlet extends HttpServlet {
     		if(messages.isEmpty()) {
     			result = "Empty";
     		}
-    		Gson gson = new GsonBuilder()
-    				.setDateFormat("yyyy-MM-dd HH:mm:ss.S")
-    				.create();
-    		JsonArray jsonMessages = new JsonArray();
     		Collections.reverse(messages);
 
+    		JsonArray jsonMessages = new JsonArray();
     		for (Message message : messages) {
     			jsonMessages.add(gson.toJsonTree(message));
     		}
@@ -105,5 +122,4 @@ public class AllAdminMessagesServlet extends HttpServlet {
     		response.sendError(500);//internal server error
     	}
 	}
-
 }

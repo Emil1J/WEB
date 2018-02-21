@@ -12,12 +12,16 @@ angular.module('app',[])
 		   .then(
 		       function(response){
 		    	   var unread = 0;
+		    	   $scope.UnrepliedMessages = response.data.Messages;
 		    	   for(var i = 0; i < $scope.UnrepliedMessages.length ; i++){
 		    		   if($scope.UnrepliedMessages[i].adminread == 0){
 		    			   unread++;
 		    		   }
 		    	   }
 		    	   $scope.unread = unread;
+		    	   if($scope.unread != 0){
+		    		   document.getElementById("TabMessages").innerHTML = "Messages (" + $scope.unread + ")";
+		    	   }
 		       }, 
 		       function(response){
 		         // failure callback

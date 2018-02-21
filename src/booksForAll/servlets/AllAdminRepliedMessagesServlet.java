@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -85,6 +86,8 @@ public class AllAdminRepliedMessagesServlet extends HttpServlet {
     		Gson gson = new GsonBuilder()
     				.setDateFormat("yyyy-MM-dd HH:mm:ss.S")
     				.create();
+    		Collections.reverse(messages);
+
     		JsonArray jsonMessages = new JsonArray();
     		for (Message message : messages) {
     			jsonMessages.add(gson.toJsonTree(message));

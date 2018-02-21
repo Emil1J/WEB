@@ -194,6 +194,8 @@ public interface AppConstants {
 	
 	public final String DELETE_MESSAGES_BY_USER_STMT = "DELETE FROM MESSAGES WHERE USERNAME=?";
 		
+	public final String DELETE_MESSAGES_BY_ID_STMT = "DELETE FROM MESSAGES WHERE ID=?";
+
 	public final String SELECT_ALL_MESSAGES_STMT = "SELECT * FROM MESSAGES";
 		
 	public final String SELECT_MESSAGES_BY_USER_STMT = "SELECT * FROM MESSAGES "

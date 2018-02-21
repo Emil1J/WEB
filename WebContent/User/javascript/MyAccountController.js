@@ -24,7 +24,42 @@ angular.module('app',[])
   	   				// failure callback
   	   			}
 	    );
-		
+		$scope.GetTimeFormat = function(CommentDateTime){
+			var date = CommentDateTime.split(' ')[0];
+	 		var time = CommentDateTime.split(' ')[1].split(":")[0] + ":" + CommentDateTime.split(' ')[1].split(":")[1];
+	 		return date + ' ' + time;
+	 	}
+
+		$http.post("http://localhost:8080/BooksForAll/AllUserMessagesServlet", dataQuery)
+	   		.then(
+	   			function(response){
+	   				var newmsgs = 0;
+	   				$scope.AllMessages = response.data.Messages;
+	   				$scope.RepliedMsgs = [];
+	   				$scope.SentMsgs = [];
+	   				for(var i = 0; i < $scope.AllMessages.length ; i++){
+	   					var current = $scope.AllMessages[i];
+	   					if(current.adminreply == 1){
+	   						if(current.userread == 0){
+		   						newmsgs++;
+		   					}
+	   						$scope.RepliedMsgs.push(current);
+	   					}
+	   					else{
+	   						$scope.SentMsgs.push(current);
+	   					}
+	   				}
+	   				$scope.NewMsgs = newmsgs;
+	   				if($scope.NewMsgs != 0){
+	   					document.getElementById("UserMessagesButton").innerHTML = "Messages (" + $scope.NewMsgs + ")";
+	   					document.getElementById("NewMessages").innerHTML = "Messages (" + $scope.NewMsgs + ")";
+	   				}
+	   			}, 
+	   			function(response){
+	   				// failure callback
+	   			}
+	   	);
+
 		$scope.SignOutFunc = function(){
 			$http.post("http://localhost:8080/BooksForAll/SignOutServlet")
 			   .then(
@@ -122,18 +157,42 @@ angular.module('app',[])
 			var modal = document.getElementById('myModal');
 		    modal.style.display = "block";
 		}
+		
+		$scope.MessagesModal = function() {
+			var modal = document.getElementById('MessagesModal');
+		    modal.style.display = "block";
+		}
 
 		// When the user clicks on <span> (x), close the modal
 		$scope.MyModalFunc = function() {
 			var modal = document.getElementById('myModal');
 		    modal.style.display = "none";
 		}
+		
+		$scope.HelpMeCloseButton = function() {
+			var modal = document.getElementById('HelpMeModal');
+		    modal.style.display = "none";
+		}
+		
+		$scope.CloseDeleteMessage = function(){
+			var modal = document.getElementById('YesNoModal');
+		    modal.style.display = "none";
+		}
+		
+		$scope.MessagesModalCloseFunc = function(){
+			var modal = document.getElementById('MessagesModal');
+		    modal.style.display = "none";
+		}
 
 		// When the user clicks anywhere outside of the modal, close it
 		window.onclick = function(event) {
 			var modal = document.getElementById('myModal');
+			var msgsModal = document.getElementById('MessagesModal');
 		    if (event.target == modal) {
 		        modal.style.display = "none";
+		    }
+		    if(event.target == msgsModal){
+		    	msgsModal.style.display = "none";
 		    }
 		}
 		
@@ -144,11 +203,6 @@ angular.module('app',[])
 			var book = JSON.parse(localStorage.getItem('ChosenBook'));
 			localStorage.setItem('ScrollBook', scroll);
 			window.location = book.URL;
-		}
-		
-		$scope.HelpMeButton = function(){
-			var modal = document.getElementById('HelpMeModal');
-			modal.style.display = "block";
 		}
 		$scope.HelpMeButton = function(){
 			var modal = document.getElementById('HelpMeModal');
@@ -186,5 +240,69 @@ angular.module('app',[])
 					  }
 					});
 		}
+		
+		$scope.ReadMessage = function(msg){
+			if(msg.userread == 1){
+				return;
+			}
+			var queryData = {
+					ID : msg.id,
+					AdminOrUser : "User"
+			};
+			$http.post("http://localhost:8080/BooksForAll/ReadMessageServlet", queryData)
+			   .then(
+			       function(response){
+			    	   if(response.data.Result == "Success"){
+				    	   $scope.NewMsgs = $scope.NewMsgs - 1;
+				    	   var Msgs = "Messages";
+				    	   if($scope.NewMsgs != 0){
+				    		   Msgs = "Messages (" + $scope.NewMsgs + ")";
+				    	   }
+				    	   for(var i = 0; i < $scope.RepliedMsgs.length ; i++){
+				    		   if($scope.RepliedMsgs[i].id == msg.id){
+				    			   $scope.RepliedMsgs[i].userread = 1;
+				    		   }
+				    	   }
+		   					document.getElementById("UserMessagesButton").innerHTML = Msgs;
+		   					document.getElementById("NewMessages").innerHTML = Msgs;
+			    	   }
+			       }, 
+			       function(response){
+			         // failure callback
+			       }
+			    );
+		}
+		
+		$scope.DeleteMessage = function(msg){
+			localStorage.setItem('ChosenMessage', JSON.stringify(msg));
+			var modal = document.getElementById('YesNoModal');
+			modal.style.display = "block";
+		}
+		
+		$scope.ConfirmDeleteMessage = function (){
+			var ChosenMsg = JSON.parse(localStorage.getItem('ChosenMessage'));
+			var queryData = {
+					ID : ChosenMsg.id,
+			};
+			$http.post("http://localhost:8080/BooksForAll/DeleteUserMessageServlet", queryData)
+			   .then(
+			       function(response){
+			    	   if(response.data.Result == "Success"){
+				    	   for(var i = 0; i < $scope.RepliedMsgs.length ; i++){
+				    		   if($scope.RepliedMsgs[i].id == ChosenMsg.id){
+				    			   $scope.RepliedMsgs.splice(i, 1);
+				    			   break;
+				    		   }
+				    	   }
+		   					var modal = document.getElementById('YesNoModal');
+		   				    modal.style.display = "none";
+			    	   }
+			       }, 
+			       function(response){
+			         // failure callback
+			       }
+			    );
+		}
+		
 	}]);
 

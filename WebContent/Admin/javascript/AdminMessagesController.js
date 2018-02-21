@@ -7,7 +7,6 @@ angular.module('app',[])
 			}
 			},function(xhr){
 		});
-		$scope.unread = 0;
 		document.getElementById("SendSuccess").style.display = "none";
 		document.getElementById("SendError").style.display = "none";
 		
@@ -22,6 +21,10 @@ angular.module('app',[])
 		    		   }
 		    	   }
 		    	   $scope.unread = unread;
+		    	   if($scope.unread != 0){
+		    		   document.getElementById("TabMessages").innerHTML = "Messages (" + $scope.unread + ")";
+		    		   document.getElementById("NewMessagesTab").innerHTML = "New Messages (" + $scope.unread + ")";
+		    	   }
 		       }, 
 		       function(response){
 		         // failure callback
@@ -42,7 +45,7 @@ angular.module('app',[])
 		   .then(
 		       function(response){
 		    	   $scope.Repliedmessages = response.data.Messages;
-		    	   $scope.unread = response.data.Messages.length;
+		    	   $scope.read = response.data.Messages.length;
 		       }, 
 		       function(response){
 		         // failure callback
@@ -87,19 +90,33 @@ angular.module('app',[])
 				$scope.subject = message.subject;
 				$scope.message = message.message;
 				$scope.username = message.username;
+				$scope.reply = message.reply;
 				$scope.id = message.id;
-				var queryData = {
-					ID : $scope.id,
-					AdminOrUser : "Admin"
-				};
-				$http.post("http://localhost:8080/BooksForAll/ReadMessageServlet", queryData)
-				   .then(
-				       function(response){
-				       }, 
-				       function(response){
-				         // failure callback
-				       }
-				    );
+				if(message.adminread == 0){
+					var queryData = {
+							ID : $scope.id,
+							AdminOrUser : "Admin"
+						};
+						$http.post("http://localhost:8080/BooksForAll/ReadMessageServlet", queryData)
+						   .then(
+						       function(response){
+									$scope.unread = $scope.unread - 1;
+						       }, 
+						       function(response){
+						         // failure callback
+						       }
+						    );
+				}
+				if(message.adminreply == 0){
+					document.getElementById("TextAreaHelp").style.display = "block";
+					document.getElementById("AdminReply").style.display = "none";
+					document.getElementById("Submit").style.visibility = "visible"
+				}
+				else{
+					document.getElementById("TextAreaHelp").style.display = "none";
+					document.getElementById("AdminReply").style.display = "block";
+					document.getElementById("Submit").style.visibility = "hidden"
+				}
 			}
 
 			// Get the <span> element that closes the modal
@@ -126,15 +143,12 @@ angular.module('app',[])
 			    }
 			}
 			
-			$scope.HelpMeButton = function(){
-				var modal = document.getElementById('MessageModal');
-				modal.style.display = "block";
-			}
-			
 			$scope.Close = function(){
 				var modal = document.getElementById('MessageModal');
 				modal.style.display = "none";
-				location.reload();
+				if(document.getElementById("Submit").style.visibility != "hidden"){
+					location.reload();
+				}
 			}
 			
 			$scope.Send = function(){
@@ -147,6 +161,7 @@ angular.module('app',[])
 						ID: $scope.id, 
 					    Reply: reply
 				}
+				
 				$.ajax({
 					  url: "http://localhost:8080/BooksForAll/AdminReplyMessageServlet",
 					  type: "POST", //send it through get method
