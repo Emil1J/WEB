@@ -44,7 +44,7 @@
 			<li><a href="AdminUsers.html">Users</a></li>
 			<li><a href="AdminTransactions.html">Transactions</a></li>
 			<li><a href="AdminReviews.html">Reviews</a></li>
-			<li><a href="AdminMessages.html">Messages ({{unread}})</a></li>
+			<li><a id="TabMessages" href="AdminMessages.html">Messages</a></li>
 			<li style="padding-left: 11%">
 				<img style="width:150px; height:50px;" alt="logo" src="../../Images/Logo.jpg">
 			</li>
@@ -61,7 +61,7 @@
 			</div>
 			<div class="row">
 				<div class="tab">
-				  <button class="tablinks" ng-click="openTab($event, 'NewMessages')" id="defaultOpen"><b>New Messages ({{unread}})</b></button>
+				  <button class="tablinks" ng-click="openTab($event, 'NewMessages')" id="defaultOpen"><b id="NewMessagesTab">New Messages</b></button>
 				  <button class="tablinks" ng-click="openTab($event, 'OldMessages')"><b>Old Messages</b></button>
 				</div>
 				
@@ -117,6 +117,7 @@
 							</div>
 							<div class="row">
 								<p class="MessageContent"><b>Admin reply:</b></p>
+								<p id="AdminReply" class="MessageContent">{{reply}}</p>
 								<textarea id="TextAreaHelp"></textarea>
 							</div>
 							<div class="row">
@@ -125,8 +126,8 @@
 									<p id="SendError">Please write a message!</p>				
 								</div>
 								<div class="col-sm-5">
-									<button id="ModalButton" type="button" data-dismiss="modal" ng-click="Send()" class="btn btn-primary" id="Submit">Send</button>
-   									<button id="ModalButton" type="button" data-dismiss="modal" ng-click="Close()" class="btn" id="Close">Close</button>
+									<button id="Submit" type="button" data-dismiss="modal" ng-click="Send()" class="btn btn-primary ModalButton">Send</button>
+   									<button id="Close" type="button" data-dismiss="modal" ng-click="Close()" class="btn ModalButton">Close</button>
 								</div>
 							</div>					
 						</div>		

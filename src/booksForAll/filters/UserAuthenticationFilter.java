@@ -40,7 +40,9 @@ import booksForAll.general.AppConstants;
 	"/TopFiveBooksServlet",
 	"/UpdateScrollPositionServlet",
 	"/UserBooksServlet",
-	"/SignOutServlet"
+	"/SignOutServlet",
+	"/AllUserMessagesServlet",
+	"/DeleteUserMessageServlet"
 	})
 public class UserAuthenticationFilter implements Filter {
 	public FilterConfig globalConfig;

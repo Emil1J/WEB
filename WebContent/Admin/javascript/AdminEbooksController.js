@@ -12,9 +12,9 @@ angular.module('app',[])
 		$scope.unread = 0;
 
 		$http.post("http://localhost:8080/BooksForAll/AllAdminUnrepliedMessagesServlet")
-
 		   .then(
 		       function(response){
+		    	   $scope.UnrepliedMessages = response.data.Messages;
 		    	   var unread = 0;
 		    	   for(var i = 0; i < $scope.UnrepliedMessages.length ; i++){
 		    		   if($scope.UnrepliedMessages[i].adminread == 0){
@@ -22,6 +22,9 @@ angular.module('app',[])
 		    		   }
 		    	   }
 		    	   $scope.unread = unread;
+		    	   if($scope.unread != 0){
+		    		   document.getElementById("TabMessages").innerHTML = "Messages (" + $scope.unread + ")";
+		    	   }
 		       }, 
 		       function(response){
 		         // failure callback

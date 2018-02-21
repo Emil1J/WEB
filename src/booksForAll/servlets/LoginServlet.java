@@ -110,7 +110,11 @@ import booksForAll.model.User;
 	    		response.sendError(500);//internal server error
     		}
     		
-	        HttpSession session=request.getSession();  
+			HttpSession sessionCheck = request.getSession(false);
+			if(sessionCheck != null) {
+				sessionCheck.invalidate();
+			}
+	        HttpSession session=request.getSession();
 	        session.setAttribute("Username", username);
 	        session.setAttribute("Password", password);
 

@@ -94,5 +94,6 @@ angular.module('app',[])
 				  }
 				});
 	}
+	
 }]);
 

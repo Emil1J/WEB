@@ -59,11 +59,7 @@ angular.module('app',[])
 			else if(photo == ""){
 				photo = "URL";
 			}
-			$.ajax({
-				  url: "http://localhost:8080/BooksForAll/RegisterServlet?",
-				  type: "POST", //send it through get method
-		          dataType: 'json',
-				  data: {
+			var queryData = {
 				    Username: username,
 				    Email: email, 
 				    Street: street, 
@@ -77,7 +73,12 @@ angular.module('app',[])
 				    Description: description, 
 				    Photo: photo,
 				    Balance: balance
-				  },
+				  };
+			$.ajax({
+				  url: "http://localhost:8080/BooksForAll/RegisterServlet",
+				  type: "POST", //send it through get method
+		          dataType: 'json',
+				  data: JSON.stringify(queryData),
 				  success: function(response) {
 					  if(response.Result == "Success"){
 						  localStorage.setItem('loginResponse', JSON.stringify(response.User));

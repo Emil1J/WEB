@@ -1,5 +1,6 @@
 package booksForAll.servlets;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -22,6 +23,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 
+import booksForAll.filters.PostData;
 import booksForAll.general.AppConstants;
 import booksForAll.model.User;
 
@@ -61,20 +63,40 @@ import booksForAll.model.User;
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String username = request.getParameter("Username");
-		String email = request.getParameter("Email");
-		String street = request.getParameter("Street");
-		String houseNum = request.getParameter("HouseNum");
-		String city = request.getParameter("City");
-		String country = request.getParameter("Country");
-		String postalCode = request.getParameter("PostalCode");
-		String phoneNumber = request.getParameter("PhoneNumber");
-		String nickname = request.getParameter("Nickname");
-		String description = request.getParameter("Description");
-		String photo = request.getParameter("Photo");
-		String password = request.getParameter("Password");
-		String balance = request.getParameter("Balance");
+		StringBuffer strBuf = new StringBuffer();
+		BufferedReader reader = request.getReader();
+		String line = null;        
+		while ((line = reader.readLine()) != null)
+		{
+			strBuf.append(line);
+		}
+
+		Gson gson = new GsonBuilder()
+				.setDateFormat("yyyy-MM-dd HH:mm:ss.S")
+				.create();
+
+		PostData postData = gson.fromJson(strBuf.toString(), PostData.class);
+		String username = postData.Username;
+		String email = postData.Email;
+		String street = postData.Street;
+		String houseNum = postData.HouseNum;
+		String city = postData.City;
+		String country = postData.Country;
+		String postalCode = postData.PostalCode;
+		String phoneNumber = postData.PhoneNumber;
+		String nickname = postData.Nickname;
+		String description = postData.Description;
+		String photo = postData.Photo;
+		String password = postData.Password;
+		String balance = postData.Balance;
 		String result = "";
 		try {
         	//obtain CustomerDB data source from Tomcat's context
@@ -121,9 +143,6 @@ import booksForAll.model.User;
 				getServletContext().log("Error", e);
 	    		response.sendError(500);//internal server error
     		}
-			Gson gson = new GsonBuilder()
-    				.setDateFormat("yyyy-MM-dd HH:mm:ss.S")
-    				.create();
 
     		conn.close();
         	response.addHeader("Content-Type", "application/json");
@@ -137,14 +156,6 @@ import booksForAll.model.User;
     		getServletContext().log("Error while closing connection", e);
     		response.sendError(500);//internal server error
     	}
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
 	}
 
 }
