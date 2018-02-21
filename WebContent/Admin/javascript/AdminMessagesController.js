@@ -54,7 +54,7 @@ angular.module('app',[])
 		
 		$scope.CheckCircle = function(msg, circle){
 			if(msg.adminread == 0){
-				return "circle"
+				return "filledCircle";
 			}
 			return "circle";
 		}
@@ -101,6 +101,8 @@ angular.module('app',[])
 						   .then(
 						       function(response){
 									$scope.unread = $scope.unread - 1;
+									document.getElementByID("Circle" + $scope.id).classList.remove('filledCircle');
+									document.getElementByID("Circle" + $scope.id).classList.add('circle');
 						       }, 
 						       function(response){
 						         // failure callback
