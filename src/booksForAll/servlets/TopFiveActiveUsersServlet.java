@@ -125,7 +125,7 @@ public class TopFiveActiveUsersServlet extends HttpServlet {
     			  Collections.sort(users, new Comparator<User>() {
     			      @Override
     			      public int compare(final User object1, final User object2) {
-    			          return (object1.getBooks().size() < object2.getBooks().size())? 1 : 0;
+    			          return (object1.getBooks().size() < object2.getBooks().size())? 1 : -1;
     			      }
     			  });
     		}
