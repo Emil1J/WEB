@@ -30,22 +30,41 @@
 		<div class="container-fluid">
 			<div class="row">
 				<h2 id="UsersHeader">Transactions</h2>
+				
 				<div class="col-sm-12">
-				<div id="table-scroll">
-					<table id="TableLocation">
-					    <tr>
-					    	<th>Username</th>
-					    	<th>Bookname</th>
-					    	<th>Amount</th>
-					    	<th>Time</th>
-					    </tr>
-					  	<tr ng-repeat="transaction in transactions">
-					    	<td>{{transaction.username}}</td>
-					    	<td>{{transaction.bookname}}</td>
-					    	<td>${{transaction.price}}</td>
-					    	<td>{{GetDateFormat(transaction.time)}}</td>
-					    </tr>
-					</table>
+					<div class="row">
+						<div class="col-sm-6">
+						</div>
+						<div class="col-sm-2">
+						</div>
+						<div class="col-sm-2">
+							<p><b>Filter according to username:</b></p>
+							<select id="userFilter" class="form-control" ng-model="userFilter" ng-change="FilterUsers()">
+							    <option ng-repeat="user in users">{{user}}</option>
+	    					</select>
+						</div>
+						<div class="col-sm-2">
+							<p><b>Filter according to book name:</b></p>
+							<select id="bookFilter" class="form-control" ng-model="bookFilter" ng-change="FilterBooks()">
+							    <option ng-repeat="book in books">{{book}}</option>
+	    					</select>
+						</div>
+					</div>
+					<div id="table-scroll">
+						<table id="TableLocation">
+						    <tr>
+						    	<th>Username</th>
+						    	<th>Bookname</th>
+						    	<th>Amount</th>
+						    	<th>Time</th>
+						    </tr>
+						  	<tr ng-repeat="transaction in transactions">
+						    	<td>{{transaction.username}}</td>
+						    	<td>{{transaction.bookname}}</td>
+						    	<td>${{transaction.price}}</td>
+						    	<td>{{GetDateFormat(transaction.time)}}</td>
+						    </tr>
+						</table>
 					</div>
 				</div>
 			</div>

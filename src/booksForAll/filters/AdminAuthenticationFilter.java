@@ -38,7 +38,8 @@ import booksForAll.general.AppConstants;
 	"/DeleteCommentServlet",
 	"/RemoveUserServlet",
 	"/UnapproveCommentServlet",
-	"/UserServlet"
+	"/UserServlet",
+	"/TopFiveActiveUsersServlet"
 	})
 public class AdminAuthenticationFilter implements Filter {
 	public FilterConfig globalConfig;

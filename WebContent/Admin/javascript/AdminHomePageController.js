@@ -28,6 +28,16 @@ angular.module('app',[])
 		       }
 		    );
 		
+		$http.post("http://localhost:8080/BooksForAll/TopFiveActiveUsersServlet")
+		   .then(
+		       function(response){
+					$scope.users = response.data.UsersList;
+		       }, 
+		       function(response){
+		         // failure callback
+		       }
+		    );
+		
 		$scope.SignOutFunc = function(){
 			$http.post("http://localhost:8080/BooksForAll/SignOutServlet")
 			   .then(
@@ -48,5 +58,9 @@ angular.module('app',[])
 			localStorage.setItem('viewBook', JSON.stringify(book));
 			window.location="AdminBookView.html";
 	}
+		$scope.viewUser = function(user){
+			localStorage.setItem("ChosenUser", JSON.stringify(user));
+			window.location = "AdminUserView.html";
+		}
 	}]);
 

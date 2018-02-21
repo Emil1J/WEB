@@ -46,8 +46,8 @@
 	                  			<div class="PurchaseBox">
 	  								<div id="DropDownList" class="form-group" ng-class="{ 'has-error' : purchaseForm.cardcomp.$invalid && !purchaseForm.cardcomp.$pristine }">
 	                       				<p><b>Credit Card Type:</b></p>
-										<select id="CCType" class="form-control">
-	        								<option>Visa</option>
+										<select id="CCType" class="form-control" ng-model="cctype" ng-change="ClearCC()">
+										    <option value="" selected="selected">Visa</option>
 	        								<option>MasterCard</option>
 	        								<option>American Express</option>
 	        								<option>Discover</option>
@@ -55,37 +55,86 @@
 	  								</div>
 	  								<div class="form-group" ng-class="{ 'has-error' : purchaseForm.holdname.$invalid && !purchaseForm.holdname.$pristine }">
 	                       				<p><b>Cardholder Name:</b></p>
-										<input class="form-control" placeholder="Cardholder Name" id="holdname" name="holdname" type="text" autofocus="" ng-model="holdname" required>
+										<input class="form-control" placeholder="Cardholder Name" pattern="^[a-zA-Z ]+$" id="holdname" name="holdname" type="text" autofocus="" ng-model="holdname" required>
+										<span class="errorMsg" ng-show="!(purchaseForm.holdname.$dirty && purchaseForm.holdname.$error.required) && (purchaseForm.holdname.$invalid && !purchaseForm.holdname.$pristine)">*Enter a valid card holder name!</span>
 										<span class="errorMsg" ng-show="purchaseForm.holdname.$dirty && purchaseForm.holdname.$error.required">*Cardholder is required!</span>
 	  								</div>
-	  								<p><b>Card Number:</b></p>
-	  								<div class="col-sm-3">
-	  									<div class="form-group" ng-class="{ 'has-error' : purchaseForm.cardnum1.$invalid && !purchaseForm.cardnum1.$pristine }">
-											<input class="form-control" id="cardnum1" name="cardnum1" placeholder="1234" minlength="4" maxlength="4" type="number" autofocus="" ng-model="cardnum1" required>
-	  									</div>
+	  								<div class="row">
+		  								<div class="col-md-6">
+	                  						<div class="form-group" ng-class="{ 'has-error' : purchaseForm.cityPurchase.$invalid && !purchaseForm.cityPurchase.$pristine }">
+	                       						<p><b>City :</b></p>
+	                       						<input class="form-control" ns-minlength="3" pattern="^[a-zA-Z ]+$" placeholder="City" id="cityPurchase" name="cityPurchase" type="text" autofocus="" ng-model="cityPurchase" required>
+	                       						<span id="cityValid" class="errorMsg" ng-show="!(purchaseForm.cityPurchase.$dirty && purchaseForm.cityPurchase.$error.required) && purchaseForm.cityPurchase.$invalid && !purchaseForm.cityPurchase.$pristine">*Enter a valid city name!</span>
+	                       						<span id="cityRequired" class="errorMsg" ng-show="purchaseForm.cityPurchase.$dirty && purchaseForm.cityPurchase.$error.required">*City is required!</span>
+											</div>
+	                  					</div>
+	                  					<div class="col-md-6">
+	                						<div class="form-group" ng-class="{ 'has-error' : purchaseForm.streetPurchase.$invalid && !purchaseForm.streetPurchase.$pristine }">
+	           									<p><b>Street :</b></p>
+	                       						<input class="form-control" ns-minlength="3" pattern="^[a-zA-Z ]*$" placeholder="Street" id="streetPurchase" name="streetPurchase" type="text" autofocus="" ng-model="streetPurchase" required>
+	                   							<span id="streetValid" class="errorMsg" ng-show="!(purchaseForm.streetPurchase.$dirty && purchaseForm.streetPurchase.$error.required) && (purchaseForm.streetPurchase.$invalid && !purchaseForm.streetPurchase.$pristine)">*Enter a valid street name!</span>
+	                       						<span id="streetRequired" class="errorMsg" ng-show="purchaseForm.streetPurchase.$dirty && purchaseForm.streetPurchase.$error.required">*Street name is required!</span>
+											</div>
+	                 					</div>
 	  								</div>
-	  								<div class="col-sm-3">
-	  									<div class="form-group" ng-class="{ 'has-error' : purchaseForm.cardnum2.$invalid && !purchaseForm.cardnum2.$pristine }">
-											<input class="form-control" id="cardnum2" name="cardnum2" placeholder="5678" minlength="4" maxlength="4" type="number" autofocus="" ng-model="cardnum2" required>
-	  									</div>
-	  								</div>
-	  								<div class="col-sm-3">
-	  									<div class="form-group" ng-class="{ 'has-error' : purchaseForm.cardnum3.$invalid && !purchaseForm.cardnum3.$pristine }">
-											<input class="form-control" id="cardnum3" name="cardnum3" placeholder="9012" minlength="4" maxlength="4" type="number" autofocus="" ng-model="cardnum3" required>
-	  									</div>
-	  								</div>
-	  								<div class="col-sm-3">
-	  									<div class="form-group" ng-class="{ 'has-error' : purchaseForm.cardnum4.$invalid && !purchaseForm.cardnum4.$pristine }">
-											<input class="form-control" id="cardnum4" name="cardnum4" placeholder="3456" minlength="4" maxlength="4" type="number" autofocus="" ng-model="cardnum4" required>
-	  									</div>
-	  								</div>
-									<span class="errorMsg" ng-show="
-									(purchaseForm.cardnum1.$dirty && purchaseForm.cardnum2.$dirty && purchaseForm.cardnum3.$dirty && purchaseForm.cardnum4.$dirty) &&
-									((purchaseForm.carnum1.$error.required) || (purchaseForm.carnum2.$error.required) || (purchaseForm.carnum3.$error.required) || (purchaseForm.carnum4.$error.required) ||
-									(purchaseForm.cardnum1.$invalid && !purchaseForm.cardnum1.$pristine) ||
-									(purchaseForm.cardnum2.$invalid && !purchaseForm.cardnum2.$pristine) ||
-									(purchaseForm.cardnum3.$invalid && !purchaseForm.cardnum3.$pristine) ||
-									(purchaseForm.cardnum4.$invalid && !purchaseForm.cardnum4.$pristine))">*Invalid Credit Card!</span>
+	  								<div class="row">
+       									<div class="col-md-6">
+                  							<div class="form-group" ng-class="{ 'has-error' : purchaseForm.housenumPurchase.$invalid && !purchaseForm.housenumPurchase.$pristine }">
+                       							<p><b>House Number</b></p>
+                       							<input class="form-control" pattern="^[1-9][0-9]*$" placeholder="House number" id="housenumPurchase" name="housenumPurchase" type="tel" autofocus="" ng-model="housenumPurchase" required>
+                   								<span id="housenumValid" class="errorMsg" ng-show="!(purchaseForm.housenumPurchase.$dirty && purchaseForm.housenumPurchase.$error.required) && purchaseForm.housenumPurchase.$invalid && !purchaseForm.housenumPurchase.$pristine">*Enter a valid house number!</span>
+           										<span id="housenumRequired" class="errorMsg" ng-show="purchaseForm.housenumPurchase.$dirty && purchaseForm.housenumPurchase.$error.required">*House number is required!</span>
+											</div>
+                  						</div>
+  										<div class="col-md-6">
+                 							<div class="form-group" ng-class="{ 'has-error' : purchaseForm.postalPurchase.$invalid && !purchaseForm.postalPurchase.$pristine }">
+                       							<p><b>Postal Code :</b></p>
+                       							<input class="form-control" pattern="^[0-9]*$" ng-minlength="7" ng-maxlength="7" placeholder="Postal Code" id="postalPurchase" name="postalPurchase" type="text" autofocus="" ng-model="postalPurchase" required>
+                       							<span id="postalcodeLong" class="errorMsg" ng-show="purchaseForm.postalPurchase.$error.maxlength">*Postal code is too long!</span>
+                       							<span id="postalcodeShort" class="errorMsg" ng-show="purchaseForm.postalPurchase.$error.minlength">*Postal code is too short!</span>
+                   								<span id="postalcodeValid" class="errorMsg" ng-show="!purchaseForm.postalPurchase.$error.minlength && !purchaseForm.postalPurchase.$error.maxlength && !(purchaseForm.postalPurchase.$dirty && purchaseForm.postalPurchase.$error.required) && purchaseForm.postalPurchase.$invalid && !purchaseForm.postalPurchase.$pristine">*Enter a valid postal code!</span>
+               									<span id="postalcodeRequired" class="errorMsg" ng-show="purchaseForm.postalPurchase.$dirty && purchaseForm.postalPurchase.$error.required">*Postal code is required!</span>
+											</div>
+                  						</div>
+         							</div>
+         							<div class="form-group" ng-class="{ 'has-error' : purchaseForm.countryPurchase.$invalid && !purchaseForm.countryPurchase.$pristine }">
+                       					<p><b>Country :</b></p>
+                       					<select class="form-control" pattern="^[a-zA-Z]*$" placeholder="Country" id="countryPurchase" name="countryPurchase" type="text" autofocus="" ng-model="countryPurchase" required>
+                       						<option ng-repeat="country in countries">{{country.name}}</option>
+	      								</select>
+               							<span id="" class="errorMsg" ng-show="!purchaseForm.countryPurchase.$error.minlength && !purchaseForm.countryPurchase.$error.maxlength && !(purchaseForm.countryPurchase.$dirty && purchaseForm.countryPurchase.$error.required) && purchaseForm.countryPurchase.$invalid && !purchaseForm.countryPurchase.$pristine">*Enter a valid country name!</span>
+               							<span class="errorMsg" ng-show="purchaseForm.countryPurchase.$dirty && purchaseForm.countryPurchase.$error.required">*Country name is required!</span>
+									</div>
+         							<p><b>Card Number:</b></p>
+									<div class="row">
+										<div class="col-sm-3">
+		  									<div class="form-group" ng-class="{ 'has-error' : purchaseForm.cardnum1.$invalid && !purchaseForm.cardnum1.$pristine }">
+												<input class="form-control" id="cardnum1" name="cardnum1" placeholder="1234" minlength="4" maxlength="4" type="number" autofocus="" ng-model="cardnum1" required>
+		  									</div>
+		  								</div>
+		  								<div class="col-sm-3">
+		  									<div class="form-group" ng-class="{ 'has-error' : purchaseForm.cardnum2.$invalid && !purchaseForm.cardnum2.$pristine }">
+												<input class="form-control" id="cardnum2" name="cardnum2" placeholder="5678" minlength="4" maxlength="4" type="number" autofocus="" ng-model="cardnum2" required>
+		  									</div>
+		  								</div>
+		  								<div class="col-sm-3">
+		  									<div class="form-group" ng-class="{ 'has-error' : purchaseForm.cardnum3.$invalid && !purchaseForm.cardnum3.$pristine }">
+												<input class="form-control" id="cardnum3" name="cardnum3" placeholder="9012" minlength="4" maxlength="4" type="number" autofocus="" ng-model="cardnum3" required>
+		  									</div>
+		  								</div>
+		  								<div class="col-sm-3">
+		  									<div class="form-group" ng-class="{ 'has-error' : purchaseForm.cardnum4.$invalid && !purchaseForm.cardnum4.$pristine }">
+												<input class="form-control" id="cardnum4" name="cardnum4" placeholder="3456" minlength="3" maxlength="4" type="number" autofocus="" ng-model="cardnum4" required>
+		  									</div>
+		  								</div>
+										<span class="errorMsg" ng-show="
+										(purchaseForm.cardnum1.$dirty && purchaseForm.cardnum2.$dirty && purchaseForm.cardnum3.$dirty && purchaseForm.cardnum4.$dirty) &&
+										((purchaseForm.carnum1.$error.required) || (purchaseForm.carnum2.$error.required) || (purchaseForm.carnum3.$error.required) || (purchaseForm.carnum4.$error.required) ||
+										(purchaseForm.cardnum1.$invalid && !purchaseForm.cardnum1.$pristine) ||
+										(purchaseForm.cardnum2.$invalid && !purchaseForm.cardnum2.$pristine) ||
+										(purchaseForm.cardnum3.$invalid && !purchaseForm.cardnum3.$pristine) ||
+										(purchaseForm.cardnum4.$invalid && !purchaseForm.cardnum4.$pristine))">*Invalid Credit Card!</span>
+									</div>
 	  								<p><b>Expiration:</b></p>
 	  								<div class="col-sm-6">
 	  									<div id="DropDownList" class="form-group" ng-class="{ 'has-error' : purchaseForm.exp.$invalid && !purchaseForm.exp.$pristine }">

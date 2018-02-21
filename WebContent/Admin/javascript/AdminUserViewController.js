@@ -84,5 +84,14 @@ angular.module('app',[])
 
 			window.location = "AdminUsers.html";
 		}
+		
+		$scope.CheckIfLikes = function(username, book){
+			for(var i = 0; i < book.Likes.length ; i++){
+				if(username == book.Likes[i].username){
+					return "Liked";
+				}
+			}
+			return "Not liked";
+		}
 	}]);
 

@@ -32,5 +32,20 @@ angular.module('app',[])
 				    //Do Something to handle error
 				  }
 				});
-		 };		 
+		 };		
+		 
+		 var usernameInput = document.getElementById("username");
+		 var passwordInput = document.getElementById("password");
+		 usernameInput.addEventListener("keyup", function(event) {
+			    event.preventDefault();
+			    if (event.keyCode === 13) {
+			        document.getElementById("submit").click();
+			    }
+		 });
+		 passwordInput.addEventListener("keyup", function(event) {
+			    event.preventDefault();
+			    if (event.keyCode === 13) {
+			        document.getElementById("submit").click();
+			    }
+		 });
 }]);
