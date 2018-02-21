@@ -66,42 +66,57 @@
 				</div>
 				
 				<div id="NewMessages" class="tabcontent">
-					<button ng-click="HelpMeButton()" id="mesgBtn" class="accordion" ng-repeat="newMessage in UnrepliedMessages">
-					<b>{{newMessage.username}}</b><br/><small>{{newMessage.subject}}<br/>{{GetDateFormat(newMessage.receiptdate)}}</small>
+					<button ng-click="MessageClick(newMessage)" id="mesgBtn" class="accordion" ng-repeat="newMessage in UnrepliedMessages">
+					<div class="col-sm-4">
+						<b>{{newMessage.username}}</b><br/><small><b>Subject:</b> {{newMessage.subject}}<br/><b>Received at: </b>{{GetDateFormat(newMessage.receiptdate)}}</small>
+					</div>
+					<div class="col-sm-4">
+					</div>
+					<div class="col-sm-4">
+						<div class="{{CheckCircle(newMessage,circle)}}"></div>
+					</div>
 					</button>
 				</div>
 				
 				<div id="OldMessages" class="tabcontent">
-					<button class="accordion" ng-repeat="newMessage in RepliedMessages">
-					<b><div class="col-sm-4">
-						From {{newMessage.username}}
+					<button ng-click="MessageClick(msg)" id="mesgBtn" class="accordion" ng-repeat="msg in Repliedmessages">
+					<div class="col-sm-4">
+						<b>{{msg.username}}</b><br/><small><b>Subject:</b> {{msg.subject}}<br/><b>Received at: </b>{{GetDateFormat(msg.receiptdate)}}</small>
 					</div>
 					<div class="col-sm-4">
-						Subject: {{newMessage.subject}}
 					</div>
-					<div id="EmailTime" class="col-sm-4">
-						{{GetDateFormat(newMessage.receiptdate)}}
-					</div></b>
+					<div class="col-sm-4">
+						<div class="{{CheckCircle(msg,circle)}}"></div>
+					</div>
 					</button>
-					<div class="panel">
-						<p>{{newMessage.message}}</p>
-					</div>
 				</div>
 			</div>
-			<div id="HelpMeModal" class="modal">									
+			<div id="MessageModal" class="modal">									
 				<!-- Modal content -->
 				<div class="modal-content">
 					<span class="close" ng-click="MyModalFunc()">&times;</span>
 					<div class="modal-title">
-						<b><p>Message thread</p></b>
+						<div class="col-md-12">
+							<div class="row">
+							<div class="col-sm-6">
+								<b><p id="SentFrom" class="MessageContent">Message from {{username}}</p></b>
+							</div>
+							<div class="col-sm-6">
+								<b><p> Received at <u>{{GetDateFormat(receiptdate)}}</u></p></b>
+							</div>
+							</div>
+						</div>
 					</div>
 					<div class="modal-footer">
 						<div class="col-sm-12">
 							<div class="row">
-								
+								<p class="MessageContent"><b>Subject:</b> {{subject}}
+								</p>
+								<p class="MessageContent"><b>Message:</b> {{message}}
+								</p>
 							</div>
 							<div class="row">
-								<p class="Header">Message:</p>
+								<p class="MessageContent"><b>Admin reply:</b></p>
 								<textarea id="TextAreaHelp"></textarea>
 							</div>
 							<div class="row">
@@ -110,8 +125,8 @@
 									<p id="SendError">Please write a message!</p>				
 								</div>
 								<div class="col-sm-5">
-									<button id="ModalButton" type="button" data-dismiss="modal" ng-click="Submit()" class="btn btn-primary" id="Yes">Submit</button>
-   									<button id="ModalButton" type="button" data-dismiss="modal" ng-click="Cancel()" class="btn" id="No">Cancel</button>
+									<button id="ModalButton" type="button" data-dismiss="modal" ng-click="Send()" class="btn btn-primary" id="Submit">Send</button>
+   									<button id="ModalButton" type="button" data-dismiss="modal" ng-click="Close()" class="btn" id="Close">Close</button>
 								</div>
 							</div>					
 						</div>		
