@@ -57,7 +57,7 @@
 								<div id="tooltip">
 									<b> 
 										<p class="BookData">{{likesNum}} Likes</p>
- 						 				<span class="tooltiptext">{{GetLikes(Likes)}}</span>
+ 						 				<span ng-if="likesNum != 0" class="tooltiptext">{{GetLikes(Likes)}}</span>
 									</b>
 								</div>
 							</div>

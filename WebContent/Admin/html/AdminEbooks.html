@@ -53,7 +53,7 @@
 						<div id="tooltip" class="col-sm-8">
 							<b> 
 								<p class="BookData">{{book.LikesNum}} Likes</p>
- 						 		<span id="Likes{{book.Name}}" class="tooltiptext">
+ 						 		<span ng-if="book.LikesNum != 0" id="Likes{{book.Name}}" class="tooltiptext">
 									<p ng-repeat="like in book.Likes">
 										<a href="#" ng-click="viewUser(like.username)">
 											{{like.username}}

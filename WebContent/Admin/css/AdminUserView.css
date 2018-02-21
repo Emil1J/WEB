@@ -83,6 +83,7 @@ thead, tbody { display: block; }
 
 #TableLocation {
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    width: 100%;
 }
 
 #TableLocation tr:nth-child(even){
@@ -99,7 +100,7 @@ thead, tbody { display: block; }
     color: white;
 }
 #table-scroll{
-	height:550px;
+	height: 250px;
 	overflow:auto;
 }
   
@@ -176,4 +177,14 @@ tr:nth-child(odd){background-color: #ffffff}
     color: #000;
     text-decoration: none;
     cursor: pointer;
+}
+
+.Col1{
+	width: 50%;
+}
+.Col2{
+	width: 30%;	
+}
+.Col3{
+	width:20%;
 }

@@ -45,6 +45,7 @@ angular.module('app',[])
 		$http.post("http://localhost:8080/BooksForAll/AllTransactionsServlet")
 		   .then(
 		       function(response){
+		    	   $scope.AllTransactions = response.data.UserTransactions;
 		    	   $scope.transactions = response.data.UserTransactions;
 		    	   if($scope.transactions.length == 0){
 		    		   table.style.display = "none";
@@ -53,6 +54,18 @@ angular.module('app',[])
 		    		   noTrans.style.display = "none";
 		    		   table.style.display = "block";
 
+		    	   }
+		    	   
+		    	   $scope.books = ["All"];
+		    	   $scope.users = ["All"];
+		    	   for(var i = 0; i < $scope.transactions.length ; i++){
+		    		   var trans = $scope.transactions[i];
+		    		   if($scope.books.indexOf(trans.bookname) < 0){
+		    			   $scope.books.push(trans.bookname);
+		    		   }
+		    		   if($scope.users.indexOf(trans.username) < 0){
+		    			   $scope.users.push(trans.username);
+		    		   }
 		    	   }
 		       }, 
 		       function(response){
@@ -64,6 +77,38 @@ angular.module('app',[])
 			var date = DateTime.split(' ')[0];
  		   var time = DateTime.split(' ')[1].split(":")[0] + ":" + DateTime.split(' ')[1].split(":")[1];
  		   return date + ' at ' + time;
+		}
+		
+		$scope.FilterBooks = function(){
+			document.getElementById("userFilter").value = "All";
+			var chosenbook = document.getElementById("bookFilter").value;
+			var FilteredTransactions = [];
+			if(chosenbook == "All"){
+				$scope.transactions = $scope.AllTransactions;
+				return;
+			}
+			for(var i = 0; i < $scope.AllTransactions.length ; i++){
+				if($scope.AllTransactions[i].bookname == chosenbook){
+					FilteredTransactions.push($scope.AllTransactions[i]);
+				}
+			}
+			$scope.transactions = FilteredTransactions;
+		}
+		
+		$scope.FilterUsers = function(){
+			document.getElementById("bookFilter").value = "All";
+			var chosenuser = document.getElementById("userFilter").value;
+			var FilteredTransactions = [];
+			if(chosenuser == "All"){
+				$scope.transactions = $scope.AllTransactions;
+				return;
+			}
+			for(var i = 0; i < $scope.AllTransactions.length ; i++){
+				if($scope.AllTransactions[i].username == chosenuser){
+					FilteredTransactions.push($scope.AllTransactions[i]);
+				}
+			}
+			$scope.transactions = FilteredTransactions;
 		}
 		
 	}]);

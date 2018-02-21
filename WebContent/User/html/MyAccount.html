@@ -57,8 +57,8 @@
 														<div class="col-sm-9">
 														<div id="tooltip">
 															<b> 
-																<p class="BookData2">{{book.LikesNum}} Likes</p>
- 						 										<span class="tooltiptext">{{GetLikes(book.Likes)}}</span>
+																<p class="BookData2" ng-model="tooltipcheck">{{book.LikesNum}} Likes</p>
+ 						 										<span ng-if="book.LikesNum != 0" class="tooltiptext">{{GetLikes(book.Likes)}}</span>
 															</b>
 														</div>
 														</div>
@@ -150,32 +150,68 @@
 						<div class="modal-title">
 							<b><p id="NewMessages">Messages</p></b>
 						</div>
-						<div class="modal-footer">
-							<div class="col-sm-12">
-								<div class="panel-group" id="accordion">
-									<p class="MessageAccordion"><strong>Answered:</strong></p>
-									<div class="panel panel-default container-fluid" ng-repeat="msg in RepliedMsgs">
-										<div id="AccordMsg{{msg.userread}}" class="panel-heading row" ng-click="ReadMessage(msg)" style="cursor: pointer;">
-											<div class="col-sm-12">
-												<h4 class="panel-title">
-			         								<p class="MessageAccordion" data-toggle="collapse" data-parent="#accordion" href="{{'#collapse' + $index}}" aria-expanded="false" aria-controls="{{'collapse' + $index}}">
-			         								<b>{{msg.username}}</b><br/><small>{{msg.message}}<br/>Sent at {{GetTimeFormat(msg.receiptdate)}}</small>
-			         								</p>
-			        							</h4>
+						<div class="modal-body">
+			                <div role="tabpanel">
+			                    <!-- Nav tabs -->
+			                    <ul class="nav nav-tabs" role="tablist">
+			                        <li role="presentation" class="active"><a href="#uploadTab" aria-controls="uploadTab" role="tab" data-toggle="tab">Answered</a>
+			
+			                        </li>
+			                        <li role="presentation"><a href="#browseTab" aria-controls="browseTab" role="tab" data-toggle="tab">Sent</a>
+			
+			                        </li>
+			                    </ul>
+			                    <!-- Tab panes -->
+			                    <div class="tab-content">
+			                        <div role="tabpanel" class="tab-pane active" id="uploadTab">
+										<div class="col-sm-12">
+											<div class="panel-group" id="accordion">
+												<div class="panel panel-default container-fluid" ng-repeat="msg in RepliedMsgs">
+													<div id="AccordMsg{{msg.userread}}" class="panel-heading row" ng-click="ReadMessage(msg)" style="cursor: pointer;">
+														<div class="col-sm-12">
+															<h4 class="panel-title">
+						         								<p class="MessageAccordion" data-toggle="collapse" data-parent="#accordion" href="{{'#collapse' + $index}}" aria-expanded="false" aria-controls="{{'collapse' + $index}}">
+						         								<b>{{msg.username}}</b><br/><small>{{msg.message}}<br/>Sent at {{GetTimeFormat(msg.receiptdate)}}</small>
+						         								</p>
+						        							</h4>
+														</div>
+						      						</div>
+						      						<div id="{{'collapse' + $index}}" class="panel-collapse collapse">
+						        						<div class="panel-body">
+															<p class="MessageAccordion"><strong>
+																{{msg.reply}}
+															</strong>
+															</p>
+						        							<button id="delete" type="button" class="btn btn-success btn-sm delete" ng-click="DeleteMessage(msg)" >Delete Message</button>
+						        						</div>
+						      						</div>
+												</div>
 											</div>
-			      						</div>
-			      						<div id="{{'collapse' + $index}}" class="panel-collapse collapse">
-			        						<div class="panel-body">
-												<p class="MessageAccordion"><strong>
-													{{msg.reply}}
-												</strong>
-												</p>
-			        							<button id="delete" type="button" class="btn btn-success btn-sm delete" ng-click="DeleteMessage(msg)" >Delete Message</button>
-			        						</div>
-			      						</div>
+										</div>
 									</div>
-								</div>
-							</div>
+			                        <div role="tabpanel" class="tab-pane" id="browseTab">
+										<div class="col-sm-12">
+											<div id="table-scroll">
+												<table id="TableLocation">
+												    <tr>
+												    	<th>Subject</th>
+												    	<th>Message Content</th>
+												    	<th>Sent on</th>
+												    </tr>
+												  	<tr ng-repeat="msg in SentMsgs">
+												    	<td id="Col1">{{msg.subject}}</td>
+												    	<td id="Col2">{{msg.message}}</td>
+												    	<td id="Col3">{{GetDateFormat(msg.receiptdate)}}</td>
+												    </tr>
+												</table>
+											</div>
+										</div>
+			                        </div>
+			                    </div>
+			                </div>
+			            </div>
+						<div class="modal-footer">
+							
 						</div>				    
 					</div>
 				</div>

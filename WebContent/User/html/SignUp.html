@@ -58,7 +58,7 @@
   												<div class="col-md-6">
                   									<div class="form-group" ng-class="{ 'has-error' : userForm1.citysu.$invalid && !userForm1.citysu.$pristine }">
                        									<p><b>City :</b></p>
-                       									<input class="form-control" ns-minlength="3" pattern="^[a-zA-Z]+$" placeholder="City" id="citysu" name="citysu" type="text" autofocus="" ng-model="citysu" required>
+                       									<input class="form-control" ns-minlength="3" pattern="^[a-zA-Z ]+$" placeholder="City" id="citysu" name="citysu" type="text" autofocus="" ng-model="citysu" required>
                        									<span id="cityValid" class="errorMsg" ng-show="!(userForm1.citysu.$dirty && userForm1.citysu.$error.required) && userForm1.citysu.$invalid && !userForm1.citysu.$pristine">*Enter a valid city name!</span>
                        									<span id="cityRequired" class="errorMsg" ng-show="userForm1.citysu.$dirty && userForm1.citysu.$error.required">*City is required!</span>
 													</div>
@@ -66,7 +66,7 @@
                   								<div class="col-md-6">
                   									<div class="form-group" ng-class="{ 'has-error' : userForm1.streetsu.$invalid && !userForm1.streetsu.$pristine }">
                        									<p><b>Street :</b></p>
-                       									<input class="form-control" ns-minlength="3" pattern="^[a-zA-Z\s]*$" placeholder="Street" id="streetsu" name="streetsu" type="text" autofocus="" ng-model="streetsu" required>
+                       									<input class="form-control" ns-minlength="3" pattern="^[a-zA-Z ]*$" placeholder="Street" id="streetsu" name="streetsu" type="text" autofocus="" ng-model="streetsu" required>
                        										<span id="streetValid" class="errorMsg" ng-show="!(userForm1.streetsu.$dirty && userForm1.streetsu.$error.required) && (userForm1.streetsu.$invalid && !userForm1.streetsu.$pristine)">*Enter a valid street name!</span>
                        										<span id="streetRequired" class="errorMsg" ng-show="userForm1.streetsu.$dirty && userForm1.streetsu.$error.required">*Street name is required!</span>
 													</div>

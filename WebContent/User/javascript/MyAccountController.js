@@ -303,6 +303,10 @@ angular.module('app',[])
 			       }
 			    );
 		}
-		
+		$scope.GetDateFormat = function(DateTime){
+			var date = DateTime.split(' ')[0];
+ 		   var time = DateTime.split(' ')[1].split(":")[0] + ":" + DateTime.split(' ')[1].split(":")[1];
+ 		   return date + ' at ' + time;
+		}
 	}]);
 
