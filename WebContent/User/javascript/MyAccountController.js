@@ -114,14 +114,15 @@ angular.module('app',[])
 				query = "DislikeBookServlet";
 		   	}
 			
+		   	var queryData = {
+				    Username: user.username, 
+				    Bookname: book.Name
+				  };
 			$.ajax({
 				  url: "http://localhost:8080/BooksForAll/" + query,
 				  type: "POST", //send it through get method
 		          dataType: 'json',
-				  data: {
-				    Username: user.username, 
-				    Bookname: book.Name
-				  },
+				  data: JSON.stringify(queryData),
 				  success: function(response) {
 					  if(response.Result == "Success"){
 				    	   if(document.getElementById(book.Name).src.endsWith("Liked.png")){
@@ -133,8 +134,8 @@ angular.module('app',[])
 				    	   for(var i = 0 ; i < $scope.books.length ; i++){
 				    		   if(response.Book.Name == $scope.books[i].Name){
 				    			   $scope.books[i] = response.Book;
-				    			   document.getElementById('LikeNum' + response.Book.Name).innerHTML = "*Liked by " + $scope.books[i].LikesNum;
-				    			   document.getElementById('LikeNum' + response.Book.Name).title = GetLikes(response.Book.Likes);
+				    			   document.getElementById('LikeNum' + response.Book.Name).innerHTML = $scope.books[i].LikesNum + " Likes";
+				    			   document.getElementById('LikeNumTooltip' + response.Book.Name).innerHTML = GetLikes(response.Book.Likes);
 				    			   localStorage.setItem('userBooks', JSON.stringify($scope.books));
 				    			   break;
 				    		   }
