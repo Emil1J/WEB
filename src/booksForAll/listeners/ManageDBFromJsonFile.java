@@ -31,6 +31,7 @@ import booksForAll.general.AppConstants;
 import booksForAll.model.Book;
 import booksForAll.model.Comment;
 import booksForAll.model.Like;
+import booksForAll.model.Purchase;
 import booksForAll.model.User;
 
 
@@ -210,6 +211,28 @@ public class ManageDBFromJsonFile implements ServletContextListener {
             			//close statements
             			pstmt.close();
         			}
+        			else if(table.equals(AppConstants.CREATE_PURCHASED_BOOKS_TABLE)) {
+        				//populate customers table with customer data from json file
+            			Collection<Purchase> purchases = null;
+						try {
+							purchases = loadPurchases(cntx.getResourceAsStream(File.separator +
+																		   AppConstants.PURCHASES_JSON_FILE));
+						} catch (IOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+            			PreparedStatement pstmt = conn.prepareStatement(AppConstants.INSERT_PURCHASED_STMT);
+            			for (Purchase purchase : purchases){
+            				pstmt.setString(1,purchase.getUsername());
+            				pstmt.setString(2,purchase.getBookname());
+            				pstmt.executeUpdate();
+            			}
+
+            			//commit update
+            			conn.commit();
+            			//close statements
+            			pstmt.close();
+        			}
         		}
     		}
 
@@ -336,6 +359,27 @@ public class ManageDBFromJsonFile implements ServletContextListener {
 		//close
 		br.close();	
 		return likes;
+	}
+	
+	private Collection<Purchase> loadPurchases(InputStream is) throws IOException{
+		
+		//wrap input stream with a buffered reader to allow reading the file line by line
+		BufferedReader br = new BufferedReader(new InputStreamReader(is));
+		StringBuilder jsonFileContent = new StringBuilder();
+		//read line by line from file
+		String nextLine = null;
+		while ((nextLine = br.readLine()) != null){
+			jsonFileContent.append(nextLine);
+		}
+	
+		Gson gson = new Gson();
+		//this is a require type definition by the Gson utility so Gson will 
+		//understand what kind of object representation should the json file match
+		Type type = new TypeToken<Collection<Purchase>>(){}.getType();
+		Collection<Purchase> purchases = gson.fromJson(jsonFileContent.toString(), type);
+		//close
+		br.close();	
+		return purchases;
 	}
 }
 

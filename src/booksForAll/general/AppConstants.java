@@ -13,6 +13,9 @@ public interface AppConstants {
 	public final String COMMENTS_JSON_FILE = COMMENTS + ".json";
 	public final String LIKES = "Json/Likes";
 	public final String LIKES_JSON_FILE = LIKES + ".json";
+	public final String PURCHASES = "Json/Purchases";
+	public final String PURCHASES_JSON_FILE = PURCHASES + ".json";
+
 
 	public final String NAME = "name";
 	//derby constants
