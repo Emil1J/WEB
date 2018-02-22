@@ -29,7 +29,7 @@ angular.module('app',[])
 		    );
 		
 		var noTrans = document.getElementById('noTrans');
-
+		
 		$scope.SignOutFunc = function(){
 			$http.post("http://localhost:8080/BooksForAll/SignOutServlet")
 			   .then(
