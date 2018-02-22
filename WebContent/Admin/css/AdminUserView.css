@@ -13,6 +13,11 @@
 	padding-bottom: 1%;
 }
 
+#no-books{
+	margin-left: 5%;
+	color: rgba(0, 0, 0, 0.5);
+}
+
 .Center{
 	margin-top: 1%;
 	text-align: center;

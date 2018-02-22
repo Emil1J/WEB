@@ -9,6 +9,13 @@ angular.module('app',[])
 		});
 		$scope.user = JSON.parse(localStorage.getItem("ChosenUser"));
 		
+		if($scope.user.books.length == 0){
+			var table = document.getElementById('table-scroll');
+			var nobooks = document.getElementById('no-books');
+			table.style.display = "none";
+			nobooks.style.display = "block";
+		}
+		
 		$scope.unread = 0;
 		$http.post("http://localhost:8080/BooksForAll/AllAdminUnrepliedMessagesServlet")
 		   .then(
