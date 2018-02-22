@@ -7,6 +7,18 @@ h3 {
     background-color: #333;
 }
 
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto auto auto auto;
+  grid-gap: 2px;
+  padding: 2px;
+}
+
+.grid-container > div {
+	background: rgba(0,0,0,.1);
+	border-radius: 25px;
+}
+
 .mostLiked{
 	margin-top: 12%;
 	margin-left: 5%;
@@ -30,6 +42,7 @@ h3 {
 .bookCoversLanding{
 	width: 100px;
 	height: 150px;
+	margin: 10px;
 }
 
 .likedbooks{
@@ -38,11 +51,12 @@ h3 {
 
 #ViewAllButton{
 	float: right;
-	padding-right: 10%;
+	padding-left: 5%;
+	padding-right: 5%;
 	text-align: center;
 	font-weight: bold;
 	background-color: #03A9F4;
-	border-radius: 20px;
+	border-radius: 10px;
     border: none;
     color: white;
     text-decoration: none;
