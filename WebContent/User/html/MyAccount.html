@@ -55,7 +55,7 @@
 										<div class="row">
 										<div class="grid-container">
 	  										<div ng-repeat="book in books">
-													<div class="col-sm-6">
+													<div class="col-sm-5">
 														<a id="img-click" ng-click="MyButtonFunc(book)">
 															<img class="BookCovers" ng-src="{{book.Photo}}"/>
 														</a>
@@ -76,7 +76,7 @@
 														</div>
 														
 													</div>
-													<div id="BookDataDiv" class="col-sm-6">
+													<div id="BookDataDiv" class="col-sm-7">
 														<p class="BookData"><u><b>Title:</b></u> {{book.Name}}</p>
 														<p class="BookData"><u><b>Author:</b></u> {{book.Author}}</p>
 														
@@ -177,9 +177,9 @@
 			      						</div>
 			      						<div id="{{'collapse' + $index}}" class="panel-collapse collapse">
 			        						<div class="panel-body">
-												<p>
-													<strong>Your message:</strong><br/>{{msg.message}}<hr>
-													<strong>Reply:</strong><br/>{{msg.reply}}
+												<p id="msg-reply">
+													<strong>Your message:</strong><br/>{{msg.message}}</p><hr>
+												<p id="msg-reply"><strong>Reply:</strong><br/>{{msg.reply}}
 												</p>
 			        							<button id="delete" type="button" class="btn btn-success btn-sm delete" ng-click="DeleteMessage(msg)" >Delete Message</button>
 			        						</div>
@@ -187,6 +187,7 @@
 									</div>
 								</div>
 							</div>
+							<h1 id="no-msg">No Answered Messages</h1>
 			            </div>				    
 					</div>
 				</div>
@@ -221,7 +222,8 @@
 									</div>
 								</div>
 							</div>
-			            </div>			    
+							<h1 id="no-msg2">No Sent Messages</h1>			    
+			            </div>
 					</div>
 				</div>
 				<!-- The Modal -->

@@ -75,6 +75,22 @@
     width: 80%;
 }
 
+#no-new-msg, #no-old-msg{
+	text-align: center;
+	margin-top: 10%;
+	margin-right: 13%;
+	color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-dialog{
+    overflow-y: initial
+}
+
+.modal-footer{
+    max-height: 400px;
+    overflow-y: auto;
+}
+
 /* The Close Button */
 .close {
     color: #AAAAAA;
