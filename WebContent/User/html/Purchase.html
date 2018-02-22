@@ -7,6 +7,7 @@
 		<link rel="stylesheet" href="../../lib/bootstrap-3.3.7-dist/css/bootstrap.min.css">
 		<script src="../../lib/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 		<link rel="stylesheet" href="../css/Purchase.css" />
+		<link rel="stylesheet" href="../css/UserGeneralDesign.css" />
 		<script src="../javascript/PurchaseController.js"></script>
 		<script src="../../helperService.js"></script>
 <title>Purchase Page</title>
@@ -18,8 +19,8 @@
 			<li><a href="./Ebooks.html">eBooks</a></li>
 			<li><a href="./MyAccount.html">My Account</a></li>
 			<li><button id="HelpMe" type="button" class="btn btn-primary btn-md" ng-click="HelpMeButton()">Help Me</button></li>
-			<li style="padding-left: 15%">
-				<img style="width:150px; height:50px;" alt="logo" src="../../Images/Logo.jpg">
+			<li id="Logo">
+				<img id="LogoPic" alt="logo" src="../../Images/Logo.jpg">
 		</li>
 			<li style="float: right"><a class="active" ng-click="SignOutFunc()" href="../../Login.html">Sign
 					Out</a></li>
@@ -219,7 +220,7 @@
 						<div class="col-sm-12">
 							<div class="row">
 								<div class="col-sm-2">
-									<p class="Header2">Subject:</p>
+									<p class="SubjectHeader">Subject:</p>
 								</div>
 								<div class="col-sm-4">
 									<div id="MessageSubject" class="form-group" ng-class="{ 'has-error' : purchaseForm.exp.$invalid && !purchaseForm.exp.$pristine }">
