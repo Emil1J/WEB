@@ -98,7 +98,7 @@
 	margin-top:1%;
 }
 
-#msg-txt{
+#NewMessages{
 	margin-top:1%;
 	margin-right:7%;
 }
@@ -116,15 +116,6 @@
 	margin-top: 5%;
 }
 
-#HelpMeModal {
-    display: none; /* Hidden by default */
-    width: 50%; 
-    height: 60%;
-    background-color: rgb(0,0,0);
-    background-color: rgba(0,0,0,0);
-	margin-top: 10%;
-	margin-left: 22%;
-}
 
 #AnsweredModal {
     display: none; /* Hidden by default */
@@ -157,9 +148,12 @@
 }
 
 #AccordMsg0{
-	background-color: #96FF33;
+	background-color: #00CC00;
 }
 
+#SentAccordions{
+	background-color: #CBE2DB;
+}
 .MessageAccordion{
 	text-align: left;
 }
@@ -202,11 +196,6 @@ th, td {
 tbody tr:hover.selected td,
 tbody tr:hover td {
   background-color: #B3E5FC;
-}
-
-.modal-footer{
-  height: 250px;
-  overflow-y: auto;
 }
 
 #Col1{
