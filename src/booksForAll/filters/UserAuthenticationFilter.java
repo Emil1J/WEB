@@ -39,6 +39,7 @@ import booksForAll.general.AppConstants;
 	"/TenCommentsServlet",
 	"/TopFiveBooksServlet",
 	"/UpdateScrollPositionServlet",
+	"/TopFivePurchasedBooksServlet",
 	"/UserBooksServlet",
 	"/SignOutServlet",
 	"/AllUserMessagesServlet",

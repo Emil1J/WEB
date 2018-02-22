@@ -11,7 +11,14 @@ angular.module('app',[])
 		$scope.welcomename = user.username;
 		$http.post("http://localhost:8080/BooksForAll/TopFiveBooksServlet")
 		.then(function (response){
-			$scope.books = response.data.BookList;
+			$scope.mostLikedBooks = response.data.BookList;
+	},function(xhr){
+	});
+		
+	$scope.welcomename = user.username;
+	$http.post("http://localhost:8080/BooksForAll/TopFivePurchasedBooksServlet")
+		.then(function (response){
+			$scope.mostPurchasedBooks = response.data.BookList;
 	},function(xhr){
 	});
 	
