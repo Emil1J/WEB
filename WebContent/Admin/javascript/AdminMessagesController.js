@@ -101,8 +101,17 @@ angular.module('app',[])
 						   .then(
 						       function(response){
 									$scope.unread = $scope.unread - 1;
-									document.getElementByID("Circle" + $scope.id).classList.remove('filledCircle');
-									document.getElementByID("Circle" + $scope.id).classList.add('circle');
+									if($scope.unread != 0){
+							    		document.getElementById("TabMessages").innerHTML = "Messages (" + $scope.unread + ")";
+							    		document.getElementById("NewMessagesTab").innerHTML = "New Messages (" + $scope.unread + ")";
+									}
+									else{
+							    		document.getElementById("TabMessages").innerHTML = "Messages";
+							    		document.getElementById("NewMessagesTab").innerHTML = "New Messages";
+									}
+
+									document.getElementById("Circle" + $scope.id).classList.remove('filledCircle');
+									document.getElementById("Circle" + $scope.id).classList.add('circle');
 						       }, 
 						       function(response){
 						         // failure callback
@@ -131,12 +140,6 @@ angular.module('app',[])
 			    modal.style.display = "block";
 			}
 
-			// When the user clicks on <span> (x), close the modal
-			$scope.MyModalFunc = function() {
-				var modal = document.getElementById('MessageModal');
-			    modal.style.display = "none";
-			}
-
 			// When the user clicks anywhere outside of the modal, close it
 			window.onclick = function(event) {
 				var modal = document.getElementById('MessageModal');
@@ -148,9 +151,6 @@ angular.module('app',[])
 			$scope.Close = function(){
 				var modal = document.getElementById('MessageModal');
 				modal.style.display = "none";
-				if(document.getElementById("Submit").style.visibility != "hidden"){
-					location.reload();
-				}
 			}
 			
 			$scope.Send = function(){

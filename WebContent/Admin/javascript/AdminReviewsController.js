@@ -83,7 +83,7 @@
 			$scope.answer = answer;
 		}
 		
-		$scope.FinalAnswer = function(finalanswer){
+		$scope.FinalAnswer = function(finalanswer,acr){
 			if(finalanswer == "No"){
 				var modal = document.getElementById('myModal');
 				modal.style.display = "none";
@@ -108,12 +108,20 @@
 				  dataType: 'json',
 			  data: JSON.stringify(dataQuery),
 			  success: function(response) {
-			},
+				  for(var i = 0; i < $scope.comments.length ; i++){
+					  if($scope.comments[i].id == comment.id){
+						  $scope.comments.splice(i, 1);
+						  break;
+					  }
+				  }
+				  var modal = document.getElementById('myModal');
+				  modal.style.display = "none";
+				  location.reload();
+			  },
 			error: function(xhr) {
 			    //Do Something to handle error
 			  }
 			});
-			location.reload();
 		}
 		
 		$scope.UpdateComment = function(comment){

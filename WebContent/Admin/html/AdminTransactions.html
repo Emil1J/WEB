@@ -38,13 +38,13 @@
 						<div class="col-sm-2">
 						</div>
 						<div class="col-sm-2">
-							<p><b>Filter according to username:</b></p>
+							<p id="userFilterLine"><b>Filter according to username:</b></p>
 							<select id="userFilter" class="form-control" ng-model="userFilter" ng-change="FilterUsers()">
 							    <option ng-repeat="user in users">{{user}}</option>
 	    					</select>
 						</div>
 						<div class="col-sm-2">
-							<p><b>Filter according to book name:</b></p>
+							<p id="bookFilterLine"><b>Filter according to book name:</b></p>
 							<select id="bookFilter" class="form-control" ng-model="bookFilter" ng-change="FilterBooks()">
 							    <option ng-repeat="book in books">{{book}}</option>
 	    					</select>

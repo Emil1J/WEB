@@ -47,17 +47,16 @@ angular.module('app',[])
 		var street = document.getElementById('streetsu').value;
 		var photo = document.getElementById('photosu').value;
 		var password = document.getElementById('passwordsu').value;
-		var balance = '0';
 		var valid = validateFields(valid1, valid2);
 		if(valid){
 			if(email == ""){
-				email = "Empty";
+				email = "";
 			}
 			else if(description == ""){
-				description = "Empty";
+				description = "";
 			}
 			else if(photo == ""){
-				photo = "URL";
+				photo = "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png";
 			}
 			var queryData = {
 				    Username: username,
@@ -71,9 +70,8 @@ angular.module('app',[])
 				    Password: password, 
 				    Nickname: nickname, 
 				    Description: description, 
-				    Photo: photo,
-				    Balance: balance
-				  };
+				    Photo: photo
+					};
 			$.ajax({
 				  url: "http://localhost:8080/BooksForAll/RegisterServlet",
 				  type: "POST", //send it through get method
@@ -91,7 +89,6 @@ angular.module('app',[])
 				  }
 				});
 		}
-		
 	}
 
 	$scope.removeError = function () {

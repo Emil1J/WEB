@@ -37,7 +37,6 @@ angular.module('app',[])
 	   				$scope.AllMessages = response.data.Messages;
 	   				$scope.RepliedMsgs = [];
 	   				$scope.SentMsgs = [];
-	   				alert(JSON.stringify($scope.AllMessages));
 	   				for(var i = 0; i < $scope.AllMessages.length ; i++){
 	   					var current = $scope.AllMessages[i];
 	   					if(current.adminreply == 1){
@@ -51,7 +50,6 @@ angular.module('app',[])
 	   					}
 	   				}
 	   				$scope.NewMsgs = newmsgs;
-	   				alert(newmsgs);
 	   				if($scope.NewMsgs != 0){
 	   					document.getElementById("UserMessagesButton").innerHTML = "Messages (" + $scope.NewMsgs + ")";
 	   					document.getElementById("NewMessages").innerHTML = "Messages (" + $scope.NewMsgs + ")";
@@ -108,7 +106,7 @@ angular.module('app',[])
 			var arrayLength = likes.length;
 			for (var i = 0; i < arrayLength; i++) {
 				var obj = likes[i];
-				likeNames = likeNames + obj.username + "\n";
+				likeNames = likeNames + obj.nickname + "\n";
 			}
 			return likeNames;
 		}
@@ -140,6 +138,7 @@ angular.module('app',[])
 		$scope.LikeBook = function(book){
 			var queryData = {
 					Username : user.username,
+					Nickname : user.nickname,
 					Bookname : book.Name
 				};
 			var query = "LikeBookServlet";
@@ -147,10 +146,6 @@ angular.module('app',[])
 				query = "DislikeBookServlet";
 		   	}
 			
-		   	var queryData = {
-				    Username: user.username, 
-				    Bookname: book.Name
-				  };
 			$.ajax({
 				  url: "http://localhost:8080/BooksForAll/" + query,
 				  type: "POST", //send it through get method

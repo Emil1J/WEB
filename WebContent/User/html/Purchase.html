@@ -101,6 +101,7 @@
          							<div class="form-group" ng-class="{ 'has-error' : purchaseForm.countryPurchase.$invalid && !purchaseForm.countryPurchase.$pristine }">
                        					<p><b>Country :</b></p>
                        					<select class="form-control" pattern="^[a-zA-Z ]*$" placeholder="Country" id="countryPurchase" name="countryPurchase" type="text" autofocus="" ng-model="countryPurchase" required>
+   											<option value="" selected="selected" disabled>Country</option>
                        						<option ng-repeat="country in countries">{{country.name}}</option>
 	      								</select>
                							<span id="" class="errorMsg" ng-show="!purchaseForm.countryPurchase.$error.minlength && !purchaseForm.countryPurchase.$error.maxlength && !(purchaseForm.countryPurchase.$dirty && purchaseForm.countryPurchase.$error.required) && purchaseForm.countryPurchase.$invalid && !purchaseForm.countryPurchase.$pristine">*Enter a valid country name!</span>

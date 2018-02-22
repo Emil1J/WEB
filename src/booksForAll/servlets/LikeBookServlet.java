@@ -39,7 +39,8 @@ import booksForAll.model.Like;
 		urlPatterns = "/LikeBookServlet",
 		initParams = {
 				@WebInitParam(name = "Username", value = ""),
-				@WebInitParam(name = "Bookname", value = "")
+				@WebInitParam(name = "Bookname", value = ""),
+				@WebInitParam(name = "Nickname", value = "")
 		})
 	public class LikeBookServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -75,6 +76,7 @@ import booksForAll.model.Like;
 		PostData postData = gson.fromJson(strBuf.toString(), PostData.class);
 
 		String username = postData.Username;
+		String nickname = postData.Nickname;
 		String bookname = postData.Bookname;
 		Book book = null;
 		String result = "";
@@ -98,7 +100,8 @@ import booksForAll.model.Like;
 				else {
 					stmt = conn.prepareStatement(AppConstants.INSERT_LIKE_STMT);
 					stmt.setString(1, username);
-					stmt.setString(2, bookname);
+					stmt.setString(2, nickname);
+					stmt.setString(3, bookname);
 					int res = stmt.executeUpdate(); 
 					if (res != 0){
 						result = "Success";

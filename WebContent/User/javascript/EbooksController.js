@@ -35,7 +35,7 @@ angular.module('app',[])
 			var arrayLength = likes.length;
 			for (var i = 0; i < arrayLength; i++) {
 				var obj = likes[i]
-				likeNames = likeNames + obj.username + "\n"
+				likeNames = likeNames + obj.nickname + "\n"
 			}
 			return likeNames;
 		}
