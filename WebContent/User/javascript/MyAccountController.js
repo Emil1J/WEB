@@ -133,7 +133,7 @@ angular.module('app',[])
 			var arrayLength = likes.length;
 			for (var i = 0; i < arrayLength; i++) {
 				var obj = likes[i];
-				likeNames = likeNames + obj.username + "\n";
+				likeNames = likeNames + obj.nickname + "\n";
 			}
 			return likeNames;
 		}
@@ -165,6 +165,7 @@ angular.module('app',[])
 		$scope.LikeBook = function(book){
 			var queryData = {
 					Username : user.username,
+					Nickname : user.nickname,
 					Bookname : book.Name
 				};
 			var query = "LikeBookServlet";
@@ -172,10 +173,6 @@ angular.module('app',[])
 				query = "DislikeBookServlet";
 		   	}
 			
-		   	var queryData = {
-				    Username: user.username, 
-				    Bookname: book.Name
-				  };
 			$.ajax({
 				  url: "http://localhost:8080/BooksForAll/" + query,
 				  type: "POST", //send it through get method

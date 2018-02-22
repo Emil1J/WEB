@@ -40,6 +40,10 @@ angular.module('app',[])
 			    );
 		}
 		var table = document.getElementById('table-scroll');
+		var userFilterLine = document.getElementById('userFilterLine');
+		var bookFilterLine = document.getElementById('bookFilterLine');
+		var userFilter = document.getElementById('userFilter');
+		var bookFilter = document.getElementById('bookFilter');
 
 		
 		$http.post("http://localhost:8080/BooksForAll/AllTransactionsServlet")
@@ -50,10 +54,13 @@ angular.module('app',[])
 		    	   if($scope.transactions.length == 0){
 		    		   table.style.display = "none";
 		    		   noTrans.style.display = "block";
+		    		   userFilterLine.style.display = "none";
+		    		   bookFilterLine.style.display = "none";
+		    		   userFilter.style.display = "none";
+		    		   bookFilter.style.display = "none";
 		    	   }else{
 		    		   noTrans.style.display = "none";
 		    		   table.style.display = "block";
-
 		    	   }
 		    	   
 		    	   $scope.books = ["All"];

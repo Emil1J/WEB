@@ -27,11 +27,6 @@
 	font-size: 120%;
 }
 
-#tooltip
-{
-	margin-left: 4%;
-}
-
 .ProfilePic{
 	max-height: 50px;
 	max-width: 50px;
@@ -95,4 +90,5 @@ input[type="submit"]
 
 #tooltip {
     display: inline-block;
+    margin-left: 5%;
 }

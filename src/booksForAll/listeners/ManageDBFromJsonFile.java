@@ -201,7 +201,8 @@ public class ManageDBFromJsonFile implements ServletContextListener {
             			PreparedStatement pstmt = conn.prepareStatement(AppConstants.INSERT_LIKE_STMT);
             			for (Like like : likes){
             				pstmt.setString(1,like.getUsername());
-            				pstmt.setString(2,like.getBookname());
+            				pstmt.setString(2,like.getNickname());
+            				pstmt.setString(3,like.getBookname());
             				pstmt.executeUpdate();
             			}
 

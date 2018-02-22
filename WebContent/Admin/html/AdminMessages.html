@@ -13,31 +13,6 @@
 <script src="../../helperService.js"></script>
 <title>Admin - Messages Page</title>
 </head>
-<style>
-.accordion {
-    background-color: #eee;
-    color: #444;
-    cursor: pointer;
-    padding: 18px;
-    width: 100%;
-    border: none;
-    text-align: left;
-    outline: none;
-    font-size: 15px;
-    transition: 0.4s;
-}
-
-.active, .accordion:hover {
-    background-color: #ccc; 
-}
-
-.panel {
-    padding: 0 18px;
-    display: none;
-    background-color: white;
-    overflow: hidden;
-}
-</style>
 <body ng-app="app" ng-controller="adminMessagesController">
 	<ul>
 		<b>
@@ -97,7 +72,7 @@
 			<div id="MessageModal" class="modal">									
 				<!-- Modal content -->
 				<div class="modal-content">
-					<span class="close" ng-click="MyModalFunc()">&times;</span>
+					<span class="close" ng-click="Close()">&times;</span>
 					<div class="modal-title">
 						<div class="col-md-12">
 							<div class="row">

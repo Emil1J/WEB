@@ -47,7 +47,7 @@ angular.module('app',[])
 	    	$http.post("http://localhost:8080/BooksForAll/CommentBookServlet", data)
 			   .then(
 			       function(response){
-				    	input.value = '';
+			    	   document.getElementById("review").value = "";
 			       }, 
 			       function(response){
 			       }
@@ -69,7 +69,7 @@ angular.module('app',[])
 			var arrayLength = likes.length;
 			for (var i = 0; i < arrayLength; i++) {
 				var obj = likes[i]
-				likeNames = likeNames + obj.username + "\n"
+				likeNames = likeNames + obj.nickname + "\n"
 			}
 			return likeNames;
 		}

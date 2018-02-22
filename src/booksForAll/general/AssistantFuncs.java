@@ -24,7 +24,7 @@ public class AssistantFuncs {
 	}
 	
 	public static Like CreateLikeFromRS(ResultSet rs) throws SQLException {
-		return new Like(rs.getString(2), rs.getString(3));
+		return new Like(rs.getString(2), rs.getString(3), rs.getString(4));
 	}
 	
 	public static Comment CreateCommentFromRS(ResultSet rs) throws SQLException {

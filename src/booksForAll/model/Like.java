@@ -2,11 +2,13 @@ package booksForAll.model;
 
 public class Like {
 	private String username;
+	private String nickname;
 	private String bookname;
 	
-	public Like(String username, String bookname) {
-		this.setUsername(username);
-		this.setBookname(bookname);
+	public Like(String username, String nickname, String bookname) {
+		this.username = username;
+		this.nickname = nickname;
+		this.bookname = bookname;
 	}
 
 	public String getUsername() {
@@ -23,5 +25,13 @@ public class Like {
 
 	public void setBookname(String bookname) {
 		this.bookname = bookname;
+	}
+
+	public String getNickname() {
+		return nickname;
+	}
+
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
 	}
 }
