@@ -9,6 +9,7 @@ import booksForAll.model.Book;
 import booksForAll.model.Comment;
 import booksForAll.model.Like;
 import booksForAll.model.Message;
+import booksForAll.model.Purchase;
 import booksForAll.model.Transaction;
 import booksForAll.model.User;
 
@@ -33,6 +34,10 @@ public class AssistantFuncs {
 	
 	public static Message CreateMessageFromRS(ResultSet rs) throws SQLException {
 		return new Message(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getTimestamp(5), rs.getString(6), rs.getInt(7), rs.getInt(8), rs.getInt(9));
+	}
+
+	public static Purchase CreatePurchaseFromRS(ResultSet rs) throws SQLException {
+		return new Purchase(rs.getString(1), rs.getString(2));
 	}
 	
 	public static ArrayList<Book> SetLikesNumForBooks(ArrayList<Book> books){
