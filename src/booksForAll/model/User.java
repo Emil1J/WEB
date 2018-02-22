@@ -16,11 +16,10 @@ public class User {
 	private String description;
 	private String photo;
 	private ArrayList<Book> books;
-	private double balance;
 	
 	public User(String username, String email,  String city, String street, int houseNum, 
 			String postalCode, String country, String phoneNum, String password,
-			String nickname, String description, String photo, double balance) {
+			String nickname, String description, String photo) {
 		this.username = username;
 		this.email = email;
 		this.city = city;
@@ -33,7 +32,6 @@ public class User {
 		this.nickname = nickname;
 		this.description = description;
 		this.photo = photo;
-		this.balance = balance;
 	}
 	public String getUsername() {
 		return username;
@@ -82,12 +80,6 @@ public class User {
 	}
 	public void setBooks(ArrayList<Book> books) {
 		this.books = books;
-	}
-	public double getBalance() {
-		return balance;
-	}
-	public void setBalance(double balance) {
-		this.balance = balance;
 	}
 	public String getStreet() {
 		return street;

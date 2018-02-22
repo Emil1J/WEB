@@ -146,7 +146,7 @@ import booksForAll.model.User;
 
     		conn.close();
         	response.addHeader("Content-Type", "application/json");
-        	User user = new User(username, email, city, street, Integer.parseInt(houseNum), postalCode, country, phoneNumber, password, nickname, description, photo, 0);
+        	User user = new User(username, email, city, street, Integer.parseInt(houseNum), postalCode, country, phoneNumber, password, nickname, description, photo);
     		JsonObject json = new JsonObject();
     		json.addProperty("Result", result);
     		json.add("User", gson.toJsonTree(user));
