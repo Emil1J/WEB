@@ -34,14 +34,28 @@
 
 #DetailsDiv{
 	float: right;
+	background: rgba(0,0,0,.1);
+	border-radius: 25px;
 }
 
+#DetailsDiv-inner{
+	margin: 15px;
+}
 
-thead, tbody { display: block; }
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+th, td {
+    text-align: center;
+    padding: 5px;
+}
 
 #TableLocation {
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
     width: 100%;
+    margin-top: 1%;
 }
 
 #TableLocation tr:nth-child(even){
@@ -57,19 +71,19 @@ thead, tbody { display: block; }
     background-color: #BCAAA4;
     color: white;
 }
+
 #table-scroll{
-	height: 250px;
+	height:550px;
 	overflow:auto;
-}
-  
-.clickable {
-    cursor: pointer;
 }
 
 tbody tr:hover.selected td,
 tbody tr:hover td {
   background-color: #B3E5FC;
-  cursor: pointer;
+}
+  
+.clickable {
+    cursor: pointer;
 }
 
 #Button{
@@ -82,25 +96,6 @@ tbody tr:hover td {
     text-decoration: none;
     display: inline-block;
 }
-
-tbody tr.selected td {
-  background-color: #B0BEC5;
-}
-
-
-table, th, td {
-    border: 1px solid black;
-    border-collapse: collapse;
-}
-
-th, td {
-    text-align: center;
-    padding: 5px;
-}
-
-tr:nth-child(even){background-color: #f2f2f2}
-tr:nth-child(odd){background-color: #ffffff}
-
 
 .modal {
     display: none; /* Hidden by default */

@@ -41,14 +41,16 @@
 				</div>
 				<div class="col-sm-4">
 					<div id="DetailsDiv" >
-						<p id="Details">User details:</p>
-						<p><b><u>Nickname:</u></b> {{user.nickname}}</p>
-						<p><b><u>Email:</u></b> {{user.email}}</p>
-						<p><b><u>Phone:</u></b> {{user.phoneNum}}</p>
-						<p><b><u>Address:</u></b></p>
-						<p>{{user.street}} {{user.houseNum}}, {{user.city}}, {{user.country}}, {{user.postalCode}}</p>
-						<p><b><u>Description:</u></b></p>
-						<p>{{user.description}}</p>
+						<div id="DetailsDiv-inner">
+							<p id="Details">User details:</p>
+							<p><b><u>Nickname:</u></b> {{user.nickname}}</p>
+							<p><b><u>Email:</u></b> {{user.email}}</p>
+							<p><b><u>Phone:</u></b> {{user.phoneNum}}</p>
+							<p><b><u>Address:</u></b></p>
+							<p>{{user.street}} {{user.houseNum}}, {{user.city}}, {{user.country}}, {{user.postalCode}}</p>
+							<p><b><u>Description:</u></b></p>
+							<p>{{user.description}}</p>
+						</div>
 					</div>
 				</div>
 				<div class="col-sm-6">
@@ -56,11 +58,11 @@
 					<div class="col-sm-12">
 						<div id="table-scroll">
 							<table id="TableLocation">
-								<tr class="RowSize">
+								<tr>
 						    		<th class="Col1">Bookname</th>
 						    		<th class="Col2">Author</th>
 						    		<th class="Col3">Liked?</th>
-						    	</tr class="RowSize">
+						    	</tr>
 						    	<tr ng-repeat="book in user.books">
 							    	<td class="Col1">{{book.Name}}</td>
 							   		<td class="Col2">{{book.Author}}</td>
