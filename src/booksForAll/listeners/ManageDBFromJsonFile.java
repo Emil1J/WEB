@@ -154,7 +154,6 @@ public class ManageDBFromJsonFile implements ServletContextListener {
             				pstmt.setString(10,user.getNickname());
             				pstmt.setString(11,user.getDescription());
             				pstmt.setString(12,user.getPhoto());
-            				pstmt.setDouble(13,user.getBalance());
             				pstmt.executeUpdate();
             			}
 
