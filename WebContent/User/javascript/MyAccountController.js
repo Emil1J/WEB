@@ -37,6 +37,7 @@ angular.module('app',[])
 	   				$scope.AllMessages = response.data.Messages;
 	   				$scope.RepliedMsgs = [];
 	   				$scope.SentMsgs = [];
+	   				alert(JSON.stringify($scope.AllMessages));
 	   				for(var i = 0; i < $scope.AllMessages.length ; i++){
 	   					var current = $scope.AllMessages[i];
 	   					if(current.adminreply == 1){
@@ -50,6 +51,7 @@ angular.module('app',[])
 	   					}
 	   				}
 	   				$scope.NewMsgs = newmsgs;
+	   				alert(newmsgs);
 	   				if($scope.NewMsgs != 0){
 	   					document.getElementById("UserMessagesButton").innerHTML = "Messages (" + $scope.NewMsgs + ")";
 	   					document.getElementById("NewMessages").innerHTML = "Messages (" + $scope.NewMsgs + ")";
@@ -310,9 +312,9 @@ angular.module('app',[])
 				    			   $scope.RepliedMsgs[i].userread = 1;
 				    		   }
 				    	   }
-		   					document.getElementById("UserMessagesButton").innerHTML = Msgs;
-		   					document.getElementById("NewMessages").innerHTML = Msgs;
-			    	   }
+				    	   
+				    	   document.getElementById("UserMessagesButton").innerHTML = "Messages (" + $scope.NewMsgs + ")";
+		   					document.getElementById("NewMessages").innerHTML = "Messages (" + $scope.NewMsgs + ")";			    	   }
 			       }, 
 			       function(response){
 			         // failure callback

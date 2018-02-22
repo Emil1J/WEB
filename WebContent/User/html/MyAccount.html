@@ -41,7 +41,7 @@
 									<p class="ProfileData Center">
 										<div id="main-div-msg" class="col-sm-12">
 											<div class="col-sm-6" align="right">
-												<p id="msg-txt"><strong>Messages: </strong></p>
+												<p id="NewMessages"><strong>Messages: </strong></p>
 											</div>
 											<div id="msg-btns" class="col-sm-6"  align="left">
 												<div class="btn-group">
@@ -177,7 +177,7 @@
 			      						</div>
 			      						<div id="{{'collapse' + $index}}" class="panel-collapse collapse">
 			        						<div class="panel-body">
-												<p class="MessageAccordion">
+												<p>
 													<strong>Your message:</strong><br/>{{msg.message}}<hr>
 													<strong>Reply:</strong><br/>{{msg.reply}}
 												</p>
@@ -202,7 +202,7 @@
 			                <div class="col-sm-12">
 								<div class="panel-group" id="accordion">
 									<div class="panel panel-default container-fluid" ng-repeat="msg in SentMsgs">
-										<div id="AccordMsg{{msg.userread}}" class="panel-heading row" ng-click="ReadMessage(msg)" style="cursor: pointer;">
+										<div id="SentAccordions" class="panel-heading row" ng-click="ReadMessage(msg)" style="cursor: pointer;">
 											<div class="col-sm-12">
 												<h4 class="panel-title">
 			         								<p class="MessageAccordion" data-toggle="collapse" data-parent="#accordion" href="{{'#collapse' + $index + RepliedMsgs.length}}" aria-expanded="false" aria-controls="{{'collapse' + $index + RepliedMsgs.length}}">
