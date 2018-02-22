@@ -94,11 +94,52 @@
     display: inline-block;
 }
 
+#main-div-msg{
+	margin-top:1%;
+}
+
+#msg-txt{
+	margin-top:1%;
+	margin-right:7%;
+}
+
+#msg-btns{
+	margin-left:-5%;
+}
+
+#tooltip {
+    display: inline-block;
+    margin-left: 10%;
+}
+
 #BookDataDiv{
 	margin-top: 5%;
 }
 
-#MessagesModal {
+#HelpMeModal {
+    display: none; /* Hidden by default */
+    width: 50%; 
+    height: 60%;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0);
+	margin-top: 10%;
+	margin-left: 22%;
+}
+
+#AnsweredModal {
+    display: none; /* Hidden by default */
+    width: 80%; 
+    height: 70%;
+    max-height: 70%;
+    max-width:80%;
+    overflow-y: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0);
+	margin-top: 7%;
+	margin-left: 8%;
+}
+
+#SentModal {
     display: none; /* Hidden by default */
     width: 80%; 
     height: 70%;
@@ -161,6 +202,11 @@ th, td {
 tbody tr:hover.selected td,
 tbody tr:hover td {
   background-color: #B3E5FC;
+}
+
+.modal-footer{
+  height: 250px;
+  overflow-y: auto;
 }
 
 #Col1{
