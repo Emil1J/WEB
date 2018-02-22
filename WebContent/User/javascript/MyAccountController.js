@@ -37,7 +37,6 @@ angular.module('app',[])
 	   				$scope.AllMessages = response.data.Messages;
 	   				$scope.RepliedMsgs = [];
 	   				$scope.SentMsgs = [];
-	   				alert(JSON.stringify($scope.AllMessages));
 	   				for(var i = 0; i < $scope.AllMessages.length ; i++){
 	   					var current = $scope.AllMessages[i];
 	   					if(current.adminreply == 1){
@@ -50,10 +49,22 @@ angular.module('app',[])
 	   						$scope.SentMsgs.push(current);
 	   					}
 	   				}
+	   				if($scope.RepliedMsgs.length == 0){
+	   					var nomsg = document.getElementById('no-msg');
+	   				    nomsg.style.display = "block";
+	   				}else{
+	   					var nomsg = document.getElementById('no-msg');
+	   				    nomsg.style.display = "none";
+	   				}
+	   				if($scope.SentMsgs.length == 0){
+	   					var nomsg2 = document.getElementById('no-msg2');
+	   				    nomsg2.style.display = "block";
+	   				}else{
+	   					var nomsg2 = document.getElementById('no-msg2');
+	   				    nomsg2.style.display = "none";
+	   				}
 	   				$scope.NewMsgs = newmsgs;
-	   				alert(newmsgs);
 	   				if($scope.NewMsgs != 0){
-	   					document.getElementById("UserMessagesButton").innerHTML = "Messages (" + $scope.NewMsgs + ")";
 	   					document.getElementById("NewMessages").innerHTML = "Messages (" + $scope.NewMsgs + ")";
 	   				}
 	   			}, 
@@ -81,6 +92,20 @@ angular.module('app',[])
 	   					else{
 	   						$scope.SentMsgs.push(current);
 	   					}
+	   				}
+	   				if($scope.RepliedMsgs.length == 0){
+	   					var nomsg = document.getElementById('no-msg');
+	   				    nomsg.style.display = "block";
+	   				}else{
+	   					var nomsg = document.getElementById('no-msg');
+	   				    nomsg.style.display = "none";
+	   				}
+	   				if($scope.SentMsgs.length == 0){
+	   					var nomsg2 = document.getElementById('no-msg2');
+	   				    nomsg2.style.display = "block";
+	   				}else{
+	   					var nomsg2 = document.getElementById('no-msg2');
+	   				    nomsg2.style.display = "none";
 	   				}
 	   				$scope.NewMsgs = newmsgs;
 	   				if($scope.NewMsgs != 0){
@@ -312,8 +337,6 @@ angular.module('app',[])
 				    			   $scope.RepliedMsgs[i].userread = 1;
 				    		   }
 				    	   }
-				    	   
-				    	   document.getElementById("UserMessagesButton").innerHTML = "Messages (" + $scope.NewMsgs + ")";
 		   					document.getElementById("NewMessages").innerHTML = "Messages (" + $scope.NewMsgs + ")";			    	   }
 			       }, 
 			       function(response){

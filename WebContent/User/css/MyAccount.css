@@ -70,7 +70,6 @@
 }
 
 .BookData{
-	padding-left: 15%;
 }
 
 .BookData2{
@@ -128,6 +127,24 @@
     background-color: rgba(0,0,0,0);
 	margin-top: 7%;
 	margin-left: 8%;
+}
+
+.modal-dialog{
+    overflow-y: initial
+}
+.modal-footer{
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+#msg-reply{
+	text-align:left;
+}
+
+#no-msg, #no-msg2{
+	text-align: center;
+	margin-top: 10%;
+    color: rgba(0, 0, 0, 0.5);
 }
 
 #SentModal {

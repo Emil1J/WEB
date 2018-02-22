@@ -14,6 +14,13 @@ angular.module('app',[])
 		   .then(
 		       function(response){
 		    	   $scope.UnrepliedMessages = response.data.Messages;
+		    	   if($scope.UnrepliedMessages.length == 0){
+		    		   	var no_new_msgs = document.getElementById('no-new-msg');
+		    		   	no_new_msgs.style.display = "block";
+		    	   }else{
+		    		   var no_new_msgs = document.getElementById('no-new-msg');
+		    		   no_new_msgs.style.display = "none";
+		    	   }
 		    	   var unread = 0;
 		    	   for(var i = 0; i < $scope.UnrepliedMessages.length ; i++){
 		    		   if($scope.UnrepliedMessages[i].adminread == 0){
@@ -46,6 +53,13 @@ angular.module('app',[])
 		       function(response){
 		    	   $scope.Repliedmessages = response.data.Messages;
 		    	   $scope.read = response.data.Messages.length;
+		    	   if($scope.Repliedmessages.length == 0){
+		    		   	var no_old_msg = document.getElementById('no-old-msg');
+		    		   	no_old_msg.style.display = "block";
+		    	   }else{
+		    		   var no_old_msg = document.getElementById('no-old-msg');
+		    		   no_old_msg.style.display = "none";
+		    	   }
 		       }, 
 		       function(response){
 		         // failure callback
@@ -59,7 +73,7 @@ angular.module('app',[])
 			return "circle";
 		}
 		
-		$scope.openTab = function(evt, cityName) {
+		$scope.openTab = function(evt, modalName) {
 		    var i, tabcontent, tablinks;
 		    tabcontent = document.getElementsByClassName("tabcontent");
 		    for (i = 0; i < tabcontent.length; i++) {
@@ -69,7 +83,7 @@ angular.module('app',[])
 		    for (i = 0; i < tablinks.length; i++) {
 		        tablinks[i].className = tablinks[i].className.replace(" active", "");
 		    }
-		    document.getElementById(cityName).style.display = "block";
+		    document.getElementById(modalName).style.display = "block";
 		    evt.currentTarget.className += " active";
 		}
 
