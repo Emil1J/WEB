@@ -60,6 +60,37 @@ angular.module('app',[])
 	   			}
 	   	);
 
+		function reloadMessages(){
+			$http.post("http://localhost:8080/BooksForAll/AllUserMessagesServlet", dataQuery)
+	   		.then(
+	   			function(response){
+	   				var newmsgs = 0;
+	   				$scope.AllMessages = response.data.Messages;
+	   				$scope.RepliedMsgs = [];
+	   				$scope.SentMsgs = [];
+	   				for(var i = 0; i < $scope.AllMessages.length ; i++){
+	   					var current = $scope.AllMessages[i];
+	   					if(current.adminreply == 1){
+	   						if(current.userread == 0){
+		   						newmsgs++;
+		   					}
+	   						$scope.RepliedMsgs.push(current);
+	   					}
+	   					else{
+	   						$scope.SentMsgs.push(current);
+	   					}
+	   				}
+	   				$scope.NewMsgs = newmsgs;
+	   				if($scope.NewMsgs != 0){
+	   					document.getElementById("UserMessagesButton").innerHTML = "Messages (" + $scope.NewMsgs + ")";
+	   					document.getElementById("NewMessages").innerHTML = "Messages (" + $scope.NewMsgs + ")";
+	   				}
+	   			}, 
+	   			function(response){
+	   				// failure callback
+	   			}
+	   	);
+		}
 		$scope.SignOutFunc = function(){
 			$http.post("http://localhost:8080/BooksForAll/SignOutServlet")
 			   .then(
@@ -235,7 +266,8 @@ angular.module('app',[])
 				  success: function(response) {
 						$("#HelpMeSuccess").show().delay(3000).fadeOut();
 						document.getElementById("TextAreaHelp").value = "";
-				},
+						reloadMessages();
+				  },
 					  error: function(xhr) {
 					    //Do Something to handle error
 					  }
