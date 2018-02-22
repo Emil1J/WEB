@@ -190,8 +190,13 @@ angular.module('app',[])
 		    modal.style.display = "block";
 		}
 		
-		$scope.MessagesModal = function() {
-			var modal = document.getElementById('MessagesModal');
+		$scope.AnsweredModal = function() {
+			var modal = document.getElementById('AnsweredModal');
+		    modal.style.display = "block";
+		}
+		
+		$scope.SentModal = function() {
+			var modal = document.getElementById('SentModal');
 		    modal.style.display = "block";
 		}
 
@@ -211,20 +216,29 @@ angular.module('app',[])
 		    modal.style.display = "none";
 		}
 		
-		$scope.MessagesModalCloseFunc = function(){
-			var modal = document.getElementById('MessagesModal');
+		$scope.AnsweredModalCloseFunc = function(){
+			var modal = document.getElementById('AnsweredModal');
+		    modal.style.display = "none";
+		}
+		
+		$scope.SentModalCloseFunc = function(){
+			var modal = document.getElementById('SentModal');
 		    modal.style.display = "none";
 		}
 
 		// When the user clicks anywhere outside of the modal, close it
 		window.onclick = function(event) {
 			var modal = document.getElementById('myModal');
-			var msgsModal = document.getElementById('MessagesModal');
+			var msgsModal = document.getElementById('AnsweredModal');
+			var sentModal = document.getElementById('SentModal');
 		    if (event.target == modal) {
 		        modal.style.display = "none";
 		    }
 		    if(event.target == msgsModal){
 		    	msgsModal.style.display = "none";
+		    }
+		    if(event.target == sentModal){
+		    	sentModal.style.display = "none";
 		    }
 		}
 		
