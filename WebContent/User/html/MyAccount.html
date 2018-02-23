@@ -79,7 +79,6 @@
 													<div id="BookDataDiv" class="col-sm-7">
 														<p class="BookData"><u><b>Title:</b></u> {{book.Name}}</p>
 														<p class="BookData"><u><b>Author:</b></u> {{book.Author}}</p>
-														
 														<p class="BookData"><b>
 															<button type="button" class="btn btn-info btn-xs" ng-click="MyButtonFunc(book)">Read Book</button>
 														</b></p>
@@ -102,7 +101,7 @@
 							<b><p>Do you like to continue from where you last stopped?</p></b>
 						</div>
 						<div class="modal-footer">
- 							<button type="button" data-dismiss="modal" ng-click="OpenBook('True')" class="btn btn-primary" id="Yes">Yes</button>
+ 							<button type="button" data-dismiss="modal" ng-click="OpenBook('True')" class="btn btn-info" id="Yes">Yes</button>
    							<button type="button" data-dismiss="modal" ng-click="OpenBook('False')" class="btn" id="No">No</button>
 						</div>								    
 					</div>
@@ -146,7 +145,7 @@
 										<p id="HelpMeError">Please write a message!</p>				
 									</div>
 									<div class="col-sm-5">
-										<button id="ModalButton" type="button" data-dismiss="modal" ng-click="Submit()" class="btn btn-primary" id="Yes">Submit</button>
+										<button id="ModalButton" type="button" data-dismiss="modal" ng-click="Submit()" class="btn btn-info" id="Yes">Submit</button>
    										<button id="ModalButton" type="button" data-dismiss="modal" ng-click="Cancel()" class="btn" id="No">Cancel</button>
 									</div>
 								</div>					

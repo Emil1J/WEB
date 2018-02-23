@@ -92,6 +92,12 @@ angular.module('app',[])
 			 w.style.display = "block";
 		}
 		
+		if($scope.bookcomments.length == 0){
+		    w.style.display = "none";
+		}else{
+			 w.style.display = "block";
+		}
+		
 		$scope.MyButtonFunc = function(book) {
 			localStorage.setItem('ChosenBook', JSON.stringify(book));
 			var modal = document.getElementById('myModal');

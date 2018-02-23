@@ -28,9 +28,6 @@ angular.module('app',[])
 		       }
 		    );
 		
-		var $j = jQuery.noConflict();
-		$j("#datepicker").datepicker();
-		
 		var noTrans = document.getElementById('noTrans');
 		
 		$scope.SignOutFunc = function(){
