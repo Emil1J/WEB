@@ -152,3 +152,12 @@ input[type="submit"]
     visibility: visible;
     opacity: 1;
 }
+
+
+.LikesList{
+	color: white;
+}
+
+.LikesList:hover{
+	color: #29B6F6;
+}
