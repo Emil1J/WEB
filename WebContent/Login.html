@@ -10,34 +10,31 @@
 		<script src="./helperService.js"></script>
 		<title>Login Page</title>
 	</head>
-	<body  ng-app="app" ng-controller="loginController">
+	<body ng-app="app" ng-controller="loginController">
 		<ul>
-			<b>
-				<li style="margin-left: 46%">
-					<img style="width:150px; height:50px;" alt="logo" src="Images/Logo.jpg">
-				</li>
-			</b>
+			<li style="margin-left: 46%">
+				<img style="width:150px; height:50px;" alt="logo" src="Images/Logo.jpg">
+			</li>
 		</ul>
 		<h1 style="padding-left: 4%"><b>Login</b></h1>
   		<div class="container">
-    	<div class="container-fluid">
-  			<div class="row">
-      			<div class="col-md-12">
-          			<div class="container">
-              			<div class="row">
-              				<div class="col-md-4">
-              				</div>
-                  			<div class="col-md-4">
-                  				<div class="loginBox">
-  									<form name="userForm" ng-submit="submitForm(userForm.$valid)" novalidate>
-  										<fieldset>
-  											<div class="form-group" ng-class="{ 'has-error' : userForm.username.$invalid && !userForm.username.$pristine }">
-                       							<p><b>Username :</b></p>
-                       							<input class="form-control" placeholder="Username" id="username" name="username" type="text" autofocus="" ng-model="username" required>
+	    	<div class="container-fluid">
+	  			<div class="row">
+	      			<div class="col-md-12">
+	          			<div class="container">
+	              			<div class="col-md-4">
+	              			</div>
+	                  		<div class="col-md-4">
+	                  			<div class="loginBox">
+		 							<form name="userForm" ng-submit="submitForm(userForm.$valid)" novalidate>
+		 								<fieldset>
+		 									<div class="form-group">
+		                      					<p><b>Username :</b></p>
+		                      					<input class="form-control" placeholder="Username" id="username" name="username" type="text" autofocus="" ng-model="username"  required>
 											</div>
-											<div class="form-group" ng-class="{ 'has-error' : userForm.password.$invalid && !userForm.password.$pristine }">
-                       							<p><b>Password :</b></p>
-                       							<input class="form-control" placeholder="********" id="password" name="password" type="password" autofocus="" ng-model="password" required>
+											<div class="form-group">
+		                      					<p><b>Password :</b></p>
+		                      					<input class="form-control" placeholder="********" id="password" name="password" type="password" ng-model="password" required>
 											</div>
 											<div>
 												<button id="submit" type="button" class="btn btn-success btn-md submit" ng-click="login()" >Login</button>
@@ -46,15 +43,14 @@
 											<p id="invalid"><b>*Invalid username or password.</b></p>
 										</fieldset>
 									</form>
-  								</div>
-                  				<div class="col-md-4">
-              					</div>
-                  			</div>
-              			</div>
-          			</div>
-      			</div>
-  			</div>
-		</div>
+	  							</div>
+	                  		</div>
+	                  		<div class="col-md-4">
+	              			</div>
+	          			</div>
+	      			</div>
+	  			</div>
+			</div>
     	</div>
 	</body>
 </html>

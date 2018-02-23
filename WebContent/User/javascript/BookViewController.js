@@ -35,6 +35,7 @@ angular.module('app',[])
 		var y = document.getElementById("infoMsg");
 		var z = document.getElementById("purchase");
 		var w = document.getElementById("collapseReviewBtn");
+		var k = document.getElementById("read");
 		y.style.display = "none";
 		var input = document.getElementById("review");
 		
@@ -86,16 +87,19 @@ angular.module('app',[])
 		    x.style.display = "none";
 		    z.style.display = "block";
 		    w.style.display = "none";
+		    k.style.display = "none";
 		}else{
 			 x.style.display = "block";
 			 z.style.display = "none";
 			 w.style.display = "block";
+			 k.style.display = "block";
 		}
 		
 		if($scope.bookcomments.length == 0){
 		    w.style.display = "none";
 		}else{
-			 w.style.display = "block";
+			if(purchased != "False")
+				w.style.display = "block";
 		}
 		
 		$scope.MyButtonFunc = function(book) {
