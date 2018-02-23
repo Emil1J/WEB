@@ -34,6 +34,7 @@ angular.module('app',[])
 		var x = document.getElementById("reviewField");
 		var y = document.getElementById("infoMsg");
 		var z = document.getElementById("purchase");
+		var w = document.getElementById("collapseReviewBtn");
 		y.style.display = "none";
 		var input = document.getElementById("review");
 		
@@ -84,10 +85,25 @@ angular.module('app',[])
 		if(purchased == "False"){
 		    x.style.display = "none";
 		    z.style.display = "block";
+		    w.style.display = "none";
 		}else{
 			 x.style.display = "block";
 			 z.style.display = "none";
+			 w.style.display = "block";
 		}
+		
+		$scope.MyButtonFunc = function(book) {
+			localStorage.setItem('ChosenBook', JSON.stringify(book));
+			var modal = document.getElementById('myModal');
+		    modal.style.display = "block";
+		}
+		
+		$scope.MyModalFunc = function() {
+			var modal = document.getElementById('myModal');
+		    modal.style.display = "none";
+		}
+		
+		
 		
 		$scope.PurchaseBook = function(book){
 			localStorage.setItem('purchaseBook', JSON.stringify(book));
@@ -99,75 +115,6 @@ angular.module('app',[])
  		   var time = CommentDateTime.split(' ')[1].split(":")[0] + ":" + CommentDateTime.split(' ')[1].split(":")[1];
  		   return date + ' at ' + time;
 		}
-		
-		$(window).scroll(function() {
-			   if($(window).scrollTop() + $(window).height() == $(document).height() || $(window).scrollTop() + $(window).height() > $(document).height() - 0.8) {
-				   if(counter==0) counter++;
-				   if($scope.bookcomments.length == 0){return;}
-				   var queryData = {
-						   Bookname : $scope.bookname,
-						   ID : $scope.bookcomments[counter-1].id
-				   }
-				   $http.post("http://localhost:8080/BooksForAll/TenCommentsServlet", queryData)
-				   .then(
-				       function(response){
-				    	   var length = response.data.Comments.length;
-				    	   counter += length;
-				    	   var div = document.getElementById('append');
-				    	   if(length > 0){
-				    		   var date = response.data.Comments[0].time.split(' ')[0];
-				    		   var time = response.data.Comments[0].time.split(' ')[1].split(":")[0] + ":" + response.data.Comments[0].time.split(' ')[1].split(":")[1];
-				    		   var timedate = date + ' at ' + time;
-				    		   var txt1 = '<div class="col-sm-6 col-sm-offset-3"> <div class="commentbox"><div class="row"><div class="col-sm-2"><img class="ProfilePic" src="' + response.data.Comments[0].photo + '"></div><div class="col-sm-5"><p id="commentusername">' + response.data.Comments[0].username + '</p></div><div class="col-sm-5"><p id="commenttime">' + timedate + '</p></div><div class="col-sm-8"></div><div class="col-sm-6"><div class="commenttextinc"><p id="commenttext">' + response.data.Comments[0].description + '</p></div></div></div></div>'; 
-				    		   $("#append").append(txt1);
-				    	   }
-				    	   if(length > 1){
-				    		   var date = response.data.Comments[1].time.split(' ')[0];
-				    		   var time = response.data.Comments[1].time.split(' ')[1].split(":")[0] + ":" + response.data.Comments[1].time.split(' ')[1].split(":")[1];
-				    		   var timedate = date + ' at ' + time;
-				    		   var txt2 = '<div class="col-sm-6 col-sm-offset-3"> <div class="commentbox"><div class="row"><div class="col-sm-2"><img class="ProfilePic" src="' + response.data.Comments[1].photo + '"></div><div class="col-sm-5"><p id="commentusername">' + response.data.Comments[1].username + '</p></div><div class="col-sm-5"><p id="commenttime">' + timedate + '</p></div><div class="col-sm-8"></div><div class="col-sm-6"><div class="commenttextinc"><p id="commenttext">' + response.data.Comments[1].description + '</p></div></div></div></div>';
-				    		   $("#append").append(txt2);
-				    	   }
-				    	   if(length > 2){
-				    		   var date = response.data.Comments[2].time.split(' ')[0];
-				    		   var time = response.data.Comments[2].time.split(' ')[1].split(":")[0] + ":" + response.data.Comments[2].time.split(' ')[1].split(":")[1];
-				    		   var timedate = date + ' at ' + time;
-				    		   var txt3 = '<div class="col-sm-6 col-sm-offset-3"> <div class="commentbox"><div class="row"><div class="col-sm-2"><img class="ProfilePic" src="' + response.data.Comments[2].photo + '"></div><div class="col-sm-5"><p id="commentusername">' + response.data.Comments[2].username + '</p></div><div class="col-sm-5"><p id="commenttime">' + timedate + '</p></div><div class="col-sm-8"></div><div class="col-sm-6"><div class="commenttextinc"><p id="commenttext">' + response.data.Comments[2].description + '</p></div></div></div></div>';
-				    		   $("#append").append(txt3);
-				    	   }
-				    	   if(length > 3){
-				    		   var date = response.data.Comments[3].time.split(' ')[0];
-				    		   var time = response.data.Comments[3].time.split(' ')[1].split(":")[0] + ":" + response.data.Comments[3].time.split(' ')[1].split(":")[1];
-				    		   var timedate = date + ' at ' + time;
-				    		   var txt4 = '<div class="col-sm-6 col-sm-offset-3"> <div class="commentbox"><div class="row"><div class="col-sm-2"><img class="ProfilePic" src="' + response.data.Comments[3].photo + '"></div><div class="col-sm-5"><p id="commentusername">' + response.data.Comments[3].username + '</p></div><div class="col-sm-5"><p id="commenttime">' + timedate + '</p></div><div class="col-sm-8"></div><div class="col-sm-6"><div class="commenttextinc"><p id="commenttext">' + response.data.Comments[3].description + '</p></div></div></div></div>'; 
-				    		   $("#append").append(txt4);
-				    	   }
-				    	   if(length > 4){
-				    		   var date = response.data.Comments[4].time.split(' ')[0];
-				    		   var time = response.data.Comments[4].time.split(' ')[1].split(":")[0] + ":" + response.data.Comments[4].time.split(' ')[1].split(":")[1];
-				    		   var timedate = date + ' at ' + time;
-				    		   var txt5 = '<div class="col-sm-6 col-sm-offset-3"> <div class="commentbox"><div class="row"><div class="col-sm-2"><img class="ProfilePic" src="' + response.data.Comments[4].photo + '"></div><div class="col-sm-5"><p id="commentusername">' + response.data.Comments[4].username + '</p></div><div class="col-sm-5"><p id="commenttime">' + timedate + '</p></div><div class="col-sm-8"></div><div class="col-sm-6"><div class="commenttextinc"><p id="commenttext">' + response.data.Comments[4].description + '</p></div></div></div></div>';
-				    		   $("#append").append(txt5);
-				    	   }
-				       }, 
-				       function(response){
-				       }
-				    );
-			   }
-			});
-		
-		 $scope.quantity = 5;
-		 
-		 $( document ).ready( function() {
-			    $('div.commentbox').each(function(i, d) {
-			        draw.call($(this));
-			    });
-			});
-		 
-		 function draw()
-		 {
-		     counter++;
-		 }
 		 
 		 $scope.HelpMeButton = function(){
 				var modal = document.getElementById('HelpMeModal');
@@ -185,7 +132,7 @@ angular.module('app',[])
 			}
 
 			// When the user clicks on <span> (x), close the modal
-			$scope.MyModalFunc = function() {
+			$scope.MyModalFunc2 = function() {
 				var modal = document.getElementById('HelpMeModal');
 			    modal.style.display = "none";
 			}
