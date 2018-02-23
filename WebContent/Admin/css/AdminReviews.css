@@ -102,9 +102,10 @@ tr:nth-child(odd){background-color: #ffffff}
     display: none; /* Hidden by default */
     width: 40%; 
     height: 50%;
+    overflow-y: auto;
+	overflow: auto;
     background-color: rgb(0,0,0);
     background-color: rgba(0,0,0,0);
-	position: absolute;
 	margin-top: 18%;
 	margin-left: 28%;
 }

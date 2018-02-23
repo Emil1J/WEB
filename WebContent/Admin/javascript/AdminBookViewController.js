@@ -135,5 +135,27 @@ angular.module('app',[])
 		 {
 		     counter++;
 		 }
+		 
+		 $scope.viewUser = function(user){
+				var dataQuery = {
+					    Username: user
+				}
+				$.ajax({
+					  url: "http://localhost:8080/BooksForAll/UserServlet",
+					  type: "POST", //send it through get method
+			          dataType: 'json',
+					  data: JSON.stringify(dataQuery),
+					  success: function(response) {
+						  if(response.Result == "Success"){
+							  localStorage.setItem("ChosenUser", JSON.stringify(response.User));
+							  window.location = "AdminUserView.html";
+						  }
+
+					  },
+					  error: function(xhr) {
+					    //Do Something to handle error
+					  }
+					});
+			}
 });
 

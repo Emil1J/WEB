@@ -62,5 +62,11 @@ angular.module('app',[])
 			localStorage.setItem("ChosenUser", JSON.stringify(user));
 			window.location = "AdminUserView.html";
 		}
+		
+		$http.post("http://localhost:8080/BooksForAll/TopFivePurchasedBooksServlet")
+		.then(function (response){
+			$scope.mostPurchasedBooks = response.data.BookList;
+		},function(xhr){
+	});
 	}]);
 

@@ -377,5 +377,10 @@ angular.module('app',[])
  		   var time = DateTime.split(' ')[1].split(":")[0] + ":" + DateTime.split(' ')[1].split(":")[1];
  		   return date + ' at ' + time;
 		}
+		
+		$scope.viewBook = function(book){
+			localStorage.setItem('viewBook', JSON.stringify(book));
+			window.location="BookView.html";
+		}
 	}]);
 

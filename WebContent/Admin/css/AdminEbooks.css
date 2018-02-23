@@ -102,3 +102,10 @@ li a:hover {
 	margin-left: 3%;
 }
 
+.LikesList{
+	color: white;
+}
+
+.LikesList:hover{
+	color: #29B6F6;
+}
