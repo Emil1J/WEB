@@ -8,8 +8,7 @@ angular.module('app',[])
 		},function(xhr){
 	});
 	var user = JSON.parse(localStorage.getItem('loginResponse'));
-	var bookName = window.location.pathname.split("/")[3];
-	bookName = bookName.split(".")[0].substring(-3);
+	var bookName = JSON.parse(localStorage.getItem('ChosenBook')).Name;
 	var data = {
 			Username: user.username,
 			Bookname: bookName

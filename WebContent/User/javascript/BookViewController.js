@@ -124,13 +124,6 @@ angular.module('app',[])
 			// Get the <span> element that closes the modal
 			var span = document.getElementsByClassName("close")[0];
 
-			// When the user clicks the button, open the modal 
-			$scope.MyButtonFunc = function(book) {
-				localStorage.setItem('ChosenBook', JSON.stringify(book));
-				var modal = document.getElementById('HelpMeModal');
-			    modal.style.display = "block";
-			}
-
 			// When the user clicks on <span> (x), close the modal
 			$scope.MyModalFunc2 = function() {
 				var modal = document.getElementById('HelpMeModal');
@@ -180,6 +173,12 @@ angular.module('app',[])
 						    //Do Something to handle error
 						  }
 						});
+			}
+			
+			$scope.OpenBook = function(scroll){
+				var book = JSON.parse(localStorage.getItem('ChosenBook'));
+				localStorage.setItem('ScrollBook', scroll);
+				window.location = book.URL;
 			}
 });
 
