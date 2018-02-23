@@ -141,6 +141,7 @@ public class TopFivePurchasedBooksServlet extends HttpServlet {
 	    		response.sendError(500);//internal server error
     		}    	    
     	    mostPurchasedBooks = AssistantFuncs.MatchLikesCommentsToBook(mostPurchasedBooks, likes, comments);
+    	    mostPurchasedBooks = AssistantFuncs.SetLikesNumForBooks(mostPurchasedBooks);
     	    JsonArray jsonBooks = new JsonArray();    		
     		for (Book book : mostPurchasedBooks) {
     			jsonBooks.add(gson.toJsonTree(book));

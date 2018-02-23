@@ -58,11 +58,11 @@ angular.module('app',[])
 			    );
 		}
 		var table = document.getElementById('table-scroll');
-		var userFilterLine = document.getElementById('userFilterLine');
-		var bookFilterLine = document.getElementById('bookFilterLine');
+		var userFilterLine = document.getElementById('Filter1');
+		var bookFilterLine = document.getElementById('Filter2');
 		var userFilter = document.getElementById('userFilter');
 		var bookFilter = document.getElementById('bookFilter');
-
+		var searchField = document.getElementById('keywordInput');
 		
 		$http.post("http://localhost:8080/BooksForAll/AllTransactionsServlet")
 		   .then(
@@ -76,6 +76,7 @@ angular.module('app',[])
 		    		   bookFilterLine.style.display = "none";
 		    		   userFilter.style.display = "none";
 		    		   bookFilter.style.display = "none";
+		    		   searchField.style.display = "none";
 		    	   }else{
 		    		   noTrans.style.display = "none";
 		    		   table.style.display = "block";
