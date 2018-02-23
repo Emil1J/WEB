@@ -64,7 +64,9 @@ import booksForAll.general.AppConstants;
 		BufferedReader reader = request.getReader();
 		String line = null;        
 		while ((line = reader.readLine()) != null)
+		{
 			strBuf.append(line);
+		}
 		Gson gson = new GsonBuilder()
 				.setDateFormat("yyyy-MM-dd HH:mm:ss.S")
 				.create();
