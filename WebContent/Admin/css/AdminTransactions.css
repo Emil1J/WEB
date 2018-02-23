@@ -54,6 +54,13 @@ th, td {
 	overflow:auto;
 }
 
+#FilterLine{
+	margin-top: 4%;
+}
+
+#userFilter, #bookFilter{
+	margin-left: -15%;
+}
 tbody tr:hover.selected td,
 tbody tr:hover td {
   background-color: #B3E5FC;
