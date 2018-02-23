@@ -69,6 +69,12 @@ li a:hover {
     border-radius: 50%;
 }
 
+#noReviewsLab{
+	text-align: center;
+    margin-top: 10%;
+    color: rgba(0, 0, 0, 0.5);
+}
+
 #commentusername{
 	font-weight: bold;
 	padding-top: 7%;
@@ -83,6 +89,10 @@ li a:hover {
 #commenttext{
 	float: left;
 	padding-top: 1%;
+}
+
+#collapseReviewBtn{
+	margin-bottom: 5%;
 }
 
 .commenttextinc commentbox{
