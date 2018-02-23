@@ -71,7 +71,14 @@
 								<div id="purchase">
 									<p class="BookData">
 										<a ng-click="PurchaseBook(book)">
-											<button id="PurchaseButton">Purchase</button>
+											<button type="button" class="btn btn-info btn-md" id="PurchaseButton">Purchase</button>
+										</a>
+									</p>
+								</div>
+								<div id="read">
+									<p class="BookData">
+										<a ng-click="MyButtonFunc(book)">
+											<button type="button" class="btn btn-info btn-md" id="ReadButton">Read Book</button>
 										</a>
 									</p>
 								</div>
@@ -97,7 +104,7 @@
 									</form>
               					</div>
               					<div class="col-sm-1">
-              						<input type="submit" name="" ng-click="SubmitReview()">
+              						<button type="button" class="btn btn-info" ng-click="SubmitReview()">Send</button>
               					</div>
                   				
                   			</div>
@@ -105,36 +112,52 @@
 					</div>
                	</div>
             </div>
-            <div class="col-sm-6 col-sm-offset-3" ng-repeat="comment in bookcomments | limitTo:quantity">
-            	<div class="commentbox">
-                  	<div class="row">
-                  		<div class="col-sm-2">
-                  		  	<img class="ProfilePic" ng-src="{{comment.photo}}">
-                  		</div>
-                  		<div class="col-sm-5">
-                  	  		<p id="commentusername">{{comment.username}}</p>
-               			</div>
-               			<div class="col-sm-5">
-               		  		<p id="commenttime">{{GetDateFormat(comment.time)}}</p>
-               			</div>
-                  		<div class="col-sm-8">
-                  		</div>
-                  		<div class="col-sm-6">
-                  			<div class="commenttextinc">
-                  				<p id="commenttext">{{comment.description}}</p>
-                  			</div>
-               			</div>
-              		</div>
-            	</div>
+            <div class="col-sm-6 col-sm-offset-3">
+           		<button id="collapseReviewBtn" type="button" class="btn btn-info" data-toggle="collapse" data-target="#reviewscollapse">See reviews</button>
             </div>
-            <div class="commentbox2" id="append">
-            	
+            <div id="reviewscollapse" class="collapse">
+	            <div class="col-sm-6 col-sm-offset-3" ng-repeat="comment in bookcomments">
+	            	<div class="commentbox">
+	                  	<div class="row">
+	                  		<div class="col-sm-2">
+	                  		  	<img class="ProfilePic" ng-src="{{comment.photo}}">
+	                  		</div>
+	                  		<div class="col-sm-5">
+	                  	  		<p id="commentusername">{{comment.username}}</p>
+	               			</div>
+	               			<div class="col-sm-5">
+	               		  		<p id="commenttime">{{GetDateFormat(comment.time)}}</p>
+	               			</div>
+	                  		<div class="col-sm-8">
+	                  		</div>
+	                  		<div class="col-sm-6">
+	                  			<div class="commenttextinc">
+	                  				<p id="commenttext">{{comment.description}}</p>
+	                  			</div>
+	               			</div>
+	              		</div>
+	            	</div>
+	            </div>
             </div>
+            <!-- The Modal -->
+			<div id="myModal" class="modal">									
+				<!-- Modal content -->
+				<div class="modal-content">
+					<span class="close" ng-click="MyModalFunc()">&times;</span>
+					<div class="modal-title">
+						<b><p>Do you like to continue from where you last stopped?</p></b>
+					</div>
+					<div class="modal-footer">
+							<button type="button" data-dismiss="modal" ng-click="OpenBook('True')" class="btn btn-primary" id="Yes">Yes</button>
+  							<button type="button" data-dismiss="modal" ng-click="OpenBook('False')" class="btn" id="No">No</button>
+					</div>								    
+				</div>
+			</div>
    			<!-- The Modal -->
 			<div id="HelpMeModal" class="modal">									
 				<!-- Modal content -->
 				<div class="modal-content">
-					<span class="close" ng-click="MyModalFunc()">&times;</span>
+					<span class="close" ng-click="MyModalFunc2()">&times;</span>
 					<div class="modal-title">
 						<b><p>Please feel free to contact us and we'll reply as soon as we can.</p></b>
 					</div>
