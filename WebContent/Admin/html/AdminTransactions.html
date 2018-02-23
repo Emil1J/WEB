@@ -33,25 +33,26 @@
 				<h2 id="UsersHeader">Transactions</h2>
 				<div class="col-sm-12">
 					<div class="row">
-						<div class="col-sm-6">
-							<div class="col-sm-6">
-							</div>
-							<div class="col-sm-6">
-							</div>
+						<div class="col-sm-2">
+							<p id="FilterLine"><b>Search by username:</b></p>
 						</div>
 						<div class="col-sm-2">
-						</div>
-						<div class="col-sm-2">
-							<p id="userFilterLine"><b>Filter according to username:</b></p>
 							<select id="userFilter" class="form-control" ng-model="userFilter" ng-change="FilterUsers()">
 							    <option ng-repeat="user in users">{{user}}</option>
 	    					</select>
 						</div>
 						<div class="col-sm-2">
-							<p id="bookFilterLine"><b>Filter according to book name:</b></p>
+							<p id="FilterLine"><b>Search by book name:</b></p>
+						</div>
+						<div class="col-sm-2">
 							<select id="bookFilter" class="form-control" ng-model="bookFilter" ng-change="FilterBooks()">
 							    <option ng-repeat="book in books">{{book}}</option>
 	    					</select>
+						</div>
+						<div class="col-sm-4">
+							<div class="form-group">
+    							<input type="text" id="keywordInput" ng-keyup="myFunction()" class="search form-control" placeholder="Search by keyword..">
+							</div>
 						</div>
 					</div>
 					<div id="table-scroll">
