@@ -91,7 +91,8 @@ angular.module('app',[])
 				      return;
 				    }
 				    // Ensure that it is a number and stop the keypress
-			var cctype = document.getElementById('CCType').value;
+			var listCC = document.getElementById('CCType');
+			var cctype = listCC.options[listCC.selectedIndex].value;
 		    if ( this.value.length >= 4 || (cctype == "American Express" && this.value.length >= 3) || (e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
 		    	e.preventDefault();
 		    }
@@ -105,7 +106,8 @@ angular.module('app',[])
 		});
 		
 		$scope.submitForm = function(valid){
-			var cctype = document.getElementById('CCType').value;
+			var listCC = document.getElementById('CCType');
+			var cctype = listCC.options[listCC.selectedIndex].innerText;
 			var ccholder = document.getElementById('holdname').value;
 			var ccnum = document.getElementById('cardnum1').value + document.getElementById('cardnum2').value
 			+ document.getElementById('cardnum3').value + document.getElementById('cardnum4').value;
@@ -180,7 +182,7 @@ angular.module('app',[])
 				return;
 			}
 			var firstDigit = ccnum.substr(0,1);
-			var secondDigit = ccnum.substr(1,2);
+			var secondDigit = ccnum.substr(1,1);
 
 			if(cctype == "American Express" && (firstDigit != "3" || (secondDigit != "4" && secondDigit != "7") ||
 					ccnum.length != 15)){

@@ -58,8 +58,8 @@ angular.module('app',[])
 			    );
 		}
 		var table = document.getElementById('table-scroll');
-		var userFilterLine = document.getElementById('Filter1');
-		var bookFilterLine = document.getElementById('Filter2');
+		var userFilterLine = document.getElementById('FilterLine1');
+		var bookFilterLine = document.getElementById('FilterLine2');
 		var userFilter = document.getElementById('userFilter');
 		var bookFilter = document.getElementById('bookFilter');
 		var searchField = document.getElementById('keywordInput');

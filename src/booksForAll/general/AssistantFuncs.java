@@ -3,6 +3,8 @@ package booksForAll.general;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import booksForAll.model.Book;
@@ -61,6 +63,14 @@ public class AssistantFuncs {
 				if(book.getName().equals(comment.getBookName())) {
 					bookComments.add(comment);
 				}
+			}
+			if (bookComments.size() > 0) {
+				  Collections.sort(bookComments, new Comparator<Comment>() {
+				      @Override
+				      public int compare(final Comment object1, final Comment object2) {
+				          return (object1.getTime().before(object2.getTime())? -1 : 1);
+				      }
+				  });
 			}
 			book.setComments(bookComments);
 		}
