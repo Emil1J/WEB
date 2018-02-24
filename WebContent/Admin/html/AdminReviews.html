@@ -15,17 +15,15 @@
 </head>
 <body ng-app="app" ng-controller="adminReviewsController">
 	<ul>
-		<b>
-			<li><a href="AdminHomePage.html">Home</a></li>
-			<li><a href="AdminUsers.html">Users</a></li>
-			<li><a href="AdminTransactions.html">Transactions</a></li>
-			<li><a href="AdminReviews.html">Reviews</a></li>
-			<li><a id="TabMessages" href="AdminMessages.html">Messages</a></li>
-			<li style="padding-left: 11%">
-				<img style="width:150px; height:50px;" alt="logo" src="../../Images/Logo.jpg">
-			</li>
-			<li style="float:right"><a class="active" ng-click="SignOutFunc()" href="../../Login.html">Sign Out</a></li>
-		</b>
+		<li><a href="AdminHomePage.html"><b>Home</b></a></li>
+		<li><a href="AdminUsers.html"><b>Users</b></a></li>
+		<li><a href="AdminTransactions.html"><b>Transactions</b></a></li>
+		<li><a href="AdminReviews.html"><b>Reviews</b></a></li>
+		<li><a id="TabMessages" href="AdminMessages.html"><b>Messages</b></a></li>
+		<li id="navbar_logo">
+			<img style="width:150px; height:50px;" alt="logo" src="../../Images/Logo.jpg">
+		</li>
+		<li id="Sign_out_button"><a class="active" ng-click="SignOutFunc()" href="../../Login.html"><b>Sign Out</b></a></li>
 	</ul>
 	<div class="container">
 		<div class="container-fluid">
@@ -36,14 +34,12 @@
 						<div class="panel panel-default container-fluid" ng-repeat="comment in comments">
 							<div class="panel-heading row" ng-click="UpdateComment(comment)" style="cursor: pointer;">
 								<div class="col-sm-1">
-									<img data-toggle="collapse" data-parent="#accordion" href="{{'#collapse' + $index}}" aria-expanded="false" aria-controls="{{'collapse' + $index}}" class="ProfilePic" ng-src="{{comment.photo}}" />
+									<img data-toggle="collapse" alt="profile pic collapse" data-parent="#accordion" href="{{'#collapse' + $index}}" aria-expanded="false" aria-controls="{{'collapse' + $index}}" class="ProfilePic" ng-src="{{comment.photo}}" />
 								</div>
 								<div class="col-sm-11">
-									<h4 class="panel-title">
-         								<p data-toggle="collapse" data-parent="#accordion" href="{{'#collapse' + $index}}" aria-expanded="false" aria-controls="{{'collapse' + $index}}">
+         							<p data-toggle="collapse" data-parent="#accordion" href="{{'#collapse' + $index}}" aria-expanded="false" aria-controls="{{'collapse' + $index}}">
          								<b>{{comment.username}}</b><br/><small>{{comment.bookName}}<br/>{{GetTimeFormat(comment.time)}}</small>
-         								</p>
-        							</h4>
+         							</p>
 								</div>
       						</div>
       						<div id="{{'collapse' + $index}}" class="panel-collapse collapse">
@@ -66,7 +62,7 @@
 					<div class="modal-content">
 						<span class="close" ng-click="MyModalFunc()">&times;</span>
 						<div class="modal-title">
-							<b><p>Are you sure you wish to {{answer}} this comment?</p></b>
+							<p><b>Are you sure you wish to {{answer}} this comment?</b></p>
 						</div>
 						<div class="modal-footer">
  							<button type="button" data-dismiss="modal" ng-click="FinalAnswer('Yes')" class="btn btn-primary" id="Yes">Yes</button>
