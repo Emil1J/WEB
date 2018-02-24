@@ -92,12 +92,12 @@ textarea {
 
 #HelpMeModal{
     display: none; /* Hidden by default */
-    width: 50%; 
+    width: 40%; 
     height: 60%;
     background-color: rgb(0,0,0);
     background-color: rgba(0,0,0,0);
 	margin-top: 10%;
-	margin-left: 22%;
+	margin-left: 30%;
 }
 
 #ModalButton{
