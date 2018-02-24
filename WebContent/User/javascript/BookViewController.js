@@ -48,7 +48,7 @@ angular.module('app',[])
 			purchaseBtn.style.display = "none";
 			readBtn.style.display = "block";
 		}
-		
+
 		//Check if there are any reviews. Initialize page data accordingly.
 		if($scope.bookcomments.length == 0){
 			reviewBtn.style.display = "none";
