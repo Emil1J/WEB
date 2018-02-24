@@ -69,6 +69,14 @@ li a:hover {
     border-radius: 50%;
 }
 
+#Sign_out_button{
+	float: right;
+}
+
+#navbar_logo{
+	padding-left: 11%;
+}
+
 #noReviewsLab{
 	text-align: center;
     margin-top: 10%;

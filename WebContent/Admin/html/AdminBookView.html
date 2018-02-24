@@ -14,17 +14,15 @@
 	</head>
 	<body ng-app="app" ng-controller="adminBookViewController">
 	<ul>
-		<b>
-			<li><a href="AdminHomePage.html">Home</a></li>
-			<li><a href="AdminUsers.html">Users</a></li>
-			<li><a href="AdminTransactions.html">Transactions</a></li>
-			<li><a href="AdminReviews.html">Reviews</a></li>
-			<li><a id="TabMessages" href="AdminMessages.html">Messages</a></li>
-			<li style="padding-left: 11%">
-				<img style="width:150px; height:50px;" alt="logo" src="../../Images/Logo.jpg">
-			</li>
-			<li style="float:right"><a class="active" ng-click="SignOutFunc()" href="../../Login.html">Sign Out</a></li>
-		</b>
+		<li><a href="AdminHomePage.html"><b>Home</b></a></li>
+		<li><a href="AdminUsers.html"><b>Users</b></a></li>
+		<li><a href="AdminTransactions.html"><b>Transactions</b></a></li>
+		<li><a href="AdminReviews.html"><b>Reviews</b></a></li>
+		<li><a id="TabMessages" href="AdminMessages.html"><b>Messages</b></a></li>
+		<li id="navbar_logo"> 
+			<img style="width:150px; height:50px;" alt="logo" src="../../Images/Logo.jpg">
+		</li>
+		<li id="Sign_out_button"><a class="active" ng-click="SignOutFunc()" href="../../Login.html"><b>Sign Out</b></a></li>
 	</ul>
 	<div class="container">
 		<div class="container-fluid">
@@ -48,18 +46,16 @@
                   	<div class="row">
                   		<div class="col-sm-4">
                   			<div class="bookcoverpad">
-								<img class="BookCovers" ng-src="{{bookcover}}" />
+								<img class="BookCovers" alt="book cover" ng-src="{{bookcover}}" />
 								<div id="tooltip">
-									<b> 
-										<p class="BookData">{{likesNum}} Likes</p>
-										<span ng-if="book.LikesNum != 0" id="Likes{{book.Name}}" class="tooltiptext">
-											<p ng-repeat="like in Likes">
-												<a class="LikesList" href="#" ng-click="viewUser(like.username)">
-													{{like.nickname}}
-												</a>
-											</p>
-										</span>
-									</b>
+									<p class="BookData"><b>{{likesNum}} Likes</b></p>
+									<span ng-if="book.LikesNum != 0" id="Likes{{book.Name}}" class="tooltiptext">
+										<p ng-repeat="like in Likes">
+											<a class="LikesList" href="#" ng-click="viewUser(like.username)">
+												<b>{{like.nickname}}</b>
+											</a>
+										</p>
+									</span>
 								</div>
 							</div>
 						</div>
@@ -86,7 +82,7 @@
 	            	<div class="commentbox">
 	                  	<div class="row">
 	                  		<div class="col-sm-2">
-	                  		  	<img class="ProfilePic" ng-src="{{comment.photo}}">
+	                  		  	<img class="ProfilePic" alt="profile picture" ng-src="{{comment.photo}}">
 	                  		</div>
 	                  		<div class="col-sm-5">
 	                  	  		<p id="commentusername">{{comment.username}}</p>
