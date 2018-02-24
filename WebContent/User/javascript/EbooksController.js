@@ -1,45 +1,23 @@
 angular.module('app',[])
 	.controller('ebooksController', ['$scope','$http', function($scope,$http){
-		$http.post("http://localhost:8080/BooksForAll/CheckSessionServlet")
-		.then(function (response){
-			if(response.data.Result == "Failure"){
-				window.location = "../../Login.html";
-			}
-		},function(xhr){
-	});
+		
+		//Controller variables.
 		var user = JSON.parse(localStorage.getItem('loginResponse'));
 
-		$(document).ready(function(){
-		    $('[data-toggle="tooltip"]').tooltip({
-		    });
-		})
-		
+		//Hide the review messages.
 		document.getElementById("HelpMeSuccess").style.display = "none";
 		document.getElementById("HelpMeError").style.display = "none";
 
-		$scope.viewBook = function(book){
-			localStorage.setItem('viewBook', JSON.stringify(book));
-			window.location="BookView.html";
-		}
-		$scope.SignOutFunc = function(){
-			$http.post("http://localhost:8080/BooksForAll/SignOutServlet")
-			   .then(
-			       function(response){
-			       }, 
-			       function(response){
-			       }
-			    );
-		}
-		$scope.GetLikes = function(likes){
-			var likeNames = "";
-			var arrayLength = likes.length;
-			for (var i = 0; i < arrayLength; i++) {
-				var obj = likes[i]
-				likeNames = likeNames + obj.nickname + "\n"
-			}
-			return likeNames;
-		}
-
+		//Check whether there is a session. In case not, go back to login page.
+		$http.post("http://localhost:8080/BooksForAll/CheckSessionServlet")
+			.then(function (response){
+				if(response.data.Result == "Failure"){
+					window.location = "../../Login.html";
+				}
+			},function(xhr){
+		});
+		
+		//Get all books in order to show them to the user.
 		$http.post("http://localhost:8080/BooksForAll/AllBooksServlet")
 		   .then(
 		       function(response){
@@ -50,11 +28,30 @@ angular.module('app',[])
 		       }
 		    );
 		
+		//Once a user clicks on view book. Open the bookview page.
+		$scope.viewBook = function(book){
+			localStorage.setItem('viewBook', JSON.stringify(book));
+			window.location="BookView.html";
+		}
+		
+		//Sign out and end session.
+		$scope.SignOutFunc = function(){
+			$http.post("http://localhost:8080/BooksForAll/SignOutServlet")
+			   .then(
+			       function(response){
+			       }, 
+			       function(response){
+			       }
+			    );
+		}
+
+		//Purchase a book. Open the relevant page.
 		$scope.PurchaseBook = function(book){
 			localStorage.setItem('purchaseBook', JSON.stringify(book));
 			window.location="Purchase.html";
 		}
 		
+		//Check if the user already has purchased this book.
 		$scope.PurchaseCheck = function(book){
 			var books = JSON.parse(localStorage.getItem('loginResponse')).books;
 			for(var i=0 ; i<books.length ; i++){
@@ -66,23 +63,14 @@ angular.module('app',[])
 			return "Purchase";
 		}
 		
+		//Open the help me modal.
 		$scope.HelpMeButton = function(){
 			var modal = document.getElementById('HelpMeModal');
 			modal.style.display = "block";
 		}
-		
-		// Get the <span> element that closes the modal
-		var span = document.getElementsByClassName("close")[0];
 
-		// When the user clicks the button, open the modal 
-		$scope.MyButtonFunc = function(book) {
-			localStorage.setItem('ChosenBook', JSON.stringify(book));
-			var modal = document.getElementById('HelpMeModal');
-		    modal.style.display = "block";
-		}
-
-		// When the user clicks on <span> (x), close the modal
-		$scope.MyModalFunc = function() {
+		// When the user clicks on X or close, close the modal
+		$scope.CloseHelpMeModal = function() {
 			var modal = document.getElementById('HelpMeModal');
 		    modal.style.display = "none";
 		}
@@ -94,12 +82,8 @@ angular.module('app',[])
 		        modal.style.display = "none";
 		    }
 		}
-		
-		$scope.Cancel = function(){
-			var modal = document.getElementById('HelpMeModal');
-			modal.style.display = "none";
-		}
-		
+
+		//Submit the help me message.
 		$scope.Submit = function(){
 			var message = document.getElementById("TextAreaHelp").value;
 			var subject = $('#MessageSubject option:selected').text();

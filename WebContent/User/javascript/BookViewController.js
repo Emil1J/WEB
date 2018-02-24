@@ -1,14 +1,20 @@
 angular.module('app',[])
 	.controller('bookViewController',function($scope,$http){
-		$http.post("http://localhost:8080/BooksForAll/CheckSessionServlet")
-		.then(function (response){
-			if(response.data.Result == "Failure"){
-				window.location = "../../Login.html";
-			}
-		},function(xhr){
-	});
+		
+		//Controller variables.
 		var viewBook = JSON.parse(localStorage.getItem('viewBook'));
 		var user = JSON.parse(localStorage.getItem('loginResponse'));
+		var counter = 0;
+		var reviewField = document.getElementById("reviewField");
+		var infoMsg = document.getElementById("infoMsg");
+		var purchaseBtn = document.getElementById("purchase");
+		var reviewBtn = document.getElementById("collapseReviewBtn");
+		var readBtn = document.getElementById("read");
+		var input = document.getElementById("review");
+		var books = JSON.parse(localStorage.getItem('loginResponse')).books;
+		var purchased = "False";
+
+		//HTML scope variables.
 		$scope.book = viewBook;
 		$scope.username = user.username;
 		$scope.bookname = viewBook.Name;
@@ -19,26 +25,50 @@ angular.module('app',[])
 		$scope.bookprice = viewBook.Price;
 		$scope.Likes = viewBook.Likes;
 		$scope.likesNum = viewBook.LikesNum;
-		var purchased = "False";
+		
+		//Hide the review messages.
 		document.getElementById("HelpMeSuccess").style.display = "none";
 		document.getElementById("HelpMeError").style.display = "none";
+		infoMsg.style.display = "none";
 
-		var books = JSON.parse(localStorage.getItem('loginResponse')).books;
+		//Check if the user purchased this book.
 		for(var i=0 ; i<books.length ; i++){
 			if(books[i].Name == viewBook.Name){
 				purchased = "True";
 			}
 		}
 		
-		var counter = 0;
-		var x = document.getElementById("reviewField");
-		var y = document.getElementById("infoMsg");
-		var z = document.getElementById("purchase");
-		var w = document.getElementById("collapseReviewBtn");
-		var k = document.getElementById("read");
-		y.style.display = "none";
-		var input = document.getElementById("review");
+		//Initialize page data according to book being purchased or not.
+		if(purchased == "False"){
+			reviewField.style.display = "none";
+			purchaseBtn.style.display = "block";
+			reviewBtn.style.display = "none";
+			readBtn.style.display = "none";
+		}else{
+			reviewField.style.display = "block";
+			purchaseBtn.style.display = "none";
+			reviewBtn.style.display = "block";
+			readBtn.style.display = "block";
+		}
 		
+		//Check if there are any reviews. Initialize page data accordingly.
+		if($scope.bookcomments.length == 0){
+			reviewBtn.style.display = "none";
+		}else{
+			if(purchased != "False")
+				reviewBtn.style.display = "block";
+		}
+		
+		//Check whether there is a session. In case not, go back to login page.
+		$http.post("http://localhost:8080/BooksForAll/CheckSessionServlet")
+			.then(function (response){
+				if(response.data.Result == "Failure"){
+					window.location = "../../Login.html";
+				}
+			},function(xhr){
+		});
+		
+		//Once a user submits a review, update him and sent the comment for approval.
 		$scope.SubmitReview = function(){
 			$("#infoMsg").show().delay(3000).fadeOut();
 			var data = {
@@ -56,6 +86,7 @@ angular.module('app',[])
 			    );
 		}
 		
+		//Sign out and end session.
 		$scope.SignOutFunc = function(){
 			$http.post("http://localhost:8080/BooksForAll/SignOutServlet")
 			   .then(
@@ -66,16 +97,7 @@ angular.module('app',[])
 			    );
 		}
 		
-		$scope.GetLikes = function(likes){
-			var likeNames = "";
-			var arrayLength = likes.length;
-			for (var i = 0; i < arrayLength; i++) {
-				var obj = likes[i]
-				likeNames = likeNames + obj.nickname + "\n"
-			}
-			return likeNames;
-		}
-		
+		//Submit review on enter key.
 		input.addEventListener("keyup", function(event) {
 		    event.preventDefault();
 		    if (event.keyCode === 13) {
@@ -83,112 +105,91 @@ angular.module('app',[])
 		    }
 		});
 		
-		if(purchased == "False"){
-		    x.style.display = "none";
-		    z.style.display = "block";
-		    w.style.display = "none";
-		    k.style.display = "none";
-		}else{
-			 x.style.display = "block";
-			 z.style.display = "none";
-			 w.style.display = "block";
-			 k.style.display = "block";
-		}
-		
-		if($scope.bookcomments.length == 0){
-		    w.style.display = "none";
-		}else{
-			if(purchased != "False")
-				w.style.display = "block";
-		}
-		
-		$scope.MyButtonFunc = function(book) {
+		//Open the read book modal that checks if the user wants to continue from where he stopped.
+		$scope.ReadBook = function(book) {
 			localStorage.setItem('ChosenBook', JSON.stringify(book));
-			var modal = document.getElementById('myModal');
+			var modal = document.getElementById('ContinueInBook');
 		    modal.style.display = "block";
 		}
 		
-		$scope.MyModalFunc = function() {
-			var modal = document.getElementById('myModal');
+		//Close the above modal by clicking on X.
+		$scope.CloseContinueInBook = function() {
+			var modal = document.getElementById('ContinueInBook');
 		    modal.style.display = "none";
 		}
 		
-		
-		
+		//Purchase a new book by redirecting to the purchase page.
 		$scope.PurchaseBook = function(book){
 			localStorage.setItem('purchaseBook', JSON.stringify(book));
 			window.location="Purchase.html";
 		}
 		
+		//Get date format from timestamp.
 		$scope.GetDateFormat = function(CommentDateTime){
 			var date = CommentDateTime.split(' ')[0];
  		   var time = CommentDateTime.split(' ')[1].split(":")[0] + ":" + CommentDateTime.split(' ')[1].split(":")[1];
  		   return date + ' at ' + time;
 		}
 		 
-		 $scope.HelpMeButton = function(){
-				var modal = document.getElementById('HelpMeModal');
-				modal.style.display = "block";
-			}
+		
+		$scope.HelpMeButton = function(){
+			var modal = document.getElementById('HelpMeModal');
+			modal.style.display = "block";
+		}
 
-			// Get the <span> element that closes the modal
-			var span = document.getElementsByClassName("close")[0];
+		//When the user clicks on X, close the modal
+		$scope.CloseHelpMeModal = function() {
+			var modal = document.getElementById('HelpMeModal');
+		    modal.style.display = "none";
+		}
 
-			// When the user clicks on <span> (x), close the modal
-			$scope.MyModalFunc2 = function() {
-				var modal = document.getElementById('HelpMeModal');
-			    modal.style.display = "none";
+		//When the user clicks anywhere outside of the modal, close it
+		window.onclick = function(event) {
+			var modal = document.getElementById('HelpMeModal');
+		    if (event.target == modal) {
+		        modal.style.display = "none";
+		    }
+		}
+		
+		//When the user clicks on help me, open the relevant modal.
+		$scope.HelpMeButton = function(){
+			var modal = document.getElementById('HelpMeModal');
+			modal.style.display = "block";
+		}
+		
+		//Submit new help me message.
+		$scope.Submit = function(){
+			var message = document.getElementById("TextAreaHelp").value;
+			var subject = $('#MessageSubject option:selected').text();
+			if(message == ""){
+				$("#HelpMeError").show().delay(3000).fadeOut();
+				return;
 			}
-
-			// When the user clicks anywhere outside of the modal, close it
-			window.onclick = function(event) {
-				var modal = document.getElementById('HelpMeModal');
-			    if (event.target == modal) {
-			        modal.style.display = "none";
-			    }
+			var queryData = {
+					Username: user.username, 
+				    Message: message,
+				    Subject: subject
 			}
+			$.ajax({
+				  url: "http://localhost:8080/BooksForAll/NewUserMessageServlet",
+				  type: "POST", //send it through get method
+		          dataType: 'json',
+				  data: JSON.stringify(queryData),
+				  success: function(response) {
+						$("#HelpMeSuccess").show().delay(3000).fadeOut();
+						document.getElementById("TextAreaHelp").value = "";
+				},
+					  error: function(xhr) {
+					    //Do Something to handle error
+					  }
+					});
+		}
 			
-			$scope.HelpMeButton = function(){
-				var modal = document.getElementById('HelpMeModal');
-				modal.style.display = "block";
-			}
-			
-			$scope.Cancel = function(){
-				var modal = document.getElementById('HelpMeModal');
-				modal.style.display = "none";
-			}
-			
-			$scope.Submit = function(){
-				var message = document.getElementById("TextAreaHelp").value;
-				var subject = $('#MessageSubject option:selected').text();
-				if(message == ""){
-					$("#HelpMeError").show().delay(3000).fadeOut();
-					return;
-				}
-				var queryData = {
-						Username: user.username, 
-					    Message: message,
-					    Subject: subject
-				}
-				$.ajax({
-					  url: "http://localhost:8080/BooksForAll/NewUserMessageServlet",
-					  type: "POST", //send it through get method
-			          dataType: 'json',
-					  data: JSON.stringify(queryData),
-					  success: function(response) {
-							$("#HelpMeSuccess").show().delay(3000).fadeOut();
-							document.getElementById("TextAreaHelp").value = "";
-					},
-						  error: function(xhr) {
-						    //Do Something to handle error
-						  }
-						});
-			}
-			
-			$scope.OpenBook = function(scroll){
-				var book = JSON.parse(localStorage.getItem('ChosenBook'));
-				localStorage.setItem('ScrollBook', scroll);
-				window.location = book.URL;
-			}
+		//Open the book for the user.
+		$scope.OpenBook = function(scroll){
+			var book = JSON.parse(localStorage.getItem('ChosenBook'));
+			localStorage.setItem('ScrollBook', scroll);
+			window.location = book.URL;
+		}
 });
 

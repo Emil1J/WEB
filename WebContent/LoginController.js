@@ -1,7 +1,14 @@
 angular.module('app',[])
 	.controller('loginController', ['$scope','$http', function($scope,$http){
-		document.getElementById('invalid').style.display= "none";
 		
+		//Initialize variables.
+		var usernameInput = document.getElementById("username");
+		var passwordInput = document.getElementById("password");
+
+		//Hide error message.
+		document.getElementById('invalid').style.display= "none";
+
+		//Login function and redirect accordingly whether user or admin.
 		$scope.login = function () {
 				var queryData = {
 						Username : $scope.username,
@@ -34,14 +41,15 @@ angular.module('app',[])
 				});
 		 };		
 		 
-		 var usernameInput = document.getElementById("username");
-		 var passwordInput = document.getElementById("password");
+		 //Allow enter to login.
 		 usernameInput.addEventListener("keyup", function(event) {
 			    event.preventDefault();
 			    if (event.keyCode === 13) {
 			        document.getElementById("submit").click();
 			    }
 		 });
+		 
+		 //Allow enter to login.
 		 passwordInput.addEventListener("keyup", function(event) {
 			    event.preventDefault();
 			    if (event.keyCode === 13) {
