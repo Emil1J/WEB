@@ -1,17 +1,29 @@
 angular.module('app',[])
 	.controller('myAccountController',['$scope','$http', function($scope,$http){
-		$http.post("http://localhost:8080/BooksForAll/CheckSessionServlet")
-		.then(function (response){
-			if(response.data.Result == "Failure"){
-				window.location = "../../Login.html";
-			}
-		},function(xhr){
-	});
+
+		//Initialize local variables.
 		var user =  JSON.parse(localStorage.getItem('loginResponse'));
-		$scope.user = user;
 		var dataQuery = {
 				Username : user.username
 		}
+		
+		//Initialize HTML variables.
+		$scope.user = user;
+
+		//Hide messages.
+		document.getElementById("HelpMeSuccess").style.display = "none";
+		document.getElementById("HelpMeError").style.display = "none";
+		
+		//Check whether there is a session. In case not, go back to login page.
+		$http.post("http://localhost:8080/BooksForAll/CheckSessionServlet")
+			.then(function (response){
+				if(response.data.Result == "Failure"){
+					window.location = "../../Login.html";
+				}
+			},function(xhr){
+		});
+		
+		//Get the user books.
   	   	$http.post("http://localhost:8080/BooksForAll/UserBooksServlet", dataQuery)
   	   		.then(
   	   			function(response){
@@ -26,6 +38,52 @@ angular.module('app',[])
   	   			}
 	    );
 		
+  	   	//Get the user messages.
+	  	$http.post("http://localhost:8080/BooksForAll/AllUserMessagesServlet", dataQuery)
+	  		.then(
+	 			function(response){
+	 				var newmsgs = 0;
+	 				$scope.AllMessages = response.data.Messages;
+	 				$scope.RepliedMsgs = [];
+	 				$scope.SentMsgs = [];
+	 				for(var i = 0; i < $scope.AllMessages.length ; i++){
+	 					var current = $scope.AllMessages[i];
+	 					if(current.adminreply == 1){
+	 						if(current.userread == 0){
+		   						newmsgs++;
+		   					}
+	 						$scope.RepliedMsgs.push(current);
+	 					}
+	 					else{
+	 						$scope.SentMsgs.push(current);
+	 					}
+	 				}
+	 				if($scope.RepliedMsgs.length == 0){
+	 					var nomsg = document.getElementById('no-msg');
+	 				    nomsg.style.display = "block";
+	 				}else{
+	 					var nomsg = document.getElementById('no-msg');
+	 				    nomsg.style.display = "none";
+	 				}
+	 				if($scope.SentMsgs.length == 0){
+	 					var nomsg2 = document.getElementById('no-msg2');
+	 				    nomsg2.style.display = "block";
+	 				}else{
+	 					var nomsg2 = document.getElementById('no-msg2');
+	 				    nomsg2.style.display = "none";
+	 				}
+	 				$scope.NewMsgs = newmsgs;
+	 				if($scope.NewMsgs != 0){
+	 					document.getElementById("NewMessages").innerHTML = "Messages (" + $scope.NewMsgs + ")";
+	 					document.getElementById("AnsweredButton").innerText = "Answered(" + $scope.NewMsgs + ")";
+	 				}
+	 			}, 
+	 			function(response){
+	 				// failure callback
+	 			}
+	 	);
+	  	
+	  	//After the page loads, initialize the likes number on each book.
 		window.onload = function(){
 			for(var i = 0; i< $scope.books.length ; i++){
  					if($scope.books[i].LikesNum == 0){
@@ -33,55 +91,15 @@ angular.module('app',[])
  					}
  				}
 		}
+		
+		//Get the relevant format of message from timestamp.
 		$scope.GetTimeFormat = function(CommentDateTime){
 			var date = CommentDateTime.split(' ')[0];
 	 		var time = CommentDateTime.split(' ')[1].split(":")[0] + ":" + CommentDateTime.split(' ')[1].split(":")[1];
 	 		return date + ' ' + time;
 	 	}
 
-		$http.post("http://localhost:8080/BooksForAll/AllUserMessagesServlet", dataQuery)
-	   		.then(
-	   			function(response){
-	   				var newmsgs = 0;
-	   				$scope.AllMessages = response.data.Messages;
-	   				$scope.RepliedMsgs = [];
-	   				$scope.SentMsgs = [];
-	   				for(var i = 0; i < $scope.AllMessages.length ; i++){
-	   					var current = $scope.AllMessages[i];
-	   					if(current.adminreply == 1){
-	   						if(current.userread == 0){
-		   						newmsgs++;
-		   					}
-	   						$scope.RepliedMsgs.push(current);
-	   					}
-	   					else{
-	   						$scope.SentMsgs.push(current);
-	   					}
-	   				}
-	   				if($scope.RepliedMsgs.length == 0){
-	   					var nomsg = document.getElementById('no-msg');
-	   				    nomsg.style.display = "block";
-	   				}else{
-	   					var nomsg = document.getElementById('no-msg');
-	   				    nomsg.style.display = "none";
-	   				}
-	   				if($scope.SentMsgs.length == 0){
-	   					var nomsg2 = document.getElementById('no-msg2');
-	   				    nomsg2.style.display = "block";
-	   				}else{
-	   					var nomsg2 = document.getElementById('no-msg2');
-	   				    nomsg2.style.display = "none";
-	   				}
-	   				$scope.NewMsgs = newmsgs;
-	   				if($scope.NewMsgs != 0){
-	   					document.getElementById("NewMessages").innerHTML = "Messages (" + $scope.NewMsgs + ")";
-	   				}
-	   			}, 
-	   			function(response){
-	   				// failure callback
-	   			}
-	   	);
-
+		//Reload the message after a new help me is sent.
 		function reloadMessages(){
 			$http.post("http://localhost:8080/BooksForAll/AllUserMessagesServlet", dataQuery)
 	   		.then(
@@ -120,13 +138,16 @@ angular.module('app',[])
 	   				if($scope.NewMsgs != 0){
 	   					document.getElementById("UserMessagesButton").innerHTML = "Messages (" + $scope.NewMsgs + ")";
 	   					document.getElementById("NewMessages").innerHTML = "Messages (" + $scope.NewMsgs + ")";
+	   					document.getElementById("AnsweredButton").innerText = "Answered (" + $scope.NewMsgs + ")";
 	   				}
 	   			}, 
 	   			function(response){
 	   				// failure callback
 	   			}
-	   	);
+	   		);
 		}
+		
+		//Sign out and end session.
 		$scope.SignOutFunc = function(){
 			$http.post("http://localhost:8080/BooksForAll/SignOutServlet")
 			   .then(
@@ -136,17 +157,8 @@ angular.module('app',[])
 			       }
 			    );
 		}
-		
-		$scope.GetLikes = function(likes){
-			var likeNames = "";
-			var arrayLength = likes.length;
-			for (var i = 0; i < arrayLength; i++) {
-				var obj = likes[i];
-				likeNames = likeNames + obj.nickname + "\n";
-			}
-			return likeNames;
-		}
-		
+
+		//Get a string of likes for the book
 		function GetLikes(likes){
 			var likeNames = "";
 			var arrayLength = likes.length;
@@ -157,6 +169,7 @@ angular.module('app',[])
 			return likeNames;
 		}
 		
+		//Decide what image to show on the like.
 		$scope.LikeLogo = function(bookname){
 			var booksLength = $scope.books.length;
 			for (var i = 0; i < booksLength ; i++){
@@ -170,7 +183,8 @@ angular.module('app',[])
 			}
 			return "../../Images/Like.png";
 		}
-			
+		
+		//If a user clicks on the like/dislike image, decide what to do and update the server and DB.
 		$scope.LikeBook = function(book){
 			var queryData = {
 					Username : user.username,
@@ -223,86 +237,39 @@ angular.module('app',[])
 					});
 			}
 
-		// Get the <span> element that closes the modal
-		var span = document.getElementsByClassName("close")[0];
-
-		// When the user clicks the button, open the modal 
-		$scope.MyButtonFunc = function(book) {
+		//When the user click the read me button, open the readmemodal
+		$scope.ReadBook = function(book) {
 			localStorage.setItem('ChosenBook', JSON.stringify(book));
-			var modal = document.getElementById('myModal');
+			var modal = document.getElementById('ReadMeModal');
 		    modal.style.display = "block";
 		}
 		
-		$scope.AnsweredModal = function() {
-			var modal = document.getElementById('AnsweredModal');
-		    modal.style.display = "block";
-		}
-		
-		$scope.SentModal = function() {
-			var modal = document.getElementById('SentModal');
-		    modal.style.display = "block";
-		}
-
-		// When the user clicks on <span> (x), close the modal
-		$scope.MyModalFunc = function() {
-			var modal = document.getElementById('myModal');
+		//When the user clicks on X, close the read me modal.
+		$scope.CloseReadBook = function() {
+			var modal = document.getElementById('ReadMeModal');
 		    modal.style.display = "none";
 		}
 		
-		$scope.HelpMeCloseButton = function() {
-			var modal = document.getElementById('HelpMeModal');
-		    modal.style.display = "none";
-		}
-		
-		$scope.CloseDeleteMessage = function(){
-			var modal = document.getElementById('YesNoModal');
-		    modal.style.display = "none";
-		}
-		
-		$scope.AnsweredModalCloseFunc = function(){
-			var modal = document.getElementById('AnsweredModal');
-		    modal.style.display = "none";
-		}
-		
-		$scope.SentModalCloseFunc = function(){
-			var modal = document.getElementById('SentModal');
-		    modal.style.display = "none";
-		}
-
-		// When the user clicks anywhere outside of the modal, close it
-		window.onclick = function(event) {
-			var modal = document.getElementById('myModal');
-			var msgsModal = document.getElementById('AnsweredModal');
-			var sentModal = document.getElementById('SentModal');
-		    if (event.target == modal) {
-		        modal.style.display = "none";
-		    }
-		    if(event.target == msgsModal){
-		    	msgsModal.style.display = "none";
-		    }
-		    if(event.target == sentModal){
-		    	sentModal.style.display = "none";
-		    }
-		}
-		
-		document.getElementById("HelpMeSuccess").style.display = "none";
-		document.getElementById("HelpMeError").style.display = "none";
-		
+		//Open book.
 		$scope.OpenBook = function(scroll){
 			var book = JSON.parse(localStorage.getItem('ChosenBook'));
 			localStorage.setItem('ScrollBook', scroll);
 			window.location = book.URL;
 		}
+		
+		//Once a user clicks on help me, open helpmemodal.
 		$scope.HelpMeButton = function(){
 			var modal = document.getElementById('HelpMeModal');
 			modal.style.display = "block";
 		}
 		
-		$scope.Cancel = function(){
+		//Cloce by X or by Close.
+		$scope.HelpMeCloseButton = function(){
 			var modal = document.getElementById('HelpMeModal');
 			modal.style.display = "none";
 		}
 		
+		//Submit help me message.
 		$scope.Submit = function(){
 			var message = document.getElementById("TextAreaHelp").value;
 			var subject = $('#MessageSubject option:selected').text();
@@ -331,8 +298,55 @@ angular.module('app',[])
 					});
 		}
 		
+		//Once the user clicks on asnwered, open this modal.
+		$scope.AnsweredModal = function() {
+			var modal = document.getElementById('AnsweredModal');
+		    modal.style.display = "block";
+		}
+		
+		//Once the user clicks on sent, open this modal.
+		$scope.SentModal = function() {
+			var modal = document.getElementById('SentModal');
+		    modal.style.display = "block";
+		}
+		
+		//Close the delete modal.
+		$scope.CloseDeleteMessage = function(){
+			var modal = document.getElementById('YesNoModal');
+		    modal.style.display = "none";
+		}
+		
+		//Close the answered modal.
+		$scope.AnsweredModalCloseFunc = function(){
+			var modal = document.getElementById('AnsweredModal');
+		    modal.style.display = "none";
+		}
+		
+		//Close the sent modal.
+		$scope.SentModalCloseFunc = function(){
+			var modal = document.getElementById('SentModal');
+		    modal.style.display = "none";
+		}
+
+		// When the user clicks anywhere outside of the modal, close it
+		window.onclick = function(event) {
+			var modal = document.getElementById('myModal');
+			var msgsModal = document.getElementById('AnsweredModal');
+			var sentModal = document.getElementById('SentModal');
+		    if (event.target == modal) {
+		        modal.style.display = "none";
+		    }
+		    if(event.target == msgsModal){
+		    	msgsModal.style.display = "none";
+		    }
+		    if(event.target == sentModal){
+		    	sentModal.style.display = "none";
+		    }
+		}
+		
+		//Read message update upon click.
 		$scope.ReadMessage = function(msg){
-			if(msg.userread == 1){
+			if(msg.userread == 1 || msg.adminread == 0){
 				return;
 			}
 			var queryData = {
@@ -345,15 +359,18 @@ angular.module('app',[])
 			    	   if(response.data.Result == "Success"){
 				    	   $scope.NewMsgs = $scope.NewMsgs - 1;
 				    	   var Msgs = "Messages";
+				    	   var Answered = "Answered";
 				    	   if($scope.NewMsgs != 0){
 				    		   Msgs = "Messages (" + $scope.NewMsgs + ")";
+				    		   Answered = "Answered (" + $scope.NewMsgs + ")";
 				    	   }
 				    	   for(var i = 0; i < $scope.RepliedMsgs.length ; i++){
 				    		   if($scope.RepliedMsgs[i].id == msg.id){
 				    			   $scope.RepliedMsgs[i].userread = 1;
 				    		   }
 				    	   }
-		   					document.getElementById("NewMessages").innerHTML = "Messages (" + $scope.NewMsgs + ")";
+		   					document.getElementById("NewMessages").innerHTML = Msgs;
+		   					document.getElementById("AnsweredButton").innerText = Answered;
 		   				}
 			       }, 
 			       function(response){
@@ -362,12 +379,14 @@ angular.module('app',[])
 			    );
 		}
 		
+		//Pop up the modal to confirm that the user wishes to delete the message.
 		$scope.DeleteMessage = function(msg){
 			localStorage.setItem('ChosenMessage', JSON.stringify(msg));
 			var modal = document.getElementById('YesNoModal');
 			modal.style.display = "block";
 		}
 		
+		//Confirm the message has been deleted.
 		$scope.ConfirmDeleteMessage = function (){
 			var ChosenMsg = JSON.parse(localStorage.getItem('ChosenMessage'));
 			var queryData = {
@@ -392,12 +411,8 @@ angular.module('app',[])
 			       }
 			    );
 		}
-		$scope.GetDateFormat = function(DateTime){
-			var date = DateTime.split(' ')[0];
- 		   var time = DateTime.split(' ')[1].split(":")[0] + ":" + DateTime.split(' ')[1].split(":")[1];
- 		   return date + ' at ' + time;
-		}
 		
+		//View book upon click on image.
 		$scope.viewBook = function(book){
 			localStorage.setItem('viewBook', JSON.stringify(book));
 			window.location="BookView.html";

@@ -14,13 +14,13 @@
 </head>
 <body ng-app="app" ng-controller="ebooksController">
 	<ul>
+		<li>
+			<img id="logo" alt="logo" src="../../Images/Logo.jpg">
+		</li>
 		<li><a href="./LandingPage.html"><b>Home</b></a></li>
 		<li><a href="./Ebooks.html"><b>eBooks</b></a></li>
 		<li><a href="./MyAccount.html"><b>My Account</b></a></li>
 		<li><button id="HelpMe" type="button" class="btn btn-primary btn-md" ng-click="HelpMeButton()">Help Me</button></li>
-		<li id="Logo">
-			<img id="LogoPic" alt="logo" src="../../Images/Logo.jpg">
-		</li>
 		<li style="float: right"><a class="active" ng-click="SignOutFunc()" href="../../Login.html"><b>Sign Out</b></a></li>
 	</ul>
 	<div class="container">
@@ -69,7 +69,7 @@
 			<div id="HelpMeModal" class="modal">									
 				<!-- Modal content -->
 				<div class="modal-content">
-					<span class="close" ng-click="MyModalFunc()">&times;</span>
+					<span class="close" ng-click="CloseHelpMeModal()">&times;</span>
 					<div class="modal-title">
 						<p><b>Please feel free to contact us and we'll reply as soon as we can.</b></p>
 					</div>
@@ -105,8 +105,8 @@
 								<p id="HelpMeError">Please write a message!</p>				
 								</div>
 								<div class="col-sm-5">
-									<button type="button" data-dismiss="modal" ng-click="Submit()" class="btn btn-primary" id="Yes">Submit</button>
-   									<button type="button" data-dismiss="modal" ng-click="Cancel()" class="btn" id="No">Cancel</button>
+									<button type="button" data-dismiss="modal" ng-click="Submit()" class="btn btn-info" id="Yes">Submit</button>
+   									<button type="button" data-dismiss="modal" ng-click="CloseHelpMeModal()" class="btn" id="No">Close</button>
 								</div>
 							</div>					
 						</div>		

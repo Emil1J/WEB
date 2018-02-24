@@ -13,6 +13,11 @@
 	font-size: 140%;
 }
 
+#logo{
+	width:	150px; 
+	height:	50px;
+}
+
 .BookCovers{
 	height: 300px;
 	width: 210px;

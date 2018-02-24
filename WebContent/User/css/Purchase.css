@@ -11,6 +11,12 @@
 	float: right;
 	border-radius: 5%;
 }
+
+#logo{
+	width:	150px; 
+	height:	50px;
+}
+
 .PurchaseBox
 {
 	padding-bottom: 50px;
@@ -19,6 +25,7 @@
 	padding-right: 40px;
 	box-sizing: border-box;
 	background: rgba(0,0,0,.1);
+	border-radius: 25px;
 }
 .PurchaseBox input[type="submit"]
 {

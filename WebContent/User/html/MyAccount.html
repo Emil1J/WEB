@@ -14,13 +14,13 @@
 	</head>
 	<body ng-app="app" ng-controller="myAccountController">
 		<ul class="Toolbar">
+			<li>
+				<img id="logo" alt="logo" src="../../Images/Logo.jpg">
+			</li>
 			<li><a href="./LandingPage.html"><b>Home</b></a></li>
 			<li><a href="./Ebooks.html"><b>eBooks</b></a></li>
 			<li><a href="./MyAccount.html"><b>My Account</b></a></li>
 			<li><button id="HelpMe" type="button" class="btn btn-primary btn-md" ng-click="HelpMeButton()">Help Me</button></li>
-			<li id="Logo">
-				<img id="LogoPic" alt="logo" src="../../Images/Logo.jpg">
-			</li>
 			<li style="float:right"><a class="active" ng-click="SignOutFunc()" href="../../Login.html"><b>Sign Out</b></a></li>
 		</ul>
 		<div class="container">
@@ -43,7 +43,7 @@
 										<div id="msg-btns" class="col-sm-6">
 											<div class="btn-group">
     											<button type="button" class="btn btn-info" ng-click="SentModal()">Sent</button>
-    											<button type="button" class="btn btn-info" ng-click="AnsweredModal()">Answered</button>
+    											<button id="AnsweredButton" type="button" class="btn btn-info" ng-click="AnsweredModal()">Answered</button>
   											</div>	
 										</div>
 									</div>
@@ -76,7 +76,7 @@
 														<p class="BookData"><u><b>Title:</b></u> {{book.Name}}</p>
 														<p class="BookData"><u><b>Author:</b></u> {{book.Author}}</p>
 														<p class="BookData"><b>
-															<button type="button" class="btn btn-info btn-xs" ng-click="MyButtonFunc(book)">Read Book</button>
+															<button type="button" class="btn btn-info btn-xs" ng-click="ReadBook(book)">Read Book</button>
 														</b></p>
 														
 													</div>
@@ -89,10 +89,10 @@
   					</div>
             	</div>
             	<!-- The Modal -->
-				<div id="myModal" class="modal">									
+				<div id="ReadMeModal" class="modal">									
 					<!-- Modal content -->
 					<div class="modal-content">
-						<span class="close" ng-click="MyModalFunc()">&times;</span>
+						<span class="close" ng-click="CloseReadBook()">&times;</span>
 						<div class="modal-title">
 							<p><b>Do you like to continue from where you last stopped?</b></p>
 						</div>
@@ -142,7 +142,7 @@
 									</div>
 									<div class="col-sm-5">
 										<button type="button" data-dismiss="modal" ng-click="Submit()" class="btn btn-info" id="Yes">Submit</button>
-   										<button type="button" data-dismiss="modal" ng-click="Cancel()" class="btn" id="No">Cancel</button>
+   										<button type="button" data-dismiss="modal" ng-click="HelpMeCloseButton()" class="btn" id="No">Close</button>
 									</div>
 								</div>					
 							</div>		
