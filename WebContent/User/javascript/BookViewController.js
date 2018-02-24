@@ -42,12 +42,10 @@ angular.module('app',[])
 		if(purchased == "False"){
 			reviewField.style.display = "none";
 			purchaseBtn.style.display = "block";
-			reviewBtn.style.display = "none";
 			readBtn.style.display = "none";
 		}else{
 			reviewField.style.display = "block";
 			purchaseBtn.style.display = "none";
-			reviewBtn.style.display = "block";
 			readBtn.style.display = "block";
 		}
 		
