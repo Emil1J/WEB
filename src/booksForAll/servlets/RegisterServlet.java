@@ -16,6 +16,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.tomcat.dbcp.dbcp2.BasicDataSource;
 
@@ -96,17 +97,12 @@ import booksForAll.model.User;
 		String description = postData.Description;
 		String photo = postData.Photo;
 		String password = postData.Password;
-		String balance = postData.Balance;
 		String result = "";
 		try {
-        	//obtain CustomerDB data source from Tomcat's context
     		Context context = new InitialContext();
     		BasicDataSource ds = (BasicDataSource)context.lookup(
     				getServletContext().getInitParameter(AppConstants.DB_DATASOURCE) + AppConstants.OPEN);
     		Connection conn = ds.getConnection();
-/*USERNAME, EMAIL,"
-			+ "CITY, STREET, HOUSENUM, POSTALCODE, COUNTRY, PHONENUM, PASSWORD, NICKNAME,"
-			+ "DESCRIPTION, PHOTO, BALANCE*/
     		PreparedStatement stmt;
 			try {
 				stmt = conn.prepareStatement(AppConstants.SELECT_USERS_BY_NAME_STMT);
@@ -129,7 +125,6 @@ import booksForAll.model.User;
 					stmt.setString(10, nickname);
 					stmt.setString(11, description);
 					stmt.setString(12, photo);
-					stmt.setString(13, balance);
 					int res = stmt.executeUpdate(); 
 					if (res == 1){
 						result = "Success";
@@ -145,6 +140,15 @@ import booksForAll.model.User;
     		}
 
     		conn.close();
+    		
+    		HttpSession sessionCheck = request.getSession(false);
+			if(sessionCheck != null) {
+				sessionCheck.invalidate();
+			}
+	        HttpSession session=request.getSession();
+	        session.setAttribute("Username", username);
+	        session.setAttribute("Password", password);
+
         	response.addHeader("Content-Type", "application/json");
         	User user = new User(username, email, city, street, Integer.parseInt(houseNum), postalCode, country, phoneNumber, password, nickname, description, photo);
     		JsonObject json = new JsonObject();
