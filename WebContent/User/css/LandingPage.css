@@ -43,6 +43,7 @@ h3 {
 	width: 100px;
 	height: 150px;
 	margin: 10px;
+    border-radius: 5%;
 }
 
 .likedbooks{
