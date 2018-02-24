@@ -15,17 +15,15 @@
 </head>
 <body ng-app="app" ng-controller="adminHomePageController">
 	<ul>
-		<b>
-			<li><a href="AdminHomePage.html">Home</a></li>
-			<li><a href="AdminUsers.html">Users</a></li>
-			<li><a href="AdminTransactions.html">Transactions</a></li>
-			<li><a href="AdminReviews.html">Reviews</a></li>
-			<li><a id="TabMessages" href="AdminMessages.html">Messages</a></li>
-			<li style="padding-left: 11%">
-				<img style="width:150px; height:50px;" alt="logo" src="../../Images/Logo.jpg">
-			</li>
-			<li style="float:right"><a class="active" ng-click="SignOutFunc()" href="../../Login.html">Sign Out</a></li>
-		</b>
+		<li><a href="AdminHomePage.html"><b>Home</b></a></li>
+		<li><a href="AdminUsers.html"><b>Users</b></a></li>
+		<li><a href="AdminTransactions.html"><b>Transactions</b></a></li>
+		<li><a href="AdminReviews.html"><b>Reviews</b></a></li>
+		<li><a id="TabMessages" href="AdminMessages.html"><b>Messages</b></a></li>
+		<li id="navbar_logo">
+			<img style="width:150px; height:50px;" alt="logo" src="../../Images/Logo.jpg">
+		</li>
+		<li id="Sign_out_button"><a class="active" ng-click="SignOutFunc()" href="../../Login.html"><b>Sign Out</b></a></li>
 	</ul>
 	<div class="container">
     	<div class="container-fluid">
@@ -33,23 +31,23 @@
   				<div class="col-sm-12">
        				<div class="container">
                			<div class="row">
-						<p id="welcomename">Welcome Admin</p>
+							<p id="welcomename">Welcome Admin</p>
                			</div>
                		</div>
                	</div>
                	<div class="col-sm-12">
                   	<div class="col-sm-6">
-						<p id="HeaderLabel">The most active users..</p>
+						<p id="HeaderLabelActive">The most active users..</p>
                   	</div>
                   	<div class="col-sm-6">
-                  		<a id="ViewAllButton" href="./AdminUsers.html"><button type="button" class="btn btn-info btn-sm">View all</button></a>
+                  		<a id="ViewAllButtonActive" href="./AdminUsers.html"><button type="button" class="btn btn-info btn-sm">View all</button></a>
                   	</div>
                 </div>
                	<div class="grid-container">
 	               	<div ng-repeat="user in users">
 	               		<div class="likedbooks">
 	               			<a href="" ng-click="viewUser(user)">
-	               				<img id="userPhoto" ng-src="{{user.photo}}"/>
+	               				<img id="userPhoto" alt="user photo" ng-src="{{user.photo}}"/>
 	              			</a>
 	               			<p class="booksdata"><b><u>Username:</u></b> {{user.username}}</p>
 			                <p class="booksdata"><b><u>Nickname:</u></b> {{user.nickname}}</p>
@@ -60,17 +58,17 @@
                	<hr>
                	<div class="col-sm-12">
                   	<div class="col-sm-6">
-						<p id="HeaderLabel">The most liked books..</p>
+						<p id="HeaderLabelLiked">The most liked books..</p>
                   	</div>
                   	<div class="col-sm-6">
-                  		<a id="ViewAllButton" href="./AdminEbooks.html"><button type="button" class="btn btn-info btn-sm">View all</button></a>
+                  		<a id="ViewAllButtonLiked" href="./AdminEbooks.html"><button type="button" class="btn btn-info btn-sm">View all</button></a>
                   	</div>
                 </div>
                	<div class="grid-container">
 	               	<div ng-repeat="x in books">
 	               		<div class="likedbooks">
 	               			<a href="" ng-click="viewBook(x)">
-	               				<img class="bookCoversLanding" ng-src="{{x.Photo}}"/>
+	               				<img class="bookCoversLanding" alt="book cover" ng-src="{{x.Photo}}"/>
 	              			</a>
 	               			<p class="booksdata"><b><u>Title:</u></b> {{x.Name}}</p>
 			                <p class="booksdata"><b><u>Author:</u></b> {{x.Author}}</p>
@@ -81,17 +79,17 @@
 	        	<hr>
 	        	<div class="col-sm-12">
                   	<div class="col-sm-6">
-						<p id="HeaderLabel">The most purchased books..</p>
+						<p id="HeaderLabelPurchased">The most purchased books..</p>
                   	</div>
                   	<div class="col-sm-6">
-                  		<a id="ViewAllButton" href="./AdminEbooks.html"><button type="button" class="btn btn-info btn-sm">View all</button></a>
+                  		<a id="ViewAllButtonPurchased" href="./AdminEbooks.html"><button type="button" class="btn btn-info btn-sm">View all</button></a>
                   	</div>
                 </div>
                  <div class="grid-container">
            	 	 	<div ng-repeat="x in mostPurchasedBooks">
                  		<div class="likedbooks">
                  			<a href="" ng-click="viewBook(x)">
-                 				<img class="bookCoversLanding" ng-src="{{x.Photo}}"/>
+                 				<img class="bookCoversLanding" alt="book cover" ng-src="{{x.Photo}}"/>
                  			</a>
                  			<p class="booksdata"><b><u>Title:</u></b> {{x.Name}}</p>
 		                	<p class="booksdata"><b><u>Author:</u></b> {{x.Author}}</p>
