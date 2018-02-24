@@ -13,16 +13,14 @@
 	</head>
 	<body  ng-app="app" ng-controller="homePageController">
 		<ul>
-			<b>
-				<li><a href="./LandingPage.html">Home</a></li>
-				<li><a href="./Ebooks.html">eBooks</a></li>
-				<li><a href="./MyAccount.html">My Account</a></li>
-				<li><button id="HelpMe" type="button" class="btn btn-primary btn-md" ng-click="HelpMeButton()">Help Me</button></li>
-				<li id="Logo">
-					<img id="LogoPic" alt="logo" src="../../Images/Logo.jpg">
-				</li>
-				<li style="float:right"><a class="active" ng-click="SignOutFunc()" href="../../Login.html">Sign Out</a></li>
-			</b>
+			<li><a href="./LandingPage.html"><b>Home</b></a></li>
+			<li><a href="./Ebooks.html"><b>eBooks</b></a></li>
+			<li><a href="./MyAccount.html"><b>My Account</b></a></li>
+			<li><button id="HelpMe" type="button" class="btn btn-primary btn-md" ng-click="HelpMeButton()">Help Me</button></li>
+			<li id="Logo">
+				<img id="LogoPic" alt="logo" src="../../Images/Logo.jpg">
+			</li>
+			<li style="float:right"><a class="active" ng-click="SignOutFunc()" href="../../Login.html"><b>Sign Out</b></a></li>
 		</ul>
 		<div class="container">
     		<div class="container-fluid">
@@ -36,17 +34,17 @@
                   	</div>
                   	<div class="col-sm-12">
                   		<div class="col-sm-6">
-							<p id="likedbookslabel"><u>The most liked books..</u></p>
+							<p id="likedbookslabel1"><u>The most liked books..</u></p>
                   		</div>
                   		<div class="col-sm-6">
-                  			<a id="ViewAllButton" href="./Ebooks.html"><button type="button" class="btn btn-info btn-sm">View all</button></a>
+                  			<a id="ViewAllButton1" href="./Ebooks.html"><button type="button" class="btn btn-info btn-sm">View all</button></a>
                   		</div>
                   	</div>
                   	<div class="grid-container">
                   		<div ng-repeat="x in mostLikedBooks">
                   			<div class="likedbooks">
                   				<a href="" ng-click="viewBook(x)">
-                  					<img class="bookCoversLanding" ng-src="{{x.Photo}}"/>
+                  					<img class="bookCoversLanding" alt="book cover" ng-src="{{x.Photo}}"/>
                   				</a>
                   				<p class="booksdata"><b><u>Title:</u></b> {{x.Name}}</p>
 			                	<p class="booksdata"><b><u>Author:</u></b> {{x.Author}}</p>
@@ -59,17 +57,17 @@
             	<div class="row">
             		<div class="col-sm-12">
                   		<div class="col-sm-6">
-							<p id="likedbookslabel"><u>The most purchased books..</u></p>
+							<p id="likedbookslabel2"><u>The most purchased books..</u></p>
                   		</div>
                   		<div class="col-sm-6">
-                  			<a id="ViewAllButton" href="./Ebooks.html"><button type="button" class="btn btn-info btn-sm">View all</button></a>
+                  			<a id="ViewAllButton2" href="./Ebooks.html"><button type="button" class="btn btn-info btn-sm">View all</button></a>
                   		</div>
                   	</div>
                   	<div class="grid-container">
                   		<div ng-repeat="x in mostPurchasedBooks">
                   			<div class="likedbooks">
                   				<a href="" ng-click="viewBook(x)">
-                  					<img class="bookCoversLanding" ng-src="{{x.Photo}}"/>
+                  					<img class="bookCoversLanding" alt="book cover" ng-src="{{x.Photo}}"/>
                   				</a>
                   				<p class="booksdata"><b><u>Title:</u></b> {{x.Name}}</p>
 			                	<p class="booksdata"><b><u>Author:</u></b> {{x.Author}}</p>
@@ -84,7 +82,7 @@
 					<div class="modal-content">
 						<span class="close" ng-click="MyModalFunc()">&times;</span>
 						<div class="modal-title">
-							<b><p>Please feel free to contact us and we'll reply as soon as we can.</p></b>
+							<p><b>Please feel free to contact us and we'll reply as soon as we can.</b></p>
 						</div>
 						<div class="modal-footer">
 							<div class="col-sm-12">
@@ -117,8 +115,8 @@
 										<p id="HelpMeError">Please write a message!</p>				
 									</div>
 									<div class="col-sm-5">
-										<button id="ModalButton" type="button" data-dismiss="modal" ng-click="Submit()" class="btn btn-primary" id="Yes">Submit</button>
-   										<button id="ModalButton" type="button" data-dismiss="modal" ng-click="Cancel()" class="btn" id="No">Cancel</button>
+										<button type="button" data-dismiss="modal" ng-click="Submit()" class="btn btn-primary" id="Yes">Submit</button>
+   										<button type="button" data-dismiss="modal" ng-click="Cancel()" class="btn" id="No">Cancel</button>
 									</div>
 								</div>					
 							</div>		

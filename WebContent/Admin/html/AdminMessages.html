@@ -15,17 +15,15 @@
 </head>
 <body ng-app="app" ng-controller="adminMessagesController">
 	<ul>
-		<b>
-			<li><a href="AdminHomePage.html">Home</a></li>
-			<li><a href="AdminUsers.html">Users</a></li>
-			<li><a href="AdminTransactions.html">Transactions</a></li>
-			<li><a href="AdminReviews.html">Reviews</a></li>
-			<li><a id="TabMessages" href="AdminMessages.html">Messages</a></li>
-			<li style="padding-left: 11%">
-				<img style="width:150px; height:50px;" alt="logo" src="../../Images/Logo.jpg">
-			</li>
-			<li style="float:right"><a class="active" ng-click="SignOutFunc()" href="../../Login.html">Sign Out</a></li>
-		</b>
+		<li><a href="AdminHomePage.html"><b>Home</b></a></li>
+		<li><a href="AdminUsers.html"><b>Users</b></a></li>
+		<li><a href="AdminTransactions.html"><b>Transactions</b></a></li>
+		<li><a href="AdminReviews.html"><b>Reviews</b></a></li>
+		<li><a id="TabMessages" href="AdminMessages.html"><b>Messages</b></a></li>
+		<li id="navbar_logo">
+			<img style="width:150px; height:50px;" alt="logo" src="../../Images/Logo.jpg">
+		</li>
+		<li id="Sign_out_button"><a class="active" ng-click="SignOutFunc()" href="../../Login.html"><b>Sign Out</b></a></li>
 	</ul>
 	<div class="container">
 		<div class="container-fluid">
@@ -42,7 +40,7 @@
 				</div>
 				
 				<div id="NewMessages" class="tabcontent">
-					<button ng-click="MessageClick(newMessage)" id="mesgBtn" class="accordion" ng-repeat="newMessage in UnrepliedMessages">
+					<button ng-click="MessageClick(newMessage)" id="mesgBtnNew" class="accordion" ng-repeat="newMessage in UnrepliedMessages">
 					<div class="col-sm-4">
 						<b>{{newMessage.username}}</b><br/><small><b>Subject:</b> {{newMessage.subject}}<br/><b>Received at: </b>{{GetDateFormat(newMessage.receiptdate)}}</small>
 					</div>
@@ -56,7 +54,7 @@
 				</div>
 				
 				<div id="OldMessages" class="tabcontent">
-					<button ng-click="MessageClick(msg)" id="mesgBtn" class="accordion" ng-repeat="msg in Repliedmessages">
+					<button ng-click="MessageClick(msg)" id="#mesgBtnOld" class="accordion" ng-repeat="msg in Repliedmessages">
 					<div class="col-sm-4">
 						<b>{{msg.username}}</b><br/><small><b>Subject:</b> {{msg.subject}}<br/><b>Received at: </b>{{GetDateFormat(msg.receiptdate)}}</small>
 					</div>
@@ -77,10 +75,10 @@
 						<div class="col-md-12">
 							<div class="row">
 							<div class="col-sm-6">
-								<b><p id="SentFrom" class="MessageContent">Message from {{username}}</p></b>
+								<p id="SentFrom" class="MessageContent"><b>Message from {{username}}</b></p>
 							</div>
 							<div class="col-sm-6">
-								<b><p> Received at <u>{{GetDateFormat(receiptdate)}}</u></p></b>
+								<p><b> Received at <u>{{GetDateFormat(receiptdate)}}</u></b></p>
 							</div>
 							</div>
 						</div>

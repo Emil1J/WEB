@@ -31,10 +31,18 @@
     border-radius: 50%;
 }
 
-#Details{
+#Details1, #Details2{
 	font-weight: bold;
 	text-decoration: underline;
 	font-size: 20px;
+}
+
+#Sign_out_button{
+	float: right;
+}
+
+#navbar_logo{
+	padding-left: 11%;
 }
 
 #DetailsDiv{

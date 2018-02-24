@@ -8,6 +8,14 @@
 	padding-right: 5%;
 }
 
+#Sign_out_button{
+	float: right;
+}
+
+#navbar_logo{
+	padding-left: 11%;
+}
+
 .grid-container {
   display: grid;
   grid-template-columns: auto auto auto auto auto;
@@ -28,7 +36,7 @@
     border-radius: 50%;
 }
 
-#HeaderLabel{
+#HeaderLabelPurchased, #HeaderLabelActive, #HeaderLabelLiked{
 	color: #000;
 	font-weight: bold;
 	padding-top: 1%;
@@ -52,7 +60,7 @@
  	border-radius: 5%;
 }
 
-#ViewAllButton{
+#ViewAllButtonPurchased, #ViewAllButtonActive, #ViewAllButtonLiked{
 	float: right;
     display: inline-block;
  	font-weight: bold;

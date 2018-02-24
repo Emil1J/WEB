@@ -13,6 +13,14 @@
     color: rgba(0, 0, 0, 0.5);
 }
 
+#Sign_out_button{
+	float: right;
+}
+
+#navbar_logo{
+	padding-left: 11%;
+}
+
 #UsersHeader{
 	font-weight: bold;
 	text-align: center;
@@ -54,7 +62,7 @@ th, td {
 	overflow:auto;
 }
 
-.FilterLine{
+#FilterLine1, #FilterLine2{
 	margin-top: 4%;
 }
 

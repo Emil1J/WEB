@@ -334,7 +334,8 @@ angular.module('app',[])
 				    			   $scope.RepliedMsgs[i].userread = 1;
 				    		   }
 				    	   }
-		   					document.getElementById("NewMessages").innerHTML = "Messages (" + $scope.NewMsgs + ")";			    	   }
+		   					document.getElementById("NewMessages").innerHTML = "Messages (" + $scope.NewMsgs + ")";
+		   				}
 			       }, 
 			       function(response){
 			         // failure callback

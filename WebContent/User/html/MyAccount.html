@@ -14,16 +14,14 @@
 	</head>
 	<body ng-app="app" ng-controller="myAccountController">
 		<ul class="Toolbar">
-			<b>
-				<li><a href="./LandingPage.html">Home</a></li>
-				<li><a href="./Ebooks.html">eBooks</a></li>
-				<li><a href="./MyAccount.html">My Account</a></li>
-				<li><button id="HelpMe" type="button" class="btn btn-primary btn-md" ng-click="HelpMeButton()">Help Me</button></li>
-				<li id="Logo">
-					<img id="LogoPic" alt="logo" src="../../Images/Logo.jpg">
-				</li>
-				<li style="float:right"><a class="active" ng-click="SignOutFunc()" href="../../Login.html">Sign Out</a></li>
-			</b>
+			<li><a href="./LandingPage.html"><b>Home</b></a></li>
+			<li><a href="./Ebooks.html"><b>eBooks</b></a></li>
+			<li><a href="./MyAccount.html"><b>My Account</b></a></li>
+			<li><button type="button" class="btn btn-info btn-md" ng-click="HelpMeButton()"><b>Help Me</b></button></li>
+			<li id="Logo">
+				<img id="LogoPic" alt="logo" src="../../Images/Logo.jpg">
+			</li>
+			<li style="float:right"><a class="active" ng-click="SignOutFunc()" href="../../Login.html"><b>Sign Out</b></a></li>
 		</ul>
 		<div class="container">
     		<div class="container-fluid">
@@ -33,45 +31,41 @@
 							<div class="row">
 								<div class="SpaceFromTop">
 									<p class="ProfileData Center">
-										<img class="ProfilePic" ng-src="{{user.photo}}">
+										<img class="ProfilePic" alt="profile picture" ng-src="{{user.photo}}">
 									</p>
 									<p class="ProfileData Center">{{user.username}}</p>
 									<p class="ProfileData Center">{{user.nickname}}</p>
 									<p class="ProfileData Center">{{user.email}}</p>
-									<p class="ProfileData Center">
-										<div id="main-div-msg" class="col-sm-12">
-											<div class="col-sm-6" align="right">
-												<p id="NewMessages"><strong>Messages: </strong></p>
-											</div>
-											<div id="msg-btns" class="col-sm-6"  align="left">
-												<div class="btn-group">
-    												<button type="button" class="btn btn-info" ng-click="SentModal()">Sent</button>
-    												<button type="button" class="btn btn-info" ng-click="AnsweredModal()">Answered</button>
-  												</div>	
-											</div>
+									<div id="main-div-msg" class="col-sm-12">
+										<div class="col-sm-6 msg-txt" align="right">
+											<p id="NewMessages"><strong>Messages: </strong></p>
 										</div>
-									</p>
-									<u><b><p class="YourBooks">Your books:</p></b></u>
+										<div id="msg-btns" class="col-sm-6">
+											<div class="btn-group">
+    											<button type="button" class="btn btn-info" ng-click="SentModal()">Sent</button>
+    											<button type="button" class="btn btn-info" ng-click="AnsweredModal()">Answered</button>
+  											</div>	
+										</div>
+									</div>
+									<p class="YourBooks"><b>Your books:</b></p>
 										<div class="row">
 										<div class="grid-container">
 	  										<div ng-repeat="book in books">
 													<div class="col-sm-5">
 														<a id="img-click" ng-click="viewBook(book)">
-															<img class="BookCovers" ng-src="{{book.Photo}}"/>
+															<img class="BookCovers" alt="book cover" ng-src="{{book.Photo}}"/>
 														</a>
 														<div class="col-sm-3">
 														<p class="BookData Drop">
 															<a href="#">
-																<img id="{{book.Name}}" class="LikeButton" ng-click="LikeBook(book)" ng-src="{{LikeLogo(book.Name)}}"/>
+																<img id="{{book.Name}}" alt="like button" class="LikeButton" ng-click="LikeBook(book)" ng-src="{{LikeLogo(book.Name)}}"/>
 															</a>
 														</p>
 														</div>
 														<div class="col-sm-9">
 														<div id="tooltip">
-															<b> 
-																<p id="LikeNum{{book.Name}}" class="BookData2" ng-model="tooltipcheck">{{book.LikesNum}} Likes</p>
- 						 										<span id="LikeNumTooltip{{book.Name}}" ng-if="book.LikesNum != 0" class="tooltiptext">{{GetLikes(book.Likes)}}</span>
-															</b>
+															<p id="LikeNum{{book.Name}}" class="BookData2" ng-model="tooltipcheck">{{book.LikesNum}} Likes</p>
+ 						 									<span id="LikeNumTooltip{{book.Name}}" ng-if="book.LikesNum != 0" class="tooltiptext">{{GetLikes(book.Likes)}}</span>
 														</div>
 														</div>
 														
@@ -98,7 +92,7 @@
 					<div class="modal-content">
 						<span class="close" ng-click="MyModalFunc()">&times;</span>
 						<div class="modal-title">
-							<b><p>Do you like to continue from where you last stopped?</p></b>
+							<p><b>Do you like to continue from where you last stopped?</b></p>
 						</div>
 						<div class="modal-footer">
  							<button type="button" data-dismiss="modal" ng-click="OpenBook('True')" class="btn btn-info" id="Yes">Yes</button>
@@ -112,7 +106,7 @@
 					<div class="modal-content">
 						<span class="close" ng-click="HelpMeCloseButton()">&times;</span>
 						<div class="modal-title">
-							<b><p>Please feel free to contact us and we'll reply as soon as we can.</p></b>
+							<p><b>Please feel free to contact us and we'll reply as soon as we can.</b></p>
 						</div>
 						<div class="modal-footer">
 							<div class="col-sm-12">
@@ -145,8 +139,8 @@
 										<p id="HelpMeError">Please write a message!</p>				
 									</div>
 									<div class="col-sm-5">
-										<button id="ModalButton" type="button" data-dismiss="modal" ng-click="Submit()" class="btn btn-info" id="Yes">Submit</button>
-   										<button id="ModalButton" type="button" data-dismiss="modal" ng-click="Cancel()" class="btn" id="No">Cancel</button>
+										<button type="button" data-dismiss="modal" ng-click="Submit()" class="btn btn-info" id="Yes">Submit</button>
+   										<button type="button" data-dismiss="modal" ng-click="Cancel()" class="btn" id="No">Cancel</button>
 									</div>
 								</div>					
 							</div>		

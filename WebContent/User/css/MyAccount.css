@@ -15,6 +15,10 @@
 	border-radius: 25px;
 }
 
+.msg-txt{
+	align: right;
+}
+
 .Center{
 	margin-top: 10%;
 	margin: 0% 10% 0% 0%;	
@@ -45,7 +49,8 @@
 
 .YourBooks{
 	font-size: 200%;
-	font-family:  "Book Antiqua", Palatino, "Palatino Linotype", "Palatino LT STD", Georgia, serif;		
+	font-family:  "Book Antiqua", Palatino, "Palatino Linotype", "Palatino LT STD", Georgia, serif;
+	text-decoration: underline;	
 }
 
 .BookCovers{
@@ -75,6 +80,7 @@
 
 .BookData2{
 	margin-top: 20%;
+	font-weight: bold;
 }
 
 .ProfileData{
@@ -88,7 +94,7 @@
 	margin-top:1%;
 }
 
-#NewMessages{
+#NewMessages, #AnsweredMessages{
 	margin-top:1%;
 	margin-right:7%;
 }

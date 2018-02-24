@@ -58,6 +58,14 @@ li a:hover {
 	margin-left: 10px;
 }
 
+#Sign_out_button{
+	float: right;
+}
+
+#navbar_logo{
+	padding-left: 11%;
+}
+
 #tooltip {
     display: inline-block;
     margin-left: -10%;

@@ -14,18 +14,16 @@
 	</head>
 	<body ng-app="app" ng-controller="bookViewController">
 	<ul>
-		<b>
-			<li><a href="./LandingPage.html">Home</a></li>
-			<li><a href="./Ebooks.html">eBooks</a></li>
-			<li><a href="./MyAccount.html">My Account</a></li>
-			<li><button id="HelpMe" type="button" class="btn btn-primary btn-md" ng-click="HelpMeButton()">Help Me</button></li>
-			<li id="Logo">
-				<img id="LogoPic" alt="logo" src="../../Images/Logo.jpg">
-			</li>
-			<li style="float: right">
-				<a class="active" ng-click="SignOutFunc()" href="../../Login.html">Sign Out</a>
-			</li>
-		</b>
+		<li><a href="./LandingPage.html"><b>Home</b></a></li>
+		<li><a href="./Ebooks.html"><b>eBooks</b></a></li>
+		<li><a href="./MyAccount.html"><b>My Account</b></a></li>
+		<li><button id="HelpMe" type="button" class="btn btn-primary btn-md" ng-click="HelpMeButton()">Help Me</button></li>
+		<li id="Logo">
+			<img id="LogoPic" alt="logo" src="../../Images/Logo.jpg">
+		</li>
+		<li style="float: right">
+			<a class="active" ng-click="SignOutFunc()" href="../../Login.html"><b>Sign Out</b></a>
+		</li>
 	</ul>
 	<div class="container">
 		<div class="container-fluid">
@@ -55,12 +53,10 @@
                   	<div class="row">
                   		<div class="col-sm-4">
                   			<div class="bookcoverpad">
-								<img class="BookCovers" ng-src="{{bookcover}}" />
+								<img class="BookCovers" alt="book cover" ng-src="{{bookcover}}" />
 								<div id="tooltip">
-									<b> 
-										<p class="BookData">{{likesNum}} Likes</p>
- 						 				<span ng-if="likesNum != 0" class="tooltiptext">{{GetLikes(Likes)}}</span>
-									</b>
+									<p class="BookData"><b>{{likesNum}} Likes</b></p>
+ 						 			<span ng-if="likesNum != 0" class="tooltiptext"><b>{{GetLikes(Likes)}}</b></span>
 								</div>
 							</div>
 						</div>
@@ -120,7 +116,7 @@
 	            	<div class="commentbox">
 	                  	<div class="row">
 	                  		<div class="col-sm-2">
-	                  		  	<img class="ProfilePic" ng-src="{{comment.photo}}">
+	                  		  	<img class="ProfilePic" alt="profile picture" ng-src="{{comment.photo}}">
 	                  		</div>
 	                  		<div class="col-sm-5">
 	                  	  		<p id="commentusername">{{comment.username}}</p>
@@ -145,7 +141,7 @@
 				<div class="modal-content">
 					<span class="close" ng-click="MyModalFunc()">&times;</span>
 					<div class="modal-title">
-						<b><p>Do you like to continue from where you last stopped?</p></b>
+						<p><b>Do you like to continue from where you last stopped?</b></p>
 					</div>
 					<div class="modal-footer">
 							<button type="button" data-dismiss="modal" ng-click="OpenBook('True')" class="btn btn-info" id="Yes">Yes</button>
@@ -159,7 +155,7 @@
 				<div class="modal-content">
 					<span class="close" ng-click="MyModalFunc2()">&times;</span>
 					<div class="modal-title">
-						<b><p>Please feel free to contact us and we'll reply as soon as we can.</p></b>
+						<p><b>Please feel free to contact us and we'll reply as soon as we can.</b></p>
 					</div>
 					<div class="modal-footer">
 						<div class="col-sm-12">
@@ -192,8 +188,8 @@
 									<p id="HelpMeError">Please write a message!</p>				
 								</div>
 								<div class="col-sm-5">
-									<button id="ModalButton" type="button" data-dismiss="modal" ng-click="Submit()" class="btn btn-primary" id="Yes">Submit</button>
-   									<button id="ModalButton" type="button" data-dismiss="modal" ng-click="Cancel()" class="btn" id="No">Cancel</button>
+									<button type="button" data-dismiss="modal" ng-click="Submit()" class="btn btn-primary" id="Yes">Submit</button>
+   									<button type="button" data-dismiss="modal" ng-click="Cancel()" class="btn" id="No">Cancel</button>
 								</div>
 							</div>					
 						</div>		
