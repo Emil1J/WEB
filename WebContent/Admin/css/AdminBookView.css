@@ -1,45 +1,11 @@
 @charset "ISO-8859-1";
-body
-{
-	margin: 0;
-	padding: 0;
-	background: url(../../Images/Background.jpg);
-	background-size: cover;
-	font-family: sans-serif;
-}
-
-ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #000;
-}
-
-li {
-    float: left;
-}
-
-li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-}
-
-/* Change the link color to #111 (black) on hover */
-li a:hover {
-    background-color: #A9A9A9;
-}
-
-.booktitle{
+#booktitle{
 	text-align: center;
 	padding-right: 7%;
 	font-weight: bold;
 }
 
-.bookauthor{
+#bookauthor{
 	text-align: center;
 	font-weight: bold;
 	padding-right: 7%;
@@ -68,14 +34,13 @@ li a:hover {
 	height: 50px;
 	width: 50px;
     border-radius: 50%;
+    margin-top: 40%;
+    margin-bottom: 50%;
 }
 
-#Sign_out_button{
-	float: right;
-}
-
-#navbar_logo{
-	padding-left: 11%;
+#logo{
+	width:	150px; 
+	height:	50px;
 }
 
 #noReviewsLab{
@@ -104,38 +69,17 @@ li a:hover {
 	margin-bottom: 2%;
 }
 
-.commenttextinc commentbox{
+.commentbox{
 	margin-top: 5%;
-	padding: 20px 40px;
+	padding-left: 20px;
 	box-sizing: border-box;
-	background: rgba(0,0,0,.2);
+	background: rgba(0,0,0,.1);
 	border-color: #000;
-	border-width: 30px;
-}
-
-.reviewField p[class="infoMsg"]
-{
-	color: green;	
-}
-
-#tooltip
-{
-	margin-left: 4%;
-}
-
-input[type="submit"]
-{
-	border: none;
-	margin-top: 20%;
-	outline: none;
-	color: #fff;
-	font-size: 16px;
-	background: #03A9F4;
-	cursor: pointer;
-	border-radius: 20px;
+	border-radius: 25px;
 }
 
 #tooltip {
+	margin-left: 4%;
     display: inline-block;
 }
 

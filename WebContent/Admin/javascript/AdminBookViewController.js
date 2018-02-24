@@ -1,5 +1,30 @@
 angular.module('app',[])
 	.controller('adminBookViewController',function($scope,$http){
+		
+		//Controller variables.
+		var viewBook = JSON.parse(localStorage.getItem('viewBook'));
+		var seeReviewsBtn = document.getElementById("collapseReviewBtn");
+		var noReviewsLabel = document.getElementById("noReviewsLab");
+
+		//HTML scope variables.
+		$scope.bookname = viewBook.Name;
+		$scope.bookauthor = viewBook.Author;
+		$scope.bookcover = viewBook.Photo;
+		$scope.bookdesc = viewBook.Description;
+		$scope.bookcomments = viewBook.Comments;
+		$scope.bookprice = viewBook.Price;
+		$scope.Likes = viewBook.Likes;
+		$scope.likesNum = viewBook.LikesNum;
+		
+		//Check whether there are comments or not to show or hide the relevant data.
+		if($scope.bookcomments.length == 0){
+			seeReviewsBtn.style.display = "none";
+		}else{
+			seeReviewsBtn.style.display = "block";
+			noReviewsLabel.style.display = "none";
+		}
+		
+		//Check whether there is a session. In case not, go back to login page.
 		$http.post("http://localhost:8080/BooksForAll/CheckSessionServlet")
 		.then(function (response){
 			if(response.data.Result == "Failure"){
@@ -7,6 +32,8 @@ angular.module('app',[])
 			}
 			},function(xhr){
 		});
+
+		//Get the admin's unreplied messages to check how many are unread in order to initialize navigation bar messages.
 		$http.post("http://localhost:8080/BooksForAll/AllAdminUnrepliedMessagesServlet")
 		   .then(
 		       function(response){
@@ -27,9 +54,7 @@ angular.module('app',[])
 		       }
 		    );
 		
-		
-		
-		
+		//Sign out and end session.
 		$scope.SignOutFunc = function(){
 			$http.post("http://localhost:8080/BooksForAll/SignOutServlet")
 			   .then(
@@ -39,58 +64,27 @@ angular.module('app',[])
 			       }
 			    );
 		}
-		var viewBook = JSON.parse(localStorage.getItem('viewBook'));
-		var user = JSON.parse(localStorage.getItem('loginResponse'));
-		$scope.username = user.username;
-		$scope.bookname = viewBook.Name;
-		$scope.bookauthor = viewBook.Author;
-		$scope.bookcover = viewBook.Photo;
-		$scope.bookdesc = viewBook.Description;
-		$scope.bookcomments = viewBook.Comments;
-		$scope.bookprice = viewBook.Price;
-		$scope.Likes = viewBook.Likes;
-		$scope.likesNum = viewBook.LikesNum;
 		
-		var w = document.getElementById("collapseReviewBtn");
-		
-		if($scope.bookcomments.length == 0){
-		    w.style.display = "none";
-		}else{
-			 w.style.display = "block";
-		}
-		
-		var purchased = "True";
-		var counter = 0;
-		var input = document.getElementById("review");
-		
+		//Get date format from timestamp.
 		$scope.GetDateFormat = function(CommentDateTime){
 			var date = CommentDateTime.split(' ')[0];
  		   var time = CommentDateTime.split(' ')[1].split(":")[0] + ":" + CommentDateTime.split(' ')[1].split(":")[1];
  		   return date + ' at ' + time;
 		}
-		
-		$scope.GetLikes = function(likes){
-			var likeNames = "";
-			var arrayLength = likes.length;
-			for (var i = 0; i < arrayLength; i++) {
-				var obj = likes[i]
-				likeNames = likeNames + obj.username + "\n"
-			}
-			return likeNames;
-		}
 		 
-		 $scope.viewUser = function(user){
-				var dataQuery = {
-					    Username: user
-				}
-				$.ajax({
-					  url: "http://localhost:8080/BooksForAll/UserServlet",
-					  type: "POST", //send it through get method
-			          dataType: 'json',
-					  data: JSON.stringify(dataQuery),
-					  success: function(response) {
-						  if(response.Result == "Success"){
-							  localStorage.setItem("ChosenUser", JSON.stringify(response.User));
+		//Once user clicks on comment image or name, or click on like nickname, he'll be redirected to the user's page.
+		$scope.viewUser = function(user){
+			var dataQuery = {
+				    Username: user
+			}
+			$.ajax({
+				url: "http://localhost:8080/BooksForAll/UserServlet",
+				type: "POST", //send it through get method
+				dataType: 'json',
+			    data: JSON.stringify(dataQuery),
+			    success: function(response) {
+			    if(response.Result == "Success"){
+				localStorage.setItem("ChosenUser", JSON.stringify(response.User));
 							  window.location = "AdminUserView.html";
 						  }
 

@@ -1,30 +1,82 @@
-[ { "Name" : "Dead Men Tell No Tales", "Author" : "E. W. Hornung", "Price" : "15",
-"URL" : "../../BookContent/Dead Men Tell No Tales.htm", "Photo" : "../../BookCovers/Dead Men Tell No Tales.jpg",
-"Description" : "This classic begins with the whole sea tragedy after an ocean love episode then slips into the survival then rescue adventure, and becomes a tad bit confusing until the mystery eventually plays out."},
-  { "Name" : "Desserts and Salads", "Author" : "Gesine Lemcke", "Price" : "20",
-"URL" : "../../BookContent/Desserts and Salads.htm", "Photo" : "../../BookCovers/Desserts and Salads.jpg",
-"Description" : "This book, combined with others of like topics from several different countries, has enabled us to not only 'make it as good as 'Our' Grand Mother did', but as many other Grand Mothers 'did'. This book is a keeper in our culinary library."},
-  { "Name" : "Dreams", "Author" : "Henri Bergson", "Price" : "18",
-"URL" : "../../BookContent/Dreams.htm", "Photo" : "../../BookCovers/Dreams.jpg",
-"Description" : "The idea of dreaming at the very end stands up to modern science of dreaming. There's a good explanation of what you need to do to enter 'dream' or 'dream-like' states. There's also a detailed explanation of how outside stimuli of different types can effect the dreaming process. Bergson did plenty of reading on dreams and thankfully kept this essay relatively short."},
-  { "Name" : "Musicians of To-Day", "Author" : "Romain Rolland", "Price" : "25",
-"URL" : "../../BookContent/Musicians of To-Day.htm", "Photo" : "../../BookCovers/Musicians of To-Day.jpg",
-"Description" : "Many of the earliest books, particularly those dating back to the 1900s and before, are now extremely scarce and increasingly expensive. We are republishing these classic works in affordable, high quality, modern editions, using the original text and artwork."},
-  { "Name" : "Only a Girl's Love", "Author" : "Charles Garvice", "Price" : "10",
-"URL" : "../../BookContent/Only a Girl's Love.htm", "Photo" : "../../BookCovers/Only a Girl's Love.jpg",
-"Description" : "Charles Garvice (24 August 1850 - 1 March 1920) was a prolific British writer of over 150 romance novels, who also used the female pseudonym Caroline Hart. He was a popular author in the UK, the United States and translated around the world. He was 'the most successful novelist in England', according to Arnold Bennett in 1910.He published novels selling over seven million copies worldwide by 1914, and since 1913 he was selling 1.75 million books annually, a pace which he maintained at least until his death."},
-  { "Name" : "Opportunities in Engineering", "Author" : "Charles M. Horton", "Price" : "22",
-"URL" : "../../BookContent/Opportunities in Engineering.htm", "Photo" : "../../BookCovers/Opportunities in Engineering.jpg",
-"Description" : "Charles M. Horton wrote this popular book that continues to be widely read today despite its age. The advice is still very relevant for students considering the continuing needs of the engineering profession."},
-  { "Name" : "Other People's Money", "Author" : "Emile Gaboriau", "Price" : "23",
-"URL" : "../../BookContent/Other People's Money.htm", "Photo" : "../../BookCovers/Other People's Money.jpg",
-"Description" : "Other people's Money is an unchanged, high-quality reprint of the original edition of 1887. Hansebooks is editor of the literature on different topic areas such as research and science, travel and expeditions, cooking and nutrition, medicine, and other genres.As a publisher we focus on the preservation of historical literature."},
-  { "Name" : "Sixty Years of California Song", "Author" : "Margaret Blake-Alverson", "Price" : "27",
-"URL" : "../../BookContent/Sixty Years of California Song.htm", "Photo" : "../../BookCovers/Sixty Years of California Song.jpg",
-"Description" : "This book has been written for friends and musical associates of more than half a century. It is hoped that old-time Californians will find the book good reading. The later generations of students and musicians will be interested in the story of one who helped to prepare the way for them."},
-  { "Name" : "The Mystery of Marie Rogêt", "Author" : "Edgar Allan Poe", "Price" : "30",
-"URL" : "../../BookContent/The Mystery of Marie Rogêt.htm", "Photo" : "../../BookCovers/The Mystery of Marie Rogêt.jpg",
-"Description" : "'The Mystery of Marie Rogêt', often subtitled A Sequel to 'The Murders in the Rue Morgue', is a short story by Edgar Allan Poe written in 1842. This is the first murder mystery based on the details of a real crime. It first appeared in Snowden's Ladies' Companion in three installments, November and December 1842 and February 1843."},
-  { "Name" : "Unconscious Memory", "Author" : "Samuel Butler", "Price" : "18",
-"URL" : "../../BookContent/Unconscious Memory.htm", "Photo" : "../../BookCovers/Unconscious Memory.jpg",
-"Description" : "Samuel Butler (4 or 5 December 1835 – 18 June 1902) was an iconoclastic Victorian author who published a variety of works. This is a book about evolution, a continuation of the discussion started by The Origin of Species. It is not about advancing memory at all."}]
+[
+	{
+		"Name": "Dead Men Tell No Tales",
+		"Author": "E. W. Hornung",
+		"Price": "15",
+		"URL": "../../BookContent/Dead Men Tell No Tales.htm",
+		"Photo": "../../BookCovers/Dead Men Tell No Tales.jpg",
+		"Description": "This classic begins with the whole sea tragedy after an ocean love episode then slips into the survival then rescue adventure, and becomes a tad bit confusing until the mystery eventually plays out."
+	},
+	{
+		"Name": "Desserts and Salads",
+		"Author": "Gesine Lemcke",
+		"Price": "20",
+		"URL": "../../BookContent/Desserts and Salads.htm",
+		"Photo": "../../BookCovers/Desserts and Salads.jpg",
+		"Description": "This book, combined with others of like topics from several different countries, has enabled us to not only 'make it as good as 'Our' Grand Mother did', but as many other Grand Mothers 'did'. This book is a keeper in our culinary library."
+	},
+	{
+		"Name": "Dreams",
+		"Author": "Henri Bergson",
+		"Price": "18",
+		"URL": "../../BookContent/Dreams.htm",
+		"Photo": "../../BookCovers/Dreams.jpg",
+		"Description": "The idea of dreaming at the very end stands up to modern science of dreaming. There's a good explanation of what you need to do to enter 'dream' or 'dream-like' states. There's also a detailed explanation of how outside stimuli of different types can effect the dreaming process. Bergson did plenty of reading on dreams and thankfully kept this essay relatively short."
+	},
+	{
+		"Name": "Musicians of To-Day",
+		"Author": "Romain Rolland",
+		"Price": "25",
+		"URL": "../../BookContent/Musicians of To-Day.htm",
+		"Photo": "../../BookCovers/Musicians of To-Day.jpg",
+		"Description": "Many of the earliest books, particularly those dating back to the 1900s and before, are now extremely scarce and increasingly expensive. We are republishing these classic works in affordable, high quality, modern editions, using the original text and artwork."
+	},
+	{
+		"Name": "Only a Girl's Love",
+		"Author": "Charles Garvice",
+		"Price": "10",
+		"URL": "../../BookContent/Only a Girl's Love.htm",
+		"Photo": "../../BookCovers/Only a Girl's Love.jpg",
+		"Description": "Charles Garvice (24 August 1850 - 1 March 1920) was a prolific British writer of over 150 romance novels, who also used the female pseudonym Caroline Hart. He was a popular author in the UK, the United States and translated around the world. He was 'the most successful novelist in England', according to Arnold Bennett in 1910.He published novels selling over seven million copies worldwide by 1914, and since 1913 he was selling 1.75 million books annually, a pace which he maintained at least until his death."
+	},
+	{
+		"Name": "Opportunities in Engineering",
+		"Author": "Charles M. Horton",
+		"Price": "22",
+		"URL": "../../BookContent/Opportunities in Engineering.htm",
+		"Photo": "../../BookCovers/Opportunities in Engineering.jpg",
+		"Description": "Charles M. Horton wrote this popular book that continues to be widely read today despite its age. The advice is still very relevant for students considering the continuing needs of the engineering profession."
+	},
+	{
+		"Name": "Other People's Money",
+		"Author": "Emile Gaboriau",
+		"Price": "23",
+		"URL": "../../BookContent/Other People's Money.htm",
+		"Photo": "../../BookCovers/Other People's Money.jpg",
+		"Description": "Other people's Money is an unchanged, high-quality reprint of the original edition of 1887. Hansebooks is editor of the literature on different topic areas such as research and science, travel and expeditions, cooking and nutrition, medicine, and other genres.As a publisher we focus on the preservation of historical literature."
+	},
+	{
+		"Name": "Sixty Years of California Song",
+		"Author": "Margaret Blake-Alverson",
+		"Price": "27",
+		"URL": "../../BookContent/Sixty Years of California Song.htm",
+		"Photo": "../../BookCovers/Sixty Years of California Song.jpg",
+		"Description": "This book has been written for friends and musical associates of more than half a century. It is hoped that old-time Californians will find the book good reading. The later generations of students and musicians will be interested in the story of one who helped to prepare the way for them."
+	},
+	{
+		"Name": "The Mystery of Marie Rogêt",
+		"Author": "Edgar Allan Poe",
+		"Price": "30",
+		"URL": "../../BookContent/The Mystery of Marie Rogêt.htm",
+		"Photo": "../../BookCovers/The Mystery of Marie Rogêt.jpg",
+		"Description": "'The Mystery of Marie Rogêt', often subtitled A Sequel to 'The Murders in the Rue Morgue', is a short story by Edgar Allan Poe written in 1842. This is the first murder mystery based on the details of a real crime. It first appeared in Snowden's Ladies' Companion in three installments, November and December 1842 and February 1843."
+	},
+	{
+		"Name": "Unconscious Memory",
+		"Author": "Samuel Butler",
+		"Price": "18",
+		"URL": "../../BookContent/Unconscious Memory.htm",
+		"Photo": "../../BookCovers/Unconscious Memory.jpg",
+		"Description": "Samuel Butler (4 or 5 December 1835 – 18 June 1902) was an iconoclastic Victorian author who published a variety of works. This is a book about evolution, a continuation of the discussion started by The Origin of Species. It is not about advancing memory at all."
+	}
+]

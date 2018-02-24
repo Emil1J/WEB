@@ -39,3 +39,7 @@ li a {
 li a:hover {
     background-color: #A9A9A9;
 }
+
+#SignOut_button{
+	float: right;
+}

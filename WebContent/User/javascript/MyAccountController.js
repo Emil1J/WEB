@@ -19,11 +19,20 @@ angular.module('app',[])
   	   				$scope.books = response.data.BookList;
   	   				user.books = $scope.books;
   	   				localStorage.setItem('loginResponse', JSON.stringify(user));
+  	   				
   	   			}, 
   	   			function(response){
   	   				// failure callback
   	   			}
 	    );
+		
+		window.onload = function(){
+			for(var i = 0; i< $scope.books.length ; i++){
+ 					if($scope.books[i].LikesNum == 0){
+    				   document.getElementById('LikeNumTooltip' + $scope.books[i].Name).style.display = "none";
+ 					}
+ 				}
+		}
 		$scope.GetTimeFormat = function(CommentDateTime){
 			var date = CommentDateTime.split(' ')[0];
 	 		var time = CommentDateTime.split(' ')[1].split(":")[0] + ":" + CommentDateTime.split(' ')[1].split(":")[1];
@@ -168,6 +177,10 @@ angular.module('app',[])
 					Nickname : user.nickname,
 					Bookname : book.Name
 				};
+			var wasZero = false;
+			if(book.LikesNum == 0){
+				wasZero = true;
+			}
 			var query = "LikeBookServlet";
 		   	if(document.getElementById(book.Name).src.endsWith("Liked.png")){
 				query = "DislikeBookServlet";
@@ -189,8 +202,14 @@ angular.module('app',[])
 				    	   for(var i = 0 ; i < $scope.books.length ; i++){
 				    		   if(response.Book.Name == $scope.books[i].Name){
 				    			   $scope.books[i] = response.Book;
-				    			   document.getElementById('LikeNum' + response.Book.Name).innerHTML = $scope.books[i].LikesNum + " Likes";
-				    			   document.getElementById('LikeNumTooltip' + response.Book.Name).innerHTML = GetLikes(response.Book.Likes);
+				    			   document.getElementById('LikeNum' + response.Book.Name).innerText = $scope.books[i].LikesNum + " Likes";
+				    			   document.getElementById('LikeNumTooltip' + response.Book.Name).innerText = GetLikes(response.Book.Likes);
+				    			   if($scope.books[i].LikesNum == 0){
+				    				   document.getElementById('LikeNumTooltip' + response.Book.Name).style.display = "none";
+				    			   }
+				    			   else{
+				    				   document.getElementById('LikeNumTooltip' + response.Book.Name).style.display = "block";
+				    			   }
 				    			   localStorage.setItem('userBooks', JSON.stringify($scope.books));
 				    			   break;
 				    		   }

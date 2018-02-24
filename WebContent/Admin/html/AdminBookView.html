@@ -13,30 +13,32 @@
 <title>Admin - Book View</title>
 	</head>
 	<body ng-app="app" ng-controller="adminBookViewController">
+	<!--Navigation bar-->
 	<ul>
+		<li>
+			<img id="logo" alt="logo" src="../../Images/Logo.jpg">
+		</li>
 		<li><a href="AdminHomePage.html"><b>Home</b></a></li>
 		<li><a href="AdminUsers.html"><b>Users</b></a></li>
 		<li><a href="AdminTransactions.html"><b>Transactions</b></a></li>
 		<li><a href="AdminReviews.html"><b>Reviews</b></a></li>
 		<li><a id="TabMessages" href="AdminMessages.html"><b>Messages</b></a></li>
-		<li id="navbar_logo"> 
-			<img style="width:150px; height:50px;" alt="logo" src="../../Images/Logo.jpg">
-		</li>
-		<li id="Sign_out_button"><a class="active" ng-click="SignOutFunc()" href="../../Login.html"><b>Sign Out</b></a></li>
+		<li id="SignOut_button"><a class="active" ng-click="SignOutFunc()" href="../../Login.html"><b>Sign Out</b></a></li>
 	</ul>
 	<div class="container">
 		<div class="container-fluid">
+			<!--Book details-->
 			<div class="col-sm-12">
           		<div class="container">
                   	<div class="row">
-                  		<h1 class = "booktitle">{{ bookname }}</h1>
+                  		<h1 id="booktitle">{{ bookname }}</h1>
                   	</div>
                 </div>
             </div>
             <div class="col-sm-12">
           		<div class="container">
                   	<div class="row">
-                  		<p class="bookauthor">By {{ bookauthor }}</p>
+                  		<p id="bookauthor">By {{ bookauthor }}</p>
                   	</div>
                 </div>
             </div>
@@ -49,7 +51,7 @@
 								<img class="BookCovers" alt="book cover" ng-src="{{bookcover}}" />
 								<div id="tooltip">
 									<p class="BookData"><b>{{likesNum}} Likes</b></p>
-									<span ng-if="book.LikesNum != 0" id="Likes{{book.Name}}" class="tooltiptext">
+									<span ng-if="likesNum != 0" id="Likes{{bookname}}" class="tooltiptext">
 										<p ng-repeat="like in Likes">
 											<a class="LikesList" href="#" ng-click="viewUser(like.username)">
 												<b>{{like.nickname}}</b>
@@ -67,6 +69,7 @@
 						</div>
                   	</div>
             </div>
+			<!--Reviews-->
             <div class="col-sm-12">
             	<div class="row">
                   	<h3 style="text-align: center;"><b>Reviews</b></h3>
@@ -82,20 +85,22 @@
 	            	<div class="commentbox">
 	                  	<div class="row">
 	                  		<div class="col-sm-2">
-	                  		  	<img class="ProfilePic" alt="profile picture" ng-src="{{comment.photo}}">
+	                  			<a href="#">
+	                  				<img class="ProfilePic" ng-click="viewUser(comment.username)" alt="profile picture" ng-src="{{comment.photo}}">
+	                  			</a>
 	                  		</div>
 	                  		<div class="col-sm-5">
-	                  	  		<p id="commentusername">{{comment.username}}</p>
+	                  			<a href="#" ng-click="viewUser(comment.username)">
+		                  	  		<p id="commentusername">{{comment.username}}</p>
+								</a>
 	               			</div>
 	               			<div class="col-sm-5">
 	               		  		<p id="commenttime">{{GetDateFormat(comment.time)}}</p>
 	               			</div>
-	                  		<div class="col-sm-8">
+	                  		<div class="col-sm-4">
 	                  		</div>
-	                  		<div class="col-sm-6">
-	                  			<div class="commenttextinc">
-	                  				<p id="commenttext">{{comment.description}}</p>
-	                  			</div>
+	                  		<div class="col-sm-8">
+	                  			<p id="commenttext">{{comment.description}}</p>
 	               			</div>
 	              		</div>
 	            	</div>

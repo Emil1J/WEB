@@ -1,8 +1,52 @@
-[{"username" : "EmilJah", "nickname" : "Emil123", "bookname" : "Desserts and Salads"},
-{"username" : "FadiYousef", "nickname" : "Fadi123", "bookname" : "Dead Men Tell No Tales"},
-{"username" : "FadiYousef", "nickname" : "Fadi123", "bookname" : "Dreams"},
-{"username" : "EmilJah", "nickname" : "Emil123", "bookname" : "Only a Girl's Love"},
-{"username" : "PeterGrif", "nickname" : "Petzaa", "bookname" : "Opportunities in Engineering"},
-{"username" : "JoeSwan", "nickname" : "JoePoPo", "bookname" : "The Mystery of Marie Rogêt"},
-{"username" : "HomerSimp", "nickname" : "HomieHomie", "bookname" : "Musicians of To-Day"}
+[
+	{
+		"username": "EmilJah",
+		"nickname": "Emil123",
+		"bookname": "Dreams"
+	},
+	{
+		"username": "FadiYousef",
+		"nickname": "Fadi123",
+		"bookname": "Dead Men Tell No Tales"
+	},
+	{
+		"username": "FadiYousef",
+		"nickname": "Fadi123",
+		"bookname": "Dreams"
+	},
+	{
+		"username": "EmilJah",
+		"nickname": "Emil123",
+		"bookname": "Only a Girl's Love"
+	},
+	{
+		"username": "PeterGrif",
+		"nickname": "Petzaa",
+		"bookname": "Opportunities in Engineering"
+	},
+	{
+		"username": "PeterGrif",
+		"nickname": "Petzaa",
+		"bookname": "Only a Girl's Love"
+	},
+	{
+		"username": "JoeSwan",
+		"nickname": "JoePoPo",
+		"bookname": "Sixty Years of California Song"
+	},
+	{
+		"username": "HomerSimp",
+		"nickname": "HomieHomie",
+		"bookname": "Desserts and Salads"
+	},
+	{
+		"username": "HomerSimp",
+		"nickname": "HomieHomie",
+		"bookname": "Sixty Years of California Song"
+	},
+	{
+		"username": "HomerSimp",
+		"nickname": "HomieHomie",
+		"bookname": "Musicians of To-Day"
+	}
 ]

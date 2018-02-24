@@ -50,7 +50,11 @@
 							</p>
 							<div id="tooltip" class="col-sm-8">
 								<p class="BookData"><b>{{book.LikesNum}} Likes</b></p>
- 						 		<span ng-if="book.LikesNum != 0" class="tooltiptext"><b>{{GetLikes(book.Likes)}}</b></span>
+ 						 		<span ng-if="book.LikesNum != 0" class="tooltiptext">
+	 						 		<p ng-repeat="like in book.Likes">
+	 									<b>{{like.nickname}}</b>
+									</p>
+ 						 		</span>
 							</div>
 							<div class="col-sm-4">
 							</div>

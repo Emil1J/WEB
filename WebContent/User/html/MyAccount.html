@@ -17,7 +17,7 @@
 			<li><a href="./LandingPage.html"><b>Home</b></a></li>
 			<li><a href="./Ebooks.html"><b>eBooks</b></a></li>
 			<li><a href="./MyAccount.html"><b>My Account</b></a></li>
-			<li><button type="button" class="btn btn-info btn-md" ng-click="HelpMeButton()"><b>Help Me</b></button></li>
+			<li><button id="HelpMe" type="button" class="btn btn-primary btn-md" ng-click="HelpMeButton()">Help Me</button></li>
 			<li id="Logo">
 				<img id="LogoPic" alt="logo" src="../../Images/Logo.jpg">
 			</li>
@@ -52,20 +52,22 @@
 										<div class="grid-container">
 	  										<div ng-repeat="book in books">
 													<div class="col-sm-5">
-														<a id="img-click" ng-click="viewBook(book)">
-															<img class="BookCovers" alt="book cover" ng-src="{{book.Photo}}"/>
-														</a>
-														<div class="col-sm-3">
+														<img id="img-click" ng-click="viewBook(book)" class="BookCovers" alt="book cover" ng-src="{{book.Photo}}"/>
+														<div class="col-sm-4">
 														<p class="BookData Drop">
 															<a href="#">
 																<img id="{{book.Name}}" alt="like button" class="LikeButton" ng-click="LikeBook(book)" ng-src="{{LikeLogo(book.Name)}}"/>
 															</a>
 														</p>
 														</div>
-														<div class="col-sm-9">
+														<div class="col-sm-8">
 														<div id="tooltip">
 															<p id="LikeNum{{book.Name}}" class="BookData2" ng-model="tooltipcheck">{{book.LikesNum}} Likes</p>
- 						 									<span id="LikeNumTooltip{{book.Name}}" ng-if="book.LikesNum != 0" class="tooltiptext">{{GetLikes(book.Likes)}}</span>
+ 						 									<span id="LikeNumTooltip{{book.Name}}" class="tooltiptext">
+																<p ng-if="book.LikesNum != 0" ng-repeat="like in book.Likes">
+ 						 											{{like.nickname}}
+ 						 										</p>
+ 						 									</span>
 														</div>
 														</div>
 														

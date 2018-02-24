@@ -8,12 +8,15 @@ angular.module('app',[])
 			},function(xhr){
 		});
 		$scope.user = JSON.parse(localStorage.getItem("ChosenUser"));
-		
+		var nobooks = document.getElementById('no-books');
+
 		if($scope.user.books.length == 0){
 			var table = document.getElementById('table-scroll');
-			var nobooks = document.getElementById('no-books');
 			table.style.display = "none";
 			nobooks.style.display = "block";
+		}
+		else{
+			nobooks.style.display = "none";
 		}
 		
 		$scope.unread = 0;
