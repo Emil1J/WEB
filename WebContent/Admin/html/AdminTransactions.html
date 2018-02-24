@@ -15,14 +15,14 @@
 </head>
 <body ng-app="app" ng-controller="adminTransactionsController">
 	<ul>
+		<li>
+			<img id="logo" alt="logo" src="../../Images/Logo.jpg">
+		</li>
 		<li><a href="AdminHomePage.html"><b>Home</b></a></li>
 		<li><a href="AdminUsers.html"><b>Users</b></a></li>
 		<li><a href="AdminTransactions.html"><b>Transactions</b></a></li>
 		<li><a href="AdminReviews.html"><b>Reviews</b></a></li>
 		<li><a id="TabMessages" href="AdminMessages.html"><b>Messages</b></a></li>
-		<li id="navbar_logo">
-			<img style="width:150px; height:50px;" alt="logo" src="../../Images/Logo.jpg">
-		</li>
 		<li id="SignOut_button"><a class="active" ng-click="SignOutFunc()" href="../../Login.html"><b>Sign Out</b></a></li>
 	</ul>
 	<div class="container">
@@ -49,7 +49,7 @@
 						</div>
 						<div class="col-sm-4">
 							<div class="form-group">
-    							<input type="text" id="keywordInput" ng-keyup="myFunction()" class="search form-control" placeholder="Search by keyword..">
+    							<input type="text" id="keywordInput" ng-keyup="keyFunc()" class="search form-control" placeholder="Search by keyword..">
 							</div>
 						</div>
 					</div>

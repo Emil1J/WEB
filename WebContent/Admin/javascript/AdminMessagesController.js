@@ -1,5 +1,11 @@
 angular.module('app',[])
 	.controller('adminMessagesController',function($scope,$http){
+		
+		//Initialize the page with new message open as default. Hide 'No messages' label.
+		document.getElementById('OldMessages').style.display = "none";
+		document.getElementById("defaultOpen").click();
+
+		//Check whether there is a session. In case not, go back to login page.
 		$http.post("http://localhost:8080/BooksForAll/CheckSessionServlet")
 		.then(function (response){
 			if(response.data.Result == "Failure"){
@@ -10,6 +16,7 @@ angular.module('app',[])
 		document.getElementById("SendSuccess").style.display = "none";
 		document.getElementById("SendError").style.display = "none";
 		
+		//Get the admin's unreplied messages to check how many are unread in order to initialize navigation bar messages.
 		$http.post("http://localhost:8080/BooksForAll/AllAdminUnrepliedMessagesServlet")
 		   .then(
 		       function(response){
@@ -29,8 +36,8 @@ angular.module('app',[])
 		    	   }
 		    	   $scope.unread = unread;
 		    	   if($scope.unread != 0){
-		    		   document.getElementById("TabMessages").innerHTML = "Messages (" + $scope.unread + ")";
-		    		   document.getElementById("NewMessagesTab").innerHTML = "New Messages (" + $scope.unread + ")";
+		    		   document.getElementById("TabMessages").innerText = "Messages (" + $scope.unread + ")";
+		    		   document.getElementById("NewMessagesTab").innerText = "New Messages (" + $scope.unread + ")";
 		    	   }
 		       }, 
 		       function(response){
@@ -38,16 +45,7 @@ angular.module('app',[])
 		       }
 		    );
 		
-		$scope.SignOutFunc = function(){
-			$http.post("http://localhost:8080/BooksForAll/SignOutServlet")
-			   .then(
-			       function(response){
-			       }, 
-			       function(response){
-			       }
-			    );
-		}
-		
+		//Get all admin's old messages.
 		$http.post("http://localhost:8080/BooksForAll/AllAdminRepliedMessagesServlet")
 		   .then(
 		       function(response){
@@ -66,6 +64,18 @@ angular.module('app',[])
 		       }
 		    );
 		
+		//Sign out and end session.
+		$scope.SignOutFunc = function(){
+			$http.post("http://localhost:8080/BooksForAll/SignOutServlet")
+			   .then(
+			       function(response){
+			       }, 
+			       function(response){
+			       }
+			    );
+		}
+		
+		//According to the message status, fill, or don't fill the circle.
 		$scope.CheckCircle = function(msg, circle){
 			if(msg.adminread == 0){
 				return "filledCircle";
@@ -73,6 +83,7 @@ angular.module('app',[])
 			return "circle";
 		}
 		
+		//Open tab upon click.
 		$scope.openTab = function(evt, modalName) {
 		    var i, tabcontent, tablinks;
 		    tabcontent = document.getElementsByClassName("tabcontent");
@@ -85,11 +96,27 @@ angular.module('app',[])
 		    }
 		    document.getElementById(modalName).style.display = "block";
 		    evt.currentTarget.className += " active";
+	    	var no_new_msgs = document.getElementById('no-new-msg');
+		   	var no_old_msg = document.getElementById('no-old-msg');
+		    if(modalName == "NewMessages"){
+		    	if($scope.UnrepliedMessages.length == 0){
+		    	no_new_msgs.style.display = "block";
+		    	}
+			    else{
+			    	no_new_msgs.style.display = "none";
+			    }
+		    }
+		    else{
+		    	if($scope.Repliedmessages.length == 0){
+	    		   	no_old_msg.style.display = "block";
+	    	   }else{
+	    		   	no_old_msg.style.display = "none";
+	    	   }
+		    }
+		    
 		}
 
-		// Get the element with id="defaultOpen" and click on it
-		document.getElementById("defaultOpen").click();
-		
+		//Get date format from timestamp.		
 		$scope.GetDateFormat = function(MessageDateTime){
 			if(MessageDateTime == null){return;}
 			var date = MessageDateTime.split(' ')[0];
@@ -97,7 +124,10 @@ angular.module('app',[])
  		   return date + ' ' + time;
 		}
 		
-		 $scope.MessageClick = function(message){
+		//Once the admin clicks on a message, open the new modal and initialize it according to
+		//whether it's a new message or an old message.
+		$scope.MessageClick = function(message){
+				document.getElementById("Submit").disabled = false;
 				var modal = document.getElementById('MessageModal');
 				modal.style.display = "block";
 				$scope.receiptdate = message.receiptdate;
@@ -107,6 +137,7 @@ angular.module('app',[])
 				$scope.reply = message.reply;
 				$scope.id = message.id;
 				if(message.adminread == 0){
+					message.adminread = 1;
 					var queryData = {
 							ID : $scope.id,
 							AdminOrUser : "Admin"
@@ -144,29 +175,23 @@ angular.module('app',[])
 				}
 			}
 
-			// Get the <span> element that closes the modal
-			var span = document.getElementsByClassName("close")[0];
-
-			// When the user clicks the button, open the modal 
-			$scope.MyButtonFunc = function(book) {
-				localStorage.setItem('ChosenBook', JSON.stringify(book));
-				var modal = document.getElementById('MessageModal');
-			    modal.style.display = "block";
-			}
-
-			// When the user clicks anywhere outside of the modal, close it
+			//When the admin clicks anywhere outside of the modal, close it
 			window.onclick = function(event) {
 				var modal = document.getElementById('MessageModal');
 			    if (event.target == modal) {
+					document.getElementById("TextAreaHelp").value = "";
 			        modal.style.display = "none";
 			    }
 			}
 			
+			//When the admin clicks on X or on Close, the modal closes.
 			$scope.Close = function(){
 				var modal = document.getElementById('MessageModal');
+				document.getElementById("TextAreaHelp").value = "";
 				modal.style.display = "none";
 			}
 			
+			//When the admin fills in a reply and clicks Send, send the message.
 			$scope.Send = function(){
 				var reply = document.getElementById("TextAreaHelp").value;
 				if(reply == ""){
@@ -177,7 +202,6 @@ angular.module('app',[])
 						ID: $scope.id, 
 					    Reply: reply
 				}
-				
 				$.ajax({
 					  url: "http://localhost:8080/BooksForAll/AdminReplyMessageServlet",
 					  type: "POST", //send it through get method
@@ -186,16 +210,26 @@ angular.module('app',[])
 					  success: function(response) {
 							$("#SendSuccess").show().delay(3000).fadeOut();
 							document.getElementById("TextAreaHelp").value = "";
+							document.getElementById("Submit").disabled = true;
+							for(var i = 0; i < $scope.UnrepliedMessages.length ; i++){
+								if($scope.UnrepliedMessages[i].id == $scope.id){
+									$scope.UnrepliedMessages[i].adminread = 1;
+									$scope.UnrepliedMessages[i].adminreply = 1;
+									$scope.UnrepliedMessages[i].reply = reply;
+									$scope.Repliedmessages.push($scope.UnrepliedMessages[i]);
+									$scope.UnrepliedMessages.splice(i,1);
+								}
+							}
+							if($scope.UnrepliedMessages.length == 0){
+						    	var no_new_msgs = document.getElementById('no-new-msg');
+						    	no_new_msgs.style.display = "block";
+							}
 					},
 						  error: function(xhr) {
 						    //Do Something to handle error
 						  }
-						});
+					});
 			}
 			
-			document.getElementById('OldMessages').style.display = "none";
-			$('.circle').on('click', function(){
-				  $(this).toggleClass('filled');
-				});
 });
 

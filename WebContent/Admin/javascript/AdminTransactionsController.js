@@ -1,5 +1,16 @@
 angular.module('app',[])
 	.controller('adminTransactionsController',['$scope','$http', function($scope,$http){
+		
+		//Controller variables.
+		var table = document.getElementById('table-scroll');
+		var userFilterLine = document.getElementById('FilterLine1');
+		var bookFilterLine = document.getElementById('FilterLine2');
+		var userFilter = document.getElementById('userFilter');
+		var bookFilter = document.getElementById('bookFilter');
+		var searchField = document.getElementById('keywordInput');
+		var noTrans = document.getElementById('noTrans');
+		
+		//Check whether there is a session. In case not, go back to login page.
 		$http.post("http://localhost:8080/BooksForAll/CheckSessionServlet")
 		.then(function (response){
 			if(response.data.Result == "Failure"){
@@ -7,7 +18,8 @@ angular.module('app',[])
 			}
 			},function(xhr){
 		});
-		$scope.unread = 0;
+
+		//Get the admin's unreplied messages to check how many are unread in order to initialize navigation bar messages.
 		$http.post("http://localhost:8080/BooksForAll/AllAdminUnrepliedMessagesServlet")
 		   .then(
 		       function(response){
@@ -28,42 +40,7 @@ angular.module('app',[])
 		       }
 		    );
 		
-		var noTrans = document.getElementById('noTrans');
-		
-		$scope.myFunction = function(){
-			var input, filter, table, tr, td, i;
-			input = document.getElementById("keywordInput");
-			filter = input.value.toUpperCase();
-			table = document.getElementById("TableLocation");
-			tr = table.getElementsByTagName("tr");
-			for (i = 0; i < tr.length; i++) {
-				td = tr[i].getElementsByTagName("td")[0];
-				if (td) {
-					if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
-						tr[i].style.display = "";
-					} else {
-						tr[i].style.display = "none";
-					}
-				}       
-			}
-		}
-		
-		$scope.SignOutFunc = function(){
-			$http.post("http://localhost:8080/BooksForAll/SignOutServlet")
-			   .then(
-			       function(response){
-			       }, 
-			       function(response){
-			       }
-			    );
-		}
-		var table = document.getElementById('table-scroll');
-		var userFilterLine = document.getElementById('FilterLine1');
-		var bookFilterLine = document.getElementById('FilterLine2');
-		var userFilter = document.getElementById('userFilter');
-		var bookFilter = document.getElementById('bookFilter');
-		var searchField = document.getElementById('keywordInput');
-		
+		//Get all transactions to display them for the admin.
 		$http.post("http://localhost:8080/BooksForAll/AllTransactionsServlet")
 		   .then(
 		       function(response){
@@ -98,13 +75,45 @@ angular.module('app',[])
 		         // failure callback
 		       }
 		    );
+
+		//Sign out and end session.
+		$scope.SignOutFunc = function(){
+			$http.post("http://localhost:8080/BooksForAll/SignOutServlet")
+			   .then(
+			       function(response){
+			       }, 
+			       function(response){
+			       }
+			    );
+		}
 		
+		//Search field function. Filter table data according to user's input
+		$scope.keyFunc = function(){
+			var input, filter, table, tr, td, i;
+			input = document.getElementById("keywordInput");
+			filter = input.value.toUpperCase();
+			table = document.getElementById("TableLocation");
+			tr = table.getElementsByTagName("tr");
+			for (i = 0; i < tr.length; i++) {
+				td = tr[i].getElementsByTagName("td")[0];
+				if (td) {
+					if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+						tr[i].style.display = "";
+					} else {
+						tr[i].style.display = "none";
+					}
+				}       
+			}
+		}
+
+		//Get date format from timestamp.
 		$scope.GetDateFormat = function(DateTime){
 			var date = DateTime.split(' ')[0];
  		   var time = DateTime.split(' ')[1].split(":")[0] + ":" + DateTime.split(' ')[1].split(":")[1];
  		   return date + ' at ' + time;
 		}
 		
+		//Filter transactions in the table according to admin's book choice.
 		$scope.FilterBooks = function(){
 			document.getElementById("userFilter").value = "All";
 			var chosenbook = document.getElementById("bookFilter").value;
@@ -121,6 +130,7 @@ angular.module('app',[])
 			$scope.transactions = FilteredTransactions;
 		}
 		
+		//Filter transactions in the table according to admin's user choice.
 		$scope.FilterUsers = function(){
 			document.getElementById("bookFilter").value = "All";
 			var chosenuser = document.getElementById("userFilter").value;
