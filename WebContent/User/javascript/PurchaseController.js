@@ -110,6 +110,7 @@ angular.module('app',[])
 			var ccnum = document.getElementById('cardnum1').value + document.getElementById('cardnum2').value
 			+ document.getElementById('cardnum3').value + document.getElementById('cardnum4').value;
 			var ccmonth = document.getElementById('ExpMonth').value;
+			var ccsubject = document.getElementById('ExpSubject').value;
 			var ccyear = document.getElementById('ExpYear').value;
 			var cvv = document.getElementById('cvv').value;
 			var city = document.getElementById('cityPurchase').value;
@@ -247,7 +248,7 @@ angular.module('app',[])
 
 		// When the user clicks on <span> (x), close the modal
 		$scope.MyModalFunc = function() {
-			var modal = document.getElementById('myModal');
+			var modal = document.getElementById('HelpMeModal');
 		    modal.style.display = "none";
 		}
 

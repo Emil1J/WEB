@@ -193,19 +193,6 @@
                   	</div>
                 </div>
             </div>
-            <!-- The Modal -->
-			<div id="myModal" class="modal">									
-				<!-- Modal content -->
-				<div class="modal-content">
-					<span class="close" ng-click="MyModalFunc()">&times;</span>
-					<div class="modal-title">
-						<p id="errorLine"><b>Something</b></p>
-					</div>
-					<div class="modal-footer">
- 						<button type="button" data-dismiss="modal" ng-click="CloseError()" class="btn btn-primary" id="Yes">Ok</button>
-					</div>								    
-				</div>
-			</div>
 			<!-- The Modal -->
 			<div id="HelpMeModal" class="modal">									
 				<!-- Modal content -->
@@ -222,7 +209,7 @@
 								</div>
 								<div class="col-sm-4">
 									<div id="MessageSubject" class="form-group" ng-class="{ 'has-error' : purchaseForm.exp.$invalid && !purchaseForm.exp.$pristine }">
-										<select id="ExpMonth" class="form-control">
+										<select id="ExpSubject" class="form-control">
 	        								<option>General</option>
 									    	<option>Account</option>
 		        							<option>Financial</option>
