@@ -264,15 +264,7 @@ public class ManageDBFromJsonFile implements ServletContextListener {
 		}
 
     }
-    
-    
-    /**
-	 * Loads customers data from json file that is read from the input stream into 
-	 * a collection of Customer objects
-	 * @param is input stream to json file
-	 * @return collection of customers
-	 * @throws IOException
-	 */
+
 	private Collection<Book> loadBooks(InputStream is) throws IOException{
 		
 		//wrap input stream with a buffered reader to allow reading the file line by line
