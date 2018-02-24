@@ -7,14 +7,15 @@
     border-radius: 50%;
 }
 
+#logo{
+	width:	150px; 
+	height:	50px;
+}
+
 #noTrans {
     text-align: center;
     margin-top: 10%;
     color: rgba(0, 0, 0, 0.5);
-}
-
-#navbar_logo{
-	padding-left: 11%;
 }
 
 #UsersHeader{

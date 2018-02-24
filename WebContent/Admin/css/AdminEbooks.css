@@ -1,36 +1,7 @@
 @charset "ISO-8859-1";
-body
-{
-	margin: 0;
-	padding: 0;
-	background: url(../../Images/Background.jpg);
-	background-size: cover;
-	font-family: sans-serif;
-}
-
-ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #000;
-}
-
-li {
-    float: left;
-}
-
-li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-}
-
-/* Change the link color to #111 (black) on hover */
-li a:hover {
-    background-color: #A9A9A9;
+#logo{
+	width:	150px; 
+	height:	50px;
 }
 
 .grid-container {
@@ -56,10 +27,6 @@ li a:hover {
 	margin-top: 10px;
 	margin-right: 10px;
 	margin-left: 10px;
-}
-
-#navbar_logo{
-	padding-left: 11%;
 }
 
 #tooltip {

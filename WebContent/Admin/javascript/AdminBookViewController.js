@@ -46,7 +46,7 @@ angular.module('app',[])
 		    	   }
 		    	   $scope.unread = unread;
 		    	   if($scope.unread != 0){
-		    		   document.getElementById("TabMessages").innerHTML = "Messages (" + $scope.unread + ")";
+		    		   document.getElementById("TabMessages").innerText = "Messages (" + $scope.unread + ")";
 		    	   }
 		       }, 
 		       function(response){

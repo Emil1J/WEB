@@ -1,5 +1,10 @@
 angular.module('app',[])
 	.controller('adminEbooksController', function($scope,$http){
+		
+		//Controller variables.
+		var admin = JSON.parse(localStorage.getItem('loginResponse'));
+
+		//Check whether there is a session. In case not, go back to login page.
 		$http.post("http://localhost:8080/BooksForAll/CheckSessionServlet")
 		.then(function (response){
 			if(response.data.Result == "Failure"){
@@ -7,10 +12,19 @@ angular.module('app',[])
 			}
 			},function(xhr){
 		});
-		var admin = JSON.parse(localStorage.getItem('loginResponse'));
+		
+		//Get all books to display them to the admin.
+		$http.post("http://localhost:8080/BooksForAll/AllBooksServlet")
+		   .then(
+		       function(response){
+		    	   $scope.books = response.data.BookList;
+		       }, 
+		       function(response){
+		         // failure callback
+		       }
+		    );
 
-		$scope.unread = 0;
-
+		//Get the admin's unreplied messages to check how many are unread in order to initialize navigation bar messages.
 		$http.post("http://localhost:8080/BooksForAll/AllAdminUnrepliedMessagesServlet")
 		   .then(
 		       function(response){
@@ -23,23 +37,15 @@ angular.module('app',[])
 		    	   }
 		    	   $scope.unread = unread;
 		    	   if($scope.unread != 0){
-		    		   document.getElementById("TabMessages").innerHTML = "Messages (" + $scope.unread + ")";
+		    		   document.getElementById("TabMessages").innerText = "Messages (" + $scope.unread + ")";
 		    	   }
 		       }, 
 		       function(response){
 		         // failure callback
 		       }
 		    );
-		$(document).ready(function(){
-		    $('[data-toggle="tooltip"]').tooltip({
-		    });
-		})
 		
-		$scope.viewBook = function(book){
-			localStorage.setItem('viewBook', JSON.stringify(book));
-			window.location="AdminBookView.html";
-		}
-		
+		//Sign out and end session.
 		$scope.SignOutFunc = function(){
 			$http.post("http://localhost:8080/BooksForAll/SignOutServlet")
 			   .then(
@@ -50,6 +56,13 @@ angular.module('app',[])
 			    );
 		}
 		
+		//Once user clicks on book image, he'll be redirected to the book's page.		
+		$scope.viewBook = function(book){
+			localStorage.setItem('viewBook', JSON.stringify(book));
+			window.location="AdminBookView.html";
+		}
+		
+		//Once user clicks on like nickname, he'll be redirected to the user's page.		
 		$scope.viewUser = function(user){
 			var dataQuery = {
 				    Username: user
@@ -71,13 +84,4 @@ angular.module('app',[])
 				  }
 				});
 		}
-		$http.post("http://localhost:8080/BooksForAll/AllBooksServlet")
-		   .then(
-		       function(response){
-		    	   $scope.books = response.data.BookList;
-		       }, 
-		       function(response){
-		         // failure callback
-		       }
-		    );
 	});
