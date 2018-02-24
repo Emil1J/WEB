@@ -5,6 +5,14 @@
 	padding-bottom: 1%;
 }
 
+#Sign_out_button{
+	float: right;
+}
+
+#navbar_logo{
+	padding-left: 11%;
+}
+
 .tab {
     float: left;
     border: 1px solid #ccc;
@@ -36,7 +44,7 @@
     height: 300px;
 }
 
-#mesgBtn{
+#mesgBtnNew, #mesgBtnOld{
 	margin-bottom: 1%;
 }
 
