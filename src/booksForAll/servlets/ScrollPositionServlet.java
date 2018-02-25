@@ -35,7 +35,7 @@ import booksForAll.general.AppConstants;
 				@WebInitParam(name = "Username", value = ""),
 				@WebInitParam(name = "Bookname", value = "")
 		})
-
+	//Once a user opens a book this class is called to get the last scroll location.
 	public class ScrollPositionServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

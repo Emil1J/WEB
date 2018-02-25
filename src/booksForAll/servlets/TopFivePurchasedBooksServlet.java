@@ -38,6 +38,7 @@ import booksForAll.model.User;
  * Servlet implementation class TopFivePurchasedBooksServlet
  */
 @WebServlet("/TopFivePurchasedBooksServlet")
+//This class is used to get the top five purchased books.
 public class TopFivePurchasedBooksServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

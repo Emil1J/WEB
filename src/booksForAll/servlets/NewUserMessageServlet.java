@@ -36,7 +36,8 @@ import booksForAll.general.AppConstants;
 				@WebInitParam(name = "Message", value = ""),
 				@WebInitParam(name = "Subject", value = "")
 		})
-
+	
+	//This class is called when a user clicks on help me and sends a message.
 	public class NewUserMessageServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

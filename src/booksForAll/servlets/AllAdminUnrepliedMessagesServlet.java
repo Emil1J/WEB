@@ -32,6 +32,7 @@ import booksForAll.model.Message;
  * Servlet implementation class AllAdminUnreadMessages
  */
 @WebServlet("/AllAdminUnrepliedMessagesServlet")
+//This class returns all the unreplied to messages to the admin.
 public class AllAdminUnrepliedMessagesServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

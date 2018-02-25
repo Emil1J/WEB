@@ -44,6 +44,7 @@ import booksForAll.model.User;
 				@WebInitParam(name = "Password", value = "")
 		})
 
+	//This class is used for login. Returns true if the user exists and also initializes a session.
 	public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

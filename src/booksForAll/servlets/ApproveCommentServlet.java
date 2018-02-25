@@ -34,6 +34,7 @@ import booksForAll.general.AppConstants;
 				@WebInitParam(name = "ID", value = "")
 		})
 	
+	//This class is user to approved a certain comment by its ID.
 	public class ApproveCommentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

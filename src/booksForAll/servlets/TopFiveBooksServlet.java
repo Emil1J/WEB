@@ -34,6 +34,7 @@ import booksForAll.model.Like;
  * Servlet implementation class TopFiveBooksServlet
  */
 @WebServlet("/TopFiveBooksServlet")
+//Using this class we receive the top 5 most liked books.
 public class TopFiveBooksServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

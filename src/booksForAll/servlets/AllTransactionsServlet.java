@@ -31,6 +31,7 @@ import booksForAll.model.Transaction;
  * Servlet implementation class AllTransactionsServlet
  */
 @WebServlet("/AllTransactionsServlet")
+//This class returns all the transactions in the system to the admin.
 public class AllTransactionsServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

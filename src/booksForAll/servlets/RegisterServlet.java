@@ -48,7 +48,8 @@ import booksForAll.model.User;
 				@WebInitParam(name = "Photo", value = ""),
 				@WebInitParam(name = "Balance", value = ""),
 		})
-
+	
+	//This class is used to register a new user.
 	public class RegisterServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

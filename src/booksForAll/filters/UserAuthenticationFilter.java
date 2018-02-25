@@ -64,6 +64,7 @@ public class UserAuthenticationFilter implements Filter {
 	/**
 	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
 	 */
+	//Filter that checks if a user session exists, and only then proceeds with the query. 
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		// TODO Auto-generated method stub
 

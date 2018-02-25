@@ -34,6 +34,7 @@ import booksForAll.model.Like;
  * Servlet implementation class AllBooksServlet
  */
 @WebServlet("/AllBooksServlet")
+//This class returns all the books in the system as a list to both the admin and the user.
 public class AllBooksServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

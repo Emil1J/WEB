@@ -32,6 +32,7 @@ import booksForAll.model.Comment;
  * Servlet implementation class AllUnapprovedCommentsServlet
  */
 @WebServlet("/AllUnapprovedCommentsServlet")
+//This class returns all the unapproved comments to the admin.
 public class AllUnapprovedCommentsServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

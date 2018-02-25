@@ -32,6 +32,7 @@ import booksForAll.model.Message;
  * Servlet implementation class AllAdminMessagesServlet
  */
 @WebServlet("/AllAdminMessagesServlet")
+//This class returns to the admin all the messages in the system.
 public class AllAdminMessagesServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

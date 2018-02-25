@@ -41,7 +41,7 @@ import booksForAll.model.User;
 		initParams = {
 				@WebInitParam(name = "Username", value = "")
 		})
-
+	//Admin can use this query to get a user object by sending a user name.
 	public class UserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

@@ -35,6 +35,7 @@ import booksForAll.general.AppConstants;
 				@WebInitParam(name = "Reply", value="")
 	})
 
+	//This class receives the query for the admin and writes the reply of the message to the DB.
 	public class AdminReplyMessageServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

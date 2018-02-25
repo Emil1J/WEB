@@ -37,6 +37,7 @@ import booksForAll.model.User;
  * Servlet implementation class TopFiveActiveUsersServlet
  */
 @WebServlet("/TopFiveActiveUsersServlet")
+//This class is used to get the top five active users (sorted by purchased books).
 public class TopFiveActiveUsersServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

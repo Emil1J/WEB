@@ -34,6 +34,7 @@ import booksForAll.general.AppConstants;
 				@WebInitParam(name = "ID", value = "")
 		})
 
+	//Using this class the admin can delete a comment.
 	public class DeleteCommentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

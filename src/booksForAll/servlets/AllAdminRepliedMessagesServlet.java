@@ -32,6 +32,7 @@ import booksForAll.model.Message;
  * Servlet implementation class AllAdminRepliedMessagesServlet
  */
 @WebServlet("/AllAdminRepliedMessagesServlet")
+//This class returns all the already replied to messages to the admin.
 public class AllAdminRepliedMessagesServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

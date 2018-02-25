@@ -33,7 +33,7 @@ import booksForAll.general.AppConstants;
 		initParams = {
 				@WebInitParam(name = "ID", value = "")
 		})
-	
+	//Admin to disapprove a comment, and delete it.
 	public class UnapproveCommentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

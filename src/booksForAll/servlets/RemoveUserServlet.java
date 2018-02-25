@@ -35,6 +35,7 @@ import booksForAll.general.AppConstants;
 		initParams = {
 		@WebInitParam(name = "Username", value = "")
 		})
+	//Using this class the admin can delete a user.
 public class RemoveUserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

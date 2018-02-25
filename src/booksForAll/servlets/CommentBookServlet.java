@@ -38,6 +38,7 @@ import booksForAll.general.AppConstants;
 				@WebInitParam(name = "Description", value = "")
 	})
 	
+	//This class receives a certain review from a user and saves it for the admin's approval.
 	public class CommentBookServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
