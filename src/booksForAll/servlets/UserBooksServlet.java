@@ -41,7 +41,7 @@ import booksForAll.model.Like;
 		initParams = {
 				@WebInitParam(name = "Username", value = "")
 		})
-
+	//User and admin can user this query to get the user books.
 	public class UserBooksServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

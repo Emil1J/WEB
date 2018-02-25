@@ -33,7 +33,8 @@ import booksForAll.general.AppConstants;
 		initParams = {
 				@WebInitParam(name = "ID", value = "")
 		})
-
+	
+	//Using this class the user can delete a message.
 	public class DeleteUserMessageServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

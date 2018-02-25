@@ -40,6 +40,7 @@ import booksForAll.model.Message;
 				@WebInitParam(name = "Username", value = "")
 		})
 
+	//This class returns all the user messages to a certain user after receiving its username.
 	public class AllUserMessagesServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

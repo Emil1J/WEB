@@ -14,6 +14,7 @@ import com.google.gson.JsonObject;
  * Servlet implementation class CheckSessionServlet
  */
 @WebServlet("/CheckSessionServlet")
+//This class is used to check if a session exists, for both user and admin.
 public class CheckSessionServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

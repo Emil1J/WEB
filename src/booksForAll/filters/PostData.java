@@ -1,5 +1,6 @@
 package booksForAll.filters;
 
+//This class is used to read data from queries.
 public class PostData {
 	public String Username;
 	public String Password;

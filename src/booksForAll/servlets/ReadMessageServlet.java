@@ -34,7 +34,8 @@ import booksForAll.general.AppConstants;
 				@WebInitParam(name = "ID", value = ""),
 				@WebInitParam(name = "AdminOrUser", value="")
 	})
-
+	
+	//This class is used by the user and admin to toggle off the read message parameter (userread and adminread).
 	public class ReadMessageServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

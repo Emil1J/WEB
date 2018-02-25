@@ -39,6 +39,7 @@ import booksForAll.model.Book;
 				@WebInitParam(name = "Bookname", value = "")
 		})
 	
+	//This class is used by the user to purchase a book.
 	public class PurchaseBookServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

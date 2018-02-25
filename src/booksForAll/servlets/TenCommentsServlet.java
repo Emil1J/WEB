@@ -40,6 +40,7 @@ import booksForAll.model.Comment;
 				@WebInitParam(name = "Bookname", value = ""),
 				@WebInitParam(name = "CommentId", value = "")
 		})
+	//This class is used to get the next ten comments after a certain ID (At the end it wasn't used).
 	public class TenCommentsServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

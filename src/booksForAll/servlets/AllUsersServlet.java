@@ -37,6 +37,7 @@ import booksForAll.model.User;
  * Servlet implementation class AllUsersServlet
  */
 @WebServlet("/AllUsersServlet")
+//This class returns all users to the admin.
 public class AllUsersServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

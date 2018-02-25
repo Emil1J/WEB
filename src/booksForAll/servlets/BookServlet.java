@@ -41,6 +41,7 @@ import booksForAll.model.Like;
 				@WebInitParam(name = "Bookname", value = "")
 		})
 	
+	//This class receives a bookname and returns to the user/admin a book object.
 	public class BookServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

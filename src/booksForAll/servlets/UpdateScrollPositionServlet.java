@@ -35,6 +35,7 @@ import booksForAll.general.AppConstants;
 				@WebInitParam(name = "Bookname", value = ""),
 				@WebInitParam(name = "Position", value = "")
 		})
+//This class is used to update the scroll position after getting out from reading a certain book.
 public class UpdateScrollPositionServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

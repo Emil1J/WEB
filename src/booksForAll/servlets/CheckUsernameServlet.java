@@ -30,6 +30,9 @@ import booksForAll.general.AppConstants;
 		initParams = {
 		@WebInitParam(name = "Username", value = "")
 		})
+
+//This class is used to check whether a certain username already exists in the system.
+//Used in the registration page.
 public class CheckUsernameServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

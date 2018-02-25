@@ -42,6 +42,7 @@ import booksForAll.model.Like;
 				@WebInitParam(name = "Bookname", value = ""),
 				@WebInitParam(name = "Nickname", value = "")
 		})
+	//This class is used by the user to like a book.
 	public class LikeBookServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

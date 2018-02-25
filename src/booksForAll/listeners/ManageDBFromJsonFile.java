@@ -68,8 +68,7 @@ public class ManageDBFromJsonFile implements ServletContextListener {
     	ServletContext cntx = event.getServletContext();
     	
     	try{
-    		
-    		//obtain CustomerDB data source from Tomcat's context
+    		//Initialize all tables if they're not already initialized with the JSON files (under JSON folder).
     		Context context = new InitialContext();
     		BasicDataSource ds = (BasicDataSource)context.lookup(
     				cntx.getInitParameter(AppConstants.DB_DATASOURCE) + AppConstants.OPEN);
@@ -105,7 +104,6 @@ public class ManageDBFromJsonFile implements ServletContextListener {
         		}
         		if (!created){
         			if(table.equals(AppConstants.CREATE_BOOKS_TABLE)) {
-        				//populate customers table with customer data from json file
             			Collection<Book> books = null;
 						try {
 							books = loadBooks(cntx.getResourceAsStream(File.separator +
@@ -131,7 +129,6 @@ public class ManageDBFromJsonFile implements ServletContextListener {
             			pstmt.close();
         			}
         			else if(table.equals(AppConstants.CREATE_USERS_TABLE)) {
-        				//populate customers table with customer data from json file
             			Collection<User> users = null;
 						try {
 							users = loadUsers(cntx.getResourceAsStream(File.separator +
@@ -163,7 +160,6 @@ public class ManageDBFromJsonFile implements ServletContextListener {
             			pstmt.close();
         			}
         			else if(table.equals(AppConstants.CREATE_COMMENTS_TABLE)) {
-        				//populate customers table with customer data from json file
             			Collection<Comment> comments = null;
 						try {
 							comments = loadComments(cntx.getResourceAsStream(File.separator +
@@ -189,7 +185,6 @@ public class ManageDBFromJsonFile implements ServletContextListener {
             			pstmt.close();
         			}
         			else if(table.equals(AppConstants.CREATE_LIKES_TABLE)) {
-        				//populate customers table with customer data from json file
             			Collection<Like> likes = null;
 						try {
 							likes = loadLikes(cntx.getResourceAsStream(File.separator +
@@ -212,7 +207,6 @@ public class ManageDBFromJsonFile implements ServletContextListener {
             			pstmt.close();
         			}
         			else if(table.equals(AppConstants.CREATE_PURCHASED_BOOKS_TABLE)) {
-        				//populate customers table with customer data from json file
             			Collection<Purchase> purchases = null;
 						try {
 							purchases = loadPurchases(cntx.getResourceAsStream(File.separator +
@@ -253,7 +247,6 @@ public class ManageDBFromJsonFile implements ServletContextListener {
     	 
          //shut down database
     	 try {
-     		//obtain CustomerDB data source from Tomcat's context and shutdown
      		Context context = new InitialContext();
      		BasicDataSource ds = (BasicDataSource)context.lookup(
      				cntx.getInitParameter(AppConstants.DB_DATASOURCE) + AppConstants.SHUTDOWN);
@@ -288,7 +281,6 @@ public class ManageDBFromJsonFile implements ServletContextListener {
 	
 	private Collection<User> loadUsers(InputStream is) throws IOException{
 		
-		//wrap input stream with a buffered reader to allow reading the file line by line
 		BufferedReader br = new BufferedReader(new InputStreamReader(is));
 		StringBuilder jsonFileContent = new StringBuilder();
 		//read line by line from file
@@ -309,7 +301,6 @@ public class ManageDBFromJsonFile implements ServletContextListener {
 
 	private Collection<Comment> loadComments(InputStream is) throws IOException{
 		
-		//wrap input stream with a buffered reader to allow reading the file line by line
 		BufferedReader br = new BufferedReader(new InputStreamReader(is));
 		StringBuilder jsonFileContent = new StringBuilder();
 		//read line by line from file
@@ -355,7 +346,6 @@ public class ManageDBFromJsonFile implements ServletContextListener {
 	
 	private Collection<Purchase> loadPurchases(InputStream is) throws IOException{
 		
-		//wrap input stream with a buffered reader to allow reading the file line by line
 		BufferedReader br = new BufferedReader(new InputStreamReader(is));
 		StringBuilder jsonFileContent = new StringBuilder();
 		//read line by line from file

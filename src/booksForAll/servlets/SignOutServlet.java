@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
  * Servlet implementation class SignOutServlet
  */
 @WebServlet("/SignOutServlet")
+	//This class is used to end a session when a user logs out.
 public class SignOutServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
