@@ -75,6 +75,7 @@ public class RemoveUserServlet extends HttpServlet {
 		String commentsDeletion = "Success";
 		String likesDeletion = "Success";
 		String purchasedDeletion = "Success";
+		String messagesDeletion = "Success";
 		try {
     		
         	//obtain CustomerDB data source from Tomcat's context
@@ -89,6 +90,7 @@ public class RemoveUserServlet extends HttpServlet {
 	    		userTables.add(AppConstants.DELETE_COMMENTS_BY_USER_STMT);
 	    		userTables.add(AppConstants.DELETE_LIKE_BY_USER_STMT);
 	    		userTables.add(AppConstants.DELETE_PURCHASED_BY_USER_STMT);
+	    		userTables.add(AppConstants.DELETE_MESSAGES_BY_USER_STMT);
 	    		for(String table : userTables) {
 	    			stmt = conn.prepareStatement(table);
 					stmt.setString(1, username);
@@ -102,6 +104,9 @@ public class RemoveUserServlet extends HttpServlet {
 						}
 						else if(table.equalsIgnoreCase(AppConstants.DELETE_PURCHASED_BY_USER_STMT)) {
 							purchasedDeletion = "Failure";
+						}
+						else if(table.equalsIgnoreCase(AppConstants.DELETE_MESSAGES_BY_USER_STMT)) {
+							messagesDeletion = "Failure";
 						}
 						else {
 							likesDeletion = "Failure";
@@ -121,6 +126,7 @@ public class RemoveUserServlet extends HttpServlet {
     		json.addProperty("UserDeletion", userDeletion);
     		json.addProperty("CommentsDeletion", commentsDeletion);
     		json.addProperty("LikesDeletion", likesDeletion);
+    		json.addProperty("MessagesDeletion", messagesDeletion);
     		json.addProperty("PurchasedDeletion", purchasedDeletion);
     		response.getWriter().println(json.toString());
         	response.getWriter().close();
