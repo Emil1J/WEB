@@ -229,3 +229,9 @@ tbody tr:hover td {
 #tooltip {
     display: inline-block;
 }
+
+#nobooks {
+    text-align: center;
+    margin-top: 10%;
+    color: rgba(0, 0, 0, 0.5);
+}

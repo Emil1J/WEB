@@ -53,7 +53,10 @@ angular.module('app',[])
 		
 		//Check if the user already has purchased this book.
 		$scope.PurchaseCheck = function(book){
-			var books = JSON.parse(localStorage.getItem('loginResponse')).books;
+			var books = JSON.parse(localStorage.getItem('loginResponse')).books;			
+			if(typeof books == 'undefined'){
+				return "Purchase";
+			}
 			for(var i=0 ; i< books.length ; i++){
 				if(books[i].Name == book.Name){
 					document.getElementById(book.Name + "PButton").disabled = true;

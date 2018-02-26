@@ -12,12 +12,13 @@ angular.module('app',[])
 		document.getElementById("HelpMeError").style.display = "none";
 
 		//If the user somehow got to this page although he already purchased the book. Redirect to ebooks page.
-		for(var i = 0 ; i < user.books.length; i++){
-			if(user.books[i].Name == $scope.book.Name){
-				window.location = "Ebooks.html";
+		if(typeof user.books !== 'undefined'){
+			for(var i = 0 ; i < user.books.length; i++){
+				if(user.books[i].Name == $scope.book.Name){
+					window.location = "Ebooks.html";
+				}
 			}
 		}
-		
 		//Initialize countries drop down list.
 		$.getJSON('../Countries.json', function(countries) {         
 			$scope.countries = countries;

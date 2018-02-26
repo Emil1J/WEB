@@ -85,6 +85,14 @@ angular.module('app',[])
 	  	
 	  	//After the page loads, initialize the likes number on each book.
 		window.onload = function(){
+			var noBooksLab = document.getElementById('nobooks');
+			var BooksLabel = document.getElementById('BooksLabel');
+			if(typeof $scope.books == 'undefined' || $scope.books.length == 0){
+				noBooksLab.style.display = "block";
+				BooksLabel.style.display = "none";
+				return;
+			}
+			noBooksLab.style.display = "none";
 			for(var i = 0; i< $scope.books.length ; i++){
  					if($scope.books[i].LikesNum == 0){
     				   document.getElementById('LikeNumTooltip' + $scope.books[i].Name).style.display = "none";

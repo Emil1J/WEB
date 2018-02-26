@@ -32,9 +32,11 @@ angular.module('app',[])
 		infoMsg.style.display = "none";
 
 		//Check if the user purchased this book.
-		for(var i=0 ; i<books.length ; i++){
-			if(books[i].Name == viewBook.Name){
-				purchased = "True";
+		if(typeof books !== 'undefined'){
+			for(var i=0 ; i< books.length ; i++){
+				if(books[i].Name == viewBook.Name){
+					purchased = "True";
+				}
 			}
 		}
 		
