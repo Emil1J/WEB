@@ -150,11 +150,11 @@ angular.module('app',[])
 				if(email == ""){
 					email = "";
 				}
-				else if(description == ""){
+				if(description == ""){
 					description = "";
 				}
-				else if(photo == ""){
-					photo = "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png";
+				if(photo == ""){
+					photo = "https://image.freepik.com/free-icon/male-user-profile-picture_318-37825.jpg";
 				}
 				var queryData = {
 					    Username: username,
@@ -177,6 +177,7 @@ angular.module('app',[])
 					  data: JSON.stringify(queryData),
 					  success: function(response) {
 						  if(response.Result == "Success"){
+							  response.User.books = [];
 							  localStorage.setItem('loginResponse', JSON.stringify(response.User));
 							  window.location="LandingPage.html";
 						  }
